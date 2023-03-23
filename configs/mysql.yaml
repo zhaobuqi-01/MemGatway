@@ -1,0 +1,9 @@
+host: "localhost"
+port: 3306
+user: "root"
+password: "Dan10130204#@"
+dbname: "api_gateway"
+charset: "utf8mb4"
+parsetime: true
+maxidleconns: 10
+maxopenconns: 100
