@@ -28,13 +28,14 @@ func RequestOutLog(c *gin.Context) {
 	statusCode := c.Writer.Status()
 	userAgent := c.Request.UserAgent()
 	requestID := c.Writer.Header().Get("X-Request-Id")
+	fmt.Printf("Out path:%s | clientIP:%s | method:%s |userAgent:%s | requestID:%s\n", path, clientIP, method, userAgent, requestID)
 
-	logger.Info(fmt.Sprintf("[%s] %s | %3d | %13v | %15s | %-7s %s",
+	logger.Info(fmt.Sprintf("%s _com_request_out [%s] %s | %3d | %13v | %15s | %-7s %s",
+		path,
 		end.Format("2006-01-02T15:04:05.000Z0700"),
 		clientIP,
 		statusCode,
 		latency,
-		path,
 		method,
 		userAgent,
 	), zap.String("request_id", requestID))
@@ -55,13 +56,14 @@ func RequestInLog(c *gin.Context) {
 	clientIP := c.ClientIP()
 	method := c.Request.Method
 	userAgent := c.Request.UserAgent()
-	requestID := c.Writer.Header().Get("X-Request-Id")
+	requestID := c.Request.Header.Get("X-Request-Id")
+	fmt.Printf("In path:%s | clientIP:%s  | method:%s |   \n userAgent:%s  |  requestID:%s\n", path, clientIP, method, userAgent, requestID)
 
-	logger.Info(fmt.Sprintf("[%s] %s | %-7s %s | %s",
+	logger.Info(fmt.Sprintf("%s _com_request_in [%s] %s | %-7s %s | %s",
+		path,
 		time.Now().Format("2006-01-02T15:04:05.000Z0700"),
 		clientIP,
 		method,
-		path,
 		userAgent,
 	), zap.String("request_id", requestID))
 	logger.Debug("request body", zap.ByteString("body", requestBody))

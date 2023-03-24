@@ -48,3 +48,22 @@ func init() {
 		DB = db
 	})
 }
+
+// 使用全局DB连接池
+// Use the global DB connection pool
+func GetDB() *gorm.DB {
+	return DB
+}
+
+// Close 关闭数据库连接池
+// Close closes the database connection pool
+func Close() error {
+	if DB != nil {
+		sqlDB, err := DB.DB()
+		if err != nil {
+			return err
+		}
+		return sqlDB.Close()
+	}
+	return nil
+}

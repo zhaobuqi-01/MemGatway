@@ -2,9 +2,8 @@ package configs
 
 import (
 	"fmt"
-	"gateway/pkg/logger"
 	"github.com/spf13/viper"
-	"go.uber.org/zap"
+	"log"
 	"sync"
 )
 
@@ -68,7 +67,7 @@ func readConfig(configName string, configType string, configPath string) *viper.
 
 // GetServerConfig - get server configuration
 func GetServerConfig() *ServerConfig {
-	v := readConfig("base", "yaml", "../../configs")
+	v := readConfig("base", "yaml", "../configs")
 
 	serverConfig := &ServerConfig{}
 	err := v.UnmarshalKey("server", serverConfig)
@@ -81,7 +80,7 @@ func GetServerConfig() *ServerConfig {
 
 // GetLogConfig - 获取日志配置 (Get logger configuration)
 func GetLogConfig() *LogConfig {
-	v := readConfig("logger", "yaml", "../../configs")
+	v := readConfig("log", "yaml", "../configs")
 	logConfig := &LogConfig{}
 	err := v.Unmarshal(logConfig)
 	if err != nil {
@@ -92,7 +91,7 @@ func GetLogConfig() *LogConfig {
 
 // GetMySQLConfig - 获取MySQL配置 (Get MySQL configuration)
 func GetMySQLConfig() *MySQLConfig {
-	v := readConfig("mysql", "yaml", "../../configs")
+	v := readConfig("mysql", "yaml", "../configs")
 	mysqlConfig := &MySQLConfig{}
 	err := v.Unmarshal(mysqlConfig)
 	if err != nil {
@@ -103,7 +102,7 @@ func GetMySQLConfig() *MySQLConfig {
 
 // GetRedisConfig - 获取Redis配置 (Get Redis configuration)
 func GetRedisConfig() *RedisConfig {
-	v := readConfig("redis", "yaml", "../../configs")
+	v := readConfig("redis", "yaml", "../configs")
 	redisConfig := &RedisConfig{}
 	err := v.Unmarshal(redisConfig)
 	if err != nil {
@@ -156,7 +155,7 @@ func init() {
 		if err != nil {
 			// 如果配置解析失败，则打印错误并退出
 			// If the configuration parsing fails, print the error and exit
-			logger.Fatal("Failed to load configurations: %v", zap.Error(err))
+			log.Fatalf("Failed to load configurations: %v", err)
 		}
 	})
 }
