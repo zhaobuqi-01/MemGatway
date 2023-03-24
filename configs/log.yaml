@@ -1,4 +1,4 @@
-filename: "logs/app.log"
+filename: "logs/app.logger"
 maxsize: 50
 maxage: 7
 maxbackups: 10

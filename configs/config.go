@@ -2,7 +2,9 @@ package configs
 
 import (
 	"fmt"
+	"gateway/pkg/logger"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 	"sync"
 )
 
@@ -73,9 +75,9 @@ func GetServerConfig() *ServerConfig {
 	return serverConfig
 }
 
-// GetLogConfig - 获取日志配置 (Get log configuration)
+// GetLogConfig - 获取日志配置 (Get logger configuration)
 func GetLogConfig() *LogConfig {
-	v := readConfig("log", "yaml", "../../configs")
+	v := readConfig("logger", "yaml", "../../configs")
 	logConfig := &LogConfig{}
 	err := v.Unmarshal(logConfig)
 	if err != nil {
@@ -125,7 +127,7 @@ func LoadConfigurations() error {
 		// Load server configuration
 		serverConfig = GetServerConfig()
 
-		// Load log configurations
+		// Load logger configurations
 		logConfig = GetLogConfig()
 
 		// Load MySQL configurations
@@ -136,4 +138,21 @@ func LoadConfigurations() error {
 	})
 
 	return err
+}
+
+// 用于确保仅初始化一次
+// Used to ensure that initialization occurs only once
+var onceConfig sync.Once
+
+func init() {
+	// 使用 sync.Once 仅执行一次初始化
+	// Use sync.Once to initialize only once
+	onceConfig.Do(func() {
+		err := LoadConfigurations()
+		if err != nil {
+			// 如果配置解析失败，则打印错误并退出
+			// If the configuration parsing fails, print the error and exit
+			logger.Fatal("Failed to load configurations: %v", zap.Error(err))
+		}
+	})
 }

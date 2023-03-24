@@ -20,8 +20,8 @@ func TestInitLogger(t *testing.T) {
 		t.Fatalf("Failed to initialize logger: %v", err)
 	}
 
-	// Test logger with different log levels
-	logger.Info("This is an info log")
-	logger.Warn("This is a warning log")
-	logger.Error("This is an error log")
+	// Test logger with different logger levels
+	logger.Info("This is an info logger")
+	logger.Warn("This is a warning logger")
+	logger.Error("This is an error logger")
 }

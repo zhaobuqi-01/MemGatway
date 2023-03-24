@@ -1,7 +1,6 @@
 package logger
 
 import (
-	"fmt"
 	"gateway/configs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -18,7 +17,7 @@ const (
 	InfoLevel   Level = zap.InfoLevel   // 0, default level
 	WarnLevel   Level = zap.WarnLevel   // 1
 	ErrorLevel  Level = zap.ErrorLevel  // 2
-	DPanicLevel Level = zap.DPanicLevel // 3, used in development log
+	DPanicLevel Level = zap.DPanicLevel // 3, used in development logger
 	// PanicLevel logs a message, then panics
 	PanicLevel Level = zap.PanicLevel // 4
 	// FatalLevel logs a message, then calls os.Exit(1).
@@ -54,9 +53,6 @@ func (l *Logger) Panic(msg string, fields ...Field) {
 
 func (l *Logger) Fatal(msg string, fields ...Field) {
 	l.l.Fatal(msg, fields...)
-}
-func (l *Logger) Fatalf(msg string, args ...interface{}) {
-	l.l.Fatal(fmt.Sprintf(msg, args...))
 }
 
 // function variables for all field types
@@ -201,7 +197,7 @@ func NewTeeWithRotate(tops []TeeOption, opts ...Option) *Logger {
 	return logger
 }
 
-// New create a new logger (not support log rotating).
+// New create a new logger (not support logger rotating).
 func New(writer io.Writer, level Level, opts ...Option) *Logger {
 	if writer == nil {
 		panic("the writer is nil")
@@ -236,11 +232,9 @@ func Sync() error {
 
 var loggerOnce sync.Once
 
-// InitLogger initializes the default logger with the loaded log configuration
+// InitLogger initializes the default logger with the loaded logger configuration
 // 使用已加载的日志配置初始化默认日志记录器
-func InitLogger() error {
-	var err error
-
+func init() {
 	loggerOnce.Do(func() {
 		logConfig := configs.GetLogConfig()
 
@@ -251,7 +245,7 @@ func InitLogger() error {
 			Compress:   false,
 		}
 
-		// Initialize the logger with log rotation
+		// Initialize the logger with logger rotation
 		// 使用日志轮换初始化日志记录器
 		level := zapLevelFromString(logConfig.Level)
 		teeOption := TeeOption{
@@ -263,11 +257,9 @@ func InitLogger() error {
 		logger := NewTeeWithRotate([]TeeOption{teeOption}, WithCaller(true))
 		ResetDefault(logger)
 	})
-
-	return err
 }
 
-// Convert log level string to zapcore.Level
+// Convert logger level string to zapcore.Level
 func zapLevelFromString(level string) Level {
 	switch level {
 	case "debug":

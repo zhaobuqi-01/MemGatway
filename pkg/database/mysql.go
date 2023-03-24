@@ -3,6 +3,9 @@ package database
 import (
 	"fmt"
 	"gateway/configs"
+	"gateway/pkg/logger"
+	"go.uber.org/zap"
+	"sync"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -31,4 +34,17 @@ func ConnectMySQL() (*gorm.DB, error) {
 	sqlDB.SetMaxOpenConns(conf.MaxOpenConns)
 
 	return db, nil
+}
+
+var DB *gorm.DB
+var onceMySQL sync.Once
+
+func init() {
+	onceMySQL.Do(func() {
+		db, err := ConnectMySQL()
+		if err != nil {
+			logger.Fatal("Failed to connect to MySQL: %v", zap.Error(err))
+		}
+		DB = db
+	})
 }

@@ -3,7 +3,10 @@ package database
 import (
 	"fmt"
 	"gateway/configs"
+	"gateway/pkg/logger"
 	"github.com/go-redis/redis/v8"
+	"go.uber.org/zap"
+	"sync"
 	"time"
 )
 
@@ -40,4 +43,17 @@ func ConnectRedis() (*redis.Client, error) {
 	}
 
 	return client, nil
+}
+
+var RedisClient *redis.Client
+var onceRedis sync.Once
+
+func init() {
+	onceRedis.Do(func() {
+		client, err := ConnectRedis()
+		if err != nil {
+			logger.Fatal("Failed to connect to Redis: %v", zap.Error(err))
+		}
+		RedisClient = client
+	})
 }
