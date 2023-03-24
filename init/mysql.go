@@ -1,6 +1,8 @@
 package init
 
 import (
+	"context"
+	"database/sql"
 	"gateway/pkg/database"
 	log "gateway/pkg/logger"
 	"go.uber.org/zap"
@@ -19,4 +21,36 @@ func init() {
 		}
 		DB = db
 	})
+}
+
+// GetConnection retrieves a connection from the connection pool
+func GetConnection(ctx context.Context) (*sql.Conn, error) {
+	sqlDB, err := DB.DB()
+	if err != nil {
+		return nil, err
+	}
+
+	conn, err := sqlDB.Conn(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return conn, nil
+}
+
+// CloseConnection releases a connection back to the connection pool
+func CloseConnection(conn *sql.Conn) error {
+	if conn == nil {
+		return nil
+	}
+
+	return conn.Close()
+}
+
+func CloseDB() error {
+	sqlDB, err := DB.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.Close()
 }
