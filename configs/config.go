@@ -10,7 +10,11 @@ import (
 
 // ServerConfig - server configuration struct
 type ServerConfig struct {
-	Port int
+	Addr           string   `mapstructure:"addr"`
+	ReadTimeout    int      `mapstructure:"read_timeout"`
+	WriteTimeout   int      `mapstructure:"write_timeout"`
+	MaxHeaderBytes int      `mapstructure:"max_header_bytes"`
+	AllowIP        []string `mapstructure:"allow_ip"`
 }
 
 // LogConfig - 日志配置 (Log configuration)
@@ -155,4 +159,29 @@ func init() {
 			logger.Fatal("Failed to load configurations: %v", zap.Error(err))
 		}
 	})
+}
+
+// 获取指定key的值
+func Get(key string) interface{} {
+	return viper.Get(key)
+}
+
+// 获取string类型的配置
+func GetString(key string) string {
+	return viper.GetString(key)
+}
+
+// 获取int类型的配置
+func GetInt(key string) int {
+	return viper.GetInt(key)
+}
+
+// 获取bool类型的配置
+func GetBool(key string) bool {
+	return viper.GetBool(key)
+}
+
+// 获取string slice类型的配置
+func GetStringSlice(key string) []string {
+	return viper.GetStringSlice(key)
 }

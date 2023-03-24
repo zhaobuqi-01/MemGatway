@@ -1,4 +1,4 @@
-package controllers
+package controller
 
 type AdminLoginController struct {
 }

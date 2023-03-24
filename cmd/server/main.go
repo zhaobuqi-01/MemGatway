@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "gateway/init" // Import the init package to initialize configuration and logging
 	"github.com/gin-gonic/gin"
 )
 
