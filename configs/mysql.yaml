@@ -5,5 +5,5 @@ password: "Dan10130204#@"
 dbname: "api_gateway"
 charset: "utf8mb4"
 parsetime: true
-maxidleconns: 10
+maxidleconns: 100
 maxopenconns: 100

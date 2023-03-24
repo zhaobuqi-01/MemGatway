@@ -2,11 +2,13 @@ package logger
 
 import (
 	"fmt"
+	"gateway/configs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"io"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -160,7 +162,7 @@ type LevelEnablerFunc func(lvl Level) bool
 type TeeOption struct {
 	Filename string
 	Ropt     RotateOptions
-	Lef      LevelEnablerFunc
+	Left     LevelEnablerFunc
 }
 
 func NewTeeWithRotate(tops []TeeOption, opts ...Option) *Logger {
@@ -174,7 +176,7 @@ func NewTeeWithRotate(tops []TeeOption, opts ...Option) *Logger {
 		top := top
 
 		lv := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-			return top.Lef(Level(lvl))
+			return top.Left(Level(lvl))
 		})
 
 		w := zapcore.AddSync(&lumberjack.Logger{
@@ -230,4 +232,59 @@ func Sync() error {
 		return std.Sync()
 	}
 	return nil
+}
+
+var loggerOnce sync.Once
+
+// InitLogger initializes the default logger with the loaded log configuration
+// 使用已加载的日志配置初始化默认日志记录器
+func InitLogger() error {
+	var err error
+
+	loggerOnce.Do(func() {
+		logConfig := configs.GetLogConfig()
+
+		ropt := RotateOptions{
+			MaxSize:    logConfig.MaxSize,
+			MaxAge:     logConfig.MaxAge,
+			MaxBackups: logConfig.MaxBackups,
+			Compress:   false,
+		}
+
+		// Initialize the logger with log rotation
+		// 使用日志轮换初始化日志记录器
+		level := zapLevelFromString(logConfig.Level)
+		teeOption := TeeOption{
+			Filename: logConfig.Filename,
+			Ropt:     ropt,
+			Left:     func(lvl Level) bool { return lvl >= level },
+		}
+
+		logger := NewTeeWithRotate([]TeeOption{teeOption}, WithCaller(true))
+		ResetDefault(logger)
+	})
+
+	return err
+}
+
+// Convert log level string to zapcore.Level
+func zapLevelFromString(level string) Level {
+	switch level {
+	case "debug":
+		return DebugLevel
+	case "info":
+		return InfoLevel
+	case "warn":
+		return WarnLevel
+	case "error":
+		return ErrorLevel
+	case "dpanic":
+		return DPanicLevel
+	case "panic":
+		return PanicLevel
+	case "fatal":
+		return FatalLevel
+	default:
+		return InfoLevel
+	}
 }

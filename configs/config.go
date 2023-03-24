@@ -3,7 +3,13 @@ package configs
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"sync"
 )
+
+// ServerConfig - server configuration struct
+type ServerConfig struct {
+	Port int
+}
 
 // LogConfig - 日志配置 (Log configuration)
 type LogConfig struct {
@@ -23,7 +29,7 @@ type MySQLConfig struct {
 	DBName       string `mapstructure:"dbname"`
 	Charset      string
 	ParseTime    bool `mapstructure:"parsetime"`
-	MaxIdleConns int  `mapstructure:"max_idleconns"`
+	MaxIdleConns int  `mapstructure:"maxidleconns"`
 	MaxOpenConns int  `mapstructure:"maxopenconns"`
 }
 
@@ -54,9 +60,22 @@ func readConfig(configName string, configType string, configPath string) *viper.
 	return v
 }
 
+// GetServerConfig - get server configuration
+func GetServerConfig() *ServerConfig {
+	v := readConfig("base", "yaml", "../../configs")
+
+	serverConfig := &ServerConfig{}
+	err := v.UnmarshalKey("server", serverConfig)
+	if err != nil {
+		panic(fmt.Errorf("unable to unmarshal ServerConfig: %s", err))
+	}
+
+	return serverConfig
+}
+
 // GetLogConfig - 获取日志配置 (Get log configuration)
 func GetLogConfig() *LogConfig {
-	v := readConfig("log", "yaml", "./configs")
+	v := readConfig("log", "yaml", "../../configs")
 	logConfig := &LogConfig{}
 	err := v.Unmarshal(logConfig)
 	if err != nil {
@@ -67,7 +86,7 @@ func GetLogConfig() *LogConfig {
 
 // GetMySQLConfig - 获取MySQL配置 (Get MySQL configuration)
 func GetMySQLConfig() *MySQLConfig {
-	v := readConfig("mysql", "yaml", "./configs")
+	v := readConfig("mysql", "yaml", "../../configs")
 	mysqlConfig := &MySQLConfig{}
 	err := v.Unmarshal(mysqlConfig)
 	if err != nil {
@@ -78,11 +97,43 @@ func GetMySQLConfig() *MySQLConfig {
 
 // GetRedisConfig - 获取Redis配置 (Get Redis configuration)
 func GetRedisConfig() *RedisConfig {
-	v := readConfig("redis", "yaml", "./configs")
+	v := readConfig("redis", "yaml", "../../configs")
 	redisConfig := &RedisConfig{}
 	err := v.Unmarshal(redisConfig)
 	if err != nil {
 		panic(fmt.Errorf("Unable to unmarshal RedisConfig: %s", err))
 	}
 	return redisConfig
+}
+
+// Global configuration variables
+var (
+	logConfig    *LogConfig
+	mysqlConfig  *MySQLConfig
+	redisConfig  *RedisConfig
+	serverConfig *ServerConfig
+)
+
+var configOnce sync.Once
+
+// LoadConfigurations loads configurations from the config files
+// 加载配置文件中的配置
+func LoadConfigurations() error {
+	var err error
+
+	configOnce.Do(func() {
+		// Load server configuration
+		serverConfig = GetServerConfig()
+
+		// Load log configurations
+		logConfig = GetLogConfig()
+
+		// Load MySQL configurations
+		mysqlConfig = GetMySQLConfig()
+
+		// Load Redis configurations
+		redisConfig = GetRedisConfig()
+	})
+
+	return err
 }
