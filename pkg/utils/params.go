@@ -1,40 +1,44 @@
 package utils
 
 import (
+	"errors"
+	"strings"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/universal-translator"
-	"github.com/pkg/errors"
 	"gopkg.in/go-playground/validator.v9"
-	"strings"
 )
 
-// DefaultGetValidParams 根据请求参数对结构体进行绑定并验证，返回错误信息
+const (
+	ValidatorKey  = "ValidatorKey"
+	TranslatorKey = "TranslatorKey"
+)
+
 func DefaultGetValidParams(c *gin.Context, params interface{}) error {
-	// 使用 ShouldBind 绑定请求参数到结构体
+	// Bind request parameters to struct
 	if err := c.ShouldBind(params); err != nil {
 		return err
 	}
 
-	// 获取验证器
+	// Get validator
 	valid, err := GetValidator(c)
 	if err != nil {
 		return err
 	}
 
-	// 获取翻译器
+	// Get translator
 	trans, err := GetTranslation(c)
 	if err != nil {
 		return err
 	}
 
-	// 使用验证器进行结构体校验
+	// Validate struct
 	err = valid.Struct(params)
 	if err != nil {
-		// 将错误信息翻译为英文并返回
+		// Translate error messages and return
 		errs := err.(validator.ValidationErrors)
 		sliceErrs := []string{}
 		for _, e := range errs {
-			// 调用翻译器进行错误信息翻译
 			sliceErrs = append(sliceErrs, e.Translate(trans))
 		}
 		return errors.New(strings.Join(sliceErrs, ","))
@@ -43,7 +47,6 @@ func DefaultGetValidParams(c *gin.Context, params interface{}) error {
 	return nil
 }
 
-// GetValidator 从上下文中获取 validator 实例并返回，若未设置则返回错误
 func GetValidator(c *gin.Context) (*validator.Validate, error) {
 	val, ok := c.Get(ValidatorKey)
 	if !ok {
@@ -58,7 +61,6 @@ func GetValidator(c *gin.Context) (*validator.Validate, error) {
 	return validator, nil
 }
 
-// GetTranslation 从上下文中获取翻译器实例并返回，若未设置则返回错误
 func GetTranslation(c *gin.Context) (ut.Translator, error) {
 	trans, ok := c.Get(TranslatorKey)
 	if !ok {

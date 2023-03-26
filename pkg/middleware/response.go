@@ -1,9 +1,8 @@
 package middleware
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 // ResponseCode 错误码类型，1000以下为通用码，1000以上为用户自定义码
@@ -34,14 +33,13 @@ type Response struct {
 func ResponseError(c *gin.Context, code ResponseCode, err error) {
 	// 设置响应头
 	c.Header("Content-Type", "application/json; charset=utf-8")
-
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: code,
 		ErrorMsg:  err.Error(),
 		Data:      nil,
 		TraceID:   c.GetHeader("Trace-Id"),
-		Stack:     "",
+		Stack:     err.Error(),
 	})
 }
 
@@ -53,7 +51,7 @@ func ResponseSuccess(c *gin.Context, data interface{}) {
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: SuccessCode,
-		ErrorMsg:  "",
+		ErrorMsg:  "成功",
 		Data:      data,
 		TraceID:   c.GetHeader("Trace-Id"),
 		Stack:     nil,

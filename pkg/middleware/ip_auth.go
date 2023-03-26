@@ -3,6 +3,7 @@ package middleware
 import (
 	"errors"
 	"fmt"
+	_ "gateway/configs"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )

@@ -17,7 +17,8 @@ func RecoveryMiddleware() gin.HandlerFunc {
 			if err := recover(); err != nil {
 				fmt.Println(string(debug.Stack()))
 				// 记录错误堆栈和日志
-				logger.Panic("panic", zap.String("error", fmt.Sprint(err)), zap.String("stack", string(debug.Stack())))
+				requestID := c.Writer.Header().Get("X-Request-Id")
+				logger.Error(fmt.Sprint(err), zap.String("stack", string(debug.Stack())), zap.String("request_id", requestID))
 				if viper.GetString("gin.mode") != "debug" {
 					ResponseError(c, 500, errors.New("内部错误"))
 					return

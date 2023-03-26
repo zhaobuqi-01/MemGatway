@@ -12,7 +12,7 @@ import (
 
 func TestIPAuthMiddleware(t *testing.T) {
 	// 设置允许的 IP 列表
-	viper.Set("base.http.allow_ip", []string{"127.0.0.1"})
+	viper.Set("config.server.allow_ip", []string{"127.0.0.1"})
 
 	router := gin.New()
 	router.Use(middleware.IPAuthMiddleware())

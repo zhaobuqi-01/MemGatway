@@ -1,11 +1,11 @@
 package router
 
 import (
+	"gateway/internal/controller"
 	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
@@ -15,7 +15,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	router := gin.Default()
 
 	adminLoginRouter := router.Group("/admin_login")
-	store, err := sessions.NewRedisStore(10, "tcp", viper.GetString("config.redis.host"), viper.GetString("config.redis.password"), []byte("secret"))
+	store, err := sessions.NewRedisStore(10, "tcp", "localhost:6379", "", []byte("secret"))
 	if err != nil {
 		logger.Fatal("sessions.NewRedisSrore err :%v", zap.Error(err))
 	}
@@ -26,7 +26,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 		middleware.TranslationMiddleware(),
 	)
 	{
-
+		controller.AdminLoginRegister(adminLoginRouter)
 	}
 
 	return router

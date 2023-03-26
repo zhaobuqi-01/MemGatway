@@ -11,10 +11,10 @@ type AdminLoginController struct {
 
 func AdminLoginRegister(group *gin.RouterGroup) {
 	adminLogin := &AdminLoginController{}
-	group.POST("/admin/login", adminLogin.AdminLoginRegister)
+	group.POST("/admin/login", adminLogin.AdminLogin)
 }
 
-func (adminlogin *AdminLoginController) AdminLoginRegister(c *gin.Context) {
+func (adminlogin *AdminLoginController) AdminLogin(c *gin.Context) {
 	params := &dto.AdminLoginInput{}
 	if err := params.BindValParam(c); err != nil {
 		middleware.ResponseError(c, 1001, err)

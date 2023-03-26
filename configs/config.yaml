@@ -13,7 +13,7 @@ server:
 
 # Log configuration
 log:
-  filename: "logs/app.log"
+  filename: "logs/gateway.log"
   maxsize: 50
   maxage: 7
   maxbackups: 10
