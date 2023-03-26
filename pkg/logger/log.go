@@ -280,7 +280,7 @@ func New(writer io.Writer, level Level, opts ...Option) *Logger {
 	core := zapcore.NewCore(
 		zapcore.NewJSONEncoder(cfg.EncoderConfig),
 		zapcore.AddSync(writer),
-		zapcore.Level(level),
+		level,
 	)
 	logger := &Logger{
 		l:     zap.New(core, opts...),

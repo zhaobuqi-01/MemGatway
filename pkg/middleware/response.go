@@ -32,37 +32,16 @@ type Response struct {
 
 // ResponseError 错误响应函数，code 为错误码，err 为错误信息
 func ResponseError(c *gin.Context, code ResponseCode, err error) {
-	// 定义错误码对应的错误信息
-	var errMsg string
-	switch code {
-	case SuccessCode:
-		errMsg = "成功"
-	case UndefErrorCode:
-		errMsg = "未定义的错误"
-	case ValidErrorCode:
-		errMsg = "参数校验错误"
-	case InternalErrorCode:
-		errMsg = "内部错误"
-	case InvalidRequestErrorCode:
-		errMsg = "请求未经授权"
-	case CustomizeCode:
-		errMsg = "自定义错误"
-	case GROUPALL_SAVE_FLOWERROR:
-		errMsg = "保存流程信息失败"
-	default:
-		errMsg = "未定义的错误"
-	}
-
 	// 设置响应头
 	c.Header("Content-Type", "application/json; charset=utf-8")
 
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: code,
-		ErrorMsg:  errMsg,
+		ErrorMsg:  err.Error(),
 		Data:      nil,
 		TraceID:   c.GetHeader("Trace-Id"),
-		Stack:     err.Error(),
+		Stack:     "",
 	})
 }
 
@@ -74,7 +53,7 @@ func ResponseSuccess(c *gin.Context, data interface{}) {
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: SuccessCode,
-		ErrorMsg:  "成功",
+		ErrorMsg:  "",
 		Data:      data,
 		TraceID:   c.GetHeader("Trace-Id"),
 		Stack:     nil,

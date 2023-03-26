@@ -13,7 +13,7 @@ import (
 
 // ConnectMySQL 连接MySQL数据库 (Connect to MySQL database)
 func ConnectMySQL() (*gorm.DB, error) {
-	conf := configs.GetMySQLConfig()
+	conf := configs.GetMysqlConfig()
 
 	// 构建DSN字符串 (Build the DSN string)
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=%t",

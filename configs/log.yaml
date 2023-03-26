@@ -1,5 +1,0 @@
-filename: "logs/app.log"
-maxsize: 50
-maxage: 7
-maxbackups: 10
-level: debug

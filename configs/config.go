@@ -3,7 +3,6 @@ package configs
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"log"
 	"sync"
 )
 
@@ -40,8 +39,7 @@ type MySQLConfig struct {
 
 // RedisConfig - Redis配置 (Redis configuration)
 type RedisConfig struct {
-	Host         string
-	Port         int
+	Addr         string `mapstructure:"addr"`
 	Password     string
 	DB           int
 	PoolSize     int
@@ -50,65 +48,35 @@ type RedisConfig struct {
 	ReadTimeout  string `mapstructure:"readtimeout"`
 	WriteTimeout string `mapstructure:"writetimeout"`
 }
+type GinConfig struct {
+	Mode string `mapstructure:"mode"`
+}
+
+const ConfigPath = "D:\\gateway\\configs" // 硬编码的配置文件路径
 
 // readConfig - 读取配置文件 (Read configuration file)
-func readConfig(configName string, configType string, configPath string) *viper.Viper {
+func readConfig() *viper.Viper {
+	// 实例化viper
 	v := viper.New()
-	v.SetConfigName(configName)
-	v.SetConfigType(configType)
-	v.AddConfigPath(configPath)
+	v.SetConfigName("config")
+	v.SetConfigType("yaml")
+	v.AddConfigPath(ConfigPath)
 
 	err := v.ReadInConfig()
 	if err != nil {
-		panic(fmt.Errorf("Fatal error reading %s config file: %s", configName, err))
+		panic(fmt.Errorf("Fatal error reading config file: %s", err))
 	}
+
 	return v
 }
 
-// GetServerConfig - get server configuration
-func GetServerConfig() *ServerConfig {
-	v := readConfig("base", "yaml", "../configs")
-
-	serverConfig := &ServerConfig{}
-	err := v.UnmarshalKey("server", serverConfig)
-	if err != nil {
-		panic(fmt.Errorf("unable to unmarshal ServerConfig: %s", err))
-	}
-
-	return serverConfig
-}
-
-// GetLogConfig - 获取日志配置 (Get logger configuration)
-func GetLogConfig() *LogConfig {
-	v := readConfig("log", "yaml", "../configs")
-	logConfig := &LogConfig{}
-	err := v.Unmarshal(logConfig)
-	if err != nil {
-		panic(fmt.Errorf("Unable to unmarshal LogConfig: %s", err))
-	}
-	return logConfig
-}
-
-// GetMySQLConfig - 获取MySQL配置 (Get MySQL configuration)
-func GetMySQLConfig() *MySQLConfig {
-	v := readConfig("mysql", "yaml", "../configs")
-	mysqlConfig := &MySQLConfig{}
-	err := v.Unmarshal(mysqlConfig)
-	if err != nil {
-		panic(fmt.Errorf("Unable to unmarshal MySQLConfig: %s", err))
-	}
-	return mysqlConfig
-}
-
-// GetRedisConfig - 获取Redis配置 (Get Redis configuration)
-func GetRedisConfig() *RedisConfig {
-	v := readConfig("redis", "yaml", "../configs")
-	redisConfig := &RedisConfig{}
-	err := v.Unmarshal(redisConfig)
+func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig](describe string, configType *T) *T {
+	v := readConfig()
+	err := v.UnmarshalKey(describe, configType)
 	if err != nil {
 		panic(fmt.Errorf("Unable to unmarshal RedisConfig: %s", err))
 	}
-	return redisConfig
+	return configType
 }
 
 // Global configuration variables
@@ -117,70 +85,51 @@ var (
 	mysqlConfig  *MySQLConfig
 	redisConfig  *RedisConfig
 	serverConfig *ServerConfig
+	ginConfig    *GinConfig
 )
 
-var configOnce sync.Once
+var Once sync.Once
 
-// LoadConfigurations loads configurations from the config files
-// 加载配置文件中的配置
-func LoadConfigurations() error {
-	var err error
-
-	configOnce.Do(func() {
-		// Load server configuration
-		serverConfig = GetServerConfig()
-
-		// Load logger configurations
-		logConfig = GetLogConfig()
-
-		// Load MySQL configurations
-		mysqlConfig = GetMySQLConfig()
-
-		// Load Redis configurations
-		redisConfig = GetRedisConfig()
-	})
-
-	return err
+// 向外部暴露的函数；用于取对应的配置
+func GetServerConfig() *ServerConfig {
+	return serverConfig
 }
 
-// 用于确保仅初始化一次
-// Used to ensure that initialization occurs only once
-var onceConfig sync.Once
+func GetLogConfig() *LogConfig {
+	return logConfig
+}
 
+func GetMysqlConfig() *MySQLConfig {
+	return mysqlConfig
+}
+
+func GetRedisConfig() *RedisConfig {
+	return redisConfig
+}
+
+func GetGinConfig() *GinConfig {
+	return ginConfig
+}
+
+// LoadConfigurations loads configurations from the config files
+// init 初始化配置
 func init() {
 	// 使用 sync.Once 仅执行一次初始化
 	// Use sync.Once to initialize only once
-	onceConfig.Do(func() {
-		err := LoadConfigurations()
-		if err != nil {
-			// 如果配置解析失败，则打印错误并退出
-			// If the configuration parsing fails, print the error and exit
-			log.Fatalf("Failed to load configurations: %v", err)
-		}
+	Once.Do(func() {
+		// Load server configuration
+		serverConfig = getConfig("server", new(ServerConfig))
+
+		// Load logger configurations
+		logConfig = getConfig("log", new(LogConfig))
+
+		// Load MySQL configurations
+		mysqlConfig = getConfig("mysql", new(MySQLConfig))
+
+		// Load Redis configurations
+		redisConfig = getConfig("redis", new(RedisConfig))
+
+		ginConfig = getConfig("gin", new(GinConfig))
 	})
-}
 
-// 获取指定key的值
-func Get(key string) interface{} {
-	return viper.Get(key)
-}
-
-// 获取string类型的配置
-func GetString(key string) string {
-	return viper.GetString(key)
-}
-
-// 获取int类型的配置
-func GetInt(key string) int {
-	return viper.GetInt(key)
-}
-
-// 获取bool类型的配置
-func GetBool(key string) bool {
-	return viper.GetBool(key)
-}
-
-// 获取string slice类型的配置
-func GetStringSlice(key string) []string {
-	return viper.GetStringSlice(key)
 }

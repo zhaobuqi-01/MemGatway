@@ -11,7 +11,7 @@ import (
 func IPAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 获取allow_ip配置的string slice类型
-		allowIPs := viper.GetStringSlice("base.http.allow_ip")
+		allowIPs := viper.GetStringSlice("config.server.allow_ip")
 		isMatched := false
 		for _, host := range allowIPs {
 			// 判断客户端IP是否匹配配置中的IP

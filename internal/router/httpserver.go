@@ -15,12 +15,14 @@ var (
 
 func HttpServerRun() {
 	r := InitRouter()
+	serverConfig := configs.GetServerConfig()
+
 	HttpSrvHandler = &http.Server{
-		Addr:           configs.GetServerConfig().Addr,
+		Addr:           serverConfig.Addr,
 		Handler:        r,
-		ReadTimeout:    time.Duration(configs.GetServerConfig().ReadTimeout) * time.Second,
-		WriteTimeout:   time.Duration(configs.GetServerConfig().WriteTimeout) * time.Second,
-		MaxHeaderBytes: 1 << uint(configs.GetServerConfig().MaxHeaderBytes),
+		ReadTimeout:    time.Duration(serverConfig.ReadTimeout) * time.Second,
+		WriteTimeout:   time.Duration(serverConfig.WriteTimeout) * time.Second,
+		MaxHeaderBytes: 1 << uint(serverConfig.MaxHeaderBytes),
 	}
 	go func() {
 		logger.Default().Info(fmt.Sprintf("HttpServerRun: %s", configs.GetServerConfig().Addr))
