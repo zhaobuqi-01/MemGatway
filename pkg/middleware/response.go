@@ -39,7 +39,7 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 		ErrorMsg:  err.Error(),
 		Data:      nil,
 		TraceID:   c.GetHeader("Trace-Id"),
-		Stack:     err.Error(),
+		Stack:     nil,
 	})
 }
 
