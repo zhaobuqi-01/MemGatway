@@ -6,8 +6,8 @@ import (
 )
 
 type AdminLoginInput struct {
-	Username string `json:"username" form:"username" comment:"用户名" example:"admin" validate:"required,is_validate_username)"`
-	Password string `json:"password" form:"password" comment:"密码" example:"123456"validate:"required,min=6"`
+	UserName string `json:"username" form:"username" comment:"管理员用户名" example:"admin" validate:"required,valid_username"` //管理员用户名
+	Password string `json:"password" form:"password" comment:"密码" example:"123456" validate:"required"`                   //密码
 }
 
 type AdminLoginOutput struct {

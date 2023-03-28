@@ -1,7 +1,10 @@
 package router
 
 import (
+	"fmt"
 	_ "gateway/api/v1"
+	"gateway/configs"
+	_ "gateway/configs"
 	"gateway/internal/controller"
 	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
@@ -35,7 +38,8 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	adminLoginRouter := router.Group("/admin_login")
-	store, err := sessions.NewRedisStore(10, "tcp", viper.GetString("redis.addr"), "", []byte("secret"))
+	fmt.Print(viper.GetString("config.redis.addr"), viper.GetString("config.redis.password"))
+	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
 	if err != nil {
 		logger.Fatal("sessions.NewRedisSrore err :%v", zap.Error(err))
 	}

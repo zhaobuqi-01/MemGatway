@@ -3,6 +3,7 @@ package configs
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"os"
 	"sync"
 )
 
@@ -52,7 +53,7 @@ type GinConfig struct {
 	Mode string `mapstructure:"mode"`
 }
 
-const ConfigPath = "D:\\gateway\\configs" // 硬编码的配置文件路径
+var ConfigPath string // 硬编码的配置文件路径
 
 // readConfig - 读取配置文件 (Read configuration file)
 func readConfig() *viper.Viper {
@@ -117,6 +118,13 @@ func init() {
 	// 使用 sync.Once 仅执行一次初始化
 	// Use sync.Once to initialize only once
 	Once.Do(func() {
+		if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
+			// WSL2
+			ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
+		} else {
+			// Windows
+			ConfigPath = "D:\\gateway\\configs"
+		}
 		// Load server configuration
 		serverConfig = getConfig("server", new(ServerConfig))
 
@@ -131,5 +139,4 @@ func init() {
 
 		ginConfig = getConfig("gin", new(GinConfig))
 	})
-
 }
