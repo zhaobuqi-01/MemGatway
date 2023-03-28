@@ -41,15 +41,15 @@ func TranslationMiddleware() gin.HandlerFunc {
 			})
 
 			// Custom validation method
-			val.RegisterValidation("is-validuser", func(fl validator.FieldLevel) bool {
+			val.RegisterValidation("is_validate_username", func(fl validator.FieldLevel) bool {
 				return fl.Field().String() == "admin"
 			})
 
 			// Custom validation translation
-			val.RegisterTranslation("is-validuser", trans, func(ut ut.Translator) error {
-				return ut.Add("is-validuser", "{0} 填写不正确哦", true)
+			val.RegisterTranslation("is_validate_username", trans, func(ut ut.Translator) error {
+				return ut.Add("is_validate_username", "{0} 填写不正确哦", true)
 			}, func(ut ut.Translator, fe validator.FieldError) string {
-				t, _ := ut.T("is-validuser", fe.Field())
+				t, _ := ut.T("is_validate_username", fe.Field())
 				return t
 			})
 		}
