@@ -3,7 +3,7 @@ gin:
   mode: "debug"
 # Server configuration
 server:
-  addr: "127.0.0.1:8880"           # 监听地址, default ":8700"
+  addr: "127.0.0.1:8080"           # 监听地址, default ":8700"
   read_timeout: 10        # 读取超时时长
   write_timeout: 10       # 写入超时时长
   max_header_bytes: 20    # 最大的header大小，二进制位长度
@@ -41,3 +41,14 @@ redis:
   dialtimeout: "5s"
   readtimeout: "5s"
   writetimeout: "5s"
+
+# Swagger configuration
+swagger:
+  version: "1.0.0"
+  host: "localhost:8080"
+  base_path: "/api/v1"
+  schemes:
+    - "http"
+    - "https"
+  title: "Gateway API "
+  description: ""

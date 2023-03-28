@@ -49,11 +49,32 @@ type RedisConfig struct {
 	ReadTimeout  string `mapstructure:"readtimeout"`
 	WriteTimeout string `mapstructure:"writetimeout"`
 }
+
 type GinConfig struct {
 	Mode string `mapstructure:"mode"`
 }
 
+// SwaggerConfig - Swagger配置 (Swagger configuration)
+type SwaggerConfig struct {
+	Version     string   `mapstructure:"version"`
+	Host        string   `mapstructure:"host"`
+	BasePath    string   `mapstructure:"base_path"`
+	Schemes     []string `mapstructure:"schemes"`
+	Title       string   `mapstructure:"title"`
+	Description string   `mapstructure:"description"`
+}
+
 var ConfigPath string // 硬编码的配置文件路径
+
+func setConfigPath() {
+	if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
+		// WSL2
+		ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
+	} else {
+		// Windows
+		ConfigPath = "D:\\gateway\\configs"
+	}
+}
 
 // readConfig - 读取配置文件 (Read configuration file)
 func readConfig() *viper.Viper {
@@ -71,7 +92,7 @@ func readConfig() *viper.Viper {
 	return v
 }
 
-func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig](describe string, configType *T) *T {
+func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig | SwaggerConfig](describe string, configType *T) *T {
 	v := readConfig()
 	err := v.UnmarshalKey(describe, configType)
 	if err != nil {
@@ -82,11 +103,12 @@ func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfi
 
 // Global configuration variables
 var (
-	logConfig    *LogConfig
-	mysqlConfig  *MySQLConfig
-	redisConfig  *RedisConfig
-	serverConfig *ServerConfig
-	ginConfig    *GinConfig
+	logConfig     *LogConfig
+	mysqlConfig   *MySQLConfig
+	redisConfig   *RedisConfig
+	serverConfig  *ServerConfig
+	ginConfig     *GinConfig
+	swaggerConfig *SwaggerConfig
 )
 
 var Once sync.Once
@@ -112,19 +134,19 @@ func GetGinConfig() *GinConfig {
 	return ginConfig
 }
 
+// 向外部暴露的函数；用于取对应的配置
+func GetSwaggerConfig() *SwaggerConfig {
+	return swaggerConfig
+}
+
 // LoadConfigurations loads configurations from the config files
 // init 初始化配置
 func init() {
 	// 使用 sync.Once 仅执行一次初始化
 	// Use sync.Once to initialize only once
 	Once.Do(func() {
-		if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
-			// WSL2
-			ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
-		} else {
-			// Windows
-			ConfigPath = "D:\\gateway\\configs"
-		}
+		setConfigPath()
+
 		// Load server configuration
 		serverConfig = getConfig("server", new(ServerConfig))
 
@@ -138,5 +160,7 @@ func init() {
 		redisConfig = getConfig("redis", new(RedisConfig))
 
 		ginConfig = getConfig("gin", new(GinConfig))
+
+		swaggerConfig = getConfig("swagger", new(SwaggerConfig))
 	})
 }

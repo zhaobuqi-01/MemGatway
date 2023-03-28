@@ -1,16 +1,16 @@
 package main
 
 import (
+	"gateway/configs"
 	"gateway/internal/router"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
 func main() {
-	gin.SetMode(viper.GetString("gin.mode"))
+	gin.SetMode(configs.GetGinConfig().Mode)
 	// 启动 HTTP 服务
 	router.HttpServerRun()
 
