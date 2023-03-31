@@ -69,10 +69,10 @@ var ConfigPath string // 硬编码的配置文件路径
 func setConfigPath() {
 	if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
 		// WSL2
-		ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
+		ConfigPath = "/mnt/e/gateway/configs"
 	} else {
 		// Windows
-		ConfigPath = "D:\\gateway\\configs"
+		ConfigPath = "E:\\gateway\\configs"
 	}
 }
 
