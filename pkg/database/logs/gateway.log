@@ -1,0 +1,1 @@
+{"level":"fatal","ts":"2023-04-01T23:53:33.669+0800","caller":"logger/log.go:57","msg":"Failed to connect to MySQL: %v","error":"dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
