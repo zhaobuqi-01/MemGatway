@@ -1,0 +1,16 @@
+2023-04-02T22:55:52+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-02T22:58:06+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-02T22:58:06+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-02T22:58:08+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-02T22:58:54+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-02T22:58:54+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-02T22:59:50+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-02T23:00:43+08:00	INFO	logger/log.go:102	HttpServerStop stopped
