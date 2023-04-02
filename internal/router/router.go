@@ -2,12 +2,12 @@ package router
 
 import (
 	"fmt"
-	"gateway/api/v1"
+	v1 "gateway/api/v1"
 	"gateway/configs"
-	_ "gateway/configs"
 	"gateway/internal/controller"
 	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
+
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -55,7 +55,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	fmt.Print(viper.GetString("config.redis.addr"), viper.GetString("config.redis.password"))
 	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
 	if err != nil {
-		logger.Fatal("sessions.NewRedisSrore err :%v", zap.Error(err))
+		logger.Fatal("sessions.NewRedisSrore err", zap.Error(err))
 	}
 	adminLoginRouter.Use(
 		sessions.Sessions("mysession", store),

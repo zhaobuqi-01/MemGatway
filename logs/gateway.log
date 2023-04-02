@@ -1,1 +1,11 @@
 {"level":"fatal","ts":"2023-03-31T16:10:59.782+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+{"level":"fatal","ts":"2023-03-31T16:13:21.514+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+{"level":"fatal","ts":"2023-03-31T16:13:27.194+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+{"level":"fatal","ts":"2023-03-31T16:16:49.363+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+{"level":"info","ts":"2023-03-31T16:29:04.160+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
+{"level":"info","ts":"2023-03-31T16:29:19.984+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
+{"level":"error","ts":"2023-03-31T16:29:20.005+0800","caller":"logger/log.go:45","msg":"HttpServerRun: 127.0.0.1:8080 err: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
+{"level":"info","ts":"2023-03-31T16:29:32.766+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
+{"level":"error","ts":"2023-03-31T16:29:32.779+0800","caller":"logger/log.go:45","msg":"HttpServerRun: 127.0.0.1:8080 err: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
+{"level":"info","ts":"2023-03-31T22:08:47.236+0800","caller":"logger/log.go:37","msg":"HttpServerStop stopped"}
+{"level":"info","ts":"2023-03-31T22:08:48.444+0800","caller":"logger/log.go:37","msg":"HttpServerStop stopped"}

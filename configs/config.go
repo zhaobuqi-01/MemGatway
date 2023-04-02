@@ -2,9 +2,11 @@ package configs
 
 import (
 	"fmt"
-	"github.com/spf13/viper"
 	"os"
 	"sync"
+
+	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/viper"
 )
 
 // ServerConfig - server configuration struct
@@ -18,11 +20,15 @@ type ServerConfig struct {
 
 // LogConfig - 日志配置 (Log configuration)
 type LogConfig struct {
-	Filename   string
-	MaxSize    int
-	MaxAge     int
-	MaxBackups int
-	Level      string
+	Level         string `mapstructure:"level"`
+	Filename      string `mapstructure:"filename"`
+	ErrorFilename string `mapstructure:"error_filename"`
+	MaxSize       int    `mapstructure:"max_size"`
+	MaxBackups    int    `mapstructure:"max_backups"`
+	MaxAge        int    `mapstructure:"max_age"`
+	Compress      bool   `mapstructure:"compress"`
+	Encoder       string `mapstructure:"encoder"`
+	TimeFormat    string `mapstructure:"time_format"`
 }
 
 // MySQLConfig - MySQL配置 (MySQL configuration)
@@ -69,34 +75,41 @@ var ConfigPath string // 硬编码的配置文件路径
 func setConfigPath() {
 	if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
 		// WSL2
-		ConfigPath = "/mnt/e/gateway/configs"
+		ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
 	} else {
 		// Windows
-		ConfigPath = "E:\\gateway\\configs"
+		ConfigPath = "E:\\project\\Api-Gateway\\configs"
 	}
 }
 
+// 定义一个全局的viper实例
+var v *viper.Viper
+
 // readConfig - 读取配置文件 (Read configuration file)
-func readConfig() *viper.Viper {
+func readConfig() {
 	// 实例化viper
 	v := viper.New()
+	// 配置文件名称（无扩展名）
 	v.SetConfigName("config")
+	// 配置文件类型，如果配置文件的名称
 	v.SetConfigType("yaml")
+	// 查找配置文件所在的路径
 	v.AddConfigPath(ConfigPath)
-
+	// 在工作目录中查找配置
+	v.AddConfigPath(".")
+	// 查找并读取配置文件
 	err := v.ReadInConfig()
-	if err != nil {
-		panic(fmt.Errorf("Fatal error reading config file: %s", err))
-	}
 
-	return v
+	// 处理读取配置文件的错误
+	if err != nil {
+		panic(fmt.Errorf("fatal error reading config file: %s", err))
+	}
 }
 
 func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig | SwaggerConfig](describe string, configType *T) *T {
-	v := readConfig()
 	err := v.UnmarshalKey(describe, configType)
 	if err != nil {
-		panic(fmt.Errorf("Unable to unmarshal RedisConfig: %s", err))
+		panic(fmt.Errorf("unable to unmarshal RedisConfig: %s", err))
 	}
 	return configType
 }
@@ -110,8 +123,6 @@ var (
 	ginConfig     *GinConfig
 	swaggerConfig *SwaggerConfig
 )
-
-var Once sync.Once
 
 // 向外部暴露的函数；用于取对应的配置
 func GetServerConfig() *ServerConfig {
@@ -139,13 +150,25 @@ func GetSwaggerConfig() *SwaggerConfig {
 	return swaggerConfig
 }
 
+var once sync.Once
+
 // LoadConfigurations loads configurations from the config files
 // init 初始化配置
 func init() {
 	// 使用 sync.Once 仅执行一次初始化
 	// Use sync.Once to initialize only once
-	Once.Do(func() {
+	once.Do(func() {
+		// Set configuration file path
 		setConfigPath()
+
+		// 读取配置文件
+		readConfig()
+
+		// 监听配置文件变化
+		v.WatchConfig()
+		v.OnConfigChange(func(e fsnotify.Event) {
+			fmt.Println("Config file changed:", e.Name)
+		})
 
 		// Load server configuration
 		serverConfig = getConfig("server", new(ServerConfig))

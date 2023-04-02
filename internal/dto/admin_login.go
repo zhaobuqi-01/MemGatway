@@ -17,3 +17,7 @@ type AdminLoginOutput struct {
 func (param *AdminLoginInput) BindValParam(c *gin.Context) error {
 	return utils.DefaultGetValidParams(c, param)
 }
+
+type AdminChangePasswordInput struct {
+	UserName string `json:"username" form:"username" comment:"管理员用户名" example:"admin" validate:"required,valid_username"` //管理员用户名
+}
