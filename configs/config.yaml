@@ -14,7 +14,7 @@ server:
 # Log configuration
 log:
   level : "debug"
-  filename: "logs/gateway.log"
+  filename: "logs/gatewayTest.log"
   error_filename: "logs/gateway_error.log"
   max_size: 50
   max_backups: 10
