@@ -5,7 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -18,6 +17,7 @@ var (
 )
 
 func init() {
+	logConfig = configs.GetLogConfig()
 	initLogger()
 }
 
@@ -51,12 +51,12 @@ func getFileLogger() *lumberjack.Logger {
 
 func getErrorFileLogger() *lumberjack.Logger {
 	return &lumberjack.Logger{
-		Filename:   viper.GetString("log.error_filename"),
-		MaxSize:    viper.GetInt("log.max_size"),
-		MaxBackups: viper.GetInt("log.max_backups"),
-		MaxAge:     viper.GetInt("log.max_age"),
+		Filename:   logConfig.Filename,
+		MaxSize:    logConfig.MaxSize,
+		MaxBackups: logConfig.MaxBackups,
+		MaxAge:     logConfig.MaxAge,
 		LocalTime:  true,
-		Compress:   viper.GetBool("log.compress"),
+		Compress:   logConfig.Compress,
 	}
 }
 

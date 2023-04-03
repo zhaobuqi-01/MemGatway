@@ -20,8 +20,7 @@ log:
   max_backups: 10
   max_age: 7
   compress: false
-  encoder: false
-  time_format:
+ 
 
 # MySQL configuration
 mysql:

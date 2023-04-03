@@ -3,9 +3,11 @@ package middleware
 import (
 	"bytes"
 	"gateway/pkg/logger"
-	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 func RequestOutLog(c *gin.Context, startTime time.Time) {
@@ -23,18 +25,16 @@ func RequestOutLog(c *gin.Context, startTime time.Time) {
 	// 计算请求执行时间
 	elapsed := time.Since(startTime)
 
-	// 记录日志
-	logger.Infof("{\"path\": \"%s\", \"client_ip\": \"%s\", \"method\": \"%s\", \"status_code\": %d, \"user_agent\": \"%s\", \"request_id\": \"%s\", "+
-		"\"response_headers\": %s, \"response_body\": %q, \"elapsed\": %f}",
-		path,
-		clientIP,
-		method,
-		statusCode,
-		userAgent,
-		requestID,
-		responseHeaders,
-		responseBody,
-		elapsed.Seconds(),
+	logger.Info("Request Info",
+		zap.String("path", path),
+		zap.String("client_ip", clientIP),
+		zap.String("method", method),
+		zap.Int("status_code", statusCode),
+		zap.String("user_agent", userAgent),
+		zap.String("request_id", requestID),
+		zap.Any("request_headers", responseHeaders),
+		zap.Any("request_body", responseBody),
+		zap.Any("elapsed", elapsed.Seconds()),
 	)
 }
 
@@ -58,16 +58,15 @@ func RequestInLog(c *gin.Context) {
 	requestBodyStr := string(requestBody)
 	requestForm := c.Request.PostForm
 
-	logger.Infof("{\"path\": \"%s\", \"client_ip\": \"%s\", \"method\": \"%s\", \"user_agent\": \"%s\", \"request_id\": \"%s\", "+
-		"\"request_headers\": %s, \"request_body\": %q, \"request_form\": %s}",
-		path,
-		clientIP,
-		method,
-		userAgent,
-		requestID,
-		requestHeaders,
-		requestBodyStr,
-		requestForm,
+	logger.Info("Response Info",
+		zap.String("path", path),
+		zap.String("client_ip", clientIP),
+		zap.String("method", method),
+		zap.String("user_agent", userAgent),
+		zap.String("request_id", requestID),
+		zap.Any("response_headers", requestHeaders),
+		zap.String("response_body", requestBodyStr),
+		zap.Any("request_form", requestForm),
 	)
 }
 

@@ -45,11 +45,11 @@ func (adminlogin *AdminLoginController) AdminLogin(c *gin.Context) {
 // @Param body body dto.AdminChangePasswordInput true "body"
 // @Success 200 {object} middleware.Response{data=dto.AdminChangePasswordOutput} "success"
 // @Router /admin_login/change_password [post]
-func (adminlogin *AdminLoginController) AdminChangePassword(c *gin.Context) {
-	params := &dto.AdminChangePasswordInput{}
-	if err := params.BindValParam(c); err != nil {
-		middleware.ResponseError(c, 1001, err)
-		return
-	}
-	middleware.ResponseSuccess(c, "")
-}
+// func (adminlogin *AdminLoginController) AdminChangePassword(c *gin.Context) {
+// 	params := &dto.AdminChangePasswordInput{}
+// 	if err := params.BindValParam(c); err != nil {
+// 		middleware.ResponseError(c, 1001, err)
+// 		return
+// 	}
+// 	middleware.ResponseSuccess(c, "")
+// }

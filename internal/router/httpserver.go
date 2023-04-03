@@ -2,11 +2,12 @@ package router
 
 import (
 	"context"
-	"fmt"
 	"gateway/configs"
 	"gateway/pkg/logger"
 	"net/http"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 var (
@@ -25,9 +26,9 @@ func HttpServerRun() {
 		MaxHeaderBytes: 1 << uint(serverConfig.MaxHeaderBytes),
 	}
 	go func() {
-		logger.Default().Info(fmt.Sprintf("HttpServerRun: %s", configs.GetServerConfig().Addr))
+		logger.Info("HttpServerRun", zap.String("addr", configs.GetServerConfig().Addr))
 		if err := HttpSrvHandler.ListenAndServe(); err != nil {
-			logger.Default().Error(fmt.Sprintf("HttpServerRun: %s err: %v", configs.GetServerConfig().Addr, err))
+			logger.Error("HttpServerRun", zap.String("addr", configs.GetServerConfig().Addr), zap.Error(err))
 		}
 	}()
 }
@@ -36,7 +37,7 @@ func HttpServerStop() {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := HttpSrvHandler.Shutdown(ctx); err != nil {
-		logger.Default().Error(fmt.Sprintf("HttpServerStop err: %v", err))
+		logger.Error("HttpServerStop  ", zap.Error(err))
 	}
-	logger.Default().Info("HttpServerStop stopped")
+	logger.Info("HttpServerStop stopped")
 }

@@ -5,9 +5,24 @@ import (
 	"os"
 	"sync"
 
-	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
+
+var once sync.Once
+
+// LoadConfigurations loads configurations from the config files
+// init 初始化配置
+func init() {
+	// 使用 sync.Once 仅执行一次初始化
+	// Use sync.Once to initialize only once
+	once.Do(func() {
+		// Set configuration file path
+		setConfigPath()
+
+		// Load server configuration
+		GetConfig()
+	})
+}
 
 // ServerConfig - server configuration struct
 type ServerConfig struct {
@@ -27,8 +42,6 @@ type LogConfig struct {
 	MaxBackups    int    `mapstructure:"max_backups"`
 	MaxAge        int    `mapstructure:"max_age"`
 	Compress      bool   `mapstructure:"compress"`
-	Encoder       string `mapstructure:"encoder"`
-	TimeFormat    string `mapstructure:"time_format"`
 }
 
 // MySQLConfig - MySQL配置 (MySQL configuration)
@@ -82,11 +95,8 @@ func setConfigPath() {
 	}
 }
 
-// 定义一个全局的viper实例
-var v *viper.Viper
-
 // readConfig - 读取配置文件 (Read configuration file)
-func readConfig() {
+func readConfig() *viper.Viper {
 	// 实例化viper
 	v := viper.New()
 	// 配置文件名称（无扩展名）
@@ -95,8 +105,7 @@ func readConfig() {
 	v.SetConfigType("yaml")
 	// 查找配置文件所在的路径
 	v.AddConfigPath(ConfigPath)
-	// 在工作目录中查找配置
-	v.AddConfigPath(".")
+
 	// 查找并读取配置文件
 	err := v.ReadInConfig()
 
@@ -104,9 +113,12 @@ func readConfig() {
 	if err != nil {
 		panic(fmt.Errorf("fatal error reading config file: %s", err))
 	}
+
+	return v
 }
 
 func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig | SwaggerConfig](describe string, configType *T) *T {
+	v := readConfig()
 	err := v.UnmarshalKey(describe, configType)
 	if err != nil {
 		panic(fmt.Errorf("unable to unmarshal RedisConfig: %s", err))
@@ -150,40 +162,20 @@ func GetSwaggerConfig() *SwaggerConfig {
 	return swaggerConfig
 }
 
-var once sync.Once
+func GetConfig() {
+	// Load server configuration
+	serverConfig = getConfig("server", new(ServerConfig))
 
-// LoadConfigurations loads configurations from the config files
-// init 初始化配置
-func init() {
-	// 使用 sync.Once 仅执行一次初始化
-	// Use sync.Once to initialize only once
-	once.Do(func() {
-		// Set configuration file path
-		setConfigPath()
+	// Load logger configurations
+	logConfig = getConfig("log", new(LogConfig))
 
-		// 读取配置文件
-		readConfig()
+	// Load MySQL configurations
+	mysqlConfig = getConfig("mysql", new(MySQLConfig))
 
-		// 监听配置文件变化
-		v.WatchConfig()
-		v.OnConfigChange(func(e fsnotify.Event) {
-			fmt.Println("Config file changed:", e.Name)
-		})
+	// Load Redis configurations
+	redisConfig = getConfig("redis", new(RedisConfig))
 
-		// Load server configuration
-		serverConfig = getConfig("server", new(ServerConfig))
+	ginConfig = getConfig("gin", new(GinConfig))
 
-		// Load logger configurations
-		logConfig = getConfig("log", new(LogConfig))
-
-		// Load MySQL configurations
-		mysqlConfig = getConfig("mysql", new(MySQLConfig))
-
-		// Load Redis configurations
-		redisConfig = getConfig("redis", new(RedisConfig))
-
-		ginConfig = getConfig("gin", new(GinConfig))
-
-		swaggerConfig = getConfig("swagger", new(SwaggerConfig))
-	})
+	swaggerConfig = getConfig("swagger", new(SwaggerConfig))
 }
