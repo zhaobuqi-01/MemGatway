@@ -27,7 +27,7 @@ func HttpServerRun() {
 	}
 	go func() {
 		logger.Info("HttpServerRun", zap.String("addr", configs.GetServerConfig().Addr))
-		if err := HttpSrvHandler.ListenAndServe(); err != nil {
+		if err := HttpSrvHandler.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logger.Error("HttpServerRun", zap.String("addr", configs.GetServerConfig().Addr), zap.Error(err))
 		}
 	}()

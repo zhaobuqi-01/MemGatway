@@ -2,6 +2,8 @@ package dto
 
 import (
 	"gateway/pkg/utils"
+	"time"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,4 +22,10 @@ func (param *AdminLoginInput) BindValParam(c *gin.Context) error {
 
 type AdminChangePasswordInput struct {
 	UserName string `json:"username" form:"username" comment:"管理员用户名" example:"admin" validate:"required,valid_username"` //管理员用户名
+}
+
+type AdminSessionInfo struct {
+	ID        int64     `json:"id" form:"id" comment:"管理员ID" example:"1" validate:""`                                         //管理员ID
+	UserName  string    `json:"username" form:"username" comment:"管理员用户名" example:"admin" validate:"required,valid_username"` //管理员用户名
+	LoginTime time.Time `json:"login_time" form:"login_time" comment:"登录时间" example:"2020-10-10 10:10:10" validate:""`        //登录时间
 }

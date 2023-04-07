@@ -4,11 +4,22 @@ import (
 	"fmt"
 	"gateway/configs"
 	"gateway/pkg/logger"
+	"time"
+
 	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
-	"sync"
-	"time"
 )
+
+var redisClient *redis.Client
+
+func Init() {
+
+	client, err := ConnectRedis()
+	if err != nil {
+		logger.Fatal("Failed to connect to Redis: %v", zap.Error(err))
+	}
+	redisClient = client
+}
 
 // ConnectRedis 连接到Redis数据库 (Connect to Redis database)
 func ConnectRedis() (*redis.Client, error) {
@@ -45,15 +56,16 @@ func ConnectRedis() (*redis.Client, error) {
 	return client, nil
 }
 
-var RedisClient *redis.Client
-var onceRedis sync.Once
+// 获取redis连接
+func GetRedisConnection() *redis.Client {
+	return redisClient
+}
 
-func init() {
-	onceRedis.Do(func() {
-		client, err := ConnectRedis()
-		if err != nil {
-			logger.Fatal("Failed to connect to Redis: %v", zap.Error(err))
-		}
-		RedisClient = client
-	})
+// Close 关闭Redis连接池
+func Close() error {
+	err := redisClient.Close()
+	if err != nil {
+		return err
+	}
+	return nil
 }

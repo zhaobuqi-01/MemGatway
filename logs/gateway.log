@@ -1,32 +1,617 @@
-{"level":"fatal","ts":"2023-03-31T16:10:59.782+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
-{"level":"fatal","ts":"2023-03-31T16:13:21.514+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
-{"level":"fatal","ts":"2023-03-31T16:13:27.194+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
-{"level":"fatal","ts":"2023-03-31T16:16:49.363+0800","caller":"logger/log.go:57","msg":"sessions.NewRedisSrore err :%v","error":"dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
-{"level":"info","ts":"2023-03-31T16:29:04.160+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
-{"level":"info","ts":"2023-03-31T16:29:19.984+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
-{"level":"error","ts":"2023-03-31T16:29:20.005+0800","caller":"logger/log.go:45","msg":"HttpServerRun: 127.0.0.1:8080 err: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
-{"level":"info","ts":"2023-03-31T16:29:32.766+0800","caller":"logger/log.go:37","msg":"HttpServerRun: 127.0.0.1:8080"}
-{"level":"error","ts":"2023-03-31T16:29:32.779+0800","caller":"logger/log.go:45","msg":"HttpServerRun: 127.0.0.1:8080 err: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
-{"level":"info","ts":"2023-03-31T22:08:47.236+0800","caller":"logger/log.go:37","msg":"HttpServerStop stopped"}
-{"level":"info","ts":"2023-03-31T22:08:48.444+0800","caller":"logger/log.go:37","msg":"HttpServerStop stopped"}
-2023-04-02T22:43:17+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-02T22:45:00+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+2023-04-05T14:23:50+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "Error 1049 (42000): Unknown database 'api_gateway'"}
+gateway/pkg/logger.Fatal
+	e:/project/Api-Gateway/pkg/logger/log.go:118
+gateway/pkg/database.init.0.func1
+	e:/project/Api-Gateway/pkg/database/mysql.go:47
+sync.(*Once).doSlow
+	E:/Go/src/sync/once.go:74
+sync.(*Once).Do
+	E:/Go/src/sync/once.go:65
+gateway/pkg/database.init.0
+	e:/project/Api-Gateway/pkg/database/mysql.go:44
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6506
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.main
+	E:/Go/src/runtime/proc.go:233
+2023-04-05T14:23:50+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "Error 1049 (42000): Unknown database 'api_gateway'"}
+gateway/pkg/logger.Fatal
+	e:/project/Api-Gateway/pkg/logger/log.go:118
+gateway/pkg/database.init.0.func1
+	e:/project/Api-Gateway/pkg/database/mysql.go:47
+sync.(*Once).doSlow
+	E:/Go/src/sync/once.go:74
+sync.(*Once).Do
+	E:/Go/src/sync/once.go:65
+gateway/pkg/database.init.0
+	e:/project/Api-Gateway/pkg/database/mysql.go:44
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6506
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.main
+	E:/Go/src/runtime/proc.go:233
+2023-04-05T14:29:18+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-05T14:31:04+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-05T14:31:18+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
 gateway/pkg/logger.Error
-	/mnt/e/project/Api-Gateway/pkg/logger/log.go:110
+	E:/project/Api-Gateway/pkg/logger/log.go:110
 gateway/internal/router.HttpServerRun.func1
-	/mnt/e/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-02T22:45:00+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-02T22:45:04+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-02T22:47:36+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-05T14:31:18+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
 gateway/pkg/logger.Error
-	/mnt/e/project/Api-Gateway/pkg/logger/log.go:110
+	E:/project/Api-Gateway/pkg/logger/log.go:110
 gateway/internal/router.HttpServerRun.func1
-	/mnt/e/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-02T22:47:36+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-02T22:48:27+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-02T22:55:51+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-05T14:31:18+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-05T15:13:35+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:118
+gateway/pkg/database.init.0.func1
+	E:/project/Api-Gateway/pkg/database/mysql.go:47
+sync.(*Once).doSlow
+	E:/Go/src/sync/once.go:74
+sync.(*Once).Do
+	E:/Go/src/sync/once.go:65
+gateway/pkg/database.init.0
+	E:/project/Api-Gateway/pkg/database/mysql.go:44
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6506
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.main
+	E:/Go/src/runtime/proc.go:233
+2023-04-05T15:13:35+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:118
+gateway/pkg/database.init.0.func1
+	E:/project/Api-Gateway/pkg/database/mysql.go:47
+sync.(*Once).doSlow
+	E:/Go/src/sync/once.go:74
+sync.(*Once).Do
+	E:/Go/src/sync/once.go:65
+gateway/pkg/database.init.0
+	E:/project/Api-Gateway/pkg/database/mysql.go:44
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6506
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.doInit
+	E:/Go/src/runtime/proc.go:6483
+runtime.main
+	E:/Go/src/runtime/proc.go:233
+2023-04-05T20:16:19+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T12:40:20+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T12:57:35+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:05:05+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-06T13:05:09+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:32:13+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
 gateway/pkg/logger.Error
-	/mnt/e/project/Api-Gateway/pkg/logger/log.go:110
+	E:/project/Api-Gateway/pkg/logger/log.go:110
 gateway/internal/router.HttpServerRun.func1
-	/mnt/e/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-02T22:55:51+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:32:13+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-06T13:32:13+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:32:23+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:32:40+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T13:32:40+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/repository.GetAll[...]
+	E:/project/Api-Gateway/internal/repository/common.go:36
+gateway/internal/repository.(*Admin).GetAll
+	E:/project/Api-Gateway/internal/repository/admin.go:35
+gateway/internal/repository.(*Admin).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:39
+gateway/internal/controller.(*AdminLoginController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin_login.go:37
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-06T13:32:40+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/repository.GetAll[...]
+	E:/project/Api-Gateway/internal/repository/common.go:36
+gateway/internal/repository.(*Admin).GetAll
+	E:/project/Api-Gateway/internal/repository/admin.go:35
+gateway/internal/repository.(*Admin).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:39
+gateway/internal/controller.(*AdminLoginController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin_login.go:37
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-06T13:32:40+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0105796}
+2023-04-06T13:34:05+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:34:05+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:34:05+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-06T13:34:08+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:34:17+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T13:34:17+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/repository.GetAll[...]
+	E:/project/Api-Gateway/internal/repository/common.go:36
+gateway/internal/repository.(*Admin).GetAll
+	E:/project/Api-Gateway/internal/repository/admin.go:35
+gateway/internal/repository.(*Admin).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:39
+gateway/internal/controller.(*AdminLoginController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin_login.go:38
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-06T13:34:17+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/repository.GetAll[...]
+	E:/project/Api-Gateway/internal/repository/common.go:36
+gateway/internal/repository.(*Admin).GetAll
+	E:/project/Api-Gateway/internal/repository/admin.go:35
+gateway/internal/repository.(*Admin).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:39
+gateway/internal/controller.(*AdminLoginController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin_login.go:38
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-06T13:34:17+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0110977}
+2023-04-06T13:40:01+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:40:01+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:110
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T13:40:01+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-06T13:40:06+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:40:16+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T13:40:16+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0081585}
+2023-04-06T13:42:03+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T13:42:03+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.007452}
+2023-04-06T13:49:14+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T13:49:29+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T13:49:29+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0038133}
+2023-04-06T14:07:40+08:00	INFO	logger/log.go:102	HttpServerStop stopped
+2023-04-06T14:51:22+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T14:51:32+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T14:51:32+08:00	INFO	logger/log.go:126	开始从数据库获取 admin 信息	{"TraceID": "76f74035-fdc0-4fd9-9581-8344877e9a26"}
+2023-04-06T14:51:32+08:00	INFO	logger/log.go:126	登录成功	{"TraceID": "76f74035-fdc0-4fd9-9581-8344877e9a26"}
+2023-04-06T14:51:32+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0056364}
+2023-04-06T17:51:18+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T17:51:24+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T17:51:37+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
+2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
+2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
+2023-04-06T17:51:37+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0043065}
+2023-04-06T17:57:51+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T17:57:51+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T17:57:51+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T18:33:32+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T18:33:44+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
+2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
+2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
+2023-04-06T18:33:44+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc3NzIyNHxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fIFoJd_6ukNVpIOdHjYi6o0TRzq4HZjrNRLVSoDBT_jd; Path=/; Expires=Sat, 06 May 2023 10:33:44 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0089848}
+2023-04-06T18:33:52+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T18:33:52+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T19:21:55+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T19:22:13+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:22:13+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T19:22:32+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T19:22:53+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:22:53+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T19:22:53+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:25:01+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T19:25:51+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc3NzIyNHxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fIFoJd_6ukNVpIOdHjYi6o0TRzq4HZjrNRLVSoDBT_jd"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
+2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
+2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
+2023-04-06T19:25:51+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDM1MXxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fF3_VhxOaCF-jCghPnyMHtOXSN0mSIyzdQc1dYLmFGaj; Path=/; Expires=Sat, 06 May 2023 11:25:51 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0082837}
+2023-04-06T19:28:26+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDM1MXxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fF3_VhxOaCF-jCghPnyMHtOXSN0mSIyzdQc1dYLmFGaj"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
+2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
+2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
+2023-04-06T19:28:26+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDUwNnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fNwXl9Dm6jhG5FkJz3jNkfXBwpL1lDha0lvtAB7BouIT; Path=/; Expires=Sat, 06 May 2023 11:28:26 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0062127}
+2023-04-06T19:28:27+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDUwNnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fNwXl9Dm6jhG5FkJz3jNkfXBwpL1lDha0lvtAB7BouIT"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
+2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
+2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
+2023-04-06T19:28:27+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDUwN3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fLHcaAqFc8rgCsUeMeGJ3wLqHkNQVM4fC_xbSP7iIq7Z; Path=/; Expires=Sat, 06 May 2023 11:28:27 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0076727}
+2023-04-06T19:29:33+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:29:33+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T19:29:40+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T19:29:46+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDUwN3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fLHcaAqFc8rgCsUeMeGJ3wLqHkNQVM4fC_xbSP7iIq7Z"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
+2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
+2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
+2023-04-06T19:29:46+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr; Path=/; Expires=Sat, 06 May 2023 11:29:46 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0071914}
+2023-04-06T19:29:49+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-06T19:29:49+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "b2ad91d2-4175-4860-a9d3-6393511f506c"}
+2023-04-06T19:29:49+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0049249}
+2023-04-06T19:55:24+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:55:24+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T19:55:33+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T19:58:11+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:58:11+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T19:58:11+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T20:02:37+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T20:03:02+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-06T20:03:02+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T20:03:12+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T20:07:52+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-06T20:08:54+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-06T20:09:03+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
+2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
+2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
+2023-04-06T20:09:03+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4Mjk0M3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fOPnh7BuF_je6q5FZvAGoKG1cFLBMVi8RojY9woP-8KL; Path=/; Expires=Sat, 06 May 2023 12:09:03 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0111825}
+2023-04-06T20:09:07+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDc4Mjk0M3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fOPnh7BuF_je6q5FZvAGoKG1cFLBMVi8RojY9woP-8KL"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-06T20:09:07+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "6c51441d-46f2-4b33-b11c-e10be9608f30"}
+2023-04-06T20:09:07+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0063964}
+2023-04-07T15:05:24+08:00	FATAL	logger/log.go:124	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/database/mysql.InitDB
+	E:/project/Api-Gateway/pkg/database/mysql/mysql.go:59
+gateway/init.InitAll
+	E:/project/Api-Gateway/init/init.go:17
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:16
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:05:24+08:00	FATAL	logger/log.go:124	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/database/mysql.InitDB
+	E:/project/Api-Gateway/pkg/database/mysql/mysql.go:59
+gateway/init.InitAll
+	E:/project/Api-Gateway/init/init.go:17
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:16
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:06:08+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:10:37+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:43:33+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:43:35+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:43:35+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	Database closed
+2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	Redis closed
+2023-04-07T15:43:35+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:43:35+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:43:54+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:43:56+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:43:56+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:112
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	HttpServerStop stopped
+2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	Database closed
+2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	Redis closed
+2023-04-07T15:43:56+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:43:56+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:124
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:48:27+08:00	INFO	logger/log.go:105	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:48:27+08:00	INFO	logger/log.go:105	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	HttpServerStop stopped
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	HttpServerStop stopped
+2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:113
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:113
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Database closed
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Database closed
+2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:113
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Redis closed
+2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Redis closed
+2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:125
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:125
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:125
+gateway/pkg/utils.CleanupLogger
+	E:/project/Api-Gateway/pkg/utils/init.go:21
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:31
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-07T16:03:20+08:00	INFO	logger/log.go:127	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	HttpServerStop stopped
+2023-04-07T16:03:21+08:00	ERROR	logger/log.go:135	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:135
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Database closed
+2023-04-07T16:03:21+08:00	ERROR	logger/log.go:135	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
+gateway/pkg/logger.Error
+	E:/project/Api-Gateway/pkg/logger/log.go:135
+gateway/internal/router.HttpServerRun.func1
+	E:/project/Api-Gateway/internal/router/httpserver.go:31
+2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Redis closed
+2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Logger closed
+2023-04-07T16:08:54+08:00	INFO	logger/log.go:127	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	HttpServerStop stopped
+2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Database closed
+2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Redis closed
+2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Logger closed

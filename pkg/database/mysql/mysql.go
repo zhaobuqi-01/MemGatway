@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"gateway/configs"
 	"gateway/pkg/logger"
+
 	"go.uber.org/zap"
-	"sync"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -36,34 +36,26 @@ func ConnectMySQL() (*gorm.DB, error) {
 	return db, nil
 }
 
-var DB *gorm.DB
-var onceMySQL sync.Once
+var db *gorm.DB
 
-func init() {
-	onceMySQL.Do(func() {
-		db, err := ConnectMySQL()
-		if err != nil {
-			logger.Fatal("Failed to connect to MySQL: %v", zap.Error(err))
-		}
-		DB = db
-	})
-}
-
-// 使用全局DB连接池
-// Use the global DB connection pool
 func GetDB() *gorm.DB {
-	return DB
+	return db
 }
 
 // Close 关闭数据库连接池
 // Close closes the database connection pool
-func Close() error {
-	if DB != nil {
-		sqlDB, err := DB.DB()
-		if err != nil {
-			return err
-		}
-		return sqlDB.Close()
+func CloseDB() error {
+	sqlDB, err := db.DB()
+	if err != nil {
+		return err
 	}
-	return nil
+	return sqlDB.Close()
+}
+
+func InitDB() {
+	var err error
+	db, err = ConnectMySQL()
+	if err != nil {
+		logger.Fatal("Failed to connect to MySQL: %v", zap.Error(err))
+	}
 }

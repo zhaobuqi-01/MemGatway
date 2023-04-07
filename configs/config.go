@@ -3,25 +3,18 @@ package configs
 import (
 	"fmt"
 	"os"
-	"sync"
 
 	"github.com/spf13/viper"
 )
 
-var once sync.Once
-
 // LoadConfigurations loads configurations from the config files
 // init 初始化配置
-func init() {
-	// 使用 sync.Once 仅执行一次初始化
-	// Use sync.Once to initialize only once
-	once.Do(func() {
-		// Set configuration file path
-		setConfigPath()
+func Init() {
+	// Set configuration file path
+	setConfigPath()
 
-		// Load server configuration
-		GetConfig()
-	})
+	// Load server configuration
+	GetConfig()
 }
 
 // ServerConfig - server configuration struct

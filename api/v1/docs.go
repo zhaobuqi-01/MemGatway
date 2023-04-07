@@ -16,6 +16,42 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/admin/admin_info": {
+            "get": {
+                "description": "管理员信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "管理员接口"
+                ],
+                "summary": "管理员信息",
+                "operationId": "/admin/admin_info",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/middleware.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.AminInfoOutput"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "/admin_login/login": {
             "post": {
                 "description": "管理员登陆",
@@ -29,7 +65,7 @@ const docTemplate = `{
                     "管理员接口"
                 ],
                 "summary": "管理员登陆",
-                "operationId": "/admin_login/login",
+                "operationId": "/admin/login",
                 "parameters": [
                     {
                         "description": "body",
@@ -91,6 +127,32 @@ const docTemplate = `{
                     "description": "token",
                     "type": "string",
                     "example": "token"
+                }
+            }
+        },
+        "dto.AminInfoOutput": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "introduceion": {
+                    "type": "string"
+                },
+                "login_time": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },

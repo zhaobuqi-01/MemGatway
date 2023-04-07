@@ -14,7 +14,7 @@ server:
 # Log configuration
 log:
   level : "debug"
-  filename: "logs/gatewayTest.log"
+  filename: "logs/gateway.log"
   error_filename: "logs/gateway_error.log"
   max_size: 50
   max_backups: 10
@@ -28,10 +28,10 @@ mysql:
   port: 3306
   user: "root"
   password: "Dan10130204#@"
-  dbname: "api_gateway"
+  dbname: "gateway"
   charset: "utf8mb4"
   parsetime: true
-  maxidleconns: 100
+  maxidleconns: 10
   maxopenconns: 100
 
 # Redis configuration
@@ -47,11 +47,14 @@ redis:
 
 # Swagger configuration
 swagger:
-  version: "1.0.0"
+  # API 文档的标题
+  title: "Gateway API "
+  # API 文档的描述
+  description: "" 
+  # API 文档的版本 
+  version: "1.0.0" 
   host: "localhost:8080"
-  base_path: "/api/v1"
+  base_path: ""
   schemes:
     - "http"
     - "https"
-  title: "Gateway API "
-  description: ""
