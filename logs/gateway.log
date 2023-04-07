@@ -1,137 +1,141 @@
-2023-04-05T14:23:50+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "Error 1049 (42000): Unknown database 'api_gateway'"}
-gateway/pkg/logger.Fatal
-	e:/project/Api-Gateway/pkg/logger/log.go:118
-gateway/pkg/database.init.0.func1
-	e:/project/Api-Gateway/pkg/database/mysql.go:47
-sync.(*Once).doSlow
-	E:/Go/src/sync/once.go:74
-sync.(*Once).Do
-	E:/Go/src/sync/once.go:65
-gateway/pkg/database.init.0
-	e:/project/Api-Gateway/pkg/database/mysql.go:44
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6506
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.main
-	E:/Go/src/runtime/proc.go:233
-2023-04-05T14:23:50+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "Error 1049 (42000): Unknown database 'api_gateway'"}
-gateway/pkg/logger.Fatal
-	e:/project/Api-Gateway/pkg/logger/log.go:118
-gateway/pkg/database.init.0.func1
-	e:/project/Api-Gateway/pkg/database/mysql.go:47
-sync.(*Once).doSlow
-	E:/Go/src/sync/once.go:74
-sync.(*Once).Do
-	E:/Go/src/sync/once.go:65
-gateway/pkg/database.init.0
-	e:/project/Api-Gateway/pkg/database/mysql.go:44
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6506
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.main
-	E:/Go/src/runtime/proc.go:233
-2023-04-05T14:29:18+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-05T14:31:04+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-05T14:31:18+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-05T14:31:18+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-05T14:31:18+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-05T15:13:35+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:118
-gateway/pkg/database.init.0.func1
-	E:/project/Api-Gateway/pkg/database/mysql.go:47
-sync.(*Once).doSlow
-	E:/Go/src/sync/once.go:74
-sync.(*Once).Do
-	E:/Go/src/sync/once.go:65
-gateway/pkg/database.init.0
-	E:/project/Api-Gateway/pkg/database/mysql.go:44
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6506
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.main
-	E:/Go/src/runtime/proc.go:233
-2023-04-05T15:13:35+08:00	FATAL	logger/log.go:118	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:118
-gateway/pkg/database.init.0.func1
-	E:/project/Api-Gateway/pkg/database/mysql.go:47
-sync.(*Once).doSlow
-	E:/Go/src/sync/once.go:74
-sync.(*Once).Do
-	E:/Go/src/sync/once.go:65
-gateway/pkg/database.init.0
-	E:/project/Api-Gateway/pkg/database/mysql.go:44
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6506
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.doInit
-	E:/Go/src/runtime/proc.go:6483
-runtime.main
-	E:/Go/src/runtime/proc.go:233
-2023-04-05T20:16:19+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T12:40:20+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T12:57:35+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:05:05+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-06T13:05:09+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:32:13+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:32:13+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-06T13:32:13+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:32:23+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:32:40+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T13:32:40+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/repository.GetAll[...]
-	E:/project/Api-Gateway/internal/repository/common.go:36
-gateway/internal/repository.(*Admin).GetAll
-	E:/project/Api-Gateway/internal/repository/admin.go:35
-gateway/internal/repository.(*Admin).LoginCheck
-	E:/project/Api-Gateway/internal/repository/admin.go:39
-gateway/internal/controller.(*AdminLoginController).AdminLogin
-	E:/project/Api-Gateway/internal/controller/admin_login.go:37
+2023-04-08T00:11:52+08:00	INFO	logger/log.go:127	HttpServerStop stopped
+2023-04-08T00:11:52+08:00	INFO	logger/log.go:127	Database closed
+2023-04-08T00:11:52+08:00	INFO	logger/log.go:127	Redis closed
+2023-04-08T00:11:52+08:00	INFO	logger/log.go:127	Logger closed
+2023-04-08T00:18:54+08:00	INFO	logger/log.go:142	数据库已经存在	{"databaseName": "gateway"}
+2023-04-08T00:18:54+08:00	INFO	logger/log.go:142	开始使用已经存在的数据库
+2023-04-08T00:18:54+08:00	INFO	logger/log.go:142	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-08T00:19:20+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg1NDk1MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGzVGaVmxsGGra4FNvcpAfNdc-_6zVJvl7XcIruQHYFX"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T00:19:20+08:00	INFO	logger/log.go:168	开始从数据库获取 admin 信息	{"TraceID": "20b957b5-3c9f-4c8f-8eb4-d70d6db824db"}
+2023-04-08T00:19:20+08:00	INFO	logger/log.go:168	从数据库获取 admin 信息成功	{"TraceID": "20b957b5-3c9f-4c8f-8eb4-d70d6db824db"}
+2023-04-08T00:19:20+08:00	INFO	logger/log.go:168	登录成功	{"TraceID": "20b957b5-3c9f-4c8f-8eb4-d70d6db824db"}
+2023-04-08T00:19:20+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM2MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMHpyqDSoZyEzXkXB_0QZM3prCsvGwD_Uk3FaghX--t2; Path=/; Expires=Sun, 07 May 2023 16:19:20 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.006856}
+2023-04-08T00:19:28+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM2MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMHpyqDSoZyEzXkXB_0QZM3prCsvGwD_Uk3FaghX--t2"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:28+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "d3453b9b-7901-435f-bb9b-9bf053600116"}
+2023-04-08T00:19:28+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM2OHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fF6amSu9FuUes986I_QIg3kIzFTOZaffAyzvKO7HlTWD; Path=/; Expires=Sun, 07 May 2023 16:19:28 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0039129}
+2023-04-08T00:19:31+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM2OHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fF6amSu9FuUes986I_QIg3kIzFTOZaffAyzvKO7HlTWD"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:31+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "eb45d8f9-a4dc-4112-b6ae-3e54f11af053"}
+2023-04-08T00:19:31+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3MXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fHq1dhUUe_QrEtUe1k66G6QMLffu_pQCfeyiwqmvU97p; Path=/; Expires=Sun, 07 May 2023 16:19:31 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0035396}
+2023-04-08T00:19:32+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3MXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fHq1dhUUe_QrEtUe1k66G6QMLffu_pQCfeyiwqmvU97p"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:32+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "3d692b07-cc03-471b-9b76-3b7b605b1c71"}
+2023-04-08T00:19:32+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIplDxjPbHUDSnjNbGFg5KjPkwlHBwTbZ3ARxYnlGrNi; Path=/; Expires=Sun, 07 May 2023 16:19:32 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0039278}
+2023-04-08T00:19:33+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIplDxjPbHUDSnjNbGFg5KjPkwlHBwTbZ3ARxYnlGrNi"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:33+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "3c96047a-f535-4c9c-95c9-fcd39b8f331a"}
+2023-04-08T00:19:33+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMCAcMrI2RCgfq6LZFd6QofrWwHfh_9lUhiSfy-k0zLz; Path=/; Expires=Sun, 07 May 2023 16:19:33 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0040232}
+2023-04-08T00:19:34+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMCAcMrI2RCgfq6LZFd6QofrWwHfh_9lUhiSfy-k0zLz"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:34+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "0fdff045-1cb4-4919-b34f-b57d3aad7daf"}
+2023-04-08T00:19:34+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3NHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGEtXlAd7AC-C8O_wKJs0CdhTCGSxFFyHB47ZgTm03i1; Path=/; Expires=Sun, 07 May 2023 16:19:34 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0044714}
+2023-04-08T00:19:35+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3NHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGEtXlAd7AC-C8O_wKJs0CdhTCGSxFFyHB47ZgTm03i1"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:35+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "e70c63b2-0044-4a42-bc29-c847fc8a5167"}
+2023-04-08T00:19:35+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3NXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fLGp1fuT-jiEKKbnGQ6KwKrIFL4s2VeBshyEn6q0PDzG; Path=/; Expires=Sun, 07 May 2023 16:19:35 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0111954}
+2023-04-08T00:19:36+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3NXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fLGp1fuT-jiEKKbnGQ6KwKrIFL4s2VeBshyEn6q0PDzG"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:36+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "ebc47509-9a9d-4da1-beae-6b470121bb2d"}
+2023-04-08T00:19:36+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fK4u0U-pxGT6Gtb4U4VlagkZT4GHhqs89TjtQUafmyxq; Path=/; Expires=Sun, 07 May 2023 16:19:36 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0036335}
+2023-04-08T00:19:37+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDM3NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fK4u0U-pxGT6Gtb4U4VlagkZT4GHhqs89TjtQUafmyxq"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:19:37+08:00	INFO	logger/log.go:168	退出登录成功	{"TraceID": "ac978f0f-20a2-476f-b88f-8d9965eb7d81"}
+2023-04-08T00:19:37+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDM3N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNr0MejHEVE783SHTg2adBAqkOO3JO_Fu2RvBJJfFuCO; Path=/; Expires=Sun, 07 May 2023 16:19:37 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0039349}
+2023-04-08T00:20:31+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg4NDM3N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNr0MejHEVE783SHTg2adBAqkOO3JO_Fu2RvBJJfFuCO"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T00:20:31+08:00	INFO	logger/log.go:168	开始从数据库获取 admin 信息	{"TraceID": "21aca83b-cfd9-4787-929d-1f26bbfc6387"}
+2023-04-08T00:20:31+08:00	INFO	logger/log.go:168	从数据库获取 admin 信息成功	{"TraceID": "21aca83b-cfd9-4787-929d-1f26bbfc6387"}
+2023-04-08T00:20:31+08:00	INFO	logger/log.go:168	登录成功	{"TraceID": "21aca83b-cfd9-4787-929d-1f26bbfc6387"}
+2023-04-08T00:20:31+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDQzMXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGzOfQBxTeunHKo32J49HantYcBIej5AYXpTyJqPseo6; Path=/; Expires=Sun, 07 May 2023 16:20:31 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0060043}
+2023-04-08T00:20:35+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDQzMXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGzOfQBxTeunHKo32J49HantYcBIej5AYXpTyJqPseo6"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:20:35+08:00	INFO	logger/log.go:168	登录成功	{"TraceID": "0df4dc0f-1f99-4b65-af58-bf559f852fd9"}
+2023-04-08T00:20:35+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0030945}
+2023-04-08T00:20:42+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg4NDQzMXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fGzOfQBxTeunHKo32J49HantYcBIej5AYXpTyJqPseo6"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T00:20:42+08:00	INFO	logger/log.go:168	开始从数据库获取 admin 信息	{"TraceID": "52960cfd-4781-47b4-888b-a7448a187ce8"}
+2023-04-08T00:20:42+08:00	INFO	logger/log.go:168	从数据库获取 admin 信息成功	{"TraceID": "52960cfd-4781-47b4-888b-a7448a187ce8"}
+2023-04-08T00:20:42+08:00	INFO	logger/log.go:168	登录成功	{"TraceID": "52960cfd-4781-47b4-888b-a7448a187ce8"}
+2023-04-08T00:20:42+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDQ0MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fJgBiQDWrIsP-zWtClM7wKl_4P7Kg0heaEOLlnPu_jxZ; Path=/; Expires=Sun, 07 May 2023 16:20:42 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0063718}
+2023-04-08T00:23:43+08:00	INFO	logger/log.go:142	HttpServerStop stopped
+2023-04-08T00:23:43+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T00:23:43+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T00:23:43+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T00:23:50+08:00	INFO	logger/log.go:142	数据库已经存在	{"databaseName": "gateway"}
+2023-04-08T00:23:50+08:00	INFO	logger/log.go:142	开始使用已经存在的数据库
+2023-04-08T00:23:50+08:00	INFO	logger/log.go:142	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-08T00:23:59+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg4NDQ0MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fJgBiQDWrIsP-zWtClM7wKl_4P7Kg0heaEOLlnPu_jxZ"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T00:23:59+08:00	INFO	logger/log.go:168	开始从数据库获取 admin 信息	{"TraceID": "019f91bc-b156-4f85-a1cc-4fed34916383"}
+2023-04-08T00:23:59+08:00	INFO	logger/log.go:168	从数据库获取 admin 信息成功	{"TraceID": "019f91bc-b156-4f85-a1cc-4fed34916383"}
+2023-04-08T00:23:59+08:00	INFO	logger/log.go:168	登录成功	{"TraceID": "019f91bc-b156-4f85-a1cc-4fed34916383"}
+2023-04-08T00:23:59+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NDYzOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNSpbajiR5iAiO6WB0ZLf19h6v7eOnLamePEV32k2FHg; Path=/; Expires=Sun, 07 May 2023 16:23:59 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0077483}
+2023-04-08T00:24:08+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NDYzOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNSpbajiR5iAiO6WB0ZLf19h6v7eOnLamePEV32k2FHg"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:24:08+08:00	INFO	logger/log.go:168	获取管理员信息成功	{"TraceID": "fdeeb9c4-27b1-4e14-a699-726f0f1e27e0"}
+2023-04-08T00:24:08+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0028898}
+2023-04-08T00:30:13+08:00	INFO	logger/log.go:142	HttpServerStop stopped
+2023-04-08T00:30:13+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T00:30:13+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T00:30:13+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T00:30:19+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T00:30:19+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T00:30:19+08:00	INFO	logger/log.go:142	HttpServerRun	{"addr": "127.0.0.1:8080"}
+2023-04-08T00:30:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg4NDYzOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNSpbajiR5iAiO6WB0ZLf19h6v7eOnLamePEV32k2FHg"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T00:30:29+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "27085cad-1cf4-4863-9f30-0cf16f627c5a"}
+2023-04-08T00:30:29+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "27085cad-1cf4-4863-9f30-0cf16f627c5a"}
+2023-04-08T00:30:30+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "27085cad-1cf4-4863-9f30-0cf16f627c5a"}
+2023-04-08T00:30:30+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NTAyOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIvmwiht-DZDxnvHOo_raufme_Qm8AK8guKuzyTPp4TK; Path=/; Expires=Sun, 07 May 2023 16:30:29 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.006933}
+2023-04-08T00:30:56+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NTAyOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIvmwiht-DZDxnvHOo_raufme_Qm8AK8guKuzyTPp4TK"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:30:56+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "b999f367-fde9-429c-aa6f-2d854d7193ed"}
+2023-04-08T00:30:56+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0036911}
+2023-04-08T00:31:09+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg4NTAyOXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIvmwiht-DZDxnvHOo_raufme_Qm8AK8guKuzyTPp4TK"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T00:31:09+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "65bcd359-5b1a-4b6f-8e5e-35b138d54681"}
+2023-04-08T00:31:09+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin_login/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg4NTA2OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPytcMj6gTdG33lrgYnBw0Kp_MxNe5G9pAMuswchVc7H; Path=/; Expires=Sun, 07 May 2023 16:31:09 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0050733}
+2023-04-08T01:47:24+08:00	INFO	logger/log.go:142	HttpServerStop stopped
+2023-04-08T01:47:24+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T01:47:24+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T01:47:24+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T01:53:09+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T01:53:09+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T01:54:11+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T01:54:15+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T01:54:15+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T01:54:15+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T01:55:51+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T01:55:58+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T01:55:58+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T01:55:58+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T01:58:56+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T01:59:19+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T01:59:19+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T01:59:19+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T01:59:26+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg4NTA2OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPytcMj6gTdG33lrgYnBw0Kp_MxNe5G9pAMuswchVc7H"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T01:59:26+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "18a9015d-7dcd-4a06-800d-21248601e872"}
+2023-04-08T01:59:26+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "18a9015d-7dcd-4a06-800d-21248601e872"}
+2023-04-08T01:59:26+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "18a9015d-7dcd-4a06-800d-21248601e872"}
+2023-04-08T01:59:26+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MDM2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fKMmNd3XP8eXDb7hhhUZ3rHCnnC62f5t7rxmpTZ-wObb; Path=/; Expires=Sun, 07 May 2023 17:59:26 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.007163}
+2023-04-08T01:59:35+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MDM2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fKMmNd3XP8eXDb7hhhUZ3rHCnnC62f5t7rxmpTZ-wObb"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T01:59:35+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "8a28665a-0202-4559-b0ae-1b5244e814f1"}
+2023-04-08T01:59:35+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0047571}
+2023-04-08T01:59:47+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MDM2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fKMmNd3XP8eXDb7hhhUZ3rHCnnC62f5t7rxmpTZ-wObb"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T01:59:47+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "2a39c83d-e6c8-4422-a228-275eb27ba6a4"}
+2023-04-08T01:59:47+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MDM4N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNJcSSLepvsWDFuz9cJ-VrIbqfmv_SbU9EHwYCw5UROG; Path=/; Expires=Sun, 07 May 2023 17:59:47 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0035424}
+2023-04-08T02:01:19+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MDM4N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fNJcSSLepvsWDFuz9cJ-VrIbqfmv_SbU9EHwYCw5UROG"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:01:19+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "d92c78fa-16b3-4130-92c7-4242a83c04ba"}
+2023-04-08T02:01:19+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MDQ3OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD0iOkZEjUwztqYKvbZZ4wvpyUn1sZZLt4B-ICGADm4U; Path=/; Expires=Sun, 07 May 2023 18:01:19 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0044808}
+2023-04-08T02:01:20+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MDQ3OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD0iOkZEjUwztqYKvbZZ4wvpyUn1sZZLt4B-ICGADm4U"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:01:20+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "e81d75bd-a54b-490f-96cd-3ab10bc9575a"}
+2023-04-08T02:01:20+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MDQ4MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIHtreGGr6BYJAS5ZwgLSmWTxeJkw07XwJZ7waYPjyc4; Path=/; Expires=Sun, 07 May 2023 18:01:20 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0045182}
+2023-04-08T02:01:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MDQ4MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIHtreGGr6BYJAS5ZwgLSmWTxeJkw07XwJZ7waYPjyc4"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:01:29+08:00	ERROR	logger/log.go:180	session反序列化失败	{"TraceID": "093d2744-8f90-4276-9dd2-cc51de425997"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:127
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 gateway/pkg/middleware.TranslationMiddleware.func1
@@ -150,6 +154,10 @@ github.com/gin-gonic/contrib/sessions.Sessions.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
 github.com/gin-gonic/gin.(*Context).Next
@@ -166,17 +174,12 @@ net/http.serverHandler.ServeHTTP
 	E:/Go/src/net/http/server.go:2936
 net/http.(*conn).serve
 	E:/Go/src/net/http/server.go:1995
-2023-04-06T13:32:40+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/repository.GetAll[...]
-	E:/project/Api-Gateway/internal/repository/common.go:36
-gateway/internal/repository.(*Admin).GetAll
-	E:/project/Api-Gateway/internal/repository/admin.go:35
-gateway/internal/repository.(*Admin).LoginCheck
-	E:/project/Api-Gateway/internal/repository/admin.go:39
-gateway/internal/controller.(*AdminLoginController).AdminLogin
-	E:/project/Api-Gateway/internal/controller/admin_login.go:37
+2023-04-08T02:01:29+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "093d2744-8f90-4276-9dd2-cc51de425997"}
+2023-04-08T02:01:29+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "093d2744-8f90-4276-9dd2-cc51de425997"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 gateway/pkg/middleware.TranslationMiddleware.func1
@@ -195,6 +198,10 @@ github.com/gin-gonic/contrib/sessions.Sessions.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
 github.com/gin-gonic/gin.(*Context).Next
@@ -211,31 +218,33 @@ net/http.serverHandler.ServeHTTP
 	E:/Go/src/net/http/server.go:2936
 net/http.(*conn).serve
 	E:/Go/src/net/http/server.go:1995
-2023-04-06T13:32:40+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0105796}
-2023-04-06T13:34:05+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:34:05+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:34:05+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-06T13:34:08+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:34:17+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T13:34:17+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/repository.GetAll[...]
-	E:/project/Api-Gateway/internal/repository/common.go:36
-gateway/internal/repository.(*Admin).GetAll
-	E:/project/Api-Gateway/internal/repository/admin.go:35
-gateway/internal/repository.(*Admin).LoginCheck
-	E:/project/Api-Gateway/internal/repository/admin.go:39
-gateway/internal/controller.(*AdminLoginController).AdminLogin
-	E:/project/Api-Gateway/internal/controller/admin_login.go:38
+2023-04-08T02:01:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0150101}
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:12:32+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:12:37+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:12:37+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:12:37+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:12:46+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MDQ4MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fIHtreGGr6BYJAS5ZwgLSmWTxeJkw07XwJZ7waYPjyc4"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:12:46+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "1dc1c7e5-c64c-47d9-af02-1d071d2cae95"}
+2023-04-08T02:12:46+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "1dc1c7e5-c64c-47d9-af02-1d071d2cae95"}
+2023-04-08T02:12:46+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "1dc1c7e5-c64c-47d9-af02-1d071d2cae95"}
+2023-04-08T02:12:46+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MTE2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fA1btwSrE6cE9jPxyQaJc9GJog6PBI9xA7cG7ka-AnIG; Path=/; Expires=Sun, 07 May 2023 18:12:46 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0085747}
+2023-04-08T02:12:54+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTE2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fA1btwSrE6cE9jPxyQaJc9GJog6PBI9xA7cG7ka-AnIG"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:12:54+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "3a5d88ee-0b34-421b-8fcd-ae8f8b8a7650"}
+2023-04-08T02:12:54+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0043557}
+2023-04-08T02:13:02+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTE2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fA1btwSrE6cE9jPxyQaJc9GJog6PBI9xA7cG7ka-AnIG"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:13:02+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "e7873249-c1d4-4d77-a4c6-1161bd7839af"}
+2023-04-08T02:13:02+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MTE4MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD1VJToTJCBma65G9P5NehSS_GJfvNLnUEPPH0YEnh_U; Path=/; Expires=Sun, 07 May 2023 18:13:02 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0051362}
+2023-04-08T02:13:12+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTE4MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD1VJToTJCBma65G9P5NehSS_GJfvNLnUEPPH0YEnh_U"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:13:12+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "bd3c3712-54ff-42f6-bb57-05526e73da4f"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 gateway/pkg/middleware.TranslationMiddleware.func1
@@ -254,6 +263,10 @@ github.com/gin-gonic/contrib/sessions.Sessions.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
 github.com/gin-gonic/gin.(*Context).Next
@@ -270,17 +283,11 @@ net/http.serverHandler.ServeHTTP
 	E:/Go/src/net/http/server.go:2936
 net/http.(*conn).serve
 	E:/Go/src/net/http/server.go:1995
-2023-04-06T13:34:17+08:00	ERROR	logger/log.go:110	Error retrieving admin	{"error": "Error 1146 (42S02): Table 'gateway.admin' doesn't exist"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/repository.GetAll[...]
-	E:/project/Api-Gateway/internal/repository/common.go:36
-gateway/internal/repository.(*Admin).GetAll
-	E:/project/Api-Gateway/internal/repository/admin.go:35
-gateway/internal/repository.(*Admin).LoginCheck
-	E:/project/Api-Gateway/internal/repository/admin.go:39
-gateway/internal/controller.(*AdminLoginController).AdminLogin
-	E:/project/Api-Gateway/internal/controller/admin_login.go:38
+2023-04-08T02:13:12+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "bd3c3712-54ff-42f6-bb57-05526e73da4f"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 gateway/pkg/middleware.TranslationMiddleware.func1
@@ -299,6 +306,10 @@ github.com/gin-gonic/contrib/sessions.Sessions.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
 github.com/gin-gonic/gin.(*Context).Next
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
 github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
 	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
 github.com/gin-gonic/gin.(*Context).Next
@@ -315,303 +326,512 @@ net/http.serverHandler.ServeHTTP
 	E:/Go/src/net/http/server.go:2936
 net/http.(*conn).serve
 	E:/Go/src/net/http/server.go:1995
-2023-04-06T13:34:17+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0110977}
-2023-04-06T13:40:01+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:40:01+08:00	ERROR	logger/log.go:110	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:110
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T13:40:01+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-06T13:40:06+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:40:16+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T13:40:16+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0081585}
-2023-04-06T13:42:03+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T13:42:03+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.007452}
-2023-04-06T13:49:14+08:00	INFO	logger/log.go:102	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T13:49:29+08:00	INFO	logger/log.go:102	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T13:49:29+08:00	INFO	logger/log.go:102	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0038133}
-2023-04-06T14:07:40+08:00	INFO	logger/log.go:102	HttpServerStop stopped
-2023-04-06T14:51:22+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T14:51:32+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T14:51:32+08:00	INFO	logger/log.go:126	开始从数据库获取 admin 信息	{"TraceID": "76f74035-fdc0-4fd9-9581-8344877e9a26"}
-2023-04-06T14:51:32+08:00	INFO	logger/log.go:126	登录成功	{"TraceID": "76f74035-fdc0-4fd9-9581-8344877e9a26"}
-2023-04-06T14:51:32+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0056364}
-2023-04-06T17:51:18+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T17:51:24+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T17:51:37+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
-2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
-2023-04-06T17:51:37+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "64eb90e8-4476-4577-93e8-142c91832b64"}
-2023-04-06T17:51:37+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0043065}
-2023-04-06T17:57:51+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T17:57:51+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T17:57:51+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T18:33:32+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T18:33:44+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
-2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
-2023-04-06T18:33:44+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "aaf36ce7-ea52-4645-881d-5140267b7826"}
-2023-04-06T18:33:44+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc3NzIyNHxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fIFoJd_6ukNVpIOdHjYi6o0TRzq4HZjrNRLVSoDBT_jd; Path=/; Expires=Sat, 06 May 2023 10:33:44 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0089848}
-2023-04-06T18:33:52+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T18:33:52+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T19:21:55+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T19:22:13+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:22:13+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T19:22:32+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T19:22:53+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:22:53+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T19:22:53+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:25:01+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T19:25:51+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc3NzIyNHxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fIFoJd_6ukNVpIOdHjYi6o0TRzq4HZjrNRLVSoDBT_jd"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
-2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
-2023-04-06T19:25:51+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "7be4a9ec-ea64-4870-85a0-5dd65a1a9ec1"}
-2023-04-06T19:25:51+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDM1MXxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fF3_VhxOaCF-jCghPnyMHtOXSN0mSIyzdQc1dYLmFGaj; Path=/; Expires=Sat, 06 May 2023 11:25:51 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0082837}
-2023-04-06T19:28:26+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDM1MXxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fF3_VhxOaCF-jCghPnyMHtOXSN0mSIyzdQc1dYLmFGaj"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
-2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
-2023-04-06T19:28:26+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "ef6ce34d-f957-4eb1-bffc-6b21897618eb"}
-2023-04-06T19:28:26+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDUwNnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fNwXl9Dm6jhG5FkJz3jNkfXBwpL1lDha0lvtAB7BouIT; Path=/; Expires=Sat, 06 May 2023 11:28:26 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0062127}
-2023-04-06T19:28:27+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDUwNnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fNwXl9Dm6jhG5FkJz3jNkfXBwpL1lDha0lvtAB7BouIT"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
-2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
-2023-04-06T19:28:27+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "dfd169cf-0b2e-449e-9c5e-8b5ae38e2bf8"}
-2023-04-06T19:28:27+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDUwN3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fLHcaAqFc8rgCsUeMeGJ3wLqHkNQVM4fC_xbSP7iIq7Z; Path=/; Expires=Sat, 06 May 2023 11:28:27 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0076727}
-2023-04-06T19:29:33+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:29:33+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T19:29:40+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T19:29:46+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDUwN3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fLHcaAqFc8rgCsUeMeGJ3wLqHkNQVM4fC_xbSP7iIq7Z"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
-2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
-2023-04-06T19:29:46+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "f26fc60f-66bd-4983-8653-122f551f8d47"}
-2023-04-06T19:29:46+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr; Path=/; Expires=Sat, 06 May 2023 11:29:46 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0071914}
-2023-04-06T19:29:49+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
-2023-04-06T19:29:49+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "b2ad91d2-4175-4860-a9d3-6393511f506c"}
-2023-04-06T19:29:49+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0049249}
-2023-04-06T19:55:24+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:55:24+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T19:55:33+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T19:58:11+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:58:11+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T19:58:11+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T20:02:37+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T20:03:02+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-06T20:03:02+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T20:03:12+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T20:07:52+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-06T20:08:54+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-06T20:09:03+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDc4MDU4NnxOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fHpfwN1RxNf6jAnmVairhnfjWvbwx8sulMlQ48-sCUqr"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
-2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	开始从数据库获取 admin 信息	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
-2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	从数据库获取 admin 信息成功	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
-2023-04-06T20:09:03+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "3aa2ba0f-3d8c-4811-a573-9bcf86f13349"}
-2023-04-06T20:09:03+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin_login/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDc4Mjk0M3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fOPnh7BuF_je6q5FZvAGoKG1cFLBMVi8RojY9woP-8KL; Path=/; Expires=Sat, 06 May 2023 12:09:03 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0111825}
-2023-04-06T20:09:07+08:00	INFO	logger/log.go:104	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDc4Mjk0M3xOd3dBTkVnelZUY3pSbEJMUlZSSVYwTkxORWswVjBwRVZEUkNXa2hFUWtnMFZGRklUMDlVVTFsSldEVkRUa2xPVjFWRVdFNWFOMEU9fOPnh7BuF_je6q5FZvAGoKG1cFLBMVi8RojY9woP-8KL"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
-2023-04-06T20:09:07+08:00	INFO	logger/log.go:130	登录成功	{"TraceID": "6c51441d-46f2-4b33-b11c-e10be9608f30"}
-2023-04-06T20:09:07+08:00	INFO	logger/log.go:104	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0063964}
-2023-04-07T15:05:24+08:00	FATAL	logger/log.go:124	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/database/mysql.InitDB
-	E:/project/Api-Gateway/pkg/database/mysql/mysql.go:59
-gateway/init.InitAll
-	E:/project/Api-Gateway/init/init.go:17
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:16
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:05:24+08:00	FATAL	logger/log.go:124	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/database/mysql.InitDB
-	E:/project/Api-Gateway/pkg/database/mysql/mysql.go:59
-gateway/init.InitAll
-	E:/project/Api-Gateway/init/init.go:17
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:16
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:06:08+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:10:37+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:43:33+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:43:35+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:43:35+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	Database closed
-2023-04-07T15:43:35+08:00	INFO	logger/log.go:104	Redis closed
-2023-04-07T15:43:35+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:43:35+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:43:54+08:00	INFO	logger/log.go:104	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:43:56+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:43:56+08:00	ERROR	logger/log.go:112	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:112
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	HttpServerStop stopped
-2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	Database closed
-2023-04-07T15:43:56+08:00	INFO	logger/log.go:104	Redis closed
-2023-04-07T15:43:56+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:43:56+08:00	FATAL	logger/log.go:124	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:124
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:48:27+08:00	INFO	logger/log.go:105	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:48:27+08:00	INFO	logger/log.go:105	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	HttpServerStop stopped
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	HttpServerStop stopped
-2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:113
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:113
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Database closed
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Database closed
-2023-04-07T15:48:29+08:00	ERROR	logger/log.go:113	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:113
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Redis closed
-2023-04-07T15:48:29+08:00	INFO	logger/log.go:105	Redis closed
-2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:125
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:125
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T15:48:29+08:00	FATAL	logger/log.go:125	Failed to close logger: %v	{"error": "sync /dev/stdout: The handle is invalid."}
-gateway/pkg/logger.Fatal
-	E:/project/Api-Gateway/pkg/logger/log.go:125
-gateway/pkg/utils.CleanupLogger
-	E:/project/Api-Gateway/pkg/utils/init.go:21
-main.main
-	E:/project/Api-Gateway/cmd/server/main.go:31
-runtime.main
-	E:/Go/src/runtime/proc.go:250
-2023-04-07T16:03:20+08:00	INFO	logger/log.go:127	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	HttpServerStop stopped
-2023-04-07T16:03:21+08:00	ERROR	logger/log.go:135	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:135
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Database closed
-2023-04-07T16:03:21+08:00	ERROR	logger/log.go:135	HttpServerRun	{"addr": "127.0.0.1:8080", "error": "http: Server closed"}
-gateway/pkg/logger.Error
-	E:/project/Api-Gateway/pkg/logger/log.go:135
-gateway/internal/router.HttpServerRun.func1
-	E:/project/Api-Gateway/internal/router/httpserver.go:31
-2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Redis closed
-2023-04-07T16:03:21+08:00	INFO	logger/log.go:127	Logger closed
-2023-04-07T16:08:54+08:00	INFO	logger/log.go:127	HttpServerRun	{"addr": "127.0.0.1:8080"}
-2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	HttpServerStop stopped
-2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Database closed
-2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Redis closed
-2023-04-07T16:08:56+08:00	INFO	logger/log.go:127	Logger closed
+2023-04-08T02:13:13+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0271449}
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:18:22+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:18:28+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:18:28+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:18:28+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:18:35+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MTE4MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD1VJToTJCBma65G9P5NehSS_GJfvNLnUEPPH0YEnh_U"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:18:35+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "794e3378-27d2-48e6-ac4a-49716f4a6e0f"}
+2023-04-08T02:18:35+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "794e3378-27d2-48e6-ac4a-49716f4a6e0f"}
+2023-04-08T02:18:35+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "794e3378-27d2-48e6-ac4a-49716f4a6e0f"}
+2023-04-08T02:18:35+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MTUxNXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD98zpa6wK9pBL2qZ9z9qDIxJzQTTru3JJGQ123T2uQe; Path=/; Expires=Sun, 07 May 2023 18:18:35 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0094976}
+2023-04-08T02:18:42+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTUxNXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD98zpa6wK9pBL2qZ9z9qDIxJzQTTru3JJGQ123T2uQe"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:18:42+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "e695fcf5-79a4-4b68-8552-8190ac9bd583"}
+2023-04-08T02:18:42+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0037492}
+2023-04-08T02:18:48+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTUxNXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD98zpa6wK9pBL2qZ9z9qDIxJzQTTru3JJGQ123T2uQe"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:18:48+08:00	INFO	logger/log.go:168	Obtained administrator information successfully 	{"TraceID": "62f1a407-3616-4683-ab57-ba59b825d6e5"}
+2023-04-08T02:18:48+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0030329}
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:19:03+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:19:09+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:19:09+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:19:09+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:19:17+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MTUxNXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fD98zpa6wK9pBL2qZ9z9qDIxJzQTTru3JJGQ123T2uQe"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:19:17+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "bce53d49-0031-49ee-a258-dbdcc5603ba4"}
+2023-04-08T02:19:17+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "bce53d49-0031-49ee-a258-dbdcc5603ba4"}
+2023-04-08T02:19:17+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "bce53d49-0031-49ee-a258-dbdcc5603ba4"}
+2023-04-08T02:19:17+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MTU1N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fJtzIbuMW_LXbP67mtYuRX_ScRK6w-tkKhXK09oOecIy; Path=/; Expires=Sun, 07 May 2023 18:19:17 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0082119}
+2023-04-08T02:19:21+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTU1N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fJtzIbuMW_LXbP67mtYuRX_ScRK6w-tkKhXK09oOecIy"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:19:21+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "39c3c95d-a234-4c43-a209-a16299e625a8"}
+2023-04-08T02:19:21+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MTU2MXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fBmVPBH3TVw3E5xERpNbXD-yY6j8EEqAm3WkWqwoeRB7; Path=/; Expires=Sun, 07 May 2023 18:19:21 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0045251}
+2023-04-08T02:19:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MTU2MXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fBmVPBH3TVw3E5xERpNbXD-yY6j8EEqAm3WkWqwoeRB7"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:19:29+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "7d6211fe-7578-44ed-9eb8-38573ac5518b"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:19:29+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "7d6211fe-7578-44ed-9eb8-38573ac5518b"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:19:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0238577}
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:30:30+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:30:35+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:30:35+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:30:35+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:30:42+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MTU2MXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fBmVPBH3TVw3E5xERpNbXD-yY6j8EEqAm3WkWqwoeRB7"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:30:42+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "9f18b74a-6e78-4c09-b192-6a110e0f75f1"}
+2023-04-08T02:30:42+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "9f18b74a-6e78-4c09-b192-6a110e0f75f1"}
+2023-04-08T02:30:42+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "9f18b74a-6e78-4c09-b192-6a110e0f75f1"}
+2023-04-08T02:30:42+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjI0MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPY9HmGKKSahYQtonweV-r7tU8B1n0LZB3SfspnOznml; Path=/; Expires=Sun, 07 May 2023 18:30:42 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0111021}
+2023-04-08T02:30:47+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjI0MnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPY9HmGKKSahYQtonweV-r7tU8B1n0LZB3SfspnOznml"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:30:47+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "92778269-d83f-483d-a964-c4ae8ca2ea8e"}
+2023-04-08T02:30:47+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjI0N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fFZCBm9zPy5e3pCYSq38zUWUe0RjiC_GC4XuIDSPNib2; Path=/; Expires=Sun, 07 May 2023 18:30:47 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0047075}
+2023-04-08T02:30:54+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjI0N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fFZCBm9zPy5e3pCYSq38zUWUe0RjiC_GC4XuIDSPNib2"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:30:54+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "82330e2e-878a-404f-b22d-d35ee00f0ec2"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:30:54+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "82330e2e-878a-404f-b22d-d35ee00f0ec2"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:30:54+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.014826}
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:32:33+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:32:36+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:32:36+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:32:36+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:32:46+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MjI0N3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fFZCBm9zPy5e3pCYSq38zUWUe0RjiC_GC4XuIDSPNib2"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:32:46+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "643437b2-9cfa-49d2-87b7-25928d3b28bf"}
+2023-04-08T02:32:46+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "643437b2-9cfa-49d2-87b7-25928d3b28bf"}
+2023-04-08T02:32:46+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "643437b2-9cfa-49d2-87b7-25928d3b28bf"}
+2023-04-08T02:32:46+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjM2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fO-dthNUMQm1U02SszKW_jx4hJ8IJtywTLKkluln0S_X; Path=/; Expires=Sun, 07 May 2023 18:32:46 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0090069}
+2023-04-08T02:32:50+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjM2NnxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fO-dthNUMQm1U02SszKW_jx4hJ8IJtywTLKkluln0S_X"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:32:50+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "05534861-5059-43d5-a61d-1824cf562237"}
+2023-04-08T02:32:50+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjM3MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fLHkZy0hJubvK6g2irdD4peAXia9R9abinZX8GWWxrLe; Path=/; Expires=Sun, 07 May 2023 18:32:50 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0044822}
+2023-04-08T02:32:57+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjM3MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fLHkZy0hJubvK6g2irdD4peAXia9R9abinZX8GWWxrLe"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:32:57+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "769af09d-183c-485b-8099-e76dd76dadc8"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:131
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:32:57+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "769af09d-183c-485b-8099-e76dd76dadc8"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:32:57+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0153188}
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:35:49+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:35:55+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:35:55+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:35:55+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:36:03+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MjM3MHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fLHkZy0hJubvK6g2irdD4peAXia9R9abinZX8GWWxrLe"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:36:03+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "fe95c02c-22a4-481d-8ecc-eb8b1cf77c90"}
+2023-04-08T02:36:03+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "fe95c02c-22a4-481d-8ecc-eb8b1cf77c90"}
+2023-04-08T02:36:03+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "fe95c02c-22a4-481d-8ecc-eb8b1cf77c90"}
+2023-04-08T02:36:03+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjU2M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fDYY5e-CMFJVUFO8Tf4QF8Rk-c6zGOic4jnb6cJRgw8z; Path=/; Expires=Sun, 07 May 2023 18:36:03 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0068393}
+2023-04-08T02:36:08+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjU2M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fDYY5e-CMFJVUFO8Tf4QF8Rk-c6zGOic4jnb6cJRgw8z"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:36:08+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "54a475cb-86b0-4818-a88a-2c67d59ce27a"}
+2023-04-08T02:36:08+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MjU2OHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fEw8xF_LQGUF9_R7t4Ue-6g21qxuiJP-PercUA_-oXI3; Path=/; Expires=Sun, 07 May 2023 18:36:08 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0037663}
+2023-04-08T02:36:14+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MjU2OHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fEw8xF_LQGUF9_R7t4Ue-6g21qxuiJP-PercUA_-oXI3"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:36:14+08:00	ERROR	logger/log.go:180	Session deserialization failed	{"TraceID": "849e6960-53ba-434e-a46a-48b91124346a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:128
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:36:14+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "849e6960-53ba-434e-a46a-48b91124346a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:36:14+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0206166}
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:46:15+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T02:46:19+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T02:46:19+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T02:46:19+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:46:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDg5MjU2OHxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fEw8xF_LQGUF9_R7t4Ue-6g21qxuiJP-PercUA_-oXI3"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T02:46:29+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "9609aa72-86c9-432b-a199-390ab5ee1d73"}
+2023-04-08T02:46:29+08:00	INFO	logger/log.go:168	Successfully fetched admin information from the database	{"TraceID": "9609aa72-86c9-432b-a199-390ab5ee1d73"}
+2023-04-08T02:46:29+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "9609aa72-86c9-432b-a199-390ab5ee1d73"}
+2023-04-08T02:46:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MzE4OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPfLIcTJL1jx27LZZhtqK2esfIzXmxkmGyIZG5--rJ0r; Path=/; Expires=Sun, 07 May 2023 18:46:29 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0069521}
+2023-04-08T02:46:33+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MzE4OXxOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fPfLIcTJL1jx27LZZhtqK2esfIzXmxkmGyIZG5--rJ0r"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:46:33+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "6fe82206-b902-4f09-9557-aae1fc36668b"}
+2023-04-08T02:46:33+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDg5MzE5M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMc6j69czaOvb67dEMVjRoKy8hLlq7n52Fp_PiqTnCSq; Path=/; Expires=Sun, 07 May 2023 18:46:33 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0039431}
+2023-04-08T02:46:40+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDg5MzE5M3xOd3dBTkZjM1dGWTNORFZVTnpkQlVWVTFVRk5IUWxCUlZFSkpSVUpQUkZjMk5GQktSVXREU1VNMU4wMHpSVGRCTjBOYVVGVkxTbEU9fMc6j69czaOvb67dEMVjRoKy8hLlq7n52Fp_PiqTnCSq"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T02:46:40+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "57ad7531-74ce-4a21-8f76-0ee6023fc85a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:46:40+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0067819}
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Logger closed

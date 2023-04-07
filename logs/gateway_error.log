@@ -1,0 +1,559 @@
+2023-04-08T02:01:29+08:00	ERROR	logger/log.go:180	session反序列化失败	{"TraceID": "093d2744-8f90-4276-9dd2-cc51de425997"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:127
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:01:29+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "093d2744-8f90-4276-9dd2-cc51de425997"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:13:12+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "bd3c3712-54ff-42f6-bb57-05526e73da4f"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:13:12+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "bd3c3712-54ff-42f6-bb57-05526e73da4f"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:19:29+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "7d6211fe-7578-44ed-9eb8-38573ac5518b"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:19:29+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "7d6211fe-7578-44ed-9eb8-38573ac5518b"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:30:54+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "82330e2e-878a-404f-b22d-d35ee00f0ec2"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:129
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:30:54+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "82330e2e-878a-404f-b22d-d35ee00f0ec2"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:32:57+08:00	ERROR	logger/log.go:180	Session does not exist	{"TraceID": "769af09d-183c-485b-8099-e76dd76dadc8"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:131
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:32:57+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "769af09d-183c-485b-8099-e76dd76dadc8"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:36:14+08:00	ERROR	logger/log.go:180	Session deserialization failed	{"TraceID": "849e6960-53ba-434e-a46a-48b91124346a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminInfo
+	E:/project/Api-Gateway/internal/controller/admin.go:128
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:36:14+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "849e6960-53ba-434e-a46a-48b91124346a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T02:46:40+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "57ad7531-74ce-4a21-8f76-0ee6023fc85a"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995

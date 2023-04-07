@@ -23,7 +23,7 @@ type Model interface {
 // Find[T model.Model]是泛型函数，T是泛型参数，model.Model是泛型约束
 // Find检索全部对象
 func GetAll[T Model](c *gin.Context, describe string, search *T) (*T, error) {
-	logger.InfoWithTraceID(c, "开始从数据库获取 %s 信息", describe)
+	logger.InfoWithTraceID(c, "Start fetching %s information from database", describe)
 	db := mysql.GetDB()
 
 	var out T
@@ -38,6 +38,6 @@ func GetAll[T Model](c *gin.Context, describe string, search *T) (*T, error) {
 		logger.ErrorWithTraceID(c, fmt.Sprintf("Error retrieving %s", describe), zap.Error(result.Error))
 		return nil, result.Error
 	}
-	logger.InfoWithTraceID(c, "从数据库获取 %s 信息成功", describe)
+	logger.InfoWithTraceID(c, "Successfully fetched %s information from the database", describe)
 	return &out, nil
 }

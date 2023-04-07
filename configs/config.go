@@ -14,7 +14,7 @@ func Init() {
 	setConfigPath()
 
 	// Load server configuration
-	GetConfig()
+	getCfg()
 }
 
 // ServerConfig - server configuration struct
@@ -39,15 +39,17 @@ type LogConfig struct {
 
 // MySQLConfig - MySQL配置 (MySQL configuration)
 type MySQLConfig struct {
+	SqlFile      string
 	Host         string
 	Port         int
 	User         string
 	Password     string
 	DBName       string `mapstructure:"dbname"`
-	Charset      string
-	ParseTime    bool `mapstructure:"parsetime"`
-	MaxIdleConns int  `mapstructure:"maxidleconns"`
-	MaxOpenConns int  `mapstructure:"maxopenconns"`
+	Charset      string `mapstructure:"charset"`
+	Collation    string `mapstructure:"collation"`
+	ParseTime    bool   `mapstructure:"parsetime"`
+	MaxIdleConns int    `mapstructure:"maxidleconns"`
+	MaxOpenConns int    `mapstructure:"maxopenconns"`
 }
 
 // RedisConfig - Redis配置 (Redis configuration)
@@ -155,7 +157,7 @@ func GetSwaggerConfig() *SwaggerConfig {
 	return swaggerConfig
 }
 
-func GetConfig() {
+func getCfg() {
 	// Load server configuration
 	serverConfig = getConfig("server", new(ServerConfig))
 

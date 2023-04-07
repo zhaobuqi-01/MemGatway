@@ -52,7 +52,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/admin_login/login": {
+        "/admin/login": {
             "post": {
                 "description": "管理员登陆",
                 "consumes": [
@@ -90,6 +90,42 @@ const docTemplate = `{
                                     "properties": {
                                         "data": {
                                             "$ref": "#/definitions/dto.AdminLoginOutput"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/login_out": {
+            "get": {
+                "description": "管理员退出登陆",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "管理员接口"
+                ],
+                "summary": "管理员退出登陆",
+                "operationId": "/admin/login_out",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/middleware.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
                                         }
                                     }
                                 }

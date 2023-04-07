@@ -43,9 +43,9 @@ func getEncoder() zapcore.Encoder {
 	return zapcore.NewConsoleEncoder(encoderConfig)
 }
 
-func getFileLogger() *lumberjack.Logger {
+func getFileLogger(Filename string) *lumberjack.Logger {
 	return &lumberjack.Logger{
-		Filename:   logConfig.Filename,
+		Filename:   Filename,
 		MaxSize:    logConfig.MaxSize,
 		MaxBackups: logConfig.MaxBackups,
 		MaxAge:     logConfig.MaxAge,
@@ -54,41 +54,56 @@ func getFileLogger() *lumberjack.Logger {
 	}
 }
 
-func getErrorFileLogger() *lumberjack.Logger {
-	return &lumberjack.Logger{
-		Filename:   logConfig.Filename,
-		MaxSize:    logConfig.MaxSize,
-		MaxBackups: logConfig.MaxBackups,
-		MaxAge:     logConfig.MaxAge,
-		LocalTime:  true,
-		Compress:   logConfig.Compress,
+func getLogLevel(logLevelStr string) zapcore.Level {
+	var logLevel zapcore.Level
+
+	switch logLevelStr {
+	case "debug":
+		logLevel = zap.DebugLevel
+	case "warn":
+		logLevel = zap.WarnLevel
+	case "error":
+		logLevel = zap.ErrorLevel
+	case "dpanic":
+		logLevel = zap.DPanicLevel
+	case "panic":
+		logLevel = zap.PanicLevel
+	case "fatal":
+		logLevel = zap.FatalLevel
+	default:
+		logLevel = zap.InfoLevel
 	}
+
+	return logLevel
+}
+
+func newCoreWithLevel(encoder zapcore.Encoder, output zapcore.WriteSyncer, level zapcore.Level) zapcore.Core {
+	return zapcore.NewCore(encoder, output, zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+		return lvl >= level
+	}))
 }
 
 func getZapCore() zapcore.Core {
 	encoder := getEncoder()
-	if fileOutput == nil {
-		fileOutput = zapcore.AddSync(getFileLogger())
-	}
 
-	logLevel := zap.InfoLevel
+	if fileOutput == nil {
+		fileOutput = zapcore.AddSync(getFileLogger(logConfig.Filename))
+	}
 
 	logLevelStr := logConfig.Level
-	if logLevelStr == "debug" {
-		logLevel = zap.DebugLevel
-	}
+	logLevel := getLogLevel(logLevelStr)
 
 	var cores []zapcore.Core
+	cores = append(cores, newCoreWithLevel(encoder, fileOutput, logLevel))
 
-	cores = append(cores, zapcore.NewCore(encoder, fileOutput, logLevel))
 	if logLevel == zap.DebugLevel {
-		cores = append(cores, zapcore.NewCore(encoder, zapcore.AddSync(os.Stdout), logLevel))
+		cores = append(cores, newCoreWithLevel(encoder, zapcore.AddSync(os.Stdout), logLevel))
 	}
 
 	if errorFileOutput == nil {
-		errorFileOutput = zapcore.AddSync(getErrorFileLogger())
+		errorFileOutput = zapcore.AddSync(getFileLogger(logConfig.ErrorFilename))
 	}
-	cores = append(cores, zapcore.NewCore(encoder, errorFileOutput, zapcore.ErrorLevel))
+	cores = append(cores, newCoreWithLevel(encoder, errorFileOutput, zap.ErrorLevel))
 
 	return zapcore.NewTee(cores...)
 }

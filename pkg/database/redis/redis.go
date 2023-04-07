@@ -1,7 +1,6 @@
 package database
 
 import (
-	"fmt"
 	"gateway/configs"
 	"gateway/pkg/logger"
 	"time"
@@ -10,10 +9,13 @@ import (
 	"go.uber.org/zap"
 )
 
-var redisClient *redis.Client
+var (
+	redisClient *redis.Client
+	redisConfig *configs.RedisConfig
+)
 
 func Init() {
-
+	redisConfig = configs.GetRedisConfig()
 	client, err := ConnectRedis()
 	if err != nil {
 		logger.Fatal("Failed to connect to Redis: %v", zap.Error(err))
@@ -23,7 +25,6 @@ func Init() {
 
 // ConnectRedis 连接到Redis数据库 (Connect to Redis database)
 func ConnectRedis() (*redis.Client, error) {
-	redisConfig := configs.GetRedisConfig()
 	dialTimeout, err := time.ParseDuration(redisConfig.DialTimeout)
 	if err != nil {
 		return nil, err
@@ -38,7 +39,7 @@ func ConnectRedis() (*redis.Client, error) {
 	}
 
 	client := redis.NewClient(&redis.Options{
-		Addr:         fmt.Sprintf("%s", redisConfig.Addr),
+		Addr:         redisConfig.Addr,
 		Password:     redisConfig.Password,
 		DB:           redisConfig.DB,
 		PoolSize:     redisConfig.PoolSize,

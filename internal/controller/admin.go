@@ -3,20 +3,110 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
+	"gateway/configs"
 	"gateway/internal/common"
 	"gateway/internal/dto"
+	"gateway/internal/repository"
 	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
+	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type AdminController struct{}
 
-func AdminRegister(group *gin.RouterGroup) {
-	adminInfo := &AdminController{}
-	group.GET("/admin_info", adminInfo.AdminInfo)
+func AdminRegister(router *gin.Engine) {
+	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
+	if err != nil {
+		logger.Fatal("sessions.NewRedisSrore err", zap.Error(err))
+	}
+
+	adminRouter := router.Group("/admin")
+	{
+		adminRouter.Use(
+			sessions.Sessions("mysession", store),
+			middleware.RecoveryMiddleware(),
+			middleware.RequestLog(),
+			middleware.TranslationMiddleware(),
+		)
+
+		Controller := &AdminController{}
+
+		adminRouter.POST("/login", Controller.AdminLogin)
+		adminRouter.GET("/login_out", Controller.AdminLoginOut)
+		adminRouter.GET("/admin_info", middleware.SessionAuthMiddleware(), Controller.AdminInfo)
+
+	}
+}
+
+// AdminLogin godoc
+// @Summary 管理员登陆
+// @Description 管理员登陆
+// @Tags 管理员接口
+// @ID /admin/login
+// @Accept  json
+// @Produce  json
+// @Param body body dto.AdminLoginInput true "body"
+// @Success 200 {object} middleware.Response{data=dto.AdminLoginOutput} "success"
+// @Router /admin/login [post]
+func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
+	var err error
+	params := &dto.AdminLoginInput{}
+	if err = params.BindValParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		middleware.ResponseError(c, 1001, err)
+		return
+	}
+
+	admin := &repository.Admin{}
+	admin, err = admin.LoginCheck(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "Login check failed")
+		middleware.ResponseError(c, 1002, err)
+		return
+	}
+
+	sessInfo := &dto.AdminSessionInfo{
+		ID:        admin.Id,
+		UserName:  admin.UserName,
+		LoginTime: time.Now(),
+	}
+
+	sessBts, err := json.Marshal(sessInfo)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "session serialization failed")
+		middleware.ResponseError(c, 1003, err)
+		return
+	}
+
+	sess := sessions.Default(c)
+	sess.Set(common.AdminSessionInfoKey, string(sessBts))
+	sess.Save()
+
+	out := &dto.AdminLoginOutput{Token: admin.UserName}
+	middleware.ResponseSuccess(c, "login successful", out)
+	logger.InfoWithTraceID(c, "login successful")
+}
+
+// AdminLogin godoc
+// @Summary 管理员退出登陆
+// @Description 管理员退出登陆
+// @Tags 管理员接口
+// @ID /admin/login_out
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} middleware.Response{data=string} "success"
+// @Router /admin/login_out [get]
+func (adminlogin *AdminController) AdminLoginOut(c *gin.Context) {
+	sess := sessions.Default(c)
+	sess.Delete(common.AdminSessionInfoKey)
+	sess.Save()
+	middleware.ResponseSuccess(c, "Log out successfully", "")
+	logger.InfoWithTraceID(c, "Log out successfully")
+	return
 }
 
 // AdminInfo godoc
@@ -35,8 +125,9 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 	sessInfo := sess.Get(common.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		logger.ErrorWithTraceID(c, "session反序列化失败")
-		middleware.ResponseError(c, 2000, err)
+		logger.ErrorWithTraceID(c, "Session deserialization failed")
+		middleware.ResponseError(c, 2001, err)
+		return
 	}
 
 	out := &dto.AminInfoOutput{
@@ -49,6 +140,6 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 			"admin",
 		},
 	}
-	middleware.ResponseSuccess(c, out)
-	logger.InfoWithTraceID(c, "登录成功")
+	middleware.ResponseSuccess(c, "Obtained administrator information successfully ", out)
+	logger.InfoWithTraceID(c, "Obtained administrator information successfully ")
 }

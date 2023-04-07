@@ -49,16 +49,18 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 }
 
 // ResponseSuccess 成功响应函数，data 为响应数据
-func ResponseSuccess(c *gin.Context, data interface{}) {
+func ResponseSuccess(c *gin.Context, msg string, data any) {
 	traceID, _ := c.Get("TraceID")
 
 	// 设置响应头
 	c.Header("Content-Type", "application/json; charset=utf-8")
-
+	if msg == "" {
+		msg = "success"
+	}
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: SuccessCode,
-		ErrorMsg:  "成功",
+		ErrorMsg:  msg,
 		Data:      data,
 		TraceID:   traceID,
 		Stack:     nil,

@@ -97,7 +97,7 @@ paths:
       summary: 管理员信息
       tags:
       - 管理员接口
-  /admin_login/login:
+  /admin/login:
     post:
       consumes:
       - application/json
@@ -123,6 +123,27 @@ paths:
                   $ref: '#/definitions/dto.AdminLoginOutput'
               type: object
       summary: 管理员登陆
+      tags:
+      - 管理员接口
+  /admin/login_out:
+    get:
+      consumes:
+      - application/json
+      description: 管理员退出登陆
+      operationId: /admin/login_out
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/middleware.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 管理员退出登陆
       tags:
       - 管理员接口
 swagger: "2.0"

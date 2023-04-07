@@ -33,5 +33,5 @@ func CleanupMySQL() {
 	if err := mysql.CloseDB(); err != nil {
 		logger.Fatal("Failed to close database: %v", zap.Error(err))
 	}
-	logger.Info("Database closed")
+	logger.Info("Mysql closed")
 }

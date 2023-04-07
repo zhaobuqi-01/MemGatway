@@ -24,12 +24,14 @@ log:
 
 # MySQL configuration
 mysql:
+  sql_file : "./gateway.sql"
   host: "127.0.0.1"
   port: 3306
   user: "root"
   password: "Dan10130204#@"
   dbname: "gateway"
   charset: "utf8mb4"
+  collation: "utf8mb4_general_ci"
   parsetime: true
   maxidleconns: 10
   maxopenconns: 100

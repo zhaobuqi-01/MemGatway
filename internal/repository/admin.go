@@ -3,7 +3,6 @@ package repository
 import (
 	"errors"
 	"gateway/internal/dto"
-	"gateway/pkg/logger"
 	"gateway/pkg/utils"
 	"time"
 
@@ -41,14 +40,12 @@ func (admin *Admin) GetAll(c *gin.Context, search *Admin) (*Admin, error) {
 func (admin *Admin) LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*Admin, error) {
 	adminInfo, err := admin.GetAll(c, &Admin{UserName: param.UserName, IsDelete: 0})
 	if err != nil {
-		logger.InfoWithTraceID(c, "用户不存在")
-		return nil, errors.New("用户不存在")
+		return nil, errors.New("User does not exist")
 	}
 	saltPassword := utils.GenSaltPassword(adminInfo.Salt, param.Password)
 
 	if adminInfo.Password != saltPassword {
-		logger.InfoWithTraceID(c, "密码错误,请重新输入")
-		return nil, errors.New("密码错误,请重新输入")
+		return nil, errors.New("Wrong password, please re-enter")
 	}
 	return adminInfo, nil
 }

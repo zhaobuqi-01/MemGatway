@@ -12,27 +12,32 @@
 package router
 
 import (
-	"fmt"
 	v1 "gateway/api/v1"
 	"gateway/configs"
 	"gateway/internal/controller"
-	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
 
-	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"go.uber.org/zap"
 )
 
 // InitRouter 初始化路由，可以传入多个中间件
 func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
-	// 创建默认的 gin 实例
+	// 使用默认中间件（logger 和 recovery 中间件）创建 gin 路由
 	router := gin.Default()
 	router.Use(middleware.SetTraceID)
 
+	// 注册swagger路由
+	swaggerRegister(router)
+
+	// 注册admin路由
+	controller.AdminRegister(router)
+
+	return router
+}
+
+func swaggerRegister(router *gin.Engine) {
 	// programatically set swagger info
 	v1.SwaggerInfo.Title = configs.GetSwaggerConfig().Title
 	v1.SwaggerInfo.Description = configs.GetSwaggerConfig().Description
@@ -42,36 +47,4 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	v1.SwaggerInfo.Schemes = configs.GetSwaggerConfig().Schemes
 	// Swagger API documentation
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
-	// AdminLogin路由
-	adminLoginRouter := router.Group("/admin_login")
-	fmt.Print(viper.GetString("config.redis.addr"), viper.GetString("config.redis.password"))
-	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
-	if err != nil {
-		logger.Fatal("sessions.NewRedisSrore err", zap.Error(err))
-	}
-	adminLoginRouter.Use(
-		sessions.Sessions("mysession", store),
-		middleware.RecoveryMiddleware(),
-		middleware.RequestLog(),
-		middleware.TranslationMiddleware(),
-	)
-	{
-		controller.AdminLoginRegister(adminLoginRouter)
-	}
-
-	// AdminInfo路由
-	adminRouter := router.Group("/admin")
-	adminRouter.Use(
-		sessions.Sessions("mysession", store),
-		middleware.RecoveryMiddleware(),
-		middleware.RequestLog(),
-		middleware.SessionAuthMiddleware(),
-		middleware.TranslationMiddleware(),
-	)
-	{
-		controller.AdminRegister(adminRouter)
-	}
-
-	return router
 }
