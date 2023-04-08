@@ -835,3 +835,14 @@ net/http.(*conn).serve
 2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Mysql closed
 2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Redis closed
 2023-04-08T02:46:51+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T14:49:41+08:00	FATAL	logger/log.go:162	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:162
+gateway/pkg/database/mysql.InitDB
+	E:/project/Api-Gateway/pkg/database/mysql/mysql.go:119
+gateway/pkg/utils.InitAll
+	E:/project/Api-Gateway/pkg/utils/init.go:15
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:21
+runtime.main
+	E:/Go/src/runtime/proc.go:250

@@ -214,12 +214,10 @@ const docTemplate = `{
                 2,
                 3,
                 401,
-                1000,
-                2001
+                1000
             ],
             "x-enum-comments": {
                 "CustomizeCode": "自定义错误码",
-                "GROUPALL_SAVE_FLOWERROR": "自定义错误码",
                 "InternalErrorCode": "内部错误",
                 "InvalidRequestErrorCode": "请求未经授权",
                 "SuccessCode": "成功",
@@ -232,8 +230,7 @@ const docTemplate = `{
                 "ValidErrorCode",
                 "InternalErrorCode",
                 "InvalidRequestErrorCode",
-                "CustomizeCode",
-                "GROUPALL_SAVE_FLOWERROR"
+                "CustomizeCode"
             ]
         }
     }

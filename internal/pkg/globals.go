@@ -1,4 +1,4 @@
-package common
+package pkg
 
 const (
 	AdminSessionInfoKey string = "AdminSessionInfoKey"

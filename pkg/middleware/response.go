@@ -17,8 +17,6 @@ const (
 
 	InvalidRequestErrorCode ResponseCode = 401  // 请求未经授权
 	CustomizeCode           ResponseCode = 1000 // 自定义错误码
-
-	GROUPALL_SAVE_FLOWERROR ResponseCode = 2001 // 自定义错误码
 )
 
 // Response 响应结构体
@@ -39,12 +37,10 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 	c.Header("Content-Type", "application/json; charset=utf-8")
 
 	// 构造响应体
-	c.JSON(http.StatusOK, Response{
+	c.JSON(http.StatusInternalServerError, Response{
 		ErrorCode: code,
 		ErrorMsg:  err.Error(),
-		Data:      nil,
 		TraceID:   traceID,
-		Stack:     nil,
 	})
 }
 
@@ -63,6 +59,5 @@ func ResponseSuccess(c *gin.Context, msg string, data any) {
 		ErrorMsg:  msg,
 		Data:      data,
 		TraceID:   traceID,
-		Stack:     nil,
 	})
 }

@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+	"gateway/internal/model"
 	mysql "gateway/pkg/database/mysql"
 	"gateway/pkg/logger"
 
@@ -16,13 +17,9 @@ import (
 
 // 数据库操作的通用方法
 
-type Model interface {
-	Admin | User
-}
-
 // Find[T model.Model]是泛型函数，T是泛型参数，model.Model是泛型约束
 // Find检索全部对象
-func GetAll[T Model](c *gin.Context, describe string, search *T) (*T, error) {
+func GetAll[T model.Model](c *gin.Context, describe string, search *T) (*T, error) {
 	logger.InfoWithTraceID(c, "Start fetching %s information from database", describe)
 	db := mysql.GetDB()
 

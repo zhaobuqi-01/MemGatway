@@ -12,14 +12,9 @@
 package router
 
 import (
-	v1 "gateway/api/v1"
-	"gateway/configs"
-	"gateway/internal/controller"
 	"gateway/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // InitRouter 初始化路由，可以传入多个中间件
@@ -32,19 +27,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	swaggerRegister(router)
 
 	// 注册admin路由
-	controller.AdminRegister(router)
+	AdminRegister(router)
 
 	return router
-}
-
-func swaggerRegister(router *gin.Engine) {
-	// programatically set swagger info
-	v1.SwaggerInfo.Title = configs.GetSwaggerConfig().Title
-	v1.SwaggerInfo.Description = configs.GetSwaggerConfig().Description
-	v1.SwaggerInfo.Version = configs.GetSwaggerConfig().Version
-	v1.SwaggerInfo.Host = configs.GetSwaggerConfig().Host
-	// v1.SwaggerInfo.BasePath = configs.GetSwaggerConfig().BasePath
-	v1.SwaggerInfo.Schemes = configs.GetSwaggerConfig().Schemes
-	// Swagger API documentation
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }

@@ -4,8 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"gateway/pkg/logger"
-	"github.com/spf13/viper"
 	"runtime/debug"
+
+	"github.com/spf13/viper"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -20,10 +21,10 @@ func RecoveryMiddleware() gin.HandlerFunc {
 				requestID := c.Writer.Header().Get("X-Request-Id")
 				logger.Error(fmt.Sprint(err), zap.String("stack", string(debug.Stack())), zap.String("request_id", requestID))
 				if viper.GetString("gin.mode") != "debug" {
-					ResponseError(c, 500, errors.New("内部错误"))
+					ResponseError(c, InternalErrorCode, errors.New("internal error"))
 					return
 				} else {
-					ResponseError(c, 500, errors.New(fmt.Sprint(err)))
+					ResponseError(c, InternalErrorCode, errors.New(fmt.Sprint(err)))
 					return
 				}
 			}

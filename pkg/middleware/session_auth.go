@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"errors"
-	"gateway/internal/common"
+	"gateway/internal/pkg"
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -12,7 +12,7 @@ import (
 func SessionAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := sessions.Default(c)
-		if adminInfo, ok := session.Get(common.AdminSessionInfoKey).(string); !ok || adminInfo == "" {
+		if adminInfo, ok := session.Get(pkg.AdminSessionInfoKey).(string); !ok || adminInfo == "" {
 			logger.ErrorWithTraceID(c, "user not login")
 			ResponseError(c, InternalErrorCode, errors.New("user not login"))
 			c.Abort()

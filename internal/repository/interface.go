@@ -13,12 +13,11 @@ type Deleter interface {
 }
 
 type Getter interface {
-	// Get(item T) (T, error)
-	GetAll(item any) ([]any, error)
+	Get(item any) (any, error)
 }
 
 type Lister interface {
-	List() ([]any, error)
+	GetAll(item any) ([]string, error)
 }
 
 type Tabler interface {
