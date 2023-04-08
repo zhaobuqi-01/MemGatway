@@ -4,10 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"gateway/internal/dto"
+	"gateway/internal/model"
 	"gateway/internal/pkg"
 	"gateway/internal/repository"
+	"gateway/pkg/database"
 	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
+
+	"gateway/pkg/utils"
 	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -27,15 +31,15 @@ type AdminController struct{}
 // @Success 200 {object} middleware.Response{data=dto.AdminLoginOutput} "success"
 // @Router /admin/login [post]
 func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
-	var err error
 	params := &dto.AdminLoginInput{}
-	if err = params.BindValParam(c); err != nil {
+	if err := params.BindValParam(c); err != nil {
 		logger.ErrorWithTraceID(c, "parameter binding error")
 		middleware.ResponseError(c, 1001, err)
 		return
 	}
-
-	repo := &repository.AdminRepo{}
+	repo := &repository.AdminRepo{
+		DB: database.GetDB(),
+	}
 	admin, err := repo.LoginCheck(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Login check failed")
@@ -74,7 +78,7 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} middleware.Response{data=string} "success"
 // @Router /admin/login_out [get]
-func (adminlogin *AdminController) AdminLoginOut(c *gin.Context) {
+func (adminloginout *AdminController) AdminLoginOut(c *gin.Context) {
 	sess := sessions.Default(c)
 	sess.Delete(pkg.AdminSessionInfoKey)
 	sess.Save()
@@ -115,4 +119,53 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 	}
 	middleware.ResponseSuccess(c, "Obtained administrator information successfully ", out)
 	logger.InfoWithTraceID(c, "Obtained administrator information successfully ")
+}
+
+// AdminInfo godoc
+// @Summary 管理员密码修改
+// @Description 管理员密码修改
+// @Tags 管理员接口
+// @ID /admin/change_pwd
+// @Accept  json
+// @Produce  json
+// @Param body body dto.AdminChangePwdInput true "body"
+// @Success 200 {object} middleware.Response{data=string} "success"
+// @Router /admin/change_pwd [post]
+func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
+	params := &dto.AdminChangePwdInput{}
+	if err := params.BindValParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		middleware.ResponseError(c, 3001, err)
+		return
+	}
+	// session读取用户信息到结构体 sessInfo
+	sess := sessions.Default(c)
+	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
+	adminSessionInfo := &dto.AdminSessionInfo{}
+	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
+		logger.ErrorWithTraceID(c, "Session deserialization failed")
+		middleware.ResponseError(c, 3002, err)
+		return
+	}
+
+	repo := &repository.AdminRepo{
+		DB: database.GetDB(),
+	}
+	adminInfo, err := repo.Get(c, &model.Admin{UserName: adminSessionInfo.UserName})
+	if err != nil {
+		logger.ErrorWithTraceID(c, "Password modification failed")
+		middleware.ResponseError(c, 3003, err)
+		return
+	}
+
+	saltPassword := utils.GenSaltPassword(adminInfo.Salt, params.Password)
+	adminInfo.Password = saltPassword
+	if err := repo.Update(c, adminInfo); err != nil {
+		logger.ErrorWithTraceID(c, "Password modification failed")
+		middleware.ResponseError(c, 3004, err)
+		return
+	}
+
+	middleware.ResponseSuccess(c, "Password modification successful", "")
+	logger.InfoWithTraceID(c, "Password modification successful")
 }

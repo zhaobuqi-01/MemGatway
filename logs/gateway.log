@@ -846,3 +846,846 @@ main.main
 	E:/project/Api-Gateway/cmd/server/main.go:21
 runtime.main
 	E:/Go/src/runtime/proc.go:250
+2023-04-08T14:50:06+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T14:50:06+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T14:50:06+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T14:50:18+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T14:50:18+08:00	INFO	logger/log.go:168	Start fetching admin information from database	{"TraceID": "0db78e79-ef2f-4546-8459-711f6a650f9e"}
+2023-04-08T14:50:18+08:00	ERROR	logger/log.go:180	Error retrieving admin%!(EXTRA zapcore.Field={error 26 0  Error 1146 (42S02): Table 'gateway.admins' doesn't exist})	{"TraceID": "0db78e79-ef2f-4546-8459-711f6a650f9e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.GetAll[...]
+	E:/project/Api-Gateway/internal/repository/common.go:35
+gateway/internal/repository.(*AdminRepo).GetAll
+	E:/project/Api-Gateway/internal/repository/admin.go:29
+gateway/internal/repository.(*AdminRepo).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:33
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:39
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T14:50:18+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "0db78e79-ef2f-4546-8459-711f6a650f9e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T14:50:18+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0176775}
+2023-04-08T14:50:23+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T14:50:23+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "6ceecd56-99ec-4696-ae14-b12c4d1b8f8f"}
+2023-04-08T14:50:23+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDkzNjYyM3xOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAb7bbVsNa0z33NMSzCOsXfUAFP886_RGoDa_eZ9ea4L; Path=/; Expires=Mon, 08 May 2023 06:50:23 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0036845}
+2023-04-08T14:50:30+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDkzNjYyM3xOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAb7bbVsNa0z33NMSzCOsXfUAFP886_RGoDa_eZ9ea4L"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T14:50:30+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "26a87120-ae60-4aee-8c30-4000fea589f2"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:16
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T14:50:30+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/admin_info", "client_ip": "127.0.0.1", "method": "GET", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0083923}
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:01:17+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:03:57+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:03:57+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:03:57+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:04:18+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:05:27+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:05:27+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:05:27+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:08:35+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:08:42+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:08:42+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:08:42+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:08:52+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDkzNjYyM3xOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAb7bbVsNa0z33NMSzCOsXfUAFP886_RGoDa_eZ9ea4L"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:08:52+08:00	ERROR	logger/log.go:180	Error retrieving admin%!(EXTRA zapcore.Field={error 26 0  Error 1146 (42S02): Table 'gateway.admins' doesn't exist})	{"TraceID": "3314bc64-18e6-4912-ade4-4a2cb609f5c0"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Get[...]
+	E:/project/Api-Gateway/internal/repository/common.go:26
+gateway/internal/repository.(*AdminRepo).Get
+	E:/project/Api-Gateway/internal/repository/admin.go:32
+gateway/internal/repository.(*AdminRepo).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:36
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:43
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:08:52+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "3314bc64-18e6-4912-ade4-4a2cb609f5c0"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:08:52+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0215347}
+2023-04-08T18:09:33+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDkzNjYyM3xOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAb7bbVsNa0z33NMSzCOsXfUAFP886_RGoDa_eZ9ea4L"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:09:33+08:00	ERROR	logger/log.go:180	Error retrieving admin%!(EXTRA zapcore.Field={error 26 0  Error 1146 (42S02): Table 'gateway.admins' doesn't exist})	{"TraceID": "f8ee0399-7139-4af3-b7e3-4102d6389a25"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Get[...]
+	E:/project/Api-Gateway/internal/repository/common.go:26
+gateway/internal/repository.(*AdminRepo).Get
+	E:/project/Api-Gateway/internal/repository/admin.go:32
+gateway/internal/repository.(*AdminRepo).LoginCheck
+	E:/project/Api-Gateway/internal/repository/admin.go:36
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:43
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:09:33+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "f8ee0399-7139-4af3-b7e3-4102d6389a25"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:09:33+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0137691}
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:19:38+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:19:42+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:19:42+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:19:42+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:19:55+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDkzNjYyM3xOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAb7bbVsNa0z33NMSzCOsXfUAFP886_RGoDa_eZ9ea4L"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:19:55+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "e5107ed5-11b8-4ca7-9c8e-b4b05b289404"}
+2023-04-08T18:19:55+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "e5107ed5-11b8-4ca7-9c8e-b4b05b289404"}
+2023-04-08T18:19:55+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTE5NXxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fJWEheL71IlO_4Q31YB0QsTi3dS59mn_IEEMENRryS5d; Path=/; Expires=Mon, 08 May 2023 10:19:55 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0137309}
+2023-04-08T18:20:06+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MDk0OTE5NXxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fJWEheL71IlO_4Q31YB0QsTi3dS59mn_IEEMENRryS5d"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-08T18:20:06+08:00	INFO	logger/log.go:168	Log out successfully	{"TraceID": "bf7b957c-e389-4772-8fe5-477610294399"}
+2023-04-08T18:20:06+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login_out", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTIwNnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fGHdqv1vOSiGcFxatCEVLuveNWUl20WbHVGseVyC9NTb; Path=/; Expires=Mon, 08 May 2023 10:20:06 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0041785}
+2023-04-08T18:20:14+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTIwNnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fGHdqv1vOSiGcFxatCEVLuveNWUl20WbHVGseVyC9NTb"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:20:14+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "4aac36a9-daee-45cb-992d-be5d7c5fb0d2"}
+2023-04-08T18:20:14+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "4aac36a9-daee-45cb-992d-be5d7c5fb0d2"}
+2023-04-08T18:20:14+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTIxNHxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAPlbpQnHjTl4yhlXBOqiKYI6pksN1w5dbQOExC2Cr_q; Path=/; Expires=Mon, 08 May 2023 10:20:14 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0050221}
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:21:21+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:21:24+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:21:24+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:21:24+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:21:31+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTIxNHxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fAPlbpQnHjTl4yhlXBOqiKYI6pksN1w5dbQOExC2Cr_q"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:21:31+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "2a7b3412-de65-4766-bbbf-2ac2280d0da0"}
+2023-04-08T18:21:31+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "2a7b3412-de65-4766-bbbf-2ac2280d0da0"}
+2023-04-08T18:21:31+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTI5MXxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fCokdfb46opmjjbJFMNoZf3TxiD6LQDZyZ9dJj5LEkOB; Path=/; Expires=Mon, 08 May 2023 10:21:31 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0075723}
+2023-04-08T18:21:46+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["30"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTI5MXxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fCokdfb46opmjjbJFMNoZf3TxiD6LQDZyZ9dJj5LEkOB"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"1234567890\"\n}", "request_form": null}
+2023-04-08T18:21:46+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "2b7b2329-e9d5-4154-a211-50b8e6153498"}
+2023-04-08T18:21:46+08:00	ERROR	logger/log.go:180	Error updating admin%!(EXTRA zapcore.Field={error 26 0  Error 1054 (42S22): Unknown column 'user_id' in 'field list'})	{"TraceID": "2b7b2329-e9d5-4154-a211-50b8e6153498"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Update[...]
+	E:/project/Api-Gateway/internal/repository/common.go:64
+gateway/internal/repository.(*AdminRepo).Update
+	E:/project/Api-Gateway/internal/repository/admin.go:49
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:163
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:21:46+08:00	ERROR	logger/log.go:180	Password modification failed	{"TraceID": "2b7b2329-e9d5-4154-a211-50b8e6153498"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:164
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:21:46+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0625789}
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:26:49+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:27:47+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:27:47+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:27:47+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:27:58+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTI5MXxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fCokdfb46opmjjbJFMNoZf3TxiD6LQDZyZ9dJj5LEkOB"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:27:58+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "ef227b0a-9f59-4fdd-a39c-ba005d35387b"}
+2023-04-08T18:27:58+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "ef227b0a-9f59-4fdd-a39c-ba005d35387b"}
+2023-04-08T18:27:58+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTY3OHxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fFvHUUF_V92CqH5TAKjI8qNu0VTKXWZ07PxXnJy0KOeF; Path=/; Expires=Mon, 08 May 2023 10:27:58 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.00814}
+2023-04-08T18:28:07+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["30"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTY3OHxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fFvHUUF_V92CqH5TAKjI8qNu0VTKXWZ07PxXnJy0KOeF"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"1234567890\"\n}", "request_form": null}
+2023-04-08T18:28:07+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "59cdb641-3753-415a-bff0-e03f6de993e3"}
+2023-04-08T18:28:07+08:00	ERROR	logger/log.go:180	Error updating admin%!(EXTRA zapcore.Field={error 26 0  Error 1054 (42S22): Unknown column 'upate_at' in 'field list'})	{"TraceID": "59cdb641-3753-415a-bff0-e03f6de993e3"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Update[...]
+	E:/project/Api-Gateway/internal/repository/common.go:64
+gateway/internal/repository.(*AdminRepo).Update
+	E:/project/Api-Gateway/internal/repository/admin.go:44
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:163
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:28:07+08:00	ERROR	logger/log.go:180	Password modification failed	{"TraceID": "59cdb641-3753-415a-bff0-e03f6de993e3"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:164
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:28:07+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0645721}
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:29:27+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:29:33+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:29:33+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:29:33+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:29:42+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTY3OHxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fFvHUUF_V92CqH5TAKjI8qNu0VTKXWZ07PxXnJy0KOeF"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:29:42+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "36b19e84-00e9-4f48-b3f8-4b2d3afe15d6"}
+2023-04-08T18:29:42+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "36b19e84-00e9-4f48-b3f8-4b2d3afe15d6"}
+2023-04-08T18:29:42+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTc4MnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fJsp0EY6fKo_KeQ6f-Pa-9vfjNI5YckDKhc0V5NUM9XA; Path=/; Expires=Mon, 08 May 2023 10:29:42 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0081326}
+2023-04-08T18:29:48+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["26"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTc4MnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fJsp0EY6fKo_KeQ6f-Pa-9vfjNI5YckDKhc0V5NUM9XA"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\"\n}", "request_form": null}
+2023-04-08T18:29:49+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "850431ef-bf2d-4909-97f0-e19216b342a4"}
+2023-04-08T18:29:49+08:00	ERROR	logger/log.go:180	Error updating admin%!(EXTRA zapcore.Field={error 26 0  Error 1054 (42S22): Unknown column 'upate_at' in 'field list'})	{"TraceID": "850431ef-bf2d-4909-97f0-e19216b342a4"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Update[...]
+	E:/project/Api-Gateway/internal/repository/common.go:64
+gateway/internal/repository.(*AdminRepo).Update
+	E:/project/Api-Gateway/internal/repository/admin.go:44
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:163
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:29:49+08:00	ERROR	logger/log.go:180	Password modification failed	{"TraceID": "850431ef-bf2d-4909-97f0-e19216b342a4"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:164
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:29:49+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0748908}
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:30:52+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-08T18:30:57+08:00	INFO	logger/log.go:142	database already exists	{"databaseName": "gateway"}
+2023-04-08T18:30:57+08:00	INFO	logger/log.go:142	Start using an existing database
+2023-04-08T18:30:57+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:31:06+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["49"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTc4MnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fJsp0EY6fKo_KeQ6f-Pa-9vfjNI5YckDKhc0V5NUM9XA"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\",\n  \"username\": \"admin\"\n}", "request_form": null}
+2023-04-08T18:31:06+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "7db288d0-60f0-4e8a-ad1e-c9e54a9f482b"}
+2023-04-08T18:31:06+08:00	INFO	logger/log.go:168	login successful	{"TraceID": "7db288d0-60f0-4e8a-ad1e-c9e54a9f482b"}
+2023-04-08T18:31:06+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/login", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"],"Set-Cookie":["mysession=MTY4MDk0OTg2NnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fMETrRhdiluVh67DCp5NrLUXFvO-KVsXrWY988YJbEaO; Path=/; Expires=Mon, 08 May 2023 10:31:06 GMT; Max-Age=2592000"]}, "request_body": "", "elapsed": 0.0071396}
+2023-04-08T18:31:10+08:00	INFO	logger/log.go:142	Response Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["26"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MDk0OTg2NnxOd3dBTkZZek5WbEVXRTlVU2xwRlRFSk5URTVTVDB0VFRWRlRUa0pDU1ZFeVNFRldUVk5VU1VVMVFqVlFSMDVVVGxFelFqTmFNa0U9fMETrRhdiluVh67DCp5NrLUXFvO-KVsXrWY988YJbEaO"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"password\": \"123456\"\n}", "request_form": null}
+2023-04-08T18:31:10+08:00	INFO	logger/log.go:168	Retrieved admin	{"TraceID": "a78797be-a4e8-497a-8026-71272a58c917"}
+2023-04-08T18:31:10+08:00	ERROR	logger/log.go:180	Error updating admin%!(EXTRA zapcore.Field={error 26 0  Error 1054 (42S22): Unknown column 'upate_at' in 'field list'})	{"TraceID": "a78797be-a4e8-497a-8026-71272a58c917"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/repository.Update[...]
+	E:/project/Api-Gateway/internal/repository/common.go:64
+gateway/internal/repository.(*AdminRepo).Update
+	E:/project/Api-Gateway/internal/repository/admin.go:44
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:163
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:31:10+08:00	ERROR	logger/log.go:180	Password modification failed	{"TraceID": "a78797be-a4e8-497a-8026-71272a58c917"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	E:/project/Api-Gateway/internal/controller/admin.go:164
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:21
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:58
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:32
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:11
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-08T18:31:10+08:00	INFO	logger/log.go:142	Request Info	{"path": "/admin/change_pwd", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0643327}
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-08T18:31:34+08:00	INFO	logger/log.go:142	Logger closed

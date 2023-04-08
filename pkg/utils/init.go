@@ -2,8 +2,8 @@ package utils
 
 import (
 	"gateway/configs"
-	mysql "gateway/pkg/database/mysql"
-	redis "gateway/pkg/database/redis"
+
+	"gateway/pkg/database"
 	"gateway/pkg/logger"
 
 	"go.uber.org/zap"
@@ -12,8 +12,8 @@ import (
 func InitAll() {
 	configs.Init()
 	logger.Init()
-	mysql.InitDB()
-	redis.Init()
+	database.InitDB()
+	database.InitRedis()
 }
 
 func CleanupLogger() {
@@ -24,13 +24,13 @@ func CleanupLogger() {
 }
 
 func CleanupRedis() {
-	if err := redis.Close(); err != nil {
+	if err := database.CloseRedis(); err != nil {
 		logger.Fatal("Failed to close redis: %v", zap.Error(err))
 	}
 	logger.Info("Redis closed")
 }
 func CleanupMySQL() {
-	if err := mysql.CloseDB(); err != nil {
+	if err := database.CloseDB(); err != nil {
 		logger.Fatal("Failed to close database: %v", zap.Error(err))
 	}
 	logger.Info("Mysql closed")
