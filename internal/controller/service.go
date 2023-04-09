@@ -31,7 +31,7 @@ func (service *ServiceController) ServiceList(c *gin.Context) {
 	}
 
 	// 业务逻辑
-	serviceInfo := repository.NewServiceRepo(database.GetDB())
+	serviceInfo := repository.NewServiceInfo(database.GetDB())
 	serviceList, total, err := serviceInfo.PageList(c, param)
 	if err != nil {
 		middleware.ResponseError(c, 2001, err)

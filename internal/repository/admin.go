@@ -10,29 +10,28 @@ import (
 	"gorm.io/gorm"
 )
 
-type adminRepository interface {
+type Admin interface {
 	Getter[model.Admin]
 	Updater[model.Admin]
-	Tabler
 	LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*model.Admin, error)
 }
 
-type adminRepo struct {
-	DB *gorm.DB
+type admin struct {
+	db *gorm.DB
 }
 
-func NewadminRepo(db *gorm.DB) *adminRepo {
-	return &adminRepo{
-		DB: db,
+func NewAdmin(db *gorm.DB) Admin {
+	return &admin{
+		db: db,
 	}
 }
 
 // FindAdminByID finds an admin by their ID using GORM
-func (repo *adminRepo) Get(c *gin.Context, search *model.Admin) (*model.Admin, error) {
-	return Get(c, repo.DB, "admin", search)
+func (repo *admin) Get(c *gin.Context, search *model.Admin) (*model.Admin, error) {
+	return Get(c, repo.db, search)
 }
 
-func (repo *adminRepo) LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*model.Admin, error) {
+func (repo *admin) LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*model.Admin, error) {
 	adminInfo, err := repo.Get(c, &model.Admin{UserName: param.UserName, IsDelete: 0})
 	if err != nil {
 		return nil, errors.New("user does not exist")
@@ -45,6 +44,6 @@ func (repo *adminRepo) LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*
 	return adminInfo, nil
 }
 
-func (repo *adminRepo) Update(c *gin.Context, data *model.Admin) error {
-	return Update(c, repo.DB, "admin", data)
+func (repo *admin) Update(c *gin.Context, data *model.Admin) error {
+	return Update(c, repo.db, data)
 }

@@ -1,5 +1,6 @@
 package model
 
 type Model interface {
-	Admin | ServiceInfo
+	Admin | ServiceInfo | AccessControl | GrpcRule |
+		HttpRule | TcpRule | LoadBalance | App
 }

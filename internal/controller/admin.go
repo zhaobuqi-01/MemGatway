@@ -37,7 +37,7 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 		middleware.ResponseError(c, 1001, err)
 		return
 	}
-	repo := repository.NewAdminRepo(database.GetDB())
+	repo := repository.NewAdmin(database.GetDB())
 	admin, err := repo.LoginCheck(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Login check failed")
@@ -146,7 +146,7 @@ func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
 		return
 	}
 
-	repo := repository.NewAdminRepo(database.GetDB())
+	repo := repository.NewAdmin(database.GetDB())
 	adminInfo, err := repo.Get(c, &model.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Password modification failed")
