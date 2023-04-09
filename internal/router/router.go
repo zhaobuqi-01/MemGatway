@@ -12,22 +12,42 @@
 package router
 
 import (
+	"gateway/configs"
+	"gateway/pkg/logger"
 	"gateway/pkg/middleware"
 
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 // InitRouter 初始化路由，可以传入多个中间件
 func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	// 使用默认中间件（logger 和 recovery 中间件）创建 gin 路由
 	router := gin.Default()
-	router.Use(middleware.SetTraceID)
+
+	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
+	if err != nil {
+		logger.Fatal("sessions.NewRedisSrore err", zap.Error(err))
+	}
+
+	// 注册中间件
+	router.Use(
+		middleware.SetTraceID(),               // 设置traceID
+		sessions.Sessions("mysession", store), // session中间件
+		middleware.RecoveryMiddleware(),       // 恢复中间件
+		middleware.RequestLog(),               // 请求日志中间件
+		middleware.TranslationMiddleware(),    // 国际化中间件
+	)
 
 	// 注册swagger路由
 	swaggerRegister(router)
 
 	// 注册admin路由
 	AdminRegister(router)
+
+	// 注册service路由
+	ServiceRegister(router)
 
 	return router
 }

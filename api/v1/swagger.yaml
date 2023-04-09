@@ -45,6 +45,44 @@ definitions:
           type: string
         type: array
     type: object
+  dto.ServiceListItemOutput:
+    properties:
+      id:
+        description: 服务ID
+        type: integer
+      load_type:
+        description: 负载类型
+        type: integer
+      qpd:
+        description: QPD
+        type: integer
+      qps:
+        description: QPS
+        type: integer
+      service_addr:
+        description: 服务地址
+        type: string
+      service_desc:
+        description: 服务描述
+        type: string
+      service_name:
+        description: 服务名称
+        type: string
+      total_node:
+        description: 节点总数
+        type: integer
+    type: object
+  dto.ServiceListOutput:
+    properties:
+      list:
+        description: 列表
+        items:
+          $ref: '#/definitions/dto.ServiceListItemOutput'
+        type: array
+      total:
+        description: 总数
+        type: integer
+    type: object
   middleware.Response:
     properties:
       data: {}
@@ -179,4 +217,40 @@ paths:
       summary: 管理员退出登陆
       tags:
       - 管理员接口
+  /service/service_list:
+    get:
+      consumes:
+      - application/json
+      description: 服务列表
+      operationId: /service/service_list
+      parameters:
+      - description: 关键词
+        in: query
+        name: info
+        type: string
+      - description: 页码
+        in: query
+        name: page_no
+        required: true
+        type: integer
+      - description: 每页条数
+        in: query
+        name: page_size
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/middleware.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ServiceListOutput'
+              type: object
+      summary: 服务列表
+      tags:
+      - 服务接口
 swagger: "2.0"

@@ -1,23 +1,29 @@
 package repository
 
-type Creator interface {
-	Create(item any) error
+import (
+	"gateway/internal/model"
+
+	"github.com/gin-gonic/gin"
+)
+
+type Creator[T model.Model] interface {
+	Create(c *gin.Context, item *T) error
 }
 
-type Updater interface {
-	Update(item any) error
+type Updater[T model.Model] interface {
+	Update(c *gin.Context, item *T) error
 }
 
-type Deleter interface {
-	Delete(item any) error
+type Deleter[T model.Model] interface {
+	Delete(c *gin.Context, item *T) error
 }
 
-type Getter interface {
-	Get(item any) (any, error)
+type Getter[T model.Model] interface {
+	Get(c *gin.Context, item *T) (*T, error)
 }
 
-type Lister interface {
-	GetAll(item any) ([]string, error)
+type Lister[T model.Model] interface {
+	List(c *gin.Context, item *T) ([]T, error)
 }
 
 type Tabler interface {
