@@ -38,6 +38,7 @@ func (s *ServiceController) ServiceList(c *gin.Context) {
 		pkg.ResponseError(c, 2001, err)
 		return
 	}
+
 	output := &dto.ServiceListOutput{
 		Total: total,
 		List:  outputList,
