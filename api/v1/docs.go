@@ -36,7 +36,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/middleware.Response"
+                                    "$ref": "#/definitions/pkg.Response"
                                 },
                                 {
                                     "type": "object",
@@ -83,7 +83,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/middleware.Response"
+                                    "$ref": "#/definitions/pkg.Response"
                                 },
                                 {
                                     "type": "object",
@@ -130,7 +130,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/middleware.Response"
+                                    "$ref": "#/definitions/pkg.Response"
                                 },
                                 {
                                     "type": "object",
@@ -166,7 +166,99 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/middleware.Response"
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/service/service_add_http": {
+            "post": {
+                "description": "添加HTTP服务",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "服务接口"
+                ],
+                "summary": "添加HTTP服务",
+                "operationId": "/service/service_add_http",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ServiceAddHTTPInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/service/service_delete": {
+            "get": {
+                "description": "服务删除",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "服务接口"
+                ],
+                "summary": "服务删除",
+                "operationId": "/service/service_delete",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "服务id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
                                 },
                                 {
                                     "type": "object",
@@ -224,7 +316,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/middleware.Response"
+                                    "$ref": "#/definitions/pkg.Response"
                                 },
                                 {
                                     "type": "object",
@@ -309,6 +401,122 @@ const docTemplate = `{
                 }
             }
         },
+        "dto.ServiceAddHTTPInput": {
+            "type": "object",
+            "required": [
+                "ip_list",
+                "rule",
+                "service_desc",
+                "service_name",
+                "weight_list"
+            ],
+            "properties": {
+                "black_list": {
+                    "description": "黑名单ip",
+                    "type": "string"
+                },
+                "clientip_flow_limit": {
+                    "description": "客户端ip限流",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "header_transfor": {
+                    "description": "header转换",
+                    "type": "string"
+                },
+                "ip_list": {
+                    "description": "ip列表",
+                    "type": "string"
+                },
+                "need_https": {
+                    "description": "支持https",
+                    "type": "integer",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "need_strip_uri": {
+                    "description": "启用strip_uri",
+                    "type": "integer",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "need_websocket": {
+                    "description": "是否支持websocket",
+                    "type": "integer",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "open_auth": {
+                    "description": "关键词",
+                    "type": "integer",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "round_type": {
+                    "description": "轮询方式",
+                    "type": "integer",
+                    "maximum": 3,
+                    "minimum": 0
+                },
+                "rule": {
+                    "description": "域名或者前缀",
+                    "type": "string"
+                },
+                "rule_type": {
+                    "description": "接入类型",
+                    "type": "integer",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "service_desc": {
+                    "description": "服务描述",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "service_flow_limit": {
+                    "description": "服务端限流",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "service_name": {
+                    "description": "服务名",
+                    "type": "string"
+                },
+                "upstream_connect_timeout": {
+                    "description": "建立连接超时, 单位s",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "upstream_header_timeout": {
+                    "description": "获取header超时, 单位s",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "upstream_idle_timeout": {
+                    "description": "链接最大空闲时间, 单位s",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "upstream_max_idle": {
+                    "description": "最大空闲链接数",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "url_rewrite": {
+                    "description": "url重写功能",
+                    "type": "string"
+                },
+                "weight_list": {
+                    "description": "权重列表",
+                    "type": "string"
+                },
+                "white_list": {
+                    "description": "白名单ip",
+                    "type": "string"
+                }
+            }
+        },
         "dto.ServiceListItemOutput": {
             "type": "object",
             "properties": {
@@ -362,7 +570,7 @@ const docTemplate = `{
                 }
             }
         },
-        "middleware.Response": {
+        "pkg.Response": {
             "type": "object",
             "properties": {
                 "data": {},
@@ -370,38 +578,11 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "errno": {
-                    "$ref": "#/definitions/middleware.ResponseCode"
+                    "type": "integer"
                 },
                 "stack": {},
                 "trace_id": {}
             }
-        },
-        "middleware.ResponseCode": {
-            "type": "integer",
-            "enum": [
-                0,
-                1,
-                2,
-                3,
-                401,
-                1000
-            ],
-            "x-enum-comments": {
-                "CustomizeCode": "自定义错误码",
-                "InternalErrorCode": "内部错误",
-                "InvalidRequestErrorCode": "请求未经授权",
-                "SuccessCode": "成功",
-                "UndefErrorCode": "未定义的错误",
-                "ValidErrorCode": "校验错误"
-            },
-            "x-enum-varnames": [
-                "SuccessCode",
-                "UndefErrorCode",
-                "ValidErrorCode",
-                "InternalErrorCode",
-                "InvalidRequestErrorCode",
-                "CustomizeCode"
-            ]
         }
     }
 }`

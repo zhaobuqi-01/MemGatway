@@ -1,8 +1,9 @@
 package pkg
 
 import (
-	"errors"
 	"strings"
+
+	"github.com/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"

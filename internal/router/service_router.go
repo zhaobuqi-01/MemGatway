@@ -17,6 +17,8 @@ func ServiceRegister(router *gin.Engine) {
 		Controller := &controller.ServiceController{}
 
 		serviceRouter.GET("/service_list", Controller.ServiceList)
+		serviceRouter.GET("/service_delete", Controller.ServiceDelete)
+		serviceRouter.POST("/service_add_http", Controller.ServiceAddHttp)
 
 	}
 }

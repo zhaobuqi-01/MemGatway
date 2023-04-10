@@ -1,11 +1,11 @@
 package pkg
 
 const (
-	SuccessCode       ResponseCode = iota // 成功
-	UndefErrorCode                        // 未定义的错误
-	ValidErrorCode                        // 校验错误
-	InternalErrorCode                     // 内部错误
+	SuccessCode = 200 // 成功
 
-	InvalidRequestErrorCode ResponseCode = 401  // 请求未经授权
-	CustomizeCode           ResponseCode = 1000 // 自定义错误码
+	ParamBindingErrCode    = 1001 // 参数绑定错误
+	InternalErrorCode      = 2001 // 通用错误
+	UserNotLoggedInErrCode = 3001
+	IpMismatchErrCode      = 3002
+	BusinessLogicError     = 4001
 )

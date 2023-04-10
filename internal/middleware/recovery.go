@@ -1,11 +1,12 @@
 package middleware
 
 import (
-	"errors"
 	"fmt"
 	"gateway/internal/pkg"
 	"gateway/pkg/logger"
 	"runtime/debug"
+
+	"github.com/pkg/errors"
 
 	"github.com/spf13/viper"
 

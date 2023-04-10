@@ -1,7 +1,6 @@
 package service
 
 import (
-	"errors"
 	"fmt"
 	"gateway/configs"
 	"gateway/internal/dto"
@@ -10,6 +9,8 @@ import (
 	"gateway/internal/repository"
 	"strings"
 
+	"github.com/pkg/errors"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -17,6 +18,7 @@ import (
 type ServiceInfoService interface {
 	GetServiceAddress(serviceDetail *entity.ServiceDetail) (string, error)
 	GetIPList(c *gin.Context, data *entity.LoadBalance) []string
+	GetServiceList(c *gin.Context, param *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error)
 }
 
 type serviceInfoService struct {
@@ -24,12 +26,22 @@ type serviceInfoService struct {
 }
 
 func NewServiceInfoService(db *gorm.DB) *serviceInfoService {
+	var repo repository.ServiceInfo
+
+	if db != nil {
+		repo = repository.NewServiceInfoRepo(db)
+	}
+
 	return &serviceInfoService{
-		repo: repository.NewServiceInfoRepo(db),
+		repo: repo,
 	}
 }
 
 func (s *serviceInfoService) GetServiceList(c *gin.Context, param *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error) {
+	if s.repo == nil {
+		return nil, 0, errors.New("repository is not initialized")
+	}
+
 	// 从db中分页读取基本信息
 	list, total, err := s.repo.PageList(c, param)
 	if err != nil {
@@ -100,4 +112,24 @@ func (s *serviceInfoService) GetServiceAddress(serviceDetail *entity.ServiceDeta
 
 func (s *serviceInfoService) GetIPList(c *gin.Context, data *entity.LoadBalance) []string {
 	return strings.Split(data.IpList, ",")
+}
+
+func (s *serviceInfoService) Delete(c *gin.Context, param *dto.ServiceDeleteInput) error {
+	// 在这里，您需要定义服务信息的实体。假设它是 `entity.ServiceInfo`
+	var err error
+	serviceInfo := &entity.ServiceInfo{ID: param.ID}
+
+	serviceInfo, err = s.repo.Get(c, serviceInfo)
+	if err != nil {
+		return err
+	}
+
+	serviceInfo.IsDelete = 1
+
+	err = s.repo.Update(c, serviceInfo)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

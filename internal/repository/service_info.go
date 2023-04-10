@@ -9,7 +9,7 @@ import (
 )
 
 type ServiceInfo interface {
-	// Getter[entity.ServiceInfo]
+	Getter[entity.ServiceInfo]
 	Updater[entity.ServiceInfo]
 	PageList(c *gin.Context, param *dto.ServiceListInput) ([]entity.ServiceInfo, int64, error)
 	ServiceDetail(c *gin.Context, search *entity.ServiceInfo) (*entity.ServiceDetail, error)
