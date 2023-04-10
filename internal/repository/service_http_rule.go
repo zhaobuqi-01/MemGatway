@@ -12,20 +12,20 @@ type HTTPRule interface {
 	Updater[model.HttpRule]
 }
 
-type httpRule struct {
+type HttpRuleRepo struct {
 	db *gorm.DB
 }
 
 func NewHttpRulesitory(db *gorm.DB) HTTPRule {
-	return &httpRule{
+	return &HttpRuleRepo{
 		db: db,
 	}
 }
 
-func (repo *httpRule) Get(c *gin.Context, search *model.HttpRule) (*model.HttpRule, error) {
+func (repo *HttpRuleRepo) Get(c *gin.Context, search *model.HttpRule) (*model.HttpRule, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *httpRule) Update(c *gin.Context, data *model.HttpRule) error {
+func (repo *HttpRuleRepo) Update(c *gin.Context, data *model.HttpRule) error {
 	return Update(c, repo.db, data)
 }

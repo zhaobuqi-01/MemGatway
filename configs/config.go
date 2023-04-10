@@ -7,16 +7,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-// LoadConfigurations loads configurations from the config files
-// init 初始化配置
-func Init() {
-	// Set configuration file path
-	setConfigPath()
-
-	// Load server configuration
-	getCfg()
-}
-
 // ServerConfig - server configuration struct
 type ServerConfig struct {
 	Addr           string   `mapstructure:"addr"`
@@ -78,7 +68,10 @@ type SwaggerConfig struct {
 	Description string   `mapstructure:"description"`
 }
 
-var ConfigPath string // 硬编码的配置文件路径
+var (
+	ConfigPath string // 硬编码的配置文件路径
+	v          *viper.Viper
+)
 
 func setConfigPath() {
 	if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
@@ -90,10 +83,23 @@ func setConfigPath() {
 	}
 }
 
+// LoadConfigurations loads configurations from the config files
+// init 初始化配置
+func Init() {
+	// Set configuration file path
+	setConfigPath()
+
+	// Load configuration file
+	readConfig()
+
+	// Load server configuration
+	getCfg()
+}
+
 // readConfig - 读取配置文件 (Read configuration file)
-func readConfig() *viper.Viper {
+func readConfig() {
 	// 实例化viper
-	v := viper.New()
+	v = viper.New()
 	// 配置文件名称（无扩展名）
 	v.SetConfigName("config")
 	// 配置文件类型，如果配置文件的名称
@@ -108,12 +114,9 @@ func readConfig() *viper.Viper {
 	if err != nil {
 		panic(fmt.Errorf("fatal error reading config file: %s", err))
 	}
-
-	return v
 }
 
 func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig | SwaggerConfig](describe string, configType *T) *T {
-	v := readConfig()
 	err := v.UnmarshalKey(describe, configType)
 	if err != nil {
 		panic(fmt.Errorf("unable to unmarshal RedisConfig: %s", err))
@@ -130,6 +133,24 @@ var (
 	ginConfig     *GinConfig
 	swaggerConfig *SwaggerConfig
 )
+
+func getCfg() {
+	// Load server configuration
+	serverConfig = getConfig("server", new(ServerConfig))
+
+	// Load logger configurations
+	logConfig = getConfig("log", new(LogConfig))
+
+	// Load MySQL configurations
+	mysqlConfig = getConfig("mysql", new(MySQLConfig))
+
+	// Load Redis configurations
+	redisConfig = getConfig("redis", new(RedisConfig))
+
+	ginConfig = getConfig("gin", new(GinConfig))
+
+	swaggerConfig = getConfig("swagger", new(SwaggerConfig))
+}
 
 // 向外部暴露的函数；用于取对应的配置
 func GetServerConfig() *ServerConfig {
@@ -157,20 +178,14 @@ func GetSwaggerConfig() *SwaggerConfig {
 	return swaggerConfig
 }
 
-func getCfg() {
-	// Load server configuration
-	serverConfig = getConfig("server", new(ServerConfig))
+func GetStringConfig(key string) string {
+	return v.GetString(key)
+}
 
-	// Load logger configurations
-	logConfig = getConfig("log", new(LogConfig))
+func GetIntConfig(key string) int {
+	return v.GetInt(key)
+}
 
-	// Load MySQL configurations
-	mysqlConfig = getConfig("mysql", new(MySQLConfig))
-
-	// Load Redis configurations
-	redisConfig = getConfig("redis", new(RedisConfig))
-
-	ginConfig = getConfig("gin", new(GinConfig))
-
-	swaggerConfig = getConfig("swagger", new(SwaggerConfig))
+func GetBoolConfig(key string) bool {
+	return v.GetBool(key)
 }

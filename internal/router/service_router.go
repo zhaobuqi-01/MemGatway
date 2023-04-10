@@ -2,7 +2,7 @@ package router
 
 import (
 	"gateway/internal/controller"
-	"gateway/pkg/middleware"
+	"gateway/internal/middleware"
 
 	"github.com/gin-gonic/gin"
 )

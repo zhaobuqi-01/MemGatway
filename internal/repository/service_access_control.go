@@ -12,22 +12,22 @@ type AccessControl interface {
 	Updater[model.AccessControl]
 }
 
-type accessControl struct {
+type AccessControlRepo struct {
 	db *gorm.DB
 }
 
 func NewAccessControl(db *gorm.DB) AccessControl {
-	return &accessControl{
+	return &AccessControlRepo{
 		db: db,
 	}
 }
 
 // Get
-func (repo *accessControl) Get(c *gin.Context, search *model.AccessControl) (*model.AccessControl, error) {
+func (repo *AccessControlRepo) Get(c *gin.Context, search *model.AccessControl) (*model.AccessControl, error) {
 	return Get(c, repo.db, search)
 }
 
 // Updte
-func (repo *accessControl) Update(c *gin.Context, data *model.AccessControl) error {
+func (repo *AccessControlRepo) Update(c *gin.Context, data *model.AccessControl) error {
 	return Update(c, repo.db, data)
 }

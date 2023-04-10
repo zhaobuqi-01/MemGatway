@@ -1,8 +1,7 @@
 package dto
 
 import (
-	"gateway/pkg/utils"
-
+	"gateway/internal/pkg"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,7 +12,7 @@ type ServiceListInput struct {
 }
 
 func (params *ServiceListInput) BindValParam(c *gin.Context) error {
-	return utils.DefaultGetValidParams(c, params)
+	return pkg.DefaultGetValidParams(c, params)
 }
 
 type ServiceListItemOutput struct {

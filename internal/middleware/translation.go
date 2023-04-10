@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"gateway/pkg/utils"
+	"gateway/internal/pkg"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
@@ -53,8 +53,8 @@ func TranslationMiddleware() gin.HandlerFunc {
 				return t
 			})
 		}
-		c.Set(utils.TranslatorKey, trans)
-		c.Set(utils.ValidatorKey, val)
+		c.Set(pkg.TranslatorKey, trans)
+		c.Set(pkg.ValidatorKey, val)
 		c.Next()
 	}
 }

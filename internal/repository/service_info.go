@@ -9,30 +9,31 @@ import (
 )
 
 type ServiceInfo interface {
-	Getter[model.ServiceInfo]
+	// Getter[model.ServiceInfo]
 	Updater[model.ServiceInfo]
 	PageList(c *gin.Context, param *dto.ServiceListInput) ([]model.ServiceInfo, int64, error)
+	ServiceDetail(c *gin.Context, search *model.ServiceInfo) (*model.ServiceDetail, error)
 }
 
-type serviceInfo struct {
+type ServiceInfoRepo struct {
 	db *gorm.DB
 }
 
-func NewServiceInfo(db *gorm.DB) ServiceInfo {
-	return &serviceInfo{
+func NewServiceInfoRepo(db *gorm.DB) ServiceInfo {
+	return &ServiceInfoRepo{
 		db: db,
 	}
 }
 
-func (repo *serviceInfo) Get(c *gin.Context, search *model.ServiceInfo) (*model.ServiceInfo, error) {
+func (repo *ServiceInfoRepo) Get(c *gin.Context, search *model.ServiceInfo) (*model.ServiceInfo, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *serviceInfo) Update(c *gin.Context, data *model.ServiceInfo) error {
+func (repo *ServiceInfoRepo) Update(c *gin.Context, data *model.ServiceInfo) error {
 	return Update(c, repo.db, data)
 }
 
-func (repo *serviceInfo) PageList(c *gin.Context, param *dto.ServiceListInput) ([]model.ServiceInfo, int64, error) {
+func (repo *ServiceInfoRepo) PageList(c *gin.Context, param *dto.ServiceListInput) ([]model.ServiceInfo, int64, error) {
 	total := int64(0)
 	list := []model.ServiceInfo{}
 	offset := (param.PageNo - 1) * param.PageSize
@@ -48,7 +49,7 @@ func (repo *serviceInfo) PageList(c *gin.Context, param *dto.ServiceListInput) (
 	return list, total, nil
 }
 
-func (repo *serviceInfo) ServiceDetail(c *gin.Context, search *model.ServiceInfo) (*model.ServiceDetail, error) {
+func (repo *ServiceInfoRepo) ServiceDetail(c *gin.Context, search *model.ServiceInfo) (*model.ServiceDetail, error) {
 	if search.ServiceName == "" {
 		info, err := repo.Get(c, search)
 		if err != nil {
@@ -56,28 +57,28 @@ func (repo *serviceInfo) ServiceDetail(c *gin.Context, search *model.ServiceInfo
 		}
 		search = info
 	}
-	httpRule := &model.HttpRule{ServiceID: search.ID}
-	httpRule, err := Get(c, repo.db, httpRule)
+
+	httpRule, err := Get(c, repo.db, &model.HttpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
-	tcpRule := &model.TcpRule{ServiceID: search.ID}
-	tcpRule, err = Get(c, repo.db, tcpRule)
+
+	tcpRule, err := Get(c, repo.db, &model.TcpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
-	grpcRule := &model.GrpcRule{ServiceID: search.ID}
-	grpcRule, err = Get(c, repo.db, grpcRule)
+
+	grpcRule, err := Get(c, repo.db, &model.GrpcRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
-	accessControl := &model.AccessControl{ServiceID: search.ID}
-	accessControl, err = Get(c, repo.db, accessControl)
+
+	accessControl, err := Get(c, repo.db, &model.AccessControl{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
-	loadBalance := &model.LoadBalance{ServiceID: search.ID}
-	loadBalance, err = Get(c, repo.db, loadBalance)
+
+	loadBalance, err := Get(c, repo.db, &model.LoadBalance{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}

@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"gateway/pkg/utils"
+	"gateway/internal/pkg"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +13,7 @@ type AdminLoginInput struct {
 }
 
 func (param *AdminLoginInput) BindValParam(c *gin.Context) error {
-	return utils.DefaultGetValidParams(c, param)
+	return pkg.DefaultGetValidParams(c, param)
 }
 
 type AdminLoginOutput struct {
@@ -39,5 +39,5 @@ type AdminChangePwdInput struct {
 }
 
 func (param *AdminChangePwdInput) BindValParam(c *gin.Context) error {
-	return utils.DefaultGetValidParams(c, param)
+	return pkg.DefaultGetValidParams(c, param)
 }

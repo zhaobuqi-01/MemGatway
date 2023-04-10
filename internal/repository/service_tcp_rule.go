@@ -12,20 +12,20 @@ type TcpRule interface {
 	Updater[model.TcpRule]
 }
 
-type tcpRule struct {
+type TcpRuleRepo struct {
 	db *gorm.DB
 }
 
 func NewTcpRule(db *gorm.DB) TcpRule {
-	return &tcpRule{
+	return &TcpRuleRepo{
 		db: db,
 	}
 }
 
-func (repo *tcpRule) Get(c *gin.Context, search *model.TcpRule) (*model.TcpRule, error) {
+func (repo *TcpRuleRepo) Get(c *gin.Context, search *model.TcpRule) (*model.TcpRule, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *tcpRule) Update(c *gin.Context, data *model.TcpRule) error {
+func (repo *TcpRuleRepo) Update(c *gin.Context, data *model.TcpRule) error {
 	return Update(c, repo.db, data)
 }

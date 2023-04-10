@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"gateway/configs"
+	"gateway/internal/pkg"
 	"gateway/internal/router"
 	"gateway/pkg/logger"
-	"gateway/pkg/utils"
 	"net/http"
 	"os"
 	"os/signal"
@@ -18,7 +18,7 @@ import (
 
 func main() {
 	// 初始化资源
-	utils.InitAll()
+	pkg.InitAll()
 
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)
@@ -62,7 +62,7 @@ func main() {
 	logger.Info("Server exiting")
 
 	// 等待HttpServerStop执行完毕，执行清理操作
-	utils.CleanupMySQL()
-	utils.CleanupRedis()
-	utils.CleanupLogger()
+	pkg.CleanupMySQL()
+	pkg.CleanupRedis()
+	pkg.CleanupLogger()
 }

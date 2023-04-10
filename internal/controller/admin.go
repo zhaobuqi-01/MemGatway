@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"gateway/internal/dto"
+	"gateway/internal/middleware"
 	"gateway/internal/model"
 	"gateway/internal/pkg"
 	"gateway/internal/repository"
+	"gateway/internal/service"
 	"gateway/pkg/database"
 	"gateway/pkg/logger"
-	"gateway/pkg/middleware"
 
-	"gateway/pkg/utils"
 	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -37,8 +37,9 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 		middleware.ResponseError(c, 1001, err)
 		return
 	}
-	repo := repository.NewAdmin(database.GetDB())
-	admin, err := repo.LoginCheck(c, params)
+
+	adminService := service.NewAdminService(repository.NewAdmin(database.GetDB()))
+	admin, err := adminService.LoginCheck(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Login check failed")
 		middleware.ResponseError(c, 1002, err)
@@ -154,7 +155,7 @@ func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
 		return
 	}
 
-	saltPassword := utils.GenSaltPassword(adminInfo.Salt, params.Password)
+	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, params.Password)
 	adminInfo.Password = saltPassword
 	if err := repo.Update(c, adminInfo); err != nil {
 		logger.ErrorWithTraceID(c, "Password modification failed")
