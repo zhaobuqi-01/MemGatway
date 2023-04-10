@@ -1,4 +1,4 @@
-package model
+package entity
 
 type GrpcRule struct {
 	ID             int64  `json:"id" gorm:"primary_key"`
@@ -8,5 +8,5 @@ type GrpcRule struct {
 }
 
 func (GrpcRule) TableName() string {
-	return "gateway_grpc_rule"
+	return "gateway_service_grpc_rule"
 }

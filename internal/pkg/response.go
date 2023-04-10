@@ -1,4 +1,4 @@
-package middleware
+package pkg
 
 import (
 	"net/http"
@@ -8,16 +8,6 @@ import (
 
 // ResponseCode 错误码类型，1000以下为通用码，1000以上为用户自定义码
 type ResponseCode int
-
-const (
-	SuccessCode       ResponseCode = iota // 成功
-	UndefErrorCode                        // 未定义的错误
-	ValidErrorCode                        // 校验错误
-	InternalErrorCode                     // 内部错误
-
-	InvalidRequestErrorCode ResponseCode = 401  // 请求未经授权
-	CustomizeCode           ResponseCode = 1000 // 自定义错误码
-)
 
 // Response 响应结构体
 type Response struct {

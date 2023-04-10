@@ -4,10 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"gateway/internal/dto"
-	"gateway/internal/middleware"
-	"gateway/internal/model"
+	"gateway/internal/entity"
 	"gateway/internal/pkg"
-	"gateway/internal/repository"
 	"gateway/internal/service"
 	"gateway/pkg/database"
 	"gateway/pkg/logger"
@@ -31,23 +29,25 @@ type AdminController struct{}
 // @Success 200 {object} middleware.Response{data=dto.AdminLoginOutput} "success"
 // @Router /admin/login [post]
 func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
+	// 参数绑定
 	params := &dto.AdminLoginInput{}
 	if err := params.BindValParam(c); err != nil {
 		logger.ErrorWithTraceID(c, "parameter binding error")
-		middleware.ResponseError(c, 1001, err)
+		pkg.ResponseError(c, 1001, err)
 		return
 	}
 
-	adminService := service.NewAdminService(repository.NewAdmin(database.GetDB()))
+	db := database.GetDB()
+	adminService := service.NewAdminService(db)
 	admin, err := adminService.LoginCheck(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Login check failed")
-		middleware.ResponseError(c, 1002, err)
+		pkg.ResponseError(c, 1002, err)
 		return
 	}
 
 	sessInfo := &dto.AdminSessionInfo{
-		ID:        admin.Id,
+		ID:        admin.ID,
 		UserName:  admin.UserName,
 		LoginTime: time.Now(),
 	}
@@ -55,7 +55,7 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 	sessBts, err := json.Marshal(sessInfo)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "session serialization failed")
-		middleware.ResponseError(c, 1003, err)
+		pkg.ResponseError(c, 1003, err)
 		return
 	}
 
@@ -64,7 +64,7 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 	sess.Save()
 
 	out := &dto.AdminLoginOutput{Token: admin.UserName}
-	middleware.ResponseSuccess(c, "login successful", out)
+	pkg.ResponseSuccess(c, "login successful", out)
 	logger.InfoWithTraceID(c, "login successful")
 }
 
@@ -81,7 +81,7 @@ func (adminloginout *AdminController) AdminLoginOut(c *gin.Context) {
 	sess := sessions.Default(c)
 	sess.Delete(pkg.AdminSessionInfoKey)
 	sess.Save()
-	middleware.ResponseSuccess(c, "Log out successfully", "")
+	pkg.ResponseSuccess(c, "Log out successfully", "")
 	logger.InfoWithTraceID(c, "Log out successfully")
 }
 
@@ -102,7 +102,7 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		logger.ErrorWithTraceID(c, "Session deserialization failed")
-		middleware.ResponseError(c, 2001, err)
+		pkg.ResponseError(c, 2001, err)
 		return
 	}
 
@@ -116,7 +116,7 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 			"admin",
 		},
 	}
-	middleware.ResponseSuccess(c, "Obtained administrator information successfully ", out)
+	pkg.ResponseSuccess(c, "Obtained administrator information successfully ", out)
 	logger.InfoWithTraceID(c, "Obtained administrator information successfully ")
 }
 
@@ -134,7 +134,7 @@ func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
 	params := &dto.AdminChangePwdInput{}
 	if err := params.BindValParam(c); err != nil {
 		logger.ErrorWithTraceID(c, "parameter binding error")
-		middleware.ResponseError(c, 3001, err)
+		pkg.ResponseError(c, 3001, err)
 		return
 	}
 	// session读取用户信息到结构体 sessInfo
@@ -143,26 +143,31 @@ func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		logger.ErrorWithTraceID(c, "Session deserialization failed")
-		middleware.ResponseError(c, 3002, err)
+		pkg.ResponseError(c, 3002, err)
 		return
 	}
 
-	repo := repository.NewAdmin(database.GetDB())
-	adminInfo, err := repo.Get(c, &model.Admin{UserName: adminSessionInfo.UserName})
+	//实例化service
+	db := database.GetDB()
+	adminService := service.NewAdminService(db)
+
+	adminInfo, err := adminService.Get(c, &entity.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Password modification failed")
-		middleware.ResponseError(c, 3003, err)
+		pkg.ResponseError(c, 3003, err)
 		return
 	}
 
 	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, params.Password)
 	adminInfo.Password = saltPassword
-	if err := repo.Update(c, adminInfo); err != nil {
+
+	//更新密码
+	if err := adminService.Update(c, adminInfo); err != nil {
 		logger.ErrorWithTraceID(c, "Password modification failed")
-		middleware.ResponseError(c, 3004, err)
+		pkg.ResponseError(c, 3004, err)
 		return
 	}
 
-	middleware.ResponseSuccess(c, "Password modification successful", "")
+	pkg.ResponseSuccess(c, "Password modification successful", "")
 	logger.InfoWithTraceID(c, "Password modification successful")
 }

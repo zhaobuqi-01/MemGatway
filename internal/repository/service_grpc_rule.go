@@ -1,33 +1,33 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type GrpcRule interface {
-	Getter[model.GrpcRule]
-	Updater[model.GrpcRule]
+	Getter[entity.GrpcRule]
+	Updater[entity.GrpcRule]
 }
 
-type GrpcRuleRepo struct {
+type grpcRuleRepo struct {
 	db *gorm.DB
 }
 
 func NewGrpcRulesitory(db *gorm.DB) GrpcRule {
-	return &GrpcRuleRepo{
+	return &grpcRuleRepo{
 		db: db,
 	}
 }
 
 // Get
-func (repo *GrpcRuleRepo) Get(c *gin.Context, search *model.GrpcRule) (*model.GrpcRule, error) {
+func (repo *grpcRuleRepo) Get(c *gin.Context, search *entity.GrpcRule) (*entity.GrpcRule, error) {
 	return Get(c, repo.db, search)
 }
 
 // Updte
-func (repo *GrpcRuleRepo) Update(c *gin.Context, data *model.GrpcRule) error {
+func (repo *grpcRuleRepo) Update(c *gin.Context, data *entity.GrpcRule) error {
 	return Update(c, repo.db, data)
 }

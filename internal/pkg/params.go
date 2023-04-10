@@ -5,13 +5,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/universal-translator"
+	ut "github.com/go-playground/universal-translator"
 	"gopkg.in/go-playground/validator.v9"
-)
-
-const (
-	ValidatorKey  = "ValidatorKey"
-	TranslatorKey = "TranslatorKey"
 )
 
 func DefaultGetValidParams(c *gin.Context, params interface{}) error {

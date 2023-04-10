@@ -10,7 +10,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"gateway/pkg/middleware"
+	"gateway/internal/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 

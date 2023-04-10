@@ -1,31 +1,31 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type LoadBalance interface {
-	Getter[model.LoadBalance]
-	Updater[model.LoadBalance]
+	Getter[entity.LoadBalance]
+	Updater[entity.LoadBalance]
 }
 
-type LoadBalanceRepo struct {
+type loadBalanceRepo struct {
 	db *gorm.DB
 }
 
-func NewLoadBalanceRepo(db *gorm.DB) LoadBalance {
-	return &LoadBalanceRepo{
+func NewloadBalanceRepo(db *gorm.DB) LoadBalance {
+	return &loadBalanceRepo{
 		db: db,
 	}
 }
 
-func (repo *LoadBalanceRepo) Get(c *gin.Context, search *model.LoadBalance) (*model.LoadBalance, error) {
+func (repo *loadBalanceRepo) Get(c *gin.Context, search *entity.LoadBalance) (*entity.LoadBalance, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *LoadBalanceRepo) Update(c *gin.Context, data *model.LoadBalance) error {
+func (repo *loadBalanceRepo) Update(c *gin.Context, data *entity.LoadBalance) error {
 	return Update(c, repo.db, data)
 }

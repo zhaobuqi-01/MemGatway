@@ -1,31 +1,31 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type HTTPRule interface {
-	Getter[model.HttpRule]
-	Updater[model.HttpRule]
+	Getter[entity.HttpRule]
+	Updater[entity.HttpRule]
 }
 
-type HttpRuleRepo struct {
+type httpRuleRepo struct {
 	db *gorm.DB
 }
 
 func NewHttpRulesitory(db *gorm.DB) HTTPRule {
-	return &HttpRuleRepo{
+	return &httpRuleRepo{
 		db: db,
 	}
 }
 
-func (repo *HttpRuleRepo) Get(c *gin.Context, search *model.HttpRule) (*model.HttpRule, error) {
+func (repo *httpRuleRepo) Get(c *gin.Context, search *entity.HttpRule) (*entity.HttpRule, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *HttpRuleRepo) Update(c *gin.Context, data *model.HttpRule) error {
+func (repo *httpRuleRepo) Update(c *gin.Context, data *entity.HttpRule) error {
 	return Update(c, repo.db, data)
 }

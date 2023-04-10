@@ -14,7 +14,7 @@ func SessionAuthMiddleware() gin.HandlerFunc {
 		session := sessions.Default(c)
 		if adminInfo, ok := session.Get(pkg.AdminSessionInfoKey).(string); !ok || adminInfo == "" {
 			logger.ErrorWithTraceID(c, "user not login")
-			ResponseError(c, InternalErrorCode, errors.New("user not login"))
+			pkg.ResponseError(c, pkg.InternalErrorCode, errors.New("user not login"))
 			c.Abort()
 			return
 		}

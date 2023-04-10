@@ -2,8 +2,7 @@ package controller
 
 import (
 	"gateway/internal/dto"
-	"gateway/internal/middleware"
-	"gateway/internal/repository"
+	"gateway/internal/pkg"
 	"gateway/internal/service"
 	"gateway/pkg/database"
 
@@ -27,56 +26,22 @@ type ServiceController struct{}
 func (s *ServiceController) ServiceList(c *gin.Context) {
 	param := &dto.ServiceListInput{}
 	if err := param.BindValParam(c); err != nil {
-		middleware.ResponseError(c, 2000, err)
+		pkg.ResponseError(c, 2000, err)
 		return
 	}
 
 	db := database.GetDB()
-	serviceInfoRepo := repository.NewServiceInfoRepo(db)
 
-	// 从db中分页读取基本信息
-	list, total, err := serviceInfoRepo.PageList(c, param)
+	serviceInfoService := service.NewServiceInfoService(db)
+	outputList, total, err := serviceInfoService.GetServiceList(c, param)
 	if err != nil {
-		middleware.ResponseError(c, 2001, err)
+		pkg.ResponseError(c, 2001, err)
 		return
 	}
-
-	// 格式化输出信息
-	outputList := []dto.ServiceListItemOutput{}
-	for _, listItem := range list {
-		serviceDetail, err := serviceInfoRepo.ServiceDetail(c, &listItem)
-		if err != nil {
-			middleware.ResponseError(c, 2002, err)
-			return
-		}
-
-		// 根据服务类型和规则生成服务地址
-		serviceInfoService := service.NewServiceInfoService()
-		serviceAddr, err := serviceInfoService.GetServiceAddress(serviceDetail)
-		if err != nil {
-			middleware.ResponseError(c, 2003, err)
-			return
-		}
-
-		// 获取IP列表
-		ipList := serviceInfoService.GetIPList(c, serviceDetail.LoadBalance)
-
-		outputItem := dto.ServiceListItemOutput{
-			ID:          listItem.ID,
-			ServiceName: listItem.ServiceName,
-			ServiceDesc: listItem.ServiceDesc,
-			ServiceAddr: serviceAddr,
-			Qps:         0,
-			Qpd:         0,
-			TotalNode:   len(ipList),
-		}
-		outputList = append(outputList, outputItem)
-	}
-
 	output := &dto.ServiceListOutput{
 		Total: total,
 		List:  outputList,
 	}
 
-	middleware.ResponseSuccess(c, "", output)
+	pkg.ResponseSuccess(c, "", output)
 }

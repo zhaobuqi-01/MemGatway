@@ -1,32 +1,32 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type Admin interface {
-	Getter[model.Admin]
-	Updater[model.Admin]
+	Getter[entity.Admin]
+	Updater[entity.Admin]
 }
 
-type AdminRepo struct {
+type adminRepo struct {
 	db *gorm.DB
 }
 
 func NewAdmin(db *gorm.DB) Admin {
-	return &AdminRepo{
+	return &adminRepo{
 		db: db,
 	}
 }
 
 // FindAdminByID finds an admin by their ID using GORM
-func (repo *AdminRepo) Get(c *gin.Context, search *model.Admin) (*model.Admin, error) {
+func (repo *adminRepo) Get(c *gin.Context, search *entity.Admin) (*entity.Admin, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *AdminRepo) Update(c *gin.Context, data *model.Admin) error {
+func (repo *adminRepo) Update(c *gin.Context, data *entity.Admin) error {
 	return Update(c, repo.db, data)
 }

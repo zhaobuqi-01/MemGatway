@@ -3,6 +3,7 @@ package middleware
 import (
 	"fmt"
 	_ "gateway/configs"
+	"gateway/internal/pkg"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -22,7 +23,7 @@ func IPAuthMiddleware() gin.HandlerFunc {
 		}
 		if !isMatched {
 			// 如果不匹配，则返回错误信息
-			ResponseError(c, InternalErrorCode, fmt.Errorf("%v, not in iplist", c.ClientIP()))
+			pkg.ResponseError(c, pkg.InternalErrorCode, fmt.Errorf("%v, not in iplist", c.ClientIP()))
 			c.Abort()
 			return
 		}

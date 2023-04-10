@@ -1,4 +1,4 @@
-package model
+package entity
 
 type ServiceDetail struct {
 	Info          *ServiceInfo   `json:"info" description:"基本信息"`

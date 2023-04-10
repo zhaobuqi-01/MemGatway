@@ -1,33 +1,33 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type AccessControl interface {
-	Getter[model.AccessControl]
-	Updater[model.AccessControl]
+	Getter[entity.AccessControl]
+	Updater[entity.AccessControl]
 }
 
-type AccessControlRepo struct {
+type accessControlRepo struct {
 	db *gorm.DB
 }
 
 func NewAccessControl(db *gorm.DB) AccessControl {
-	return &AccessControlRepo{
+	return &accessControlRepo{
 		db: db,
 	}
 }
 
 // Get
-func (repo *AccessControlRepo) Get(c *gin.Context, search *model.AccessControl) (*model.AccessControl, error) {
+func (repo *accessControlRepo) Get(c *gin.Context, search *entity.AccessControl) (*entity.AccessControl, error) {
 	return Get(c, repo.db, search)
 }
 
 // Updte
-func (repo *AccessControlRepo) Update(c *gin.Context, data *model.AccessControl) error {
+func (repo *accessControlRepo) Update(c *gin.Context, data *entity.AccessControl) error {
 	return Update(c, repo.db, data)
 }

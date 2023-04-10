@@ -1,10 +1,10 @@
-package model
+package entity
 
 import "time"
 
 // Admin表对应的实体类
 type Admin struct {
-	Id       int       `json:"id" gorm:"primary_key" description:"主键"`
+	ID       int       `json:"id" gorm:"primary_key" description:"主键"`
 	UserName string    `json:"user_name" gorm:"column:user_name" description:"用户名"`
 	Salt     string    `json:"salt" gorm:"column:salt" description:"盐值"`
 	Password string    `json:"password" gorm:"column:password" description:"密码"`

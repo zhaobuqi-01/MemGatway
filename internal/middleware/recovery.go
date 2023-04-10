@@ -3,6 +3,7 @@ package middleware
 import (
 	"errors"
 	"fmt"
+	"gateway/internal/pkg"
 	"gateway/pkg/logger"
 	"runtime/debug"
 
@@ -21,10 +22,10 @@ func RecoveryMiddleware() gin.HandlerFunc {
 				requestID := c.Writer.Header().Get("X-Request-Id")
 				logger.Error(fmt.Sprint(err), zap.String("stack", string(debug.Stack())), zap.String("request_id", requestID))
 				if viper.GetString("gin.mode") != "debug" {
-					ResponseError(c, InternalErrorCode, errors.New("internal error"))
+					pkg.ResponseError(c, pkg.InternalErrorCode, errors.New("internal error"))
 					return
 				} else {
-					ResponseError(c, InternalErrorCode, errors.New(fmt.Sprint(err)))
+					pkg.ResponseError(c, pkg.InternalErrorCode, errors.New(fmt.Sprint(err)))
 					return
 				}
 			}

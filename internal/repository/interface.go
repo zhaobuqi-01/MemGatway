@@ -1,28 +1,28 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 )
 
-type Creator[T model.Model] interface {
+type Creator[T entity.Model] interface {
 	Create(c *gin.Context, item *T) error
 }
 
-type Updater[T model.Model] interface {
+type Updater[T entity.Model] interface {
 	Update(c *gin.Context, item *T) error
 }
 
-type Deleter[T model.Model] interface {
+type Deleter[T entity.Model] interface {
 	Delete(c *gin.Context, item *T) error
 }
 
-type Getter[T model.Model] interface {
+type Getter[T entity.Model] interface {
 	Get(c *gin.Context, item *T) (*T, error)
 }
 
-type Lister[T model.Model] interface {
+type Lister[T entity.Model] interface {
 	List(c *gin.Context, item *T) ([]T, error)
 }
 

@@ -2,40 +2,40 @@ package repository
 
 import (
 	"gateway/internal/dto"
-	"gateway/internal/model"
+	"gateway/internal/entity"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type ServiceInfo interface {
-	// Getter[model.ServiceInfo]
-	Updater[model.ServiceInfo]
-	PageList(c *gin.Context, param *dto.ServiceListInput) ([]model.ServiceInfo, int64, error)
-	ServiceDetail(c *gin.Context, search *model.ServiceInfo) (*model.ServiceDetail, error)
+	// Getter[entity.ServiceInfo]
+	Updater[entity.ServiceInfo]
+	PageList(c *gin.Context, param *dto.ServiceListInput) ([]entity.ServiceInfo, int64, error)
+	ServiceDetail(c *gin.Context, search *entity.ServiceInfo) (*entity.ServiceDetail, error)
 }
 
-type ServiceInfoRepo struct {
+type serviceInfoRepo struct {
 	db *gorm.DB
 }
 
 func NewServiceInfoRepo(db *gorm.DB) ServiceInfo {
-	return &ServiceInfoRepo{
+	return &serviceInfoRepo{
 		db: db,
 	}
 }
 
-func (repo *ServiceInfoRepo) Get(c *gin.Context, search *model.ServiceInfo) (*model.ServiceInfo, error) {
+func (repo *serviceInfoRepo) Get(c *gin.Context, search *entity.ServiceInfo) (*entity.ServiceInfo, error) {
 	return Get(c, repo.db, search)
 }
 
-func (repo *ServiceInfoRepo) Update(c *gin.Context, data *model.ServiceInfo) error {
+func (repo *serviceInfoRepo) Update(c *gin.Context, data *entity.ServiceInfo) error {
 	return Update(c, repo.db, data)
 }
 
-func (repo *ServiceInfoRepo) PageList(c *gin.Context, param *dto.ServiceListInput) ([]model.ServiceInfo, int64, error) {
+func (repo *serviceInfoRepo) PageList(c *gin.Context, param *dto.ServiceListInput) ([]entity.ServiceInfo, int64, error) {
 	total := int64(0)
-	list := []model.ServiceInfo{}
+	list := []entity.ServiceInfo{}
 	offset := (param.PageNo - 1) * param.PageSize
 
 	query := repo.db.Where("is_delete=0")
@@ -49,7 +49,7 @@ func (repo *ServiceInfoRepo) PageList(c *gin.Context, param *dto.ServiceListInpu
 	return list, total, nil
 }
 
-func (repo *ServiceInfoRepo) ServiceDetail(c *gin.Context, search *model.ServiceInfo) (*model.ServiceDetail, error) {
+func (repo *serviceInfoRepo) ServiceDetail(c *gin.Context, search *entity.ServiceInfo) (*entity.ServiceDetail, error) {
 	if search.ServiceName == "" {
 		info, err := repo.Get(c, search)
 		if err != nil {
@@ -58,32 +58,32 @@ func (repo *ServiceInfoRepo) ServiceDetail(c *gin.Context, search *model.Service
 		search = info
 	}
 
-	httpRule, err := Get(c, repo.db, &model.HttpRule{ServiceID: search.ID})
+	httpRule, err := Get(c, repo.db, &entity.HttpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 
-	tcpRule, err := Get(c, repo.db, &model.TcpRule{ServiceID: search.ID})
+	tcpRule, err := Get(c, repo.db, &entity.TcpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 
-	grpcRule, err := Get(c, repo.db, &model.GrpcRule{ServiceID: search.ID})
+	grpcRule, err := Get(c, repo.db, &entity.GrpcRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 
-	accessControl, err := Get(c, repo.db, &model.AccessControl{ServiceID: search.ID})
+	accessControl, err := Get(c, repo.db, &entity.AccessControl{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 
-	loadBalance, err := Get(c, repo.db, &model.LoadBalance{ServiceID: search.ID})
+	loadBalance, err := Get(c, repo.db, &entity.LoadBalance{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 
-	detail := &model.ServiceDetail{
+	detail := &entity.ServiceDetail{
 		Info:          search,
 		HTTPRule:      httpRule,
 		TCPRule:       tcpRule,

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"gateway/internal/model"
+	"gateway/internal/entity"
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +12,7 @@ import (
 // 数据库操作的通用方法
 
 // 查询单条数据
-func Get[T model.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
+func Get[T entity.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	var out T
 	result := db.Where(search).First(&out)
 
@@ -30,7 +30,7 @@ func Get[T model.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 }
 
 // 查询全部
-func GetAll[T model.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
+func GetAll[T entity.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	var out T
 	result := db.Where(search).Find(&out)
 
@@ -47,7 +47,7 @@ func GetAll[T model.Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 }
 
 // create创建对象
-func Create[T model.Model](c *gin.Context, db *gorm.DB, data *T) error {
+func Create[T entity.Model](c *gin.Context, db *gorm.DB, data *T) error {
 	if err := db.Create(data).Error; err != nil {
 		logger.ErrorWithTraceID(c, "Error creating ", zap.Error(err))
 		return err
@@ -57,7 +57,7 @@ func Create[T model.Model](c *gin.Context, db *gorm.DB, data *T) error {
 }
 
 // update更新对象
-func Update[T model.Model](c *gin.Context, db *gorm.DB, data *T) error {
+func Update[T entity.Model](c *gin.Context, db *gorm.DB, data *T) error {
 	if err := db.Save(data).Error; err != nil {
 		logger.ErrorWithTraceID(c, "Error updating", zap.Error(err))
 		return err
@@ -67,7 +67,7 @@ func Update[T model.Model](c *gin.Context, db *gorm.DB, data *T) error {
 }
 
 // delete删除对象
-func Delete[T model.Model](c *gin.Context, db *gorm.DB, data *T) error {
+func Delete[T entity.Model](c *gin.Context, db *gorm.DB, data *T) error {
 	if err := db.Delete(data).Error; err != nil {
 		logger.ErrorWithTraceID(c, "Error deleting ", zap.Error(err))
 		return err

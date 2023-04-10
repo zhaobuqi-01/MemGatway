@@ -1,13 +1,14 @@
 package test
 
 import (
-	"gateway/pkg/middleware"
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
-	"github.com/stretchr/testify/assert"
+	"gateway/internal/middleware"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIPAuthMiddleware(t *testing.T) {
