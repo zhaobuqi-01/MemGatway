@@ -10,12 +10,12 @@ import (
 	"gorm.io/gorm"
 )
 
-type ServiceController struct {
+type serviceController struct {
 	logic logic.ServiceLogic
 }
 
-func NewServiceController(db *gorm.DB) *ServiceController {
-	return &ServiceController{
+func NewServiceController(db *gorm.DB) *serviceController {
+	return &serviceController{
 		logic: logic.NewServiceLogic(db),
 	}
 }
@@ -32,7 +32,7 @@ func NewServiceController(db *gorm.DB) *ServiceController {
 // @Param page_size query  int true "每页条数"
 // @Success 200 {object} pkg.Response{data=dto.ServiceListOutput} "success"
 // @Router /service/service_list [get]
-func (s *ServiceController) ServiceList(c *gin.Context) {
+func (s *serviceController) ServiceList(c *gin.Context) {
 	param := &dto.ServiceListInput{}
 	if err := param.BindValParam(c); err != nil {
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
@@ -63,7 +63,7 @@ func (s *ServiceController) ServiceList(c *gin.Context) {
 // @Param id query  int true "服务id"
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /service/service_delete [get]
-func (s *ServiceController) ServiceDelete(c *gin.Context) {
+func (s *serviceController) ServiceDelete(c *gin.Context) {
 	param := &dto.ServiceDeleteInput{}
 	if err := param.BindValidParam(c); err != nil {
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
@@ -88,7 +88,7 @@ func (s *ServiceController) ServiceDelete(c *gin.Context) {
 // @Param body body dto.ServiceAddHTTPInput true "body"
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /service/service_add_http [post]
-func (s *ServiceController) ServiceAddHttp(c *gin.Context) {
+func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 	params := &dto.ServiceAddHTTPInput{}
 	if err := params.BindValParam(c); err != nil {
 		logger.ErrorWithTraceID(c, "parameter binding error")
@@ -103,4 +103,31 @@ func (s *ServiceController) ServiceAddHttp(c *gin.Context) {
 		return
 	}
 	pkg.ResponseSuccess(c, "add httpService success", nil)
+}
+
+// ServiceUpadteHTTP godoc
+// @Summary 更新HTTP服务
+// @Description 更新HTTP服务
+// @Tags 服务接口
+// @ID /service/service_update_http
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceUpdateHTTPInput true "body"
+// @Success 200 {object} pkg.Response{data=string} "success"
+// @Router /service/service_update_http [post]
+func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
+	params := &dto.ServiceUpdateHTTPInput{}
+	if err := params.BindValParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+		return
+	}
+
+	err := s.logic.UpdateHTTP(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "service update http error")
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		return
+	}
+	pkg.ResponseSuccess(c, "update httpService success", nil)
 }

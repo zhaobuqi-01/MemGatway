@@ -14,6 +14,7 @@ type ServiceLogic interface {
 
 type ServiceHttpLogic interface {
 	AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInput) error
+	UpdateHTTP(c *gin.Context, param *dto.ServiceUpdateHTTPInput) error
 }
 
 type ServiceInfoLogic interface {

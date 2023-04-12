@@ -15,11 +15,12 @@ func ServiceRegister(router *gin.Engine, db *gorm.DB) {
 			middleware.SessionAuthMiddleware(),
 		)
 
-		Controller := &controller.ServiceController{}
+		controller := controller.NewServiceController(db)
 
-		serviceRouter.GET("/service_list", Controller.ServiceList)
-		serviceRouter.GET("/service_delete", Controller.ServiceDelete)
-		serviceRouter.POST("/service_add_http", Controller.ServiceAddHttp)
+		serviceRouter.GET("/service_list", controller.ServiceList)
+		serviceRouter.GET("/service_delete", controller.ServiceDelete)
+		serviceRouter.POST("/service_add_http", controller.ServiceAddHttp)
+		serviceRouter.POST("/service_update_http", controller.ServiceUpdateHttp)
 
 	}
 }

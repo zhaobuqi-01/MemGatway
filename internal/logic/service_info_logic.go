@@ -39,7 +39,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	// 格式化输出信息
 	outputList := []dto.ServiceListItemOutput{}
 	for _, listItem := range list {
-		serviceDetail, err := s.getServiceDetail(c, &listItem)
+		serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, &listItem)
 		if err != nil {
 			return nil, 0, errors.Wrap(err, "s.getServiceDetail(c, &listItem)")
 		}
@@ -102,51 +102,6 @@ func (s *serviceInfoLogic) getServiceAddress(serviceDetail *dao.ServiceDetail) (
 // 获取IP列表
 func (s *serviceInfoLogic) getIPList(c *gin.Context, data *dao.LoadBalance) []string {
 	return strings.Split(data.IpList, ",")
-}
-
-func (s *serviceInfoLogic) getServiceDetail(c *gin.Context, search *dao.ServiceInfo) (*dao.ServiceDetail, error) {
-	if search.ServiceName == "" {
-		info, err := dao.Get(c, s.db, search)
-		if err != nil {
-			return nil, err
-		}
-		search = info
-	}
-
-	httpRule, err := dao.Get(c, s.db, &dao.HttpRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	tcpRule, err := dao.Get(c, s.db, &dao.TcpRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	grpcRule, err := dao.Get(c, s.db, &dao.GrpcRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	accessControl, err := dao.Get(c, s.db, &dao.AccessControl{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	loadBalance, err := dao.Get(c, s.db, &dao.LoadBalance{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	detail := &dao.ServiceDetail{
-		Info:          search,
-		HTTPRule:      httpRule,
-		TCPRule:       tcpRule,
-		GRPCRule:      grpcRule,
-		LoadBalance:   loadBalance,
-		AccessControl: accessControl,
-	}
-	return detail, nil
 }
 
 // 删除服务
