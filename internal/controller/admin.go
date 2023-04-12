@@ -2,15 +2,23 @@ package controller
 
 import (
 	"gateway/internal/dto"
+	"gateway/internal/logic"
 	"gateway/internal/pkg"
-	"gateway/internal/service"
-	"gateway/pkg/database"
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-type AdminController struct{}
+type AdminController struct {
+	logic logic.AdminLogic
+}
+
+func NewAdminController(db *gorm.DB) *AdminController {
+	return &AdminController{
+		logic: logic.NewAdminLogic(db),
+	}
+}
 
 // AdminLogin godoc
 // @Summary 管理员登陆
@@ -22,7 +30,7 @@ type AdminController struct{}
 // @Param body body dto.AdminLoginInput true "body"
 // @Success 200 {object} pkg.Response{data=dto.AdminLoginOutput} "success"
 // @Router /admin/login [post]
-func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
+func (a *AdminController) AdminLogin(c *gin.Context) {
 	// 参数绑定
 	params := &dto.AdminLoginInput{}
 	if err := params.BindValParam(c); err != nil {
@@ -31,13 +39,10 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 		return
 	}
 
-	db := database.GetDB()
-	adminService := service.NewAdminService(db)
-
-	sessInfo, err := adminService.Login(c, params)
+	sessInfo, err := a.logic.Login(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Login check failed")
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
@@ -55,12 +60,10 @@ func (adminlogin *AdminController) AdminLogin(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /admin/login_out [get]
-func (adminloginout *AdminController) AdminLoginOut(c *gin.Context) {
-
-	adminService := service.NewAdminService(nil)
-	err := adminService.AdminLogout(c)
+func (a *AdminController) AdminLoginOut(c *gin.Context) {
+	err := a.logic.AdminLogout(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
@@ -77,11 +80,10 @@ func (adminloginout *AdminController) AdminLoginOut(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} pkg.Response{data=dto.AminInfoOutput} "success"
 // @Router /admin/admin_info [get]
-func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
-	adminService := service.NewAdminService(nil)
-	out, err := adminService.GetAdminInfo(c)
+func (a *AdminController) AdminInfo(c *gin.Context) {
+	out, err := a.logic.GetAdminInfo(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
@@ -99,7 +101,7 @@ func (adminInfo *AdminController) AdminInfo(c *gin.Context) {
 // @Param body body dto.AdminChangePwdInput true "body"
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /admin/change_pwd [post]
-func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
+func (a *AdminController) AdminChangePwd(c *gin.Context) {
 	params := &dto.AdminChangePwdInput{}
 	if err := params.BindValParam(c); err != nil {
 		logger.ErrorWithTraceID(c, "parameter binding error")
@@ -107,13 +109,10 @@ func (adminChangePwd *AdminController) AdminChangePwd(c *gin.Context) {
 		return
 	}
 
-	db := database.GetDB()
-	adminService := service.NewAdminService(db)
-
-	err := adminService.ChangeAdminPassword(c, params)
+	err := a.logic.ChangeAdminPassword(c, params)
 	if err != nil {
 		logger.ErrorWithTraceID(c, "Password modification failed")
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 

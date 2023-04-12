@@ -5,9 +5,10 @@ import (
 	"gateway/internal/middleware"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func ServiceRegister(router *gin.Engine) {
+func ServiceRegister(router *gin.Engine, db *gorm.DB) {
 	serviceRouter := router.Group("/service")
 	{
 		serviceRouter.Use(

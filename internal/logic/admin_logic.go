@@ -1,12 +1,11 @@
-package service
+package logic
 
 import (
 	"encoding/json"
 	"fmt"
+	"gateway/internal/dao"
 	"gateway/internal/dto"
-	"gateway/internal/entity"
 	"gateway/internal/pkg"
-	"gateway/internal/repository"
 	"time"
 
 	"github.com/pkg/errors"
@@ -16,34 +15,37 @@ import (
 	"gorm.io/gorm"
 )
 
-type AdminService interface {
-	LoginCheck(c *gin.Context, param *dto.AdminLoginInput) (*entity.Admin, error)
+type AdminLogic interface {
+	Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error)
+	AdminLogout(c *gin.Context) error
+	GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error)
+	ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error
 }
 
-type adminService struct {
-	repo repository.Admin
+type adminLogic struct {
+	db *gorm.DB
 }
 
-func NewAdminService(db *gorm.DB) *adminService {
-	var repo repository.Admin
+func NewAdminLogic(tx *gorm.DB) *adminLogic {
+	var db *gorm.DB
 
 	if db != nil {
-		repo = repository.NewAdmin(db)
+		db = tx
 	}
 
-	return &adminService{
-		repo: repo,
+	return &adminLogic{
+		db: db,
 	}
 }
 
-func (s *adminService) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
-	if s.repo == nil {
-		return nil, errors.New("repository is not initialized")
+func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
+	if s.db == nil {
+		return nil, errors.New("dao is not initialized")
 	}
 
-	admin, err := s.repo.Get(c, &entity.Admin{UserName: params.UserName})
+	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "admin.Get")
 	}
 
 	saltPassword := pkg.GenSaltPassword(admin.Salt, params.Password)
@@ -59,7 +61,7 @@ func (s *adminService) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.
 
 	sessBts, err := json.Marshal(sessInfo)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "json.Marshal")
 	}
 
 	sess := sessions.Default(c)
@@ -69,7 +71,7 @@ func (s *adminService) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.
 	return sessInfo, nil
 }
 
-func (s *adminService) AdminLogout(c *gin.Context) error {
+func (s *adminLogic) AdminLogout(c *gin.Context) error {
 	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sess.Delete(pkg.AdminSessionInfoKey)
@@ -77,13 +79,13 @@ func (s *adminService) AdminLogout(c *gin.Context) error {
 	return nil
 }
 
-func (s *adminService) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
+func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		return nil, err
+		return nil, errors.New("session info is not valid")
 	}
 
 	out := &dto.AminInfoOutput{
@@ -99,28 +101,28 @@ func (s *adminService) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error)
 	return out, nil
 }
 
-func (s *adminService) ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error {
-	if s.repo == nil {
-		return errors.New("repository is not initialized")
+func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error {
+	if s.db == nil {
+		return errors.New("dao is not initialized")
 	}
 	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		return err
+		return errors.New("session info is not valid")
 	}
 
-	adminInfo, err := s.repo.Get(c, &entity.Admin{UserName: adminSessionInfo.UserName})
+	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
-		return err
+		return errors.Wrap(err, "admin.Get")
 	}
 
 	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, params.Password)
 	adminInfo.Password = saltPassword
 
-	if err := s.repo.Update(c, adminInfo); err != nil {
-		return err
+	if err := dao.Update(c, s.db, adminInfo); err != nil {
+		return errors.Wrap(err, "admin.Update")
 	}
 
 	return nil

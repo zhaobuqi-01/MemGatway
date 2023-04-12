@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 
 	"go.uber.org/zap"
 
@@ -138,4 +139,25 @@ func InitDB() {
 	}
 	logger.Info("database already exists", zap.String("databaseName", conf.DBName))
 	logger.Info("Start using an existing database")
+
+	// 注册钩子函数
+	db.Callback().Create().Before("gorm:before_create").Register("update_created_at", func(db *gorm.DB) {
+		now := time.Now()
+		if db.Statement.Schema != nil {
+			if field, ok := db.Statement.Schema.FieldsByName["CreateAt"]; ok {
+				field.Set(db.Statement.Context, db.Statement.ReflectValue, now)
+			}
+			if field, ok := db.Statement.Schema.FieldsByName["UpdateAt"]; ok {
+				field.Set(db.Statement.Context, db.Statement.ReflectValue, now)
+			}
+		}
+	})
+	db.Callback().Update().Before("gorm:before_update").Register("update_updated_at", func(db *gorm.DB) {
+		now := time.Now()
+		if db.Statement.Schema != nil {
+			if field, ok := db.Statement.Schema.FieldsByName["UpdateAt"]; ok {
+				field.Set(db.Statement.Context, db.Statement.ReflectValue, now)
+			}
+		}
+	})
 }

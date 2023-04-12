@@ -2,15 +2,23 @@ package controller
 
 import (
 	"gateway/internal/dto"
+	"gateway/internal/logic"
 	"gateway/internal/pkg"
-	"gateway/internal/service"
-	"gateway/pkg/database"
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-type ServiceController struct{}
+type ServiceController struct {
+	logic logic.ServiceLogic
+}
+
+func NewServiceController(db *gorm.DB) *ServiceController {
+	return &ServiceController{
+		logic: logic.NewServiceLogic(db),
+	}
+}
 
 // ServiceList godoc
 // @Summary 服务列表
@@ -31,12 +39,9 @@ func (s *ServiceController) ServiceList(c *gin.Context) {
 		return
 	}
 
-	db := database.GetDB()
-	serviceInfoService := service.NewServiceInfoService(db)
-
-	outputList, total, err := serviceInfoService.GetServiceList(c, param)
+	outputList, total, err := s.logic.GetServiceList(c, param)
 	if err != nil {
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
@@ -65,19 +70,15 @@ func (s *ServiceController) ServiceDelete(c *gin.Context) {
 		return
 	}
 
-	db := database.GetDB()
-	serviceInfoService := service.NewServiceInfoService(db)
-
-	err := serviceInfoService.Delete(c, param)
+	err := s.logic.Delete(c, param)
 	if err != nil {
-		pkg.ResponseError(c, pkg.BusinessLogicError, err)
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
 	pkg.ResponseSuccess(c, "", "delete success")
 }
 
-// ServiceAdd godoc
 // @Summary 添加HTTP服务
 // @Description 添加HTTP服务
 // @Tags 服务接口
@@ -95,6 +96,11 @@ func (s *ServiceController) ServiceAddHttp(c *gin.Context) {
 		return
 	}
 
-	pkg.ResponseSuccess(c, "Password modification successful", "")
-	logger.InfoWithTraceID(c, "Password modification successful")
+	err := s.logic.AddHTTP(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "service add http error")
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		return
+	}
+	pkg.ResponseSuccess(c, "add httpService success", nil)
 }

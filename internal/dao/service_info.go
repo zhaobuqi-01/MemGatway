@@ -1,4 +1,4 @@
-package entity
+package dao
 
 import "time"
 

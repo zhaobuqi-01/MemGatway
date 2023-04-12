@@ -1,4 +1,4 @@
-package entity
+package dao
 
 type Model interface {
 	Admin | ServiceInfo | AccessControl | GrpcRule |

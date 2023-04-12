@@ -5,6 +5,7 @@ import (
 	"gateway/configs"
 	"gateway/internal/pkg"
 	"gateway/internal/router"
+	"gateway/pkg/database"
 	"gateway/pkg/logger"
 	"net/http"
 	"os"
@@ -24,7 +25,7 @@ func main() {
 	gin.SetMode(configs.GetGinConfig().Mode)
 
 	// 初始化路由
-	r := router.InitRouter()
+	r := router.InitRouter(database.GetDB())
 
 	serverConfig := configs.GetServerConfig()
 

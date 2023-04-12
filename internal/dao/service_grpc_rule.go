@@ -1,4 +1,4 @@
-package entity
+package dao
 
 type GrpcRule struct {
 	ID             int64  `json:"id" gorm:"primary_key"`
