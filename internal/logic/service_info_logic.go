@@ -118,7 +118,7 @@ func (s *serviceInfoLogic) Delete(c *gin.Context, param *dto.ServiceDeleteInput)
 	// 软删除，将is_delete设置为1；如果您需要物理删除，请使用dao.Delete(c, s.db, serviceInfo)
 	serviceInfo.IsDelete = 1
 
-	err = dao.Update(c, s.db, serviceInfo)
+	err = dao.Save(c, s.db, serviceInfo)
 	if err != nil {
 		return errors.Wrap(err, "Update(c, serviceInfo)")
 	}

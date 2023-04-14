@@ -45,9 +45,8 @@ func GetAll[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	return &out, nil
 }
 
-// update更新对象
 func Update[T Model](c *gin.Context, db *gorm.DB, data *T) error {
-	if err := db.Save(data).Error; err != nil {
+	if err := db.Model(data).Updates(data).Error; err != nil {
 		logger.ErrorWithTraceID(c, "Error updating", zap.Error(err))
 		return err
 	}

@@ -26,7 +26,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInpu
 	tx := s.db.Begin()
 	if _, err := dao.Get(c, s.db, &dao.ServiceInfo{ServiceName: param.ServiceName}); err == nil {
 		tx.Rollback()
-		return errors.New("服务已存在")
+		return errors.Wrap(err, "服务已存在")
 	}
 
 	httpUrl := &dao.HttpRule{
@@ -36,7 +36,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInpu
 
 	if _, err := dao.Get(c, s.db, httpUrl); err == nil {
 		tx.Rollback()
-		return errors.New("服务接入前缀或域名已存在")
+		return errors.Wrap(err, "服务接入前缀或域名已存在")
 	}
 
 	if len(strings.Split(param.IpList, ",")) != len(strings.Split(param.WeightList, ",")) {
@@ -76,7 +76,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInpu
 		ClientIPFlowLimit: param.ClientipFlowLimit,
 		ServiceFlowLimit:  param.ServiceFlowLimit,
 	}
-	if err := dao.Update(c, s.db, accessControl); err != nil {
+	if err := dao.Save(c, s.db, accessControl); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加服务权限失败")
 	}
@@ -91,7 +91,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInpu
 		UpstreamIdleTimeout:    param.UpstreamIdleTimeout,
 		UpstreamMaxIdle:        param.UpstreamMaxIdle,
 	}
-	if err := dao.Update(c, s.db, loadbalance); err != nil {
+	if err := dao.Save(c, s.db, loadbalance); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加服务负载均衡错失败")
 	}
@@ -104,21 +104,22 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 		return errors.New("IP列表与权重列表数量不一致")
 	}
 	tx := s.db.Begin()
-	serviceInfo := &dao.ServiceInfo{ServiceName: params.ServiceName}
-	if _, err := dao.Get(c, s.db, serviceInfo); err != nil {
+
+	serviceInfo, err := dao.Get(c, s.db, &dao.ServiceInfo{ServiceName: params.ServiceName})
+	if err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "服务不存在")
 	}
 	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, tx, serviceInfo)
 	if err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "获取服务详情失败")
+		return errors.Wrap(err, "服务不存在")
 	}
 	info := serviceDetail.Info
 	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Save(c, s.db, info); err != nil {
+	if err := dao.Update(c, s.db, info); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "更新服务信息失败")
+		return errors.Wrap(err, "更新服务描述失败")
 	}
 	httpRule := serviceDetail.HTTPRule
 	httpRule.NeedHttps = params.NeedHttps
@@ -126,7 +127,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	httpRule.NeedWebsocket = params.NeedWebsocket
 	httpRule.UrlRewrite = params.UrlRewrite
 	httpRule.HeaderTransfor = params.HeaderTransfor
-	if err := dao.Save(c, s.db, httpRule); err != nil {
+	if err := dao.Update(c, s.db, httpRule); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新HTTP规则失败")
 	}
@@ -136,7 +137,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	accessControl.WhiteList = params.WhiteList
 	accessControl.ClientIPFlowLimit = params.ClientipFlowLimit
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Save(c, s.db, accessControl); err != nil {
+	if err := dao.Update(c, s.db, accessControl); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新服务权限失败")
 	}
@@ -148,7 +149,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	loadbalance.UpstreamHeaderTimeout = params.UpstreamHeaderTimeout
 	loadbalance.UpstreamIdleTimeout = params.UpstreamIdleTimeout
 	loadbalance.UpstreamMaxIdle = params.UpstreamMaxIdle
-	if err := dao.Save(c, s.db, loadbalance); err != nil {
+	if err := dao.Update(c, s.db, loadbalance); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新服务负载均衡错失败")
 	}

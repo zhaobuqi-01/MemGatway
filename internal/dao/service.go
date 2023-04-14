@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"errors"
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/gin"
@@ -19,12 +18,6 @@ type ServiceDetail struct {
 }
 
 func (s *ServiceDetail) ServiceDetail(c *gin.Context, db *gorm.DB, search *ServiceInfo) (*ServiceDetail, error) {
-	if search == nil {
-		return nil, errors.New("serviceInfo is nil")
-	} else if db == nil {
-		return nil, errors.New("*gorm.DB is nil")
-	}
-
 	if search.ServiceName == "" {
 		info, err := Get(c, db, search)
 		if err != nil {
