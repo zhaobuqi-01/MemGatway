@@ -25,7 +25,8 @@ func main() {
 	gin.SetMode(configs.GetGinConfig().Mode)
 
 	// 初始化路由
-	r := router.InitRouter(database.GetDB())
+	db := database.GetDB()
+	r := router.InitRouter(db)
 
 	serverConfig := configs.GetServerConfig()
 

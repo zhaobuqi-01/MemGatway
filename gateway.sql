@@ -23,7 +23,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `gateway_admin` (
   `id` bigint(20) NOT NULL COMMENT '自增id',
   `user_name` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
-  `salt` varchar(50) NOT NULL DEFAULT '' COMMENT '盐',
   `password` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
   `create_at` datetime NOT NULL DEFAULT '1971-01-01 00:00:00' COMMENT '新增时间',
   `update_at` datetime NOT NULL DEFAULT '1971-01-01 00:00:00' COMMENT '更新时间',
@@ -35,7 +34,7 @@ CREATE TABLE `gateway_admin` (
 --
 
 INSERT INTO `gateway_admin` (`id`, `user_name`, `salt`, `password`, `create_at`, `update_at`, `is_delete`) VALUES
-(1, 'admin', 'admin', '2823d896e9822c0833d41d4904f0c00756d718570fce49b9a379a62c804689d3', '2020-04-10 16:42:05', '2020-04-21 06:35:08', 0);
+(1, 'admin',  '$2a$10$4oKTR0e.UKEdVVJwWwl/pu.njPTVem/bmNM0eb16FF34g9kcPK1rK', '2020-04-10 16:42:05', '2020-04-21 06:35:08', 0);
 
 -- --------------------------------------------------------
 
@@ -45,10 +44,10 @@ INSERT INTO `gateway_admin` (`id`, `user_name`, `salt`, `password`, `create_at`,
 
 CREATE TABLE `gateway_app` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '自增id',
-  `app_id` varchar(255) NOT NULL DEFAULT '' COMMENT '租户id',
+  `app_id` varchar(255) NOT NULL DEFAULT '' COMMENT '租户id',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '租户名称',
   `secret` varchar(255) NOT NULL DEFAULT '' COMMENT '密钥',
-  `white_ips` varchar(1000) NOT NULL DEFAULT '' COMMENT 'ip白名单，支持前缀匹配',
+  `white_ips` varchar(1000) NOT NULL DEFAULT '' COMMENT 'ip白名单,支持前缀匹配',
   `qpd` bigint(20) NOT NULL DEFAULT '0' COMMENT '日请求量限制',
   `qps` bigint(20) NOT NULL DEFAULT '0' COMMENT '每秒请求量限制',
   `create_at` datetime NOT NULL COMMENT '添加时间',

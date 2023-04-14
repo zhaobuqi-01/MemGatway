@@ -115,6 +115,7 @@ func (s *serviceInfoLogic) Delete(c *gin.Context, param *dto.ServiceDeleteInput)
 		return errors.Wrap(err, "Get(c, serviceInfo)")
 	}
 
+	// 软删除，将is_delete设置为1；如果您需要物理删除，请使用dao.Delete(c, s.db, serviceInfo)
 	serviceInfo.IsDelete = 1
 
 	err = dao.Update(c, s.db, serviceInfo)
@@ -123,4 +124,23 @@ func (s *serviceInfoLogic) Delete(c *gin.Context, param *dto.ServiceDeleteInput)
 	}
 
 	return nil
+}
+
+// 获取服务详情
+func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDeleteInput) (*dao.ServiceDetail, error) {
+	var err error
+	serviceInfo := &dao.ServiceInfo{ID: param.ID}
+
+	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
+	if err != nil {
+		return nil, errors.Wrap(err, "Get(c, serviceInfo)")
+	}
+
+	// 获取服务详情
+	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
+	if err != nil {
+		return nil, errors.Wrap(err, "ServiceDetail(c, serviceInfo)")
+	}
+
+	return serviceDetail, nil
 }

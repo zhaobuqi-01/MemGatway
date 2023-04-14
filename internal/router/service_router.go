@@ -21,6 +21,6 @@ func ServiceRegister(router *gin.Engine, db *gorm.DB) {
 		serviceRouter.GET("/service_delete", controller.ServiceDelete)
 		serviceRouter.POST("/service_add_http", controller.ServiceAddHttp)
 		serviceRouter.POST("/service_update_http", controller.ServiceUpdateHttp)
-
+		serviceRouter.GET("/service_detail", controller.ServiceDetail)
 	}
 }

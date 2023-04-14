@@ -27,30 +27,19 @@ type adminLogic struct {
 }
 
 func NewAdminLogic(tx *gorm.DB) *adminLogic {
-	var db *gorm.DB
-
-	if db != nil {
-		db = tx
-	}
-
 	return &adminLogic{
-		db: db,
+		db: tx,
 	}
 }
 
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
-	if s.db == nil {
-		return nil, errors.New("dao is not initialized")
-	}
-
 	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
 	if err != nil {
-		return nil, errors.Wrap(err, "admin.Get")
+		return nil, fmt.Errorf("admin.Get: %w", err)
 	}
 
-	saltPassword := pkg.GenSaltPassword(admin.Salt, params.Password)
-	if admin.Password != saltPassword {
-		return nil, errors.New("incorrect password")
+	if err := pkg.ComparePassword(admin.Password, params.Password); err != nil {
+		return nil, fmt.Errorf("incorrect password: %w", err)
 	}
 
 	sessInfo := &dto.AdminSessionInfo{
@@ -115,14 +104,18 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 
 	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
-		return errors.Wrap(err, "admin.Get")
+		return fmt.Errorf("admin.Get: %w", err)
 	}
 
-	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, params.Password)
-	adminInfo.Password = saltPassword
+	hashedPassword, err := pkg.GenSaltPassword(params.Password)
+	if err != nil {
+		return fmt.Errorf("GenSaltPassword: %w", err)
+	}
+
+	adminInfo.Password = hashedPassword
 
 	if err := dao.Update(c, s.db, adminInfo); err != nil {
-		return errors.Wrap(err, "admin.Update")
+		return fmt.Errorf("admin.Update: %w", err)
 	}
 
 	return nil

@@ -131,3 +131,39 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 	}
 	pkg.ResponseSuccess(c, "update httpService success", nil)
 }
+
+// ServiceDetail godoc
+// @Summary 服务详情
+// @Description 服务详情
+// @Tags 服务接口
+// ID /service/service_detail
+// Accept json
+// Produce json
+// @Param id query string true "服务ID"
+// @Success 200 {object} pkg.Response{data=dao.ServiceDetail} "success"
+// @Router /service/service_detail [get]
+func (s *serviceController) ServiceDetail(c *gin.Context) {
+
+	param := &dto.ServiceDeleteInput{}
+
+	if err := param.BindValidParam(c); err != nil {
+
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+
+		return
+
+	}
+
+	output, err := s.logic.GetServiceDetail(c, param)
+
+	if err != nil {
+
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+
+		return
+
+	}
+
+	pkg.ResponseSuccess(c, "", output)
+
+}

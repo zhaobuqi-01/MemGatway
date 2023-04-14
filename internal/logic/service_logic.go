@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"gateway/internal/dao"
 	"gateway/internal/dto"
 
 	"github.com/gin-gonic/gin"
@@ -20,6 +21,7 @@ type ServiceHttpLogic interface {
 type ServiceInfoLogic interface {
 	Delete(c *gin.Context, param *dto.ServiceDeleteInput) error
 	GetServiceList(c *gin.Context, param *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error)
+	GetServiceDetail(c *gin.Context, param *dto.ServiceDeleteInput) (*dao.ServiceDetail, error)
 }
 
 type serviceLogic struct {

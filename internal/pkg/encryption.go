@@ -1,15 +1,17 @@
 package pkg
 
-import (
-	"crypto/sha256"
-	"fmt"
-)
+import "golang.org/x/crypto/bcrypt"
 
-func GenSaltPassword(salt, password string) string {
-	s1 := sha256.New()
-	s1.Write([]byte(password))
-	str1 := fmt.Sprintf("%x", s1.Sum(nil))
-	s2 := sha256.New()
-	s2.Write([]byte(salt + str1))
-	return fmt.Sprintf("%x", s2.Sum(nil))
+// GenSaltPassword 使用bcrypt替换
+func GenSaltPassword(password string) (string, error) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+	return string(hashedPassword), nil
+}
+
+// ComparePassword 对比密码
+func ComparePassword(hashedPassword, password string) error {
+	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }

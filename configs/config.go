@@ -189,3 +189,7 @@ func GetIntConfig(key string) int {
 func GetBoolConfig(key string) bool {
 	return v.GetBool(key)
 }
+
+func GetSliceConfig(key string) []string {
+	return v.GetStringSlice(key)
+}
