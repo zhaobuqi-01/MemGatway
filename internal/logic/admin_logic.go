@@ -91,9 +91,6 @@ func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 }
 
 func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error {
-	if s.db == nil {
-		return errors.New("dao is not initialized")
-	}
 	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)

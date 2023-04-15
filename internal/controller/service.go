@@ -70,13 +70,84 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.Delete(c, param)
+	err := s.logic.ServiceDelete(c, param)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}
 
 	pkg.ResponseSuccess(c, "", "delete success")
+}
+
+// ServiceDetail godoc
+// @Summary 服务详情
+// @Description 服务详情
+// @Tags 服务接口
+// ID /service/service_detail
+// Accept json
+// Produce json
+// @Param id query string true "服务ID"
+// @Success 200 {object} pkg.Response{data=dao.ServiceDetail} "success"
+// @Router /service/service_detail [get]
+func (s *serviceController) ServiceDetail(c *gin.Context) {
+
+	param := &dto.ServiceDeleteInput{}
+
+	if err := param.BindValidParam(c); err != nil {
+
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+
+		return
+
+	}
+
+	output, err := s.logic.GetServiceDetail(c, param)
+
+	if err != nil {
+
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+
+		return
+
+	}
+
+	pkg.ResponseSuccess(c, "", output)
+
+}
+
+// ServiceStat godoc
+// @Summary 服务统计
+// @Description 服务统计
+// @Tags 服务接口
+// @ID /service/service_stat
+// @Accept  json
+// @Produce  json
+// @Param id query  int true "服务id"
+// @Success 200 {object} pkg.Response{data=dto.ServiceStatOutput} "success"
+// @Router /service/service_stat [get]
+func (s *serviceController) ServiceStat(c *gin.Context) {
+	param := &dto.ServiceDeleteInput{}
+
+	if err := param.BindValidParam(c); err != nil {
+
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+
+		return
+
+	}
+
+	output, err := s.logic.GetServiceStat(c, param)
+
+	if err != nil {
+
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+
+		return
+
+	}
+
+	pkg.ResponseSuccess(c, "", output)
+
 }
 
 // @Summary 添加HTTP服务
@@ -132,38 +203,110 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 	pkg.ResponseSuccess(c, "update httpService success", nil)
 }
 
-// ServiceDetail godoc
-// @Summary 服务详情
-// @Description 服务详情
+// ServiceAddTcp godoc
+// @Summary 添加TCP服务
+// @Description 添加TCP服务
 // @Tags 服务接口
-// ID /service/service_detail
-// Accept json
-// Produce json
-// @Param id query string true "服务ID"
-// @Success 200 {object} pkg.Response{data=dao.ServiceDetail} "success"
-// @Router /service/service_detail [get]
-func (s *serviceController) ServiceDetail(c *gin.Context) {
-
-	param := &dto.ServiceDeleteInput{}
-
-	if err := param.BindValidParam(c); err != nil {
-
+// @ID /service/service_add_tcp
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceAddTcpInput true "body"
+// @Success 200 {object} pkg.Response{data=string} "success"
+// @Router /service/service_add_tcp [post]
+func (s *serviceController) ServiceAddTcp(c *gin.Context) {
+	params := &dto.ServiceAddTcpInput{}
+	if err := params.BindValidParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
-
 		return
-
 	}
 
-	output, err := s.logic.GetServiceDetail(c, param)
-
+	err := s.logic.AddTCP(c, params)
 	if err != nil {
-
+		logger.ErrorWithTraceID(c, "service add tcp error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-
 		return
+	}
+	pkg.ResponseSuccess(c, "add tcpService success", nil)
+}
 
+// ServiceUpdateTcp godoc
+// @Summary 更新TCP服务
+// @Description 更新TCP服务
+// @Tags 服务接口
+// @ID /service/service_update_tcp
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceUpdateTcpInput true "body"
+// @Success 200 {object} pkg.Response{data=string} "success"
+// @Router /service/service_update_tcp [post]
+func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
+	params := &dto.ServiceUpdateTcpInput{}
+	if err := params.BindValidParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+		return
 	}
 
-	pkg.ResponseSuccess(c, "", output)
+	err := s.logic.UpdateTCP(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "service update tcp error")
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		return
+	}
+	pkg.ResponseSuccess(c, "update tcpService success", nil)
+}
 
+// ServiceAddGrpc godoc
+// @Summary 添加GRPC服务
+// @Description 添加GRPC服务
+// @Tags 服务接口
+// @ID /service/service_add_grpc
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceAddGrpcInput true "body"
+// @Success 200 {object} pkg.Response{data=string} "success"
+// @Router /service/service_add_grpc [post]
+func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
+	params := &dto.ServiceAddGrpcInput{}
+	if err := params.BindValidParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+		return
+	}
+
+	err := s.logic.AddGrpc(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "service add grpc error")
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		return
+	}
+	pkg.ResponseSuccess(c, "add grpcService success", nil)
+}
+
+// ServiceUpdateGrpc godoc
+// @Summary 更新GRPC服务
+// @Description 更新GRPC服务
+// @Tags 服务接口
+// @ID /service/service_update_grpc
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceUpdateGrpcInput true "body"
+// @Success 200 {object} pkg.Response{data=string} "success"
+// @Router /service/service_update_grpc [post]
+func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
+	params := &dto.ServiceUpdateGrpcInput{}
+	if err := params.BindValidParam(c); err != nil {
+		logger.ErrorWithTraceID(c, "parameter binding error")
+		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
+		return
+	}
+
+	err := s.logic.UpdateGrpc(c, params)
+	if err != nil {
+		logger.ErrorWithTraceID(c, "service update grpc error")
+		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		return
+	}
+	pkg.ResponseSuccess(c, "update grpcService success", nil)
 }

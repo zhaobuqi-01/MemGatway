@@ -166,6 +166,45 @@ definitions:
           type: string
         type: array
     type: object
+  dto.ServiceAddGrpcInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
   dto.ServiceAddHTTPInput:
     properties:
       black_list:
@@ -258,6 +297,45 @@ definitions:
     - service_name
     - weight_list
     type: object
+  dto.ServiceAddTcpInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
   dto.ServiceListItemOutput:
     properties:
       id:
@@ -295,6 +373,61 @@ definitions:
       total:
         description: 总数
         type: integer
+    type: object
+  dto.ServiceStatOutput:
+    properties:
+      today:
+        description: 列表
+        items:
+          type: integer
+        type: array
+      yesterday:
+        description: 列表
+        items:
+          type: integer
+        type: array
+    type: object
+  dto.ServiceUpdateGrpcInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      id:
+        type: integer
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - id
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
     type: object
   dto.ServiceUpdateHTTPInput:
     properties:
@@ -395,6 +528,46 @@ definitions:
     - id
     - ip_list
     - rule
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceUpdateTcpInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      id:
+        type: integer
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - id
+    - ip_list
+    - port
     - service_desc
     - service_name
     - weight_list
@@ -510,6 +683,34 @@ paths:
       summary: 管理员退出登陆
       tags:
       - 管理员接口
+  /service/service_add_grpc:
+    post:
+      consumes:
+      - application/json
+      description: 添加GRPC服务
+      operationId: /service/service_add_grpc
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceAddGrpcInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 添加GRPC服务
+      tags:
+      - 服务接口
   /service/service_add_http:
     post:
       consumes:
@@ -536,6 +737,34 @@ paths:
                   type: string
               type: object
       summary: 添加HTTP服务
+      tags:
+      - 服务接口
+  /service/service_add_tcp:
+    post:
+      consumes:
+      - application/json
+      description: 添加TCP服务
+      operationId: /service/service_add_tcp
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceAddTcpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 添加TCP服务
       tags:
       - 服务接口
   /service/service_delete:
@@ -623,6 +852,61 @@ paths:
       summary: 服务列表
       tags:
       - 服务接口
+  /service/service_stat:
+    get:
+      consumes:
+      - application/json
+      description: 服务统计
+      operationId: /service/service_stat
+      parameters:
+      - description: 服务id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ServiceStatOutput'
+              type: object
+      summary: 服务统计
+      tags:
+      - 服务接口
+  /service/service_update_grpc:
+    post:
+      consumes:
+      - application/json
+      description: 更新GRPC服务
+      operationId: /service/service_update_grpc
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceUpdateGrpcInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 更新GRPC服务
+      tags:
+      - 服务接口
   /service/service_update_http:
     post:
       consumes:
@@ -649,6 +933,34 @@ paths:
                   type: string
               type: object
       summary: 更新HTTP服务
+      tags:
+      - 服务接口
+  /service/service_update_tcp:
+    post:
+      consumes:
+      - application/json
+      description: 更新TCP服务
+      operationId: /service/service_update_tcp
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceUpdateTcpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 更新TCP服务
       tags:
       - 服务接口
 swagger: "2.0"

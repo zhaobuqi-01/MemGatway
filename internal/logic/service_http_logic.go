@@ -22,76 +22,76 @@ func NewServiceHttpLogic(tx *gorm.DB) *serviceHttpLogic {
 }
 
 // 添加HTTP服务
-func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInput) error {
+func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInput) error {
+	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
+		return errors.New("IP列表与权重列表数量不一致")
+	}
+
 	tx := s.db.Begin()
-	if _, err := dao.Get(c, s.db, &dao.ServiceInfo{ServiceName: param.ServiceName}); err == nil {
+	serviceInfo := &dao.ServiceInfo{ServiceName: params.ServiceName}
+	if _, err := dao.Get(c, tx, serviceInfo); err == nil {
 		tx.Rollback()
 		return errors.Wrap(err, "服务已存在")
 	}
 
 	httpUrl := &dao.HttpRule{
-		RuleType: param.RuleType,
-		Rule:     param.Rule,
+		RuleType: params.RuleType,
+		Rule:     params.Rule,
 	}
 
-	if _, err := dao.Get(c, s.db, httpUrl); err == nil {
+	if _, err := dao.Get(c, tx, httpUrl); err == nil {
 		tx.Rollback()
 		return errors.Wrap(err, "服务接入前缀或域名已存在")
 	}
-
-	if len(strings.Split(param.IpList, ",")) != len(strings.Split(param.WeightList, ",")) {
-		return errors.New("IP列表与权重列表数量不一致")
-	}
-
 	serviceModel := &dao.ServiceInfo{
-		ServiceName: param.ServiceName,
-		ServiceDesc: param.ServiceDesc,
+		ServiceName: params.ServiceName,
+		ServiceDesc: params.ServiceDesc,
 	}
 
-	if err := dao.Save(c, s.db, serviceModel); err != nil {
+	if err := dao.Save(c, tx, serviceModel); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加服务信息失败")
 	}
 
 	httpRule := &dao.HttpRule{
 		ServiceID:      serviceModel.ID,
-		RuleType:       param.RuleType,
-		Rule:           param.Rule,
-		NeedHttps:      param.NeedHttps,
-		NeedStripUri:   param.NeedStripUri,
-		NeedWebsocket:  param.NeedWebsocket,
-		UrlRewrite:     param.UrlRewrite,
-		HeaderTransfor: param.HeaderTransfor,
+		RuleType:       params.RuleType,
+		Rule:           params.Rule,
+		NeedHttps:      params.NeedHttps,
+		NeedStripUri:   params.NeedStripUri,
+		NeedWebsocket:  params.NeedWebsocket,
+		UrlRewrite:     params.UrlRewrite,
+		HeaderTransfor: params.HeaderTransfor,
 	}
-	if err := dao.Save(c, s.db, httpRule); err != nil {
+	if err := dao.Save(c, tx, httpRule); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加HTTP规则失败")
 	}
 
 	accessControl := &dao.AccessControl{
 		ServiceID:         serviceModel.ID,
-		OpenAuth:          param.OpenAuth,
-		BlackList:         param.BlackList,
-		WhiteList:         param.WhiteList,
-		ClientIPFlowLimit: param.ClientipFlowLimit,
-		ServiceFlowLimit:  param.ServiceFlowLimit,
+		OpenAuth:          params.OpenAuth,
+		BlackList:         params.BlackList,
+		WhiteList:         params.WhiteList,
+		ClientIPFlowLimit: params.ClientipFlowLimit,
+		ServiceFlowLimit:  params.ServiceFlowLimit,
 	}
-	if err := dao.Save(c, s.db, accessControl); err != nil {
+	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加服务权限失败")
 	}
 
 	loadbalance := &dao.LoadBalance{
 		ServiceID:              serviceModel.ID,
-		RoundType:              param.RoundType,
-		IpList:                 param.IpList,
-		WeightList:             param.WeightList,
-		UpstreamConnectTimeout: param.UpstreamConnectTimeout,
-		UpstreamHeaderTimeout:  param.UpstreamHeaderTimeout,
-		UpstreamIdleTimeout:    param.UpstreamIdleTimeout,
-		UpstreamMaxIdle:        param.UpstreamMaxIdle,
+		RoundType:              params.RoundType,
+		IpList:                 params.IpList,
+		WeightList:             params.WeightList,
+		UpstreamConnectTimeout: params.UpstreamConnectTimeout,
+		UpstreamHeaderTimeout:  params.UpstreamHeaderTimeout,
+		UpstreamIdleTimeout:    params.UpstreamIdleTimeout,
+		UpstreamMaxIdle:        params.UpstreamMaxIdle,
 	}
-	if err := dao.Save(c, s.db, loadbalance); err != nil {
+	if err := dao.Save(c, tx, loadbalance); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "添加服务负载均衡错失败")
 	}
@@ -99,60 +99,68 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInpu
 	return nil
 }
 
-func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateHTTPInput) error {
-	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
+func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdateHTTPInput) error {
+	if len(strings.Split(paramss.IpList, ",")) != len(strings.Split(paramss.WeightList, ",")) {
 		return errors.New("IP列表与权重列表数量不一致")
 	}
+
 	tx := s.db.Begin()
 
-	serviceInfo, err := dao.Get(c, s.db, &dao.ServiceInfo{ServiceName: params.ServiceName})
+	serviceInfo, err := dao.Get(c, tx, &dao.ServiceInfo{ServiceName: paramss.ServiceName})
 	if err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "服务不存在")
 	}
+
 	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, tx, serviceInfo)
 	if err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "服务不存在")
 	}
+
 	info := serviceDetail.Info
-	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Update(c, s.db, info); err != nil {
+	info.ServiceDesc = paramss.ServiceDesc
+	if err := dao.Update(c, tx, info); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新服务描述失败")
 	}
+
 	httpRule := serviceDetail.HTTPRule
-	httpRule.NeedHttps = params.NeedHttps
-	httpRule.NeedStripUri = params.NeedStripUri
-	httpRule.NeedWebsocket = params.NeedWebsocket
-	httpRule.UrlRewrite = params.UrlRewrite
-	httpRule.HeaderTransfor = params.HeaderTransfor
-	if err := dao.Update(c, s.db, httpRule); err != nil {
+	httpRule.NeedHttps = paramss.NeedHttps
+	httpRule.NeedStripUri = paramss.NeedStripUri
+	httpRule.NeedWebsocket = paramss.NeedWebsocket
+	httpRule.UrlRewrite = paramss.UrlRewrite
+	httpRule.HeaderTransfor = paramss.HeaderTransfor
+	if err := dao.Update(c, tx, httpRule); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新HTTP规则失败")
 	}
+
 	accessControl := serviceDetail.AccessControl
-	accessControl.OpenAuth = params.OpenAuth
-	accessControl.BlackList = params.BlackList
-	accessControl.WhiteList = params.WhiteList
-	accessControl.ClientIPFlowLimit = params.ClientipFlowLimit
-	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Update(c, s.db, accessControl); err != nil {
+	accessControl.OpenAuth = paramss.OpenAuth
+	accessControl.BlackList = paramss.BlackList
+	accessControl.WhiteList = paramss.WhiteList
+	accessControl.ClientIPFlowLimit = paramss.ClientipFlowLimit
+	accessControl.ServiceFlowLimit = paramss.ServiceFlowLimit
+	if err := dao.Update(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新服务权限失败")
 	}
+
 	loadbalance := serviceDetail.LoadBalance
-	loadbalance.RoundType = params.RoundType
-	loadbalance.IpList = params.IpList
-	loadbalance.WeightList = params.WeightList
-	loadbalance.UpstreamConnectTimeout = params.UpstreamConnectTimeout
-	loadbalance.UpstreamHeaderTimeout = params.UpstreamHeaderTimeout
-	loadbalance.UpstreamIdleTimeout = params.UpstreamIdleTimeout
-	loadbalance.UpstreamMaxIdle = params.UpstreamMaxIdle
-	if err := dao.Update(c, s.db, loadbalance); err != nil {
+	loadbalance.RoundType = paramss.RoundType
+	loadbalance.IpList = paramss.IpList
+	loadbalance.WeightList = paramss.WeightList
+	loadbalance.UpstreamConnectTimeout = paramss.UpstreamConnectTimeout
+	loadbalance.UpstreamHeaderTimeout = paramss.UpstreamHeaderTimeout
+	loadbalance.UpstreamIdleTimeout = paramss.UpstreamIdleTimeout
+	loadbalance.UpstreamMaxIdle = paramss.UpstreamMaxIdle
+	if err := dao.Update(c, tx, loadbalance); err != nil {
 		tx.Rollback()
 		return errors.Wrap(err, "更新服务负载均衡错失败")
 	}
+
 	tx.Commit()
+
 	return nil
 }
