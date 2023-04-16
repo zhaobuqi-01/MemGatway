@@ -31,8 +31,13 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 		return nil, 0, errors.New("dao is not initialized")
 	}
 
-	// 从db中分页读取基本信息
-	list, total, err := dao.PageList[dao.ServiceInfo](c, s.db, param.Info, param.PageNo, param.PageSize)
+	// 从db中分页读取基本信息\
+	queryConditions := []func(db *gorm.DB) *gorm.DB{
+		func(db *gorm.DB) *gorm.DB {
+			return db.Where("(service_name like ? or service_desc like ?)", "%"+param.Info+"%", "%"+param.Info+"%")
+		},
+	}
+	list, total, err := dao.PageList[dao.ServiceInfo](c, s.db, queryConditions, param.PageNo, param.PageSize)
 	if err != nil {
 		return nil, 0, errors.Wrap(err, "PageList(c, param.Info, param.PageNo, param.PageSize)")
 	}

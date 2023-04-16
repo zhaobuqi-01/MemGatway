@@ -18,8 +18,8 @@ import (
 )
 
 func main() {
-	// 初始化资源
 	pkg.InitAll()
+	defer pkg.CleanupAll()
 
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)
@@ -62,9 +62,4 @@ func main() {
 		logger.Fatal("Server forced to shutdown:  ", zap.Error(err))
 	}
 	logger.Info("Server exiting")
-
-	// 等待HttpServerStop执行完毕，执行清理操作
-	pkg.CleanupMySQL()
-	pkg.CleanupRedis()
-	pkg.CleanupLogger()
 }

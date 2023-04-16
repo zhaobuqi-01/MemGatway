@@ -16,6 +16,13 @@ func InitAll() {
 	database.InitRedis()
 }
 
+func CleanupAll() {
+	CleanupLogger()
+	CleanupRedis()
+	CleanupMySQL()
+	// flow_counter.CleanupFlowCounter()
+}
+
 func CleanupLogger() {
 	if err := logger.Close(); err != nil {
 		logger.Fatal("Failed to close logger: %v", zap.Error(err))

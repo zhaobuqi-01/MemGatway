@@ -34122,3 +34122,618 @@ net/http.(*conn).serve
 2023-04-15T12:51:00+08:00	INFO	logger/log.go:142	Mysql closed
 2023-04-15T12:51:00+08:00	INFO	logger/log.go:142	Redis closed
 2023-04-15T12:51:00+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-15T12:51:04+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:142	Response Info	{"path": "/service/service_add_grpc", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["357"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MTUyNzYyOHxOd3dBTkZwRk5saEZVa05ITlROTVZFSXpXRTgxUlRKRVExUTBORVZXU1RJMlEwZEpTa3N6VmpOV04wTlpSbFJGU2s1RFUwZEpVVUU9fKx61AHBWJNZIjMzYedPH55MD4pURNaO_jdkooWacvfl"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"black_list\": \"\",\n  \"clientip_flow_limit\": 0,\n  \"forbid_list\": \"\",\n  \"header_transfor\": \"\",\n  \"ip_list\": \"127.0.0.1:8994\",\n  \"open_auth\": 0,\n  \"port\": 8999,\n  \"round_type\": 0,\n  \"service_desc\": \"test_gprc_service_4\",\n  \"service_flow_limit\": 0,\n  \"service_name\": \"test_gprc_service_4\",\n  \"weight_list\": \"51\",\n  \"white_host_name\": \"\",\n  \"white_list\": \"\"\n}", "request_form": null}
+2023-04-15T12:51:16+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/logic.(*servcieGrpcLogic).AddGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:28
+gateway/internal/controller.(*serviceController).ServiceAddGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:278
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:51:16+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/logic.(*servcieGrpcLogic).AddGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:39
+gateway/internal/controller.(*serviceController).ServiceAddGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:278
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:51:16+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/logic.(*servcieGrpcLogic).AddGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:46
+gateway/internal/controller.(*serviceController).ServiceAddGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:278
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:168	Saved	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:168	Saved	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:168	Saved	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:168	Saved	{"TraceID": "488bb4cc-44ff-4649-ad9a-72b8d8bdb59e"}
+2023-04-15T12:51:16+08:00	INFO	logger/log.go:142	Request Info	{"path": "/service/service_add_grpc", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.3540783}
+2023-04-15T12:51:18+08:00	INFO	logger/log.go:142	Response Info	{"path": "/service/service_add_grpc", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["357"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MTUyNzYyOHxOd3dBTkZwRk5saEZVa05ITlROTVZFSXpXRTgxUlRKRVExUTBORVZXU1RJMlEwZEpTa3N6VmpOV04wTlpSbFJGU2s1RFUwZEpVVUU9fKx61AHBWJNZIjMzYedPH55MD4pURNaO_jdkooWacvfl"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"black_list\": \"\",\n  \"clientip_flow_limit\": 0,\n  \"forbid_list\": \"\",\n  \"header_transfor\": \"\",\n  \"ip_list\": \"127.0.0.1:8994\",\n  \"open_auth\": 0,\n  \"port\": 8999,\n  \"round_type\": 0,\n  \"service_desc\": \"test_gprc_service_4\",\n  \"service_flow_limit\": 0,\n  \"service_name\": \"test_gprc_service_4\",\n  \"weight_list\": \"51\",\n  \"white_host_name\": \"\",\n  \"white_list\": \"\"\n}", "request_form": null}
+2023-04-15T12:51:18+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "afe7e83b-d2a4-4a51-be86-591d5cacfff7"}
+2023-04-15T12:51:18+08:00	ERROR	logger/log.go:180	service add grpc error	{"TraceID": "afe7e83b-d2a4-4a51-be86-591d5cacfff7"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*serviceController).ServiceAddGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:280
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:51:18+08:00	INFO	logger/log.go:142	Request Info	{"path": "/service/service_add_grpc", "client_ip": "127.0.0.1", "method": "POST", "status_code": 500, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0098665}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:142	Response Info	{"path": "/service/service_update_grpc", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["369"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MTUyNzYyOHxOd3dBTkZwRk5saEZVa05ITlROTVZFSXpXRTgxUlRKRVExUTBORVZXU1RJMlEwZEpTa3N6VmpOV04wTlpSbFJGU2s1RFUwZEpVVUU9fKx61AHBWJNZIjMzYedPH55MD4pURNaO_jdkooWacvfl"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"black_list\": \"\",\n  \"clientip_flow_limit\": 0,\n  \"forbid_list\": \"\",\n  \"header_transfor\": \"\",\n  \"ip_list\": \"127.0.0.1:8994\",\n  \"open_auth\": 0,\n  \"port\": 8999,\n   \"id\":66,\n  \"round_type\": 0,\n  \"service_desc\": \"test_gprc_service_4\",\n  \"service_flow_limit\": 0,\n  \"service_name\": \"test_gprc_service_4\",\n  \"weight_list\": \"51\",\n  \"white_host_name\": \"\",\n  \"white_list\": \"\"\n}", "request_form": null}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	DEBUG	logger/log.go:138	get start
+2023-04-15T12:52:57+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:30
+gateway/internal/logic.(*servcieGrpcLogic).UpdateGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:119
+gateway/internal/controller.(*serviceController).ServiceUpdateGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:305
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:52:57+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:36
+gateway/internal/logic.(*servcieGrpcLogic).UpdateGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:119
+gateway/internal/controller.(*serviceController).ServiceUpdateGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:305
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	DEBUG	logger/log.go:138	success
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "718494f0-5a0d-4c38-a1de-ae9a0e14b216"}
+2023-04-15T12:52:57+08:00	INFO	logger/log.go:142	Request Info	{"path": "/service/service_update_grpc", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.4730708}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:142	Response Info	{"path": "/service/service_update_grpc", "client_ip": "127.0.0.1", "method": "POST", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Content-Length":["378"],"Content-Type":["application/json"],"Cookie":["mysession=MTY4MTUyNzYyOHxOd3dBTkZwRk5saEZVa05ITlROTVZFSXpXRTgxUlRKRVExUTBORVZXU1RJMlEwZEpTa3N6VmpOV04wTlpSbFJGU2s1RFUwZEpVVUU9fKx61AHBWJNZIjMzYedPH55MD4pURNaO_jdkooWacvfl"],"Dnt":["1"],"Origin":["http://localhost:8080"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "{\n  \"black_list\": \"\",\n  \"clientip_flow_limit\": 0,\n  \"forbid_list\": \"\",\n  \"header_transfor\": \"add h1 v1\",\n  \"ip_list\": \"127.0.0.1:8994\",\n  \"open_auth\": 0,\n  \"port\": 8999,\n   \"id\":66,\n  \"round_type\": 0,\n  \"service_desc\": \"test_gprc_service_4\",\n  \"service_flow_limit\": 0,\n  \"service_name\": \"test_gprc_service_4\",\n  \"weight_list\": \"51\",\n  \"white_host_name\": \"\",\n  \"white_list\": \"\"\n}", "request_form": null}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	DEBUG	logger/log.go:138	get start
+2023-04-15T12:53:17+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:30
+gateway/internal/logic.(*servcieGrpcLogic).UpdateGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:119
+gateway/internal/controller.(*serviceController).ServiceUpdateGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:305
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:53:17+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:36
+gateway/internal/logic.(*servcieGrpcLogic).UpdateGrpc
+	E:/project/Api-Gateway/internal/logic/service_grpc_logic.go:119
+gateway/internal/controller.(*serviceController).ServiceUpdateGrpc
+	E:/project/Api-Gateway/internal/controller/service.go:305
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	DEBUG	logger/log.go:138	success
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:168	Updated	{"TraceID": "94e62d78-d4aa-4b00-87cb-d72f0fea0d31"}
+2023-04-15T12:53:17+08:00	INFO	logger/log.go:142	Request Info	{"path": "/service/service_update_grpc", "client_ip": "127.0.0.1", "method": "POST", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.4568642}
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:142	Response Info	{"path": "/service/service_detail", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Cookie":["mysession=MTY4MTUyNzYyOHxOd3dBTkZwRk5saEZVa05ITlROTVZFSXpXRTgxUlRKRVExUTBORVZXU1RJMlEwZEpTa3N6VmpOV04wTlpSbFJGU2s1RFUwZEpVVUU9fKx61AHBWJNZIjMzYedPH55MD4pURNaO_jdkooWacvfl"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+2023-04-15T12:53:51+08:00	DEBUG	logger/log.go:138	get start
+2023-04-15T12:53:51+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:30
+gateway/internal/logic.(*serviceInfoLogic).GetServiceDetail
+	E:/project/Api-Gateway/internal/logic/service_info_logic.go:105
+gateway/internal/controller.(*serviceController).ServiceDetail
+	E:/project/Api-Gateway/internal/controller/service.go:104
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:53:51+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/dao.(*ServiceDetail).ServiceDetail
+	E:/project/Api-Gateway/internal/dao/service.go:36
+gateway/internal/logic.(*serviceInfoLogic).GetServiceDetail
+	E:/project/Api-Gateway/internal/logic/service_info_logic.go:105
+gateway/internal/controller.(*serviceController).ServiceDetail
+	E:/project/Api-Gateway/internal/controller/service.go:104
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RequestLog.func1
+	E:/project/Api-Gateway/internal/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/internal/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/internal/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/internal/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:168	Retrieved 	{"TraceID": "562efbf1-c34e-40b5-b1a5-650c0d2dcbbc"}
+2023-04-15T12:53:51+08:00	DEBUG	logger/log.go:138	success
+2023-04-15T12:53:51+08:00	INFO	logger/log.go:142	Request Info	{"path": "/service/service_detail", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.2505513}
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-15T14:18:36+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-16T11:54:48+08:00	FATAL	logger/log.go:162	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it."}
+gateway/pkg/logger.Fatal
+	E:/project/Api-Gateway/pkg/logger/log.go:162
+gateway/pkg/database.InitDB
+	E:/project/Api-Gateway/pkg/database/mysql.go:62
+gateway/internal/pkg.InitAll
+	E:/project/Api-Gateway/internal/pkg/init.go:15
+main.main
+	E:/project/Api-Gateway/cmd/server/main.go:21
+runtime.main
+	E:/Go/src/runtime/proc.go:250
+2023-04-16T11:55:11+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/index.html", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["document"],"Sec-Fetch-Mode":["navigate"],"Sec-Fetch-Site":["cross-site"],"Sec-Fetch-User":["?1"],"Upgrade-Insecure-Requests":["1"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/index.html", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["text/html; charset=utf-8"]}, "request_body": "", "elapsed": 0.0085208}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui.css", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["text/css,*/*;q=0.1"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["style"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui.css", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["144966"],"Content-Type":["text/css; charset=utf-8"],"Etag":["\"17564e08ed91e1f823646\""],"Last-Modified":["Sun, 16 Apr 2023 03:55:11 GMT"]}, "request_body": "", "elapsed": 0.0020476}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui-bundle.js", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["script"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui-standalone-preset.js", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["script"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui-bundle.js", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["1061579"],"Content-Type":["application/javascript"],"Etag":["\"17564e08ed22ee101032cb\""],"Last-Modified":["Sun, 16 Apr 2023 03:55:11 GMT"]}, "request_body": "", "elapsed": 0.0080992}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui-standalone-preset.js", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["312217"],"Content-Type":["application/javascript"],"Etag":["\"17564e08ed893e404c399\""],"Last-Modified":["Sun, 16 Apr 2023 03:55:11 GMT"]}, "request_body": "", "elapsed": 0.0057805}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/doc.json", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json,*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:25+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/doc.json", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0029161}
+2023-04-16T11:55:26+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/favicon-32x32.png", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["image"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:55:26+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/favicon-32x32.png", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["628"],"Content-Type":["image/png"],"Etag":["\"17564e08ed0b5f34274\""],"Last-Modified":["Sun, 16 Apr 2023 03:55:11 GMT"]}, "request_body": "", "elapsed": 0.0071899}
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-16T11:56:16+08:00	INFO	logger/log.go:142	Mysql closed
+2023-04-16T11:56:26+08:00	INFO	logger/log.go:142	server start running	{"addr": "127.0.0.1:8080"}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/index.html", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Cache-Control":["max-age=0"],"Connection":["keep-alive"],"Dnt":["1"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["document"],"Sec-Fetch-Mode":["navigate"],"Sec-Fetch-Site":["same-origin"],"Sec-Fetch-User":["?1"],"Upgrade-Insecure-Requests":["1"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/index.html", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["text/html; charset=utf-8"]}, "request_body": "", "elapsed": 0.0095308}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui.css", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["text/css,*/*;q=0.1"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"If-Modified-Since":["Sun, 16 Apr 2023 03:55:11 GMT"],"If-None-Match":["\"17564e08ed91e1f823646\""],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["style"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui.css", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["144966"],"Content-Type":["text/css; charset=utf-8"],"Etag":["\"17564e1a72b2465023646\""],"Last-Modified":["Sun, 16 Apr 2023 03:56:26 GMT"]}, "request_body": "", "elapsed": 0.0044203}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui-bundle.js", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"If-Modified-Since":["Sun, 16 Apr 2023 03:55:11 GMT"],"If-None-Match":["\"17564e08ed22ee101032cb\""],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["script"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui-bundle.js", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["1061579"],"Content-Type":["application/javascript"],"Etag":["\"17564e1a724eb1581032cb\""],"Last-Modified":["Sun, 16 Apr 2023 03:56:26 GMT"]}, "request_body": "", "elapsed": 0.0040427}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/swagger-ui-standalone-preset.js", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"If-Modified-Since":["Sun, 16 Apr 2023 03:55:11 GMT"],"If-None-Match":["\"17564e08ed893e404c399\""],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["script"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/swagger-ui-standalone-preset.js", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["312217"],"Content-Type":["application/javascript"],"Etag":["\"17564e1a72a9c9444c399\""],"Last-Modified":["Sun, 16 Apr 2023 03:56:26 GMT"]}, "request_body": "", "elapsed": 0.003996}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/favicon-32x32.png", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"If-Modified-Since":["Sun, 16 Apr 2023 03:55:11 GMT"],"If-None-Match":["\"17564e08ed0b5f34274\""],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["image"],"Sec-Fetch-Mode":["no-cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/favicon-32x32.png", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Accept-Ranges":["bytes"],"Content-Length":["628"],"Content-Type":["image/png"],"Etag":["\"17564e1a72358c3c274\""],"Last-Modified":["Sun, 16 Apr 2023 03:56:26 GMT"]}, "request_body": "", "elapsed": 0.0015711}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Response Info	{"path": "/swagger/doc.json", "client_ip": "127.0.0.1", "method": "GET", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "response_headers": {"Accept":["application/json,*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["zh-CN,zh;q=0.9"],"Connection":["keep-alive"],"Dnt":["1"],"Referer":["http://localhost:8080/swagger/index.html"],"Sec-Ch-Ua":["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Ch-Ua-Platform":["\"Windows\""],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"]}, "response_body": "", "request_form": null}
+2023-04-16T11:56:29+08:00	INFO	logger/log.go:142	Request Info	{"path": "/swagger/doc.json", "client_ip": "127.0.0.1", "method": "GET", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36", "request_id": "", "request_headers": {"Content-Type":["application/json; charset=utf-8"]}, "request_body": "", "elapsed": 0.0025814}
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	Shutting down server...
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	server is running	{"addr": "127.0.0.1:8080"}
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	Server exiting
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	Logger closed
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	Redis closed
+2023-04-16T11:57:25+08:00	INFO	logger/log.go:142	Mysql closed

@@ -18,6 +18,29 @@ definitions:
       white_list:
         type: string
     type: object
+  dao.App:
+    properties:
+      app_id:
+        type: string
+      create_at:
+        type: string
+      id:
+        type: integer
+      is_delete:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      update_at:
+        type: string
+      white_ips:
+        type: string
+    type: object
   dao.GrpcRule:
     properties:
       header_transfor:
@@ -119,6 +142,81 @@ definitions:
         type: integer
       service_id:
         type: integer
+    type: object
+  dto.APPAddHttpInput:
+    properties:
+      app_id:
+        type: string
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      white_ips:
+        type: string
+    required:
+    - app_id
+    - name
+    type: object
+  dto.APPListItemOutput:
+    properties:
+      app_id:
+        type: string
+      create_at:
+        type: string
+      id:
+        type: integer
+      is_delete:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      real_qpd:
+        type: integer
+      real_qps:
+        type: integer
+      secret:
+        type: string
+      update_at:
+        type: string
+      white_ips:
+        type: string
+    type: object
+  dto.APPListOutput:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/dto.APPListItemOutput'
+        type: array
+      total:
+        type: integer
+    type: object
+  dto.APPUpdateHttpInput:
+    properties:
+      app_id:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      white_ips:
+        type: string
+    required:
+    - id
+    - name
+    - secret
     type: object
   dto.AdminChangePwdInput:
     properties:
@@ -572,6 +670,20 @@ definitions:
     - service_name
     - weight_list
     type: object
+  dto.StatisticsOutput:
+    properties:
+      today:
+        items:
+          type: integer
+        type: array
+      yesterday:
+        items:
+          type: integer
+        type: array
+    required:
+    - today
+    - yesterday
+    type: object
   pkg.Response:
     properties:
       data: {}
@@ -605,7 +717,7 @@ paths:
               type: object
       summary: 管理员信息
       tags:
-      - 管理员接口
+      - Admin
   /admin/change_pwd:
     post:
       consumes:
@@ -633,7 +745,7 @@ paths:
               type: object
       summary: 管理员密码修改
       tags:
-      - 管理员接口
+      - Admin
   /admin/login:
     post:
       consumes:
@@ -661,7 +773,7 @@ paths:
               type: object
       summary: 管理员登陆
       tags:
-      - 管理员接口
+      - Admin
   /admin/login_out:
     get:
       consumes:
@@ -682,7 +794,178 @@ paths:
               type: object
       summary: 管理员退出登陆
       tags:
-      - 管理员接口
+      - Admin
+  /app/app_add:
+    post:
+      consumes:
+      - application/json
+      description: APP添加
+      operationId: /app/app_add
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.APPAddHttpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP添加
+      tags:
+      - APP
+  /app/app_delete:
+    get:
+      consumes:
+      - application/json
+      description: APP删除
+      operationId: /app/app_delete
+      parameters:
+      - description: APP ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP删除
+      tags:
+      - APP
+  /app/app_detail:
+    get:
+      consumes:
+      - application/json
+      description: APP详情
+      operationId: /app/app_detail
+      parameters:
+      - description: APP ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dao.App'
+              type: object
+      summary: APP详情
+      tags:
+      - APP
+  /app/app_list:
+    get:
+      consumes:
+      - application/json
+      description: APP列表
+      operationId: /app/app_list
+      parameters:
+      - description: 搜索关键字
+        in: query
+        name: info
+        type: string
+      - description: 页码
+        in: query
+        name: page_no
+        type: integer
+      - description: 每页数量
+        in: query
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.APPListOutput'
+              type: object
+      summary: APP列表
+      tags:
+      - APP
+  /app/app_stat:
+    get:
+      consumes:
+      - application/json
+      description: APP统计
+      operationId: /app/app_stat
+      parameters:
+      - description: APP ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.StatisticsOutput'
+              type: object
+      summary: APP统计
+      tags:
+      - APP
+  /app/app_update:
+    post:
+      consumes:
+      - application/json
+      description: APP更新
+      operationId: /app/app_update
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.APPUpdateHttpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP更新
+      tags:
+      - APP
   /service/service_add_grpc:
     post:
       consumes:
@@ -710,7 +993,7 @@ paths:
               type: object
       summary: 添加GRPC服务
       tags:
-      - 服务接口
+      - Service
   /service/service_add_http:
     post:
       consumes:
@@ -738,7 +1021,7 @@ paths:
               type: object
       summary: 添加HTTP服务
       tags:
-      - 服务接口
+      - Service
   /service/service_add_tcp:
     post:
       consumes:
@@ -766,7 +1049,7 @@ paths:
               type: object
       summary: 添加TCP服务
       tags:
-      - 服务接口
+      - Service
   /service/service_delete:
     get:
       consumes:
@@ -793,7 +1076,7 @@ paths:
               type: object
       summary: 服务删除
       tags:
-      - 服务接口
+      - Service
   /service/service_detail:
     get:
       description: 服务详情
@@ -815,7 +1098,7 @@ paths:
               type: object
       summary: 服务详情
       tags:
-      - 服务接口
+      - Service
   /service/service_list:
     get:
       consumes:
@@ -851,7 +1134,7 @@ paths:
               type: object
       summary: 服务列表
       tags:
-      - 服务接口
+      - Service
   /service/service_stat:
     get:
       consumes:
@@ -878,7 +1161,7 @@ paths:
               type: object
       summary: 服务统计
       tags:
-      - 服务接口
+      - Service
   /service/service_update_grpc:
     post:
       consumes:
@@ -906,7 +1189,7 @@ paths:
               type: object
       summary: 更新GRPC服务
       tags:
-      - 服务接口
+      - Service
   /service/service_update_http:
     post:
       consumes:
@@ -934,7 +1217,7 @@ paths:
               type: object
       summary: 更新HTTP服务
       tags:
-      - 服务接口
+      - Service
   /service/service_update_tcp:
     post:
       consumes:
@@ -962,5 +1245,5 @@ paths:
               type: object
       summary: 更新TCP服务
       tags:
-      - 服务接口
+      - Service
 swagger: "2.0"

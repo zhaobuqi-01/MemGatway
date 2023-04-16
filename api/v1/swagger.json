@@ -14,7 +14,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "管理员接口"
+                    "Admin"
                 ],
                 "summary": "管理员信息",
                 "operationId": "/admin/admin_info",
@@ -50,7 +50,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "管理员接口"
+                    "Admin"
                 ],
                 "summary": "管理员密码修改",
                 "operationId": "/admin/change_pwd",
@@ -97,7 +97,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "管理员接口"
+                    "Admin"
                 ],
                 "summary": "管理员登陆",
                 "operationId": "/admin/login",
@@ -144,10 +144,295 @@
                     "application/json"
                 ],
                 "tags": [
-                    "管理员接口"
+                    "Admin"
                 ],
                 "summary": "管理员退出登陆",
                 "operationId": "/admin/login_out",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_add": {
+            "post": {
+                "description": "APP添加",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP添加",
+                "operationId": "/app/app_add",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.APPAddHttpInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_delete": {
+            "get": {
+                "description": "APP删除",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP删除",
+                "operationId": "/app/app_delete",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "APP ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_detail": {
+            "get": {
+                "description": "APP详情",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP详情",
+                "operationId": "/app/app_detail",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "APP ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dao.App"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_list": {
+            "get": {
+                "description": "APP列表",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP列表",
+                "operationId": "/app/app_list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "搜索关键字",
+                        "name": "info",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page_no",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页数量",
+                        "name": "page_size",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.APPListOutput"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_stat": {
+            "get": {
+                "description": "APP统计",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP统计",
+                "operationId": "/app/app_stat",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "APP ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.StatisticsOutput"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/app/app_update": {
+            "post": {
+                "description": "APP更新",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APP"
+                ],
+                "summary": "APP更新",
+                "operationId": "/app/app_update",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.APPUpdateHttpInput"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "success",
@@ -180,7 +465,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "添加GRPC服务",
                 "operationId": "/service/service_add_grpc",
@@ -227,7 +512,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "添加HTTP服务",
                 "operationId": "/service/service_add_http",
@@ -274,7 +559,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "添加TCP服务",
                 "operationId": "/service/service_add_tcp",
@@ -321,7 +606,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "服务删除",
                 "operationId": "/service/service_delete",
@@ -360,7 +645,7 @@
             "get": {
                 "description": "服务详情",
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "服务详情",
                 "parameters": [
@@ -404,7 +689,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "服务列表",
                 "operationId": "/service/service_list",
@@ -462,7 +747,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "服务统计",
                 "operationId": "/service/service_stat",
@@ -507,7 +792,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "更新GRPC服务",
                 "operationId": "/service/service_update_grpc",
@@ -554,7 +839,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "更新HTTP服务",
                 "operationId": "/service/service_update_http",
@@ -601,7 +886,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "服务接口"
+                    "Service"
                 ],
                 "summary": "更新TCP服务",
                 "operationId": "/service/service_update_tcp",
@@ -665,6 +950,41 @@
                     "type": "string"
                 },
                 "white_list": {
+                    "type": "string"
+                }
+            }
+        },
+        "dao.App": {
+            "type": "object",
+            "properties": {
+                "app_id": {
+                    "type": "string"
+                },
+                "create_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_delete": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qpd": {
+                    "type": "integer"
+                },
+                "qps": {
+                    "type": "integer"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "update_at": {
+                    "type": "string"
+                },
+                "white_ips": {
                     "type": "string"
                 }
             }
@@ -822,6 +1142,119 @@
                 },
                 "service_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "dto.APPAddHttpInput": {
+            "type": "object",
+            "required": [
+                "app_id",
+                "name"
+            ],
+            "properties": {
+                "app_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qpd": {
+                    "type": "integer"
+                },
+                "qps": {
+                    "type": "integer"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "white_ips": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.APPListItemOutput": {
+            "type": "object",
+            "properties": {
+                "app_id": {
+                    "type": "string"
+                },
+                "create_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_delete": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qpd": {
+                    "type": "integer"
+                },
+                "qps": {
+                    "type": "integer"
+                },
+                "real_qpd": {
+                    "type": "integer"
+                },
+                "real_qps": {
+                    "type": "integer"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "update_at": {
+                    "type": "string"
+                },
+                "white_ips": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.APPListOutput": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.APPListItemOutput"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.APPUpdateHttpInput": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "secret"
+            ],
+            "properties": {
+                "app_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qpd": {
+                    "type": "integer"
+                },
+                "qps": {
+                    "type": "integer"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "white_ips": {
+                    "type": "string"
                 }
             }
         },
@@ -1434,6 +1867,27 @@
                 },
                 "white_list": {
                     "type": "string"
+                }
+            }
+        },
+        "dto.StatisticsOutput": {
+            "type": "object",
+            "required": [
+                "today",
+                "yesterday"
+            ],
+            "properties": {
+                "today": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "yesterday": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         },

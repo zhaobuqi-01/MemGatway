@@ -93,14 +93,14 @@ func ListByServiceID[T Model](c *gin.Context, db *gorm.DB, serviceID int64) ([]T
 }
 
 // PageList 分页查询
-func PageList[T Model](c *gin.Context, db *gorm.DB, search string, PageNo, PageSize int) ([]T, int64, error) {
+func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
 	total := int64(0)
 	list := []T{}
 	offset := (PageNo - 1) * PageSize
 
 	query := db.Where("is_delete=0")
-	if search != "" {
-		query = query.Where("(service_name like ? or service_desc like ?)", "%"+search+"%", "%"+search+"%")
+	for _, condition := range queryConditions {
+		query = condition(query)
 	}
 	if err := query.Limit(PageSize).Offset(offset).Order("id desc").Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
 		return nil, 0, err

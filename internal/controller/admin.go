@@ -23,7 +23,7 @@ func NewAdminController(db *gorm.DB) *AdminController {
 // AdminLogin godoc
 // @Summary 管理员登陆
 // @Description 管理员登陆
-// @Tags 管理员接口
+// @Tags Admin
 // @ID /admin/login
 // @Accept  json
 // @Produce  json
@@ -54,7 +54,7 @@ func (a *AdminController) AdminLogin(c *gin.Context) {
 // AdminLogin godoc
 // @Summary 管理员退出登陆
 // @Description 管理员退出登陆
-// @Tags 管理员接口
+// @Tags Admin
 // @ID /admin/login_out
 // @Accept  json
 // @Produce  json
@@ -74,7 +74,7 @@ func (a *AdminController) AdminLoginOut(c *gin.Context) {
 // AdminInfo godoc
 // @Summary 管理员信息
 // @Description 管理员信息
-// @Tags 管理员接口
+// @Tags Admin
 // @ID /admin/admin_info
 // @Accept  json
 // @Produce  json
@@ -94,7 +94,7 @@ func (a *AdminController) AdminInfo(c *gin.Context) {
 // AdminInfo godoc
 // @Summary 管理员密码修改
 // @Description 管理员密码修改
-// @Tags 管理员接口
+// @Tags Admin
 // @ID /admin/change_pwd
 // @Accept  json
 // @Produce  json

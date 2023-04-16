@@ -23,7 +23,7 @@ func NewServiceController(db *gorm.DB) *serviceController {
 // ServiceList godoc
 // @Summary 服务列表
 // @Description 服务列表
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_list
 // @Accept  json
 // @Produce  json
@@ -56,7 +56,7 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 // ServiceAdd godoc
 // @Summary 服务删除
 // @Description 服务删除
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_delete
 // @Accept  json
 // @Produce  json
@@ -82,7 +82,7 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 // ServiceDetail godoc
 // @Summary 服务详情
 // @Description 服务详情
-// @Tags 服务接口
+// @Tags Service
 // ID /service/service_detail
 // Accept json
 // Produce json
@@ -118,7 +118,7 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 // ServiceStat godoc
 // @Summary 服务统计
 // @Description 服务统计
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_stat
 // @Accept  json
 // @Produce  json
@@ -152,7 +152,7 @@ func (s *serviceController) ServiceStat(c *gin.Context) {
 
 // @Summary 添加HTTP服务
 // @Description 添加HTTP服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_add_http
 // @Accept  json
 // @Produce  json
@@ -179,7 +179,7 @@ func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 // ServiceUpadteHTTP godoc
 // @Summary 更新HTTP服务
 // @Description 更新HTTP服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_update_http
 // @Accept  json
 // @Produce  json
@@ -206,7 +206,7 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 // ServiceAddTcp godoc
 // @Summary 添加TCP服务
 // @Description 添加TCP服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_add_tcp
 // @Accept  json
 // @Produce  json
@@ -233,7 +233,7 @@ func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 // ServiceUpdateTcp godoc
 // @Summary 更新TCP服务
 // @Description 更新TCP服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_update_tcp
 // @Accept  json
 // @Produce  json
@@ -260,7 +260,7 @@ func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 // ServiceAddGrpc godoc
 // @Summary 添加GRPC服务
 // @Description 添加GRPC服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_add_grpc
 // @Accept  json
 // @Produce  json
@@ -287,7 +287,7 @@ func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 // ServiceUpdateGrpc godoc
 // @Summary 更新GRPC服务
 // @Description 更新GRPC服务
-// @Tags 服务接口
+// @Tags Service
 // @ID /service/service_update_grpc
 // @Accept  json
 // @Produce  json

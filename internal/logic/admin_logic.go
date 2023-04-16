@@ -104,7 +104,7 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 		return fmt.Errorf("admin.Get: %w", err)
 	}
 
-	hashedPassword, err := pkg.GenSaltPassword(params.Password)
+	hashedPassword, err := pkg.HashPassword(params.Password)
 	if err != nil {
 		return fmt.Errorf("GenSaltPassword: %w", err)
 	}
