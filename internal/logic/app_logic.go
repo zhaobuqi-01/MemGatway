@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"fmt"
 	"gateway/internal/dao"
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
@@ -30,12 +31,12 @@ func NewAppLogic(tx *gorm.DB) *appLogic {
 func (al *appLogic) AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APPListItemOutput, int64, error) {
 	queryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
-			return db.Where("(service_name like ? or service_desc like ?)", "%"+params.Info+"%", "%"+params.Info+"%")
+			return db.Where("(name like ? or app_id like ?)", "%"+params.Info+"%", "%"+params.Info+"%")
 		},
 	}
 	list, total, err := dao.PageList[dao.App](c, al.db, queryConditions, params.PageNo, params.PageSize)
 	if err != nil {
-		return nil, 0, errors.Wrap(err, "获取分页数据失败")
+		return nil, 0, fmt.Errorf("获取分页数据失败")
 	}
 
 	outputList := []dto.APPListItemOutput{}
@@ -65,7 +66,7 @@ func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*dao.
 	}
 	detail, err := dao.Get(c, al.db, search)
 	if err != nil {
-		return nil, errors.Wrap(err, "获取app详情失败")
+		return nil, fmt.Errorf("获取app详情失败")
 	}
 	return detail, nil
 }
@@ -76,7 +77,7 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 	}
 	info, err := dao.Get(c, al.db, search)
 	if err != nil {
-		return errors.Wrap(err, "app不存在")
+		return fmt.Errorf("app不存在")
 	}
 	info.IsDelete = 1
 	if err := dao.Save(c, al.db, info); err != nil {
@@ -91,7 +92,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 		AppID: params.AppID,
 	}
 	if _, err := dao.Get(c, al.db, search); err == nil {
-		return errors.New("app_id已经被占用")
+		return fmt.Errorf("app_id已经被占用")
 	}
 
 	if params.Secret == "" {
@@ -105,7 +106,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 		Qps:      params.Qps,
 	}
 	if err := dao.Save(c, al.db, app); err != nil {
-		return errors.Wrap(err, "添加app失败")
+		return fmt.Errorf("添加app失败")
 	}
 	return nil
 }
@@ -116,14 +117,14 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 	}
 	info, err := dao.Get(c, al.db, search)
 	if err != nil {
-		return errors.Wrap(err, "app不存在")
+		return fmt.Errorf("app不存在")
 	}
 	info.Name = params.Name
 	info.WhiteIPS = params.WhiteIPS
 	info.Qpd = params.Qpd
 	info.Qps = params.Qps
 	if err := dao.Save(c, al.db, info); err != nil {
-		return errors.Wrap(err, "app信息更新失败")
+		return fmt.Errorf("app信息更新失败")
 	}
 	return nil
 }

@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"gateway/configs"
-	"gateway/internal/pkg"
-	"gateway/internal/router"
+	Init "gateway/init"
 	"gateway/pkg/database"
 	"gateway/pkg/logger"
+	"gateway/router"
 	"net/http"
 	"os"
 	"os/signal"
@@ -18,8 +18,8 @@ import (
 )
 
 func main() {
-	pkg.InitAll()
-	defer pkg.CleanupAll()
+	Init.InitAll()
+	defer Init.CleanupAll()
 
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)

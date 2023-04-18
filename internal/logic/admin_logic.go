@@ -8,8 +8,6 @@ import (
 	"gateway/internal/pkg"
 	"time"
 
-	"github.com/pkg/errors"
-
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -35,11 +33,11 @@ func NewAdminLogic(tx *gorm.DB) *adminLogic {
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
 	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
 	if err != nil {
-		return nil, fmt.Errorf("admin.Get: %w", err)
+		return nil, fmt.Errorf("用户名不存在，请重新输入！")
 	}
 
 	if err := pkg.ComparePassword(admin.Password, params.Password); err != nil {
-		return nil, fmt.Errorf("incorrect password: %w", err)
+		return nil, fmt.Errorf("密码错误，请重新输入！")
 	}
 
 	sessInfo := &dto.AdminSessionInfo{
@@ -50,7 +48,7 @@ func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.Ad
 
 	sessBts, err := json.Marshal(sessInfo)
 	if err != nil {
-		return nil, errors.Wrap(err, "json.Marshal")
+		return nil, fmt.Errorf("session info marshal failed")
 	}
 
 	sess := sessions.Default(c)
@@ -74,7 +72,7 @@ func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		return nil, errors.New("session info is not valid")
+		return nil, fmt.Errorf("session info is not valid")
 	}
 
 	out := &dto.AminInfoOutput{
@@ -96,7 +94,7 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		return errors.New("session info is not valid")
+		return fmt.Errorf("session info is not valid")
 	}
 
 	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})

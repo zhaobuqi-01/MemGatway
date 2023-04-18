@@ -69,18 +69,22 @@ type SwaggerConfig struct {
 }
 
 var (
-	ConfigPath string // 硬编码的配置文件路径
+	configPath string
 	v          *viper.Viper
 )
 
+const confPath = "E:\\project\\Api-Gateway\\configs" // 硬编码的配置文件路径
+
 func setConfigPath() {
-	if os.Getenv("GATEWAY_CONFIG_PATH") != "" {
-		// WSL2
-		ConfigPath = os.Getenv("GATEWAY_CONFIG_PATH")
-	} else {
-		// Windows
-		ConfigPath = "E:\\project\\Api-Gateway\\configs"
+	// 获取环境变量的值
+	envConfigPath := os.Getenv("GATEWAY_CONFIG_PATH")
+
+	// 如果环境变量值为空，则使用默认的 Windows 配置路径
+	if envConfigPath == "" {
+		envConfigPath = confPath
 	}
+
+	configPath = envConfigPath
 }
 
 // LoadConfigurations loads configurations from the config files
@@ -105,7 +109,7 @@ func readConfig() {
 	// 配置文件类型，如果配置文件的名称
 	v.SetConfigType("yaml")
 	// 查找配置文件所在的路径
-	v.AddConfigPath(ConfigPath)
+	v.AddConfigPath(configPath)
 
 	// 查找并读取配置文件
 	err := v.ReadInConfig()

@@ -7,6 +7,7 @@ import (
 	"gateway/pkg/logger"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -41,7 +42,7 @@ func (a *AdminController) AdminLogin(c *gin.Context) {
 
 	sessInfo, err := a.logic.Login(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "Login check failed")
+		logger.ErrorWithTraceID(c, "Login check failed", zap.Error(err))
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
 		return
 	}

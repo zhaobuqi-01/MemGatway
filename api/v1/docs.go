@@ -245,10 +245,10 @@ const docTemplate = `{
                 "operationId": "/app/app_delete",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "APP ID",
+                        "type": "string",
+                        "description": "App ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -290,10 +290,10 @@ const docTemplate = `{
                 "operationId": "/app/app_detail",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "APP ID",
+                        "type": "string",
+                        "description": "App ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -341,16 +341,18 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "页码",
                         "name": "page_no",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "每页数量",
                         "name": "page_size",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -391,7 +393,7 @@ const docTemplate = `{
                 "operationId": "/app/app_stat",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "APP ID",
                         "name": "id",
                         "in": "path",

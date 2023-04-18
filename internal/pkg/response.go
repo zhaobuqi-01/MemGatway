@@ -27,7 +27,7 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 	c.Header("Content-Type", "application/json; charset=utf-8")
 
 	// 构造响应体
-	c.JSON(http.StatusInternalServerError, Response{
+	c.JSON(http.StatusOK, Response{
 		ErrorCode: code,
 		ErrorMsg:  err.Error(),
 		TraceID:   traceID,

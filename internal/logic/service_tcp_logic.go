@@ -1,13 +1,13 @@
 package logic
 
 import (
+	"fmt"
 	"gateway/internal/dao"
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )
 
@@ -24,22 +24,22 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 	infoSearch := &dao.ServiceInfo{ServiceName: params.ServiceName, IsDelete: 0}
 	if info, err := dao.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
 		if err == nil && info != nil {
-			return errors.New("服务名已存在,请更换服务名")
+			return fmt.Errorf("服务名已存在,请更换服务名")
 		}
-		return errors.Wrap(err, "查询服务名时发生错误")
+		return fmt.Errorf("查询服务名时发生错误")
 	}
 
 	// 检查端口是否被占用
 	if _, err := dao.Get(c, s.db, &dao.TcpRule{Port: params.Port}); err == nil {
-		return errors.Wrap(err, "端口已存在,请更换端口")
+		return fmt.Errorf("端口已存在,请更换端口")
 	}
 	if _, err := dao.Get(c, s.db, &dao.GrpcRule{Port: params.Port}); err == nil {
-		return errors.Wrap(err, "端口已存在,请更换端口")
+		return fmt.Errorf("端口已存在,请更换端口")
 	}
 
 	// ip列表与权重列表数量是否一致
 	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
-		return errors.New("ip列表与权重列表数量不一致")
+		return fmt.Errorf("ip列表与权重列表数量不一致")
 	}
 
 	tx := s.db.Begin()
@@ -51,7 +51,7 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 
 	if err := dao.Save(c, tx, info); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "添加服务信息失败")
+		return fmt.Errorf("添加服务信息失败")
 	}
 	loadBalance := &dao.LoadBalance{
 		ServiceID:  info.ID,
@@ -62,7 +62,7 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 	}
 	if err := dao.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "添加负载均衡信息失败")
+		return fmt.Errorf("添加负载均衡信息失败")
 	}
 	tcpRule := &dao.TcpRule{
 		ServiceID: info.ID,
@@ -70,7 +70,7 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 	}
 	if err := dao.Save(c, tx, tcpRule); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "添加http规则信息失败")
+		return fmt.Errorf("添加http规则信息失败")
 	}
 	accessControl := &dao.AccessControl{
 		ServiceID:         info.ID,
@@ -83,7 +83,7 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 	}
 	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "添加权限信息失败")
+		return fmt.Errorf("添加权限信息失败")
 	}
 	tx.Commit()
 	return nil
@@ -92,21 +92,21 @@ func (s *serviceTcpLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 func (s *serviceTcpLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcpInput) error {
 	// ip列表与权重列表数量是否一致
 	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
-		return errors.New("ip列表与权重列表数量不一致")
+		return fmt.Errorf("ip列表与权重列表数量不一致")
 	}
 
 	tx := s.db.Begin()
 
 	detail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, &dao.ServiceInfo{ID: params.ID})
 	if err != nil {
-		return errors.Wrap(err, "服务不存在")
+		return fmt.Errorf("服务不存在")
 	}
 
 	info := detail.Info
 	info.ServiceDesc = params.ServiceDesc
 	if err := dao.Update(c, tx, info); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "更新服务描述失败")
+		return fmt.Errorf("更新服务描述失败")
 	}
 
 	loadBalance := &dao.LoadBalance{}
@@ -120,7 +120,7 @@ func (s *serviceTcpLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	loadBalance.ForbidList = params.ForbidList
 	if err := dao.Update(c, tx, loadBalance); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "更新负载均衡信息失败")
+		return fmt.Errorf("更新负载均衡信息失败")
 	}
 
 	tcpRule := &dao.TcpRule{}
@@ -131,7 +131,7 @@ func (s *serviceTcpLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	tcpRule.Port = params.Port
 	if err := dao.Update(c, tx, tcpRule); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "更新TCP规则信息失败")
+		return fmt.Errorf("更新TCP规则信息失败")
 	}
 
 	accessControl := &dao.AccessControl{}
@@ -147,7 +147,7 @@ func (s *serviceTcpLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
 	if err := dao.Update(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return errors.Wrap(err, "更新权限信息失败")
+		return fmt.Errorf("更新权限信息失败")
 	}
 
 	tx.Commit()

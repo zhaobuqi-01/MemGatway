@@ -233,10 +233,10 @@
                 "operationId": "/app/app_delete",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "APP ID",
+                        "type": "string",
+                        "description": "App ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -278,10 +278,10 @@
                 "operationId": "/app/app_detail",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "APP ID",
+                        "type": "string",
+                        "description": "App ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -329,16 +329,18 @@
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "页码",
                         "name": "page_no",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "每页数量",
                         "name": "page_size",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -379,7 +381,7 @@
                 "operationId": "/app/app_stat",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "APP ID",
                         "name": "id",
                         "in": "path",

@@ -25,8 +25,8 @@ func NewAPPController(db *gorm.DB) *APPController {
 // @Accept  json
 // @Produce  json
 // @Param info query string false "搜索关键字"
-// @Param page_no query int false "页码"
-// @Param page_size query int false "每页数量"
+// @Param page_no query string true "页码"
+// @Param page_size query string true "每页数量"
 // @Success 200 {object} pkg.Response{data=dto.APPListOutput} "success"
 // @Router /app/app_list [get]
 func (ac *APPController) APPList(c *gin.Context) {
@@ -53,7 +53,7 @@ func (ac *APPController) APPList(c *gin.Context) {
 // @ID /app/app_detail
 // @Accept  json
 // @Produce  json
-// @Param id path int true "APP ID"
+// @Param id query string true "App ID"
 // @Success 200 {object} pkg.Response{data=dao.App} "success"
 // @Router /app/app_detail [get]
 func (ac *APPController) APPDetail(c *gin.Context) {
@@ -77,7 +77,7 @@ func (ac *APPController) APPDetail(c *gin.Context) {
 // @ID /app/app_delete
 // @Accept  json
 // @Produce  json
-// @Param id path int true "APP ID"
+// @Param id query string true "App ID"
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /app/app_delete [get]
 func (ac *APPController) APPDelete(c *gin.Context) {
@@ -149,7 +149,7 @@ func (ac *APPController) APPUpdate(c *gin.Context) {
 // @ID /app/app_stat
 // @Accept  json
 // @Produce  json
-// @Param id path int true "APP ID"
+// @Param id path string true "APP ID"
 //
 //	@Success 200 {object} pkg.Response{data=dto.StatisticsOutput} "success"
 //

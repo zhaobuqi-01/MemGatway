@@ -830,11 +830,11 @@ paths:
       description: APP删除
       operationId: /app/app_delete
       parameters:
-      - description: APP ID
-        in: path
+      - description: App ID
+        in: query
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -857,11 +857,11 @@ paths:
       description: APP详情
       operationId: /app/app_detail
       parameters:
-      - description: APP ID
-        in: path
+      - description: App ID
+        in: query
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -891,11 +891,13 @@ paths:
       - description: 页码
         in: query
         name: page_no
-        type: integer
+        required: true
+        type: string
       - description: 每页数量
         in: query
         name: page_size
-        type: integer
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -922,7 +924,7 @@ paths:
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:

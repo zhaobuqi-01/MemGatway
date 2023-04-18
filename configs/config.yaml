@@ -3,7 +3,7 @@ gin:
   mode: "debug"
 # Server configuration
 server:
-  addr: "127.0.0.1:8080"           # 监听地址, default ":8700"
+  addr: "localhost:8080"           # 监听地址, default ":8700"
   read_timeout: 10        # 读取超时时长
   write_timeout: 10       # 写入超时时长
   max_header_bytes: 20    # 最大的header大小，二进制位长度
@@ -25,7 +25,7 @@ log:
 # MySQL configuration
 mysql:
   sql_file : "./gateway.sql"
-  host: "127.0.0.1"
+  host: "localhost"
   port: 3306
   user: "root"
   password: "Dan10130204#@"
@@ -38,7 +38,7 @@ mysql:
 
 # Redis configuration
 redis:
-  addr: "127.0.0.1:6379"
+  addr: "localhost:6379"
   password: ""
   db: 0
   poolsize: 10

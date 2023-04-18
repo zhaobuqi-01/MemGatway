@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )
 
@@ -28,7 +27,7 @@ func NewServiceInfoLogic(tx *gorm.DB) *serviceInfoLogic {
 // 获取服务列表
 func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error) {
 	if s.db == nil {
-		return nil, 0, errors.New("dao is not initialized")
+		return nil, 0, fmt.Errorf("dao is not initialized")
 	}
 
 	// 从db中分页读取基本信息\
@@ -39,7 +38,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	}
 	list, total, err := dao.PageList[dao.ServiceInfo](c, s.db, queryConditions, param.PageNo, param.PageSize)
 	if err != nil {
-		return nil, 0, errors.Wrap(err, "PageList(c, param.Info, param.PageNo, param.PageSize)")
+		return nil, 0, fmt.Errorf("PageList(c, param.Info, param.PageNo, param.PageSize)")
 	}
 
 	// 格式化输出信息
@@ -47,13 +46,13 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	for _, listItem := range list {
 		serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, &listItem)
 		if err != nil {
-			return nil, 0, errors.Wrap(err, "s.getServiceDetail(c, &listItem)")
+			return nil, 0, fmt.Errorf("s.getServiceDetail(c, &listItem)")
 		}
 
 		// 根据服务类型和规则生成服务地址
 		serviceAddr, err := s.getServiceAddress(serviceDetail)
 		if err != nil {
-			return nil, 0, errors.Wrap(err, "s.getServiceAddress(serviceDetail)")
+			return nil, 0, fmt.Errorf("s.getServiceAddress(serviceDetail)")
 		}
 
 		// 获取IP列表
@@ -82,7 +81,7 @@ func (s *serviceInfoLogic) ServiceDelete(c *gin.Context, param *dto.ServiceDelet
 
 	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
 	if err != nil {
-		return errors.Wrap(err, "Get(c, serviceInfo)")
+		return fmt.Errorf("Get(c, serviceInfo)")
 	}
 
 	// 软删除，将is_delete设置为1；如果您需要物理删除，请使用dao.Delete(c, s.db, serviceInfo)
@@ -90,7 +89,7 @@ func (s *serviceInfoLogic) ServiceDelete(c *gin.Context, param *dto.ServiceDelet
 
 	err = dao.Save(c, s.db, serviceInfo)
 	if err != nil {
-		return errors.Wrap(err, "Update(c, serviceInfo)")
+		return fmt.Errorf("Update(c, serviceInfo)")
 	}
 
 	return nil
@@ -103,13 +102,13 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDe
 
 	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
 	if err != nil {
-		return nil, errors.Wrap(err, "Get(c, serviceInfo)")
+		return nil, fmt.Errorf("Get(c, serviceInfo)")
 	}
 
 	// 获取服务详情
 	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
 	if err != nil {
-		return nil, errors.Wrap(err, "ServiceDetail(c, serviceInfo)")
+		return nil, fmt.Errorf("ServiceDetail(c, serviceInfo)")
 	}
 
 	return serviceDetail, nil
@@ -118,13 +117,13 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDe
 func (s *serviceInfoLogic) GetServiceStat(c *gin.Context, param *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error) {
 	// serviceInfo, err := dao.Get(c, s.db, &dao.ServiceInfo{ID: param.ID})
 	// if err != nil {
-	// 	return nil, errors.Wrap(err, "Get(c, serviceInfo)")
+	// 	return nil, fmt.Errorf( "Get(c, serviceInfo)")
 	// }
 
 	// // 获取服务详情
 	// _, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
 	// if err != nil {
-	// 	return nil, errors.Wrap(err, "ServiceDetail(c, serviceInfo)")
+	// 	return nil, fmt.Errorf( "ServiceDetail(c, serviceInfo)")
 	// }
 
 	// 获取服务状态
@@ -163,13 +162,13 @@ func (s *serviceInfoLogic) getServiceAddress(serviceDetail *dao.ServiceDetail) (
 		if serviceDetail.HTTPRule.RuleType == pkg.HTTPRuleTypeDomain {
 			return serviceDetail.HTTPRule.Rule, nil
 		}
-		return "unknown", errors.New("unsupported load type")
+		return "unknown", fmt.Errorf("unsupported load type")
 	case pkg.LoadTypeTCP:
 		return fmt.Sprintf("%s:%d", clusterIP, serviceDetail.TCPRule.Port), nil
 	case pkg.LoadTypeGRPC:
 		return fmt.Sprintf("%s:%d", clusterIP, serviceDetail.GRPCRule.Port), nil
 	default:
-		return "unknown", errors.New("unsupported load type")
+		return "unknown", fmt.Errorf("unsupported load type")
 	}
 }
 

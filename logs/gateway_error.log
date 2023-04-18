@@ -30785,3 +30785,1833 @@ main.main
 	E:/project/Api-Gateway/cmd/server/main.go:21
 runtime.main
 	E:/Go/src/runtime/proc.go:250
+2023-04-16T13:41:54+08:00	ERROR	logger/log.go:180	user not login	{"TraceID": "199a95c8-a5ba-47f3-ab82-23968772befc"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:17
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-16T13:48:17+08:00	ERROR	logger/log.go:180	not found%!(EXTRA zapcore.Field={error 26 0  record not found})	{"TraceID": "94e06b09-2bcc-491c-871f-0604a89ad311"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/dao.Get[...]
+	E:/project/Api-Gateway/internal/dao/common.go:20
+gateway/internal/logic.(*appLogic).AppAdd
+	E:/project/Api-Gateway/internal/logic/app_logic.go:93
+gateway/internal/controller.(*APPController).APPAdd
+	E:/project/Api-Gateway/internal/controller/app.go:113
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T20:50:02+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "588049a7-2d7a-43a8-b2ea-a4d3f9040c9c"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T20:50:31+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "60234ccf-470a-4bf9-9d6f-fb17ea52c220"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T20:51:30+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "0441ec2c-b714-45b5-a67f-a74118608e4a"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T20:56:55+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "ef44c0fc-7ae2-40ad-9cb5-eaf6106493cd"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T20:57:34+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "8a698b7d-472f-4c29-8bbf-4f8c20b72058"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T21:53:56+08:00	ERROR	logger/log.go:180	parameter binding error	{"TraceID": "b035141f-512b-4831-9ed8-30fe0735f8d4"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:107
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T21:54:08+08:00	ERROR	logger/log.go:180	parameter binding error	{"TraceID": "ba09ef82-d770-4394-b24d-29fd34004523"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:107
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T21:56:29+08:00	ERROR	logger/log.go:180	parameter binding error	{"TraceID": "5a9ab14d-20e8-4406-8b8e-23c57e0a4179"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:107
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T21:56:39+08:00	ERROR	logger/log.go:180	parameter binding error	{"TraceID": "f00aaa82-5de0-400e-9f88-c354d5ffe0d1"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminChangePwd
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:107
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SessionAuthMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/session_auth.go:22
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T21:59:43+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "f28e8f2e-e4ce-4309-a507-5785d677bab9"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T22:05:45+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "66060736-bb24-4405-94a9-bad6a9c98065"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T22:07:22+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "993240e8-f534-4e98-84a0-8615732249ca"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T22:07:49+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "4bc5aff9-95e4-48e7-953c-94799dfaeb0e"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T22:08:02+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "78d9506a-9ec6-46c8-b6d0-4c91205f62ab"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T22:08:20+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "b8baef9b-7478-4de5-932f-ac9a3c78b913"}
+gateway/pkg/logger.ErrorWithTraceID
+	E:/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	E:/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	E:/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	E:/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	E:/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	C:/Users/dingchunhui/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	E:/Go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	E:/Go/src/net/http/server.go:1995
+2023-04-17T23:08:57+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "d3f4dcc2-fb50-4173-9a77-7b18cfff74de"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:09:05+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "81fa26f9-315c-4e08-b41d-10058b07f320"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:22:39+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "228a8a4a-6c58-4539-826a-c9fcd24d002f"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:22:41+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "f6a263fb-6ec9-4000-bdc6-07608c454512"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:22:43+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "80543cd6-beb6-4dea-83e1-afe749424fac"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:22:44+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "3141d315-8cd6-4baa-8af9-92d6fc94f8aa"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:22:45+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "a5d0f5cc-31c6-4801-9136-5b7d85937024"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:23:25+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "49a15f38-c33c-499f-a304-9f27c215d692"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:28:24+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "215781fa-6385-4cad-b81a-bce08637533d"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:28:27+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "5eeb4842-0cf5-4d6e-812d-4b036f79d700"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:28:28+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "7cafadcf-2d9b-48fb-b6e2-1bbab52a848c"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:28:30+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "0cd65705-c28e-4973-9697-3dcb65260665"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:28:42+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "3d189ed8-95a7-4cfa-a0f7-53300ff2dac0"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-17T23:30:10+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "500006c6-bba3-472b-88a8-69d447f96f4e"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:48:19+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "9d25ad59-1c80-4d0f-8264-8c49ac23d358"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:48:32+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "999c913c-1b02-49aa-af49-1a5f143b8ba4"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:48:38+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "784484ce-6d36-4f07-8a2b-d903c0fe71de"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:48:53+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "3738a518-b2d0-41ee-aa10-a24469ef9702"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:49:45+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "8678c0b0-6909-44b8-b07d-011382b24cbd"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:51:20+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "bb594e7f-f22f-48cc-b3c6-bdaa89c0b81b"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T10:59:34+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "fc48b0ef-04cd-4680-b453-66e5a427bf82"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T11:07:50+08:00	ERROR	logger/log.go:180	Login check failed	{"TraceID": "16a21617-699e-4438-921e-6dc6679d86ae"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:44
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T11:08:43+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "cdbcb1d5-de8c-4570-83a0-a77c16b6659f"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T12:56:55+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "a1739ee3-a46f-4503-9f7a-af06fc78350b"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T13:49:16+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！: crypto/bcrypt: hashedPassword is not the hash of the given password})	{"TraceID": "027ac371-eb46-4b91-877e-8b392da9e411"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995

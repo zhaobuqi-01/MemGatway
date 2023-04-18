@@ -34,11 +34,11 @@ type APPListItemOutput struct {
 	RealQps   int64     `json:"real_qps" description:"每秒请求量限制"`
 	UpdatedAt time.Time `json:"create_at" gorm:"column:create_at" description:"添加时间	"`
 	CreatedAt time.Time `json:"update_at" gorm:"column:update_at" description:"更新时间"`
-	IsDelete  int8      `json:"is_delete" gorm:"column:is_delete" description:"是否已删除；0：否；1：是"`
+	IsDelete  int8      `json:"is_delete" gorm:"column:is_delete" description:"是否已删除;0:否;1:是"`
 }
 
 type APPDetailInput struct {
-	ID int64 `json:"id" form:"id" comment:"租户ID" validate:"required"`
+	ID int64 `json:"id" form:"id" comment:"App ID" validate:"required"`
 }
 
 func (params *APPDetailInput) BindValidParam(c *gin.Context) error {
