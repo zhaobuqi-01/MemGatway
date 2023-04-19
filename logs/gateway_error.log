@@ -32615,3 +32615,315 @@ net/http.serverHandler.ServeHTTP
 	/usr/local/go/src/net/http/server.go:2936
 net/http.(*conn).serve
 	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T13:50:19+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "0524f7f7-3048-46b5-9cd8-bf0a73e201e9"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T13:59:19+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "cabb9023-5b14-4c5a-a9f2-8bfbf4a8d5e1"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-18T13:59:24+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "53ec7d64-b125-4cc1-b71b-4b8700c30edc"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-19T11:44:44+08:00	FATAL	logger/log.go:162	Failed to connect to MySQL: %v	{"error": "dial tcp 127.0.0.1:3306: connect: connection refused"}
+gateway/pkg/logger.Fatal
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:162
+gateway/pkg/database.InitDB
+	/mnt/e/project/Api-Gateway/pkg/database/mysql.go:62
+gateway/init.InitAll
+	/mnt/e/project/Api-Gateway/init/init.go:15
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:21
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-04-19T11:48:52+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "e62edfa7-06df-46f4-a4bb-86896d83cf71"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-19T13:46:08+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！})	{"TraceID": "ef2fb1ce-6c01-4850-973a-ae662ccb6b55"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-19T13:46:59+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！crypto/bcrypt: hashedPassword is not the hash of the given password})	{"TraceID": "e3e92f97-01a1-4a80-9a61-19c71d4862aa"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995
+2023-04-19T13:47:13+08:00	ERROR	logger/log.go:180	Login check failed%!(EXTRA zapcore.Field={error 26 0  密码错误，请重新输入！crypto/bcrypt: hashedPassword is not the hash of the given password})	{"TraceID": "4ba411f4-14f1-4677-82f4-b22b80537eef"}
+gateway/pkg/logger.ErrorWithTraceID
+	/mnt/e/project/Api-Gateway/pkg/logger/log.go:180
+gateway/internal/controller.(*AdminController).AdminLogin
+	/mnt/e/project/Api-Gateway/internal/controller/admin.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.TranslationMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/translation.go:41
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RequestLog.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/request.go:80
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.RecoveryMiddleware.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/recovery.go:33
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/contrib/sessions.Sessions.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/contrib@v0.0.0-20221130124618-7e01895a63f2/sessions/sessions.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+gateway/pkg/middleware.SetTraceID.func1
+	/mnt/e/project/Api-Gateway/pkg/middleware/trace_id.go:12
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/zhaobuqi/go/pkg/mod/github.com/gin-gonic/gin@v1.9.0/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2936
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:1995

@@ -1,10 +1,9 @@
 package dao
 
 import (
-	"gateway/pkg/logger"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -26,34 +25,29 @@ func (s *ServiceDetail) ServiceDetail(c *gin.Context, db *gorm.DB, search *Servi
 		search = info
 	}
 
-	logger.Debug("get start")
+	log.Debug("get start")
 	httpRule, err := Get(c, db, &HttpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
-		logger.Debug("get httprule error", zap.Error(err))
 		return nil, err
 	}
 
 	tcpRule, err := Get(c, db, &TcpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
-		logger.Debug("get tcprule error", zap.Error(err))
 		return nil, err
 	}
 
 	grpcRule, err := Get(c, db, &GrpcRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
-		logger.Debug("get grpcrule error", zap.Error(err))
 		return nil, err
 	}
 
 	accessControl, err := Get(c, db, &AccessControl{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
-		logger.Debug("get AccessControl error", zap.Error(err))
 		return nil, err
 	}
 
 	loadBalance, err := Get(c, db, &LoadBalance{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
-		logger.Debug("get LoadBalance error", zap.Error(err))
 		return nil, err
 	}
 
@@ -66,6 +60,6 @@ func (s *ServiceDetail) ServiceDetail(c *gin.Context, db *gorm.DB, search *Servi
 		AccessControl: accessControl,
 	}
 
-	logger.Debug("success")
+	log.Debug("success")
 	return detail, nil
 }

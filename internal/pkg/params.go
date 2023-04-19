@@ -1,9 +1,11 @@
 package pkg
 
 import (
+	"fmt"
+	"gateway/pkg/log"
 	"strings"
 
-	"github.com/pkg/errors"
+	"go.uber.org/zap"
 
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"
@@ -13,18 +15,21 @@ import (
 func DefaultGetValidParams(c *gin.Context, params interface{}) error {
 	// Bind request parameters to struct
 	if err := c.ShouldBind(params); err != nil {
+		log.Error("failed to bind request parameters", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
 	// Get validator
 	valid, err := GetValidator(c)
 	if err != nil {
+		log.Error("failed to get validator", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
 	// Get translator
 	trans, err := GetTranslation(c)
 	if err != nil {
+		log.Error("failed to get translator", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
@@ -37,7 +42,8 @@ func DefaultGetValidParams(c *gin.Context, params interface{}) error {
 		for _, e := range errs {
 			sliceErrs = append(sliceErrs, e.Translate(trans))
 		}
-		return errors.New(strings.Join(sliceErrs, ","))
+		log.Error("invalid parameters", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("invalid parameters: %s", strings.Join(sliceErrs, ";"))
 	}
 
 	return nil
@@ -46,12 +52,12 @@ func DefaultGetValidParams(c *gin.Context, params interface{}) error {
 func GetValidator(c *gin.Context) (*validator.Validate, error) {
 	val, ok := c.Get(ValidatorKey)
 	if !ok {
-		return nil, errors.New("Validator instance not found in context")
+		return nil, fmt.Errorf("validator instance not found in context")
 	}
 
 	validator, ok := val.(*validator.Validate)
 	if !ok {
-		return nil, errors.New("Failed to get validator instance from context")
+		return nil, fmt.Errorf("failed to get validator instance from context")
 	}
 
 	return validator, nil
@@ -60,12 +66,12 @@ func GetValidator(c *gin.Context) (*validator.Validate, error) {
 func GetTranslation(c *gin.Context) (ut.Translator, error) {
 	trans, ok := c.Get(TranslatorKey)
 	if !ok {
-		return nil, errors.New("Translator instance not found in context")
+		return nil, fmt.Errorf("translator instance not found in context")
 	}
 
 	translator, ok := trans.(ut.Translator)
 	if !ok {
-		return nil, errors.New("Failed to get translator instance from context")
+		return nil, fmt.Errorf("failed to get translator instance from context")
 	}
 
 	return translator, nil

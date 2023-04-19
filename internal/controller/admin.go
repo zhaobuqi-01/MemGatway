@@ -4,7 +4,7 @@ import (
 	"gateway/internal/dto"
 	"gateway/internal/logic"
 	"gateway/internal/pkg"
-	"gateway/pkg/logger"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -35,21 +35,19 @@ func (a *AdminController) AdminLogin(c *gin.Context) {
 	// 参数绑定
 	params := &dto.AdminLoginInput{}
 	if err := params.BindValParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
-		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	sessInfo, err := a.logic.Login(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "Login check failed", zap.Error(err))
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Admin login failed", zap.String("username", params.UserName), zap.Error(err))
 		return
+
 	}
 
 	out := &dto.AdminLoginOutput{Token: sessInfo.UserName}
 	pkg.ResponseSuccess(c, "login successful", out)
-	logger.InfoWithTraceID(c, "login successful")
 }
 
 // AdminLogin godoc
@@ -65,11 +63,11 @@ func (a *AdminController) AdminLoginOut(c *gin.Context) {
 	err := a.logic.AdminLogout(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Admin login out failed", zap.Error(err))
 		return
 	}
 
 	pkg.ResponseSuccess(c, "Log out successfully", "")
-	logger.InfoWithTraceID(c, "Log out successfully")
 }
 
 // AdminInfo godoc
@@ -85,11 +83,11 @@ func (a *AdminController) AdminInfo(c *gin.Context) {
 	out, err := a.logic.GetAdminInfo(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Get admin info failed", zap.Error(err))
 		return
 	}
 
 	pkg.ResponseSuccess(c, "Obtained administrator information successfully ", out)
-	logger.InfoWithTraceID(c, "Obtained administrator information successfully ")
 }
 
 // AdminInfo godoc
@@ -105,18 +103,16 @@ func (a *AdminController) AdminInfo(c *gin.Context) {
 func (a *AdminController) AdminChangePwd(c *gin.Context) {
 	params := &dto.AdminChangePwdInput{}
 	if err := params.BindValParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := a.logic.ChangeAdminPassword(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "Password modification failed")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Change admin password failed", zap.Error(err))
 		return
 	}
 
 	pkg.ResponseSuccess(c, "Password modification successful", "")
-	logger.InfoWithTraceID(c, "Password modification successful")
 }

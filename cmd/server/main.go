@@ -4,8 +4,8 @@ import (
 	"context"
 	"gateway/configs"
 	Init "gateway/init"
-	"gateway/pkg/database"
-	"gateway/pkg/logger"
+	"gateway/pkg/database/mysql"
+	"gateway/pkg/log"
 	"gateway/router"
 	"net/http"
 	"os"
@@ -25,7 +25,7 @@ func main() {
 	gin.SetMode(configs.GetGinConfig().Mode)
 
 	// 初始化路由
-	db := database.GetDB()
+	db := mysql.GetDB()
 	r := router.InitRouter(db)
 
 	serverConfig := configs.GetServerConfig()
@@ -38,11 +38,11 @@ func main() {
 		MaxHeaderBytes: 1 << uint(serverConfig.MaxHeaderBytes),
 	}
 	go func() {
-		logger.Info("server start running", zap.String("addr", serverConfig.Addr))
+		log.Info("server start running", zap.String("addr", serverConfig.Addr))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Fatal("listen: ", zap.String("addr", serverConfig.Addr), zap.Error(err))
+			log.Fatal("listen: ", zap.String("addr", serverConfig.Addr), zap.Error(err))
 		}
-		logger.Info("server is running", zap.String("addr", serverConfig.Addr))
+		log.Info("server is running", zap.String("addr", serverConfig.Addr))
 	}()
 
 	// Wait for interrupt signal to gracefully shutdown the server with
@@ -53,13 +53,13 @@ func main() {
 	// kill -9 is syscall.SIGKILL but can't be catch, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	logger.Info("Shutting down server...")
+	log.Info("Shutting down server...")
 
 	// 停止 HTTP 服务
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		logger.Fatal("Server forced to shutdown:  ", zap.Error(err))
+		log.Fatal("Server forced to shutdown:  ", zap.Error(err))
 	}
-	logger.Info("Server exiting")
+	log.Info("Server exiting")
 }

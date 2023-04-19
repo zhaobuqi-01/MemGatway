@@ -4,8 +4,10 @@ import (
 	"gateway/internal/dto"
 	"gateway/internal/logic"
 	"gateway/internal/pkg"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -38,9 +40,10 @@ func (ac *APPController) APPList(c *gin.Context) {
 	list, total, err := ac.appLogic.AppList(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to fetch list", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "获取app列表成功", &dto.APPListOutput{
+	pkg.ResponseSuccess(c, "Get the list successfully", &dto.APPListOutput{
 		List:  list,
 		Total: total,
 	})
@@ -65,9 +68,10 @@ func (ac *APPController) APPDetail(c *gin.Context) {
 	app, err := ac.appLogic.AppDetail(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to get details", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "获取app详情成功", app)
+	pkg.ResponseSuccess(c, "Get details successfully", app)
 }
 
 // APPDelete godoc
@@ -89,9 +93,10 @@ func (ac *APPController) APPDelete(c *gin.Context) {
 	err := ac.appLogic.AppDelete(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("failed to delete", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "成功删除", "")
+	pkg.ResponseSuccess(c, "Successfully deleted", "")
 }
 
 // APPAdd godoc
@@ -113,9 +118,10 @@ func (ac *APPController) APPAdd(c *gin.Context) {
 	err := ac.appLogic.AppAdd(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("add failed", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "成功添加", "")
+	pkg.ResponseSuccess(c, "successfully added", "")
 }
 
 // APPUpdate godoc
@@ -137,9 +143,10 @@ func (ac *APPController) APPUpdate(c *gin.Context) {
 	err := ac.appLogic.AppUpdate(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("update failed", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "成功更新", "")
+	pkg.ResponseSuccess(c, "successfully updated", "")
 }
 
 // APPStat godoc
@@ -163,7 +170,8 @@ func (ac *APPController) APPStat(c *gin.Context) {
 	stat, err := ac.appLogic.AppStat(c, params)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to get statistics", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "获取app统计成功", stat)
+	pkg.ResponseSuccess(c, "get stats success", stat)
 }

@@ -24,14 +24,14 @@ func NewServiceHttpLogic(tx *gorm.DB) *serviceHttpLogic {
 // 添加HTTP服务
 func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInput) error {
 	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
-		return fmt.Errorf("IP列表与权重列表数量不一致")
+		return fmt.Errorf("the IP list is inconsistent with the number of weight lists")
 	}
 
 	tx := s.db.Begin()
 	serviceInfo := &dao.ServiceInfo{ServiceName: params.ServiceName}
 	if _, err := dao.Get(c, tx, serviceInfo); err == nil {
 		tx.Rollback()
-		return fmt.Errorf("服务已存在")
+		return fmt.Errorf("HTTP service already exists")
 	}
 
 	httpUrl := &dao.HttpRule{
@@ -41,7 +41,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 
 	if _, err := dao.Get(c, tx, httpUrl); err == nil {
 		tx.Rollback()
-		return fmt.Errorf("服务接入前缀或域名已存在")
+		return fmt.Errorf("HTTP service access prefix or domain name already exists")
 	}
 	serviceModel := &dao.ServiceInfo{
 		ServiceName: params.ServiceName,
@@ -50,7 +50,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 
 	if err := dao.Save(c, tx, serviceModel); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务信息失败")
+		return fmt.Errorf("failed to add HTTP service information")
 	}
 
 	httpRule := &dao.HttpRule{
@@ -65,7 +65,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 	}
 	if err := dao.Save(c, tx, httpRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加HTTP规则失败")
+		return fmt.Errorf("failed to add HTTP service information")
 	}
 
 	accessControl := &dao.AccessControl{
@@ -78,7 +78,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 	}
 	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务权限失败")
+		return fmt.Errorf("failed to add HTTP service permission")
 	}
 
 	loadbalance := &dao.LoadBalance{
@@ -93,7 +93,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 	}
 	if err := dao.Save(c, tx, loadbalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务负载均衡错失败")
+		return fmt.Errorf("failed to add HTTP service load balancing error")
 	}
 	tx.Commit()
 	return nil
@@ -101,7 +101,7 @@ func (s *serviceHttpLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 
 func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdateHTTPInput) error {
 	if len(strings.Split(paramss.IpList, ",")) != len(strings.Split(paramss.WeightList, ",")) {
-		return fmt.Errorf("IP列表与权重列表数量不一致")
+		return fmt.Errorf("the IP list is inconsistent with the number of weight lists")
 	}
 
 	tx := s.db.Begin()
@@ -109,20 +109,20 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdate
 	serviceInfo, err := dao.Get(c, tx, &dao.ServiceInfo{ServiceName: paramss.ServiceName})
 	if err != nil {
 		tx.Rollback()
-		return fmt.Errorf("服务不存在")
+		return fmt.Errorf("HTTP service does not exist")
 	}
 
 	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, tx, serviceInfo)
 	if err != nil {
 		tx.Rollback()
-		return fmt.Errorf("服务不存在")
+		return fmt.Errorf("HTTP service does not exist")
 	}
 
 	info := serviceDetail.Info
 	info.ServiceDesc = paramss.ServiceDesc
 	if err := dao.Update(c, tx, info); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务描述失败")
+		return fmt.Errorf("failed to update HTTP service description")
 	}
 
 	httpRule := serviceDetail.HTTPRule
@@ -133,7 +133,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdate
 	httpRule.HeaderTransfor = paramss.HeaderTransfor
 	if err := dao.Update(c, tx, httpRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新HTTP规则失败")
+		return fmt.Errorf("failed to update HTTP service rules")
 	}
 
 	accessControl := serviceDetail.AccessControl
@@ -144,7 +144,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdate
 	accessControl.ServiceFlowLimit = paramss.ServiceFlowLimit
 	if err := dao.Update(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务权限失败")
+		return fmt.Errorf("failed to update HTTP service permissions")
 	}
 
 	loadbalance := serviceDetail.LoadBalance
@@ -157,7 +157,7 @@ func (s *serviceHttpLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdate
 	loadbalance.UpstreamMaxIdle = paramss.UpstreamMaxIdle
 	if err := dao.Update(c, tx, loadbalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务负载均衡错失败")
+		return fmt.Errorf("failed to update HTTP service load balancing error")
 	}
 
 	tx.Commit()

@@ -2,7 +2,9 @@ package pkg
 
 import (
 	"encoding/json"
+	"gateway/pkg/log"
 
+	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -10,6 +12,7 @@ import (
 func HashPassword(password string) (string, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
+		log.Error("GenSaltPassword failed", zap.Error(err))
 		return "", err
 	}
 	return string(hashedPassword), nil

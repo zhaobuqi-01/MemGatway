@@ -3,42 +3,44 @@ package pkg
 import (
 	"gateway/configs"
 
-	"gateway/pkg/database"
-	"gateway/pkg/logger"
+	"gateway/pkg/database/mysql"
+	"gateway/pkg/database/redis"
+
+	"gateway/pkg/log"
 
 	"go.uber.org/zap"
 )
 
 func InitAll() {
 	configs.Init()
-	logger.Init()
-	database.InitDB()
-	database.InitRedis()
+	log.Init()
+	mysql.InitDB()
+	redis.InitRedis()
 }
 
 func CleanupAll() {
-	CleanupLogger()
+	Cleanuplog()
 	CleanupRedis()
 	CleanupMySQL()
 	// flow_counter.CleanupFlowCounter()
 }
 
-func CleanupLogger() {
-	if err := logger.Close(); err != nil {
-		logger.Fatal("Failed to close logger: %v", zap.Error(err))
+func Cleanuplog() {
+	if err := log.Close(); err != nil {
+		log.Fatal("Failed to close log: %v", zap.Error(err))
 	}
-	logger.Info("Logger closed")
+	log.Info("log closed")
 }
 
 func CleanupRedis() {
-	if err := database.CloseRedis(); err != nil {
-		logger.Fatal("Failed to close redis: %v", zap.Error(err))
+	if err := redis.CloseRedis(); err != nil {
+		log.Fatal("Failed to close redis: %v", zap.Error(err))
 	}
-	logger.Info("Redis closed")
+	log.Info("Redis closed")
 }
 func CleanupMySQL() {
-	if err := database.CloseDB(); err != nil {
-		logger.Fatal("Failed to close database: %v", zap.Error(err))
+	if err := mysql.CloseDB(); err != nil {
+		log.Fatal("Failed to close database: %v", zap.Error(err))
 	}
-	logger.Info("Mysql closed")
+	log.Info("Mysql closed")
 }

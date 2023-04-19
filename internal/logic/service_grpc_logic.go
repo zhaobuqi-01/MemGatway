@@ -27,9 +27,9 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	if info, err := dao.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
 		if err == nil && info != nil {
-			return fmt.Errorf("服务名已存在,请更换服务名")
+			return fmt.Errorf("the GRPC service name already exists, please change the service name")
 		}
-		return fmt.Errorf("查询服务名时发生错误")
+		return fmt.Errorf("an error occurred while querying the service name")
 	}
 
 	//验证端口是否被占用?
@@ -37,19 +37,19 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		Port: params.Port,
 	}
 	if _, err := dao.Get(c, s.db, tcpRuleSearch); err == nil {
-		return fmt.Errorf("端口已存在,请更换端口")
+		return fmt.Errorf("the port already exists, please change the port")
 	}
 
 	grpcRuleSearch := &dao.GrpcRule{
 		Port: params.Port,
 	}
 	if _, err := dao.Get(c, s.db, grpcRuleSearch); err == nil {
-		return fmt.Errorf("端口已存在,请更换端口")
+		return fmt.Errorf("the port already exists, please change the port")
 	}
 
 	// ip列表与权重列表数量是否一致
 	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
-		return fmt.Errorf("ip列表与权重列表数量不一致")
+		return fmt.Errorf("the ip list is inconsistent with the number of weight lists")
 	}
 
 	tx := s.db.Begin()
@@ -61,7 +61,7 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	if err := dao.Save(c, tx, info); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务信息失败")
+		return fmt.Errorf("failed to add GRPC service information")
 	}
 
 	loadBalance := &dao.LoadBalance{
@@ -73,7 +73,7 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	if err := dao.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务负载均衡失败")
+		return fmt.Errorf("failed to add GRPC service load balancer")
 	}
 
 	grpcRule := &dao.GrpcRule{
@@ -83,7 +83,7 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	if err := dao.Save(c, tx, grpcRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务grpc规则失败")
+		return fmt.Errorf("failed to add GRPC service rule")
 	}
 
 	accessControl := &dao.AccessControl{
@@ -97,7 +97,7 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("添加服务权限失败")
+		return fmt.Errorf("failed to add GRPC service permission")
 	}
 
 	tx.Commit()
@@ -108,7 +108,7 @@ func (s *servcieGrpcLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 func (s *servcieGrpcLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateGrpcInput) error {
 	// ip列表与权重列表数量是否一致
 	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
-		return fmt.Errorf("ip列表与权重列表数量不一致")
+		return fmt.Errorf("the ip list is inconsistent with the number of weight lists")
 	}
 
 	tx := s.db.Begin()
@@ -118,14 +118,14 @@ func (s *servcieGrpcLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	}
 	detail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, service)
 	if err != nil {
-		return fmt.Errorf("服务不存在")
+		return fmt.Errorf("gRPC service does not exist")
 	}
 
 	info := detail.Info
 	info.ServiceDesc = params.ServiceDesc
 	if err := dao.Update(c, tx, info); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务信息失败")
+		return fmt.Errorf("failed to update GRPC service information")
 	}
 
 	loadBalance := &dao.LoadBalance{}
@@ -139,7 +139,7 @@ func (s *servcieGrpcLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	loadBalance.ForbidList = params.ForbidList
 	if err := dao.Update(c, tx, loadBalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务负载均衡失败")
+		return fmt.Errorf("failed to update GRPC service load balancing")
 	}
 
 	grpcRule := &dao.GrpcRule{}
@@ -151,7 +151,7 @@ func (s *servcieGrpcLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	grpcRule.HeaderTransfor = params.HeaderTransfor
 	if err := dao.Update(c, tx, grpcRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务grpc规则失败")
+		return fmt.Errorf("failed to update GRPC service rules")
 	}
 
 	accessControl := &dao.AccessControl{}
@@ -167,7 +167,7 @@ func (s *servcieGrpcLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
 	if err := dao.Update(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("更新服务权限失败")
+		return fmt.Errorf("failed to update GRPC service permissions")
 	}
 
 	tx.Commit()

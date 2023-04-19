@@ -13,7 +13,7 @@ package router
 
 import (
 	"gateway/configs"
-	"gateway/pkg/logger"
+	"gateway/pkg/log"
 	"gateway/pkg/middleware"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -24,12 +24,12 @@ import (
 
 // InitRouter 初始化路由，可以传入多个中间件
 func InitRouter(db *gorm.DB) *gin.Engine {
-	// 使用默认中间件（logger 和 recovery 中间件）创建 gin 路由
+	// 使用默认中间件（log 和 recovery 中间件）创建 gin 路由
 	router := gin.Default()
 
 	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
 	if err != nil {
-		logger.Fatal("sessions.NewRedisSrore err", zap.Error(err))
+		log.Fatal("sessions.NewRedisSrore err", zap.Error(err))
 	}
 
 	// 注册中间件

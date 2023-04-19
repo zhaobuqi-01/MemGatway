@@ -4,9 +4,10 @@ import (
 	"gateway/internal/dto"
 	"gateway/internal/logic"
 	"gateway/internal/pkg"
-	"gateway/pkg/logger"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -42,6 +43,7 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 	outputList, total, err := s.logic.GetServiceList(c, param)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to fetch list", zap.Error(err))
 		return
 	}
 
@@ -73,6 +75,7 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 	err := s.logic.ServiceDelete(c, param)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to delete service", zap.Error(err))
 		return
 	}
 
@@ -94,19 +97,15 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 	param := &dto.ServiceDeleteInput{}
 
 	if err := param.BindValidParam(c); err != nil {
-
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
-
 		return
-
 	}
 
 	output, err := s.logic.GetServiceDetail(c, param)
 
 	if err != nil {
-
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-
+		log.Error("Failed to get service detail", zap.Error(err))
 		return
 
 	}
@@ -129,25 +128,19 @@ func (s *serviceController) ServiceStat(c *gin.Context) {
 	param := &dto.ServiceDeleteInput{}
 
 	if err := param.BindValidParam(c); err != nil {
-
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
-
 		return
 
 	}
 
 	output, err := s.logic.GetServiceStat(c, param)
-
 	if err != nil {
-
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-
+		log.Error("Failed to get service stat", zap.Error(err))
 		return
-
 	}
 
 	pkg.ResponseSuccess(c, "", output)
-
 }
 
 // @Summary 添加HTTP服务
@@ -162,17 +155,17 @@ func (s *serviceController) ServiceStat(c *gin.Context) {
 func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 	params := &dto.ServiceAddHTTPInput{}
 	if err := params.BindValParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddHTTP(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service add http error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to add http service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "add httpService success", nil)
 }
 
@@ -189,17 +182,17 @@ func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 	params := &dto.ServiceUpdateHTTPInput{}
 	if err := params.BindValParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.UpdateHTTP(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service update http error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to update http service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "update httpService success", nil)
 }
 
@@ -216,17 +209,17 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 	params := &dto.ServiceAddTcpInput{}
 	if err := params.BindValidParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddTCP(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service add tcp error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to add tcp service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "add tcpService success", nil)
 }
 
@@ -243,17 +236,17 @@ func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 	params := &dto.ServiceUpdateTcpInput{}
 	if err := params.BindValidParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.UpdateTCP(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service update tcp error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to update tcp service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "update tcpService success", nil)
 }
 
@@ -270,17 +263,17 @@ func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 	params := &dto.ServiceAddGrpcInput{}
 	if err := params.BindValidParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddGrpc(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service add grpc error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to add grpc service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "add grpcService success", nil)
 }
 
@@ -297,16 +290,16 @@ func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
 	params := &dto.ServiceUpdateGrpcInput{}
 	if err := params.BindValidParam(c); err != nil {
-		logger.ErrorWithTraceID(c, "parameter binding error")
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.UpdateGrpc(c, params)
 	if err != nil {
-		logger.ErrorWithTraceID(c, "service update grpc error")
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		log.Error("Failed to update grpc service", zap.Error(err))
 		return
 	}
+
 	pkg.ResponseSuccess(c, "update grpcService success", nil)
 }

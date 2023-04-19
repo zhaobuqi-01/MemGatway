@@ -6,10 +6,12 @@ import (
 	"gateway/internal/dao"
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
+	"gateway/pkg/log"
 	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -33,11 +35,11 @@ func NewAdminLogic(tx *gorm.DB) *adminLogic {
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
 	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
 	if err != nil {
-		return nil, fmt.Errorf("用户名不存在，请重新输入！")
+		return nil, fmt.Errorf("the username does not exist. Please enter again")
 	}
 
 	if err := pkg.ComparePassword(admin.Password, params.Password); err != nil {
-		return nil, fmt.Errorf("密码错误，请重新输入！")
+		return nil, fmt.Errorf("wrong password, please re-enter")
 	}
 
 	sessInfo := &dto.AdminSessionInfo{
@@ -48,12 +50,17 @@ func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.Ad
 
 	sessBts, err := json.Marshal(sessInfo)
 	if err != nil {
-		return nil, fmt.Errorf("session info marshal failed")
+		log.Error("session info marshal failed", zap.Error(err))
+		return nil, fmt.Errorf("session info marshal failed ")
 	}
 
 	sess := sessions.Default(c)
 	sess.Set(pkg.AdminSessionInfoKey, string(sessBts))
-	sess.Save()
+	err = sess.Save()
+	if err != nil {
+		log.Error("session save failed", zap.Error(err))
+		return nil, fmt.Errorf("session save failed")
+	}
 
 	return sessInfo, nil
 }
@@ -62,7 +69,11 @@ func (s *adminLogic) AdminLogout(c *gin.Context) error {
 	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sess.Delete(pkg.AdminSessionInfoKey)
-	sess.Save()
+	err := sess.Save()
+	if err != nil {
+		log.Error("session save failed", zap.Error(err))
+		return fmt.Errorf("session save failed")
+	}
 	return nil
 }
 
@@ -72,7 +83,8 @@ func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		return nil, fmt.Errorf("session info is not valid")
+		log.Error("session info is not valid", zap.Error(err))
+		return nil, fmt.Errorf("session info is not valid ")
 	}
 
 	out := &dto.AminInfoOutput{
@@ -94,23 +106,25 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
+		log.Error("session info is not valid", zap.Error(err))
 		return fmt.Errorf("session info is not valid")
 	}
 
 	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
-		return fmt.Errorf("admin.Get: %w", err)
+		return fmt.Errorf("admin.Get failed")
 	}
 
 	hashedPassword, err := pkg.HashPassword(params.Password)
 	if err != nil {
-		return fmt.Errorf("GenSaltPassword: %w", err)
+		log.Error("GenSaltPassword failed", zap.Error(err))
+		return fmt.Errorf("genSaltPassword failed")
 	}
 
 	adminInfo.Password = hashedPassword
 
 	if err := dao.Update(c, s.db, adminInfo); err != nil {
-		return fmt.Errorf("admin.Update: %w", err)
+		return fmt.Errorf("failed to change password")
 	}
 
 	return nil

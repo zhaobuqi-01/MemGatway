@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"gateway/pkg/logger"
+	"gateway/pkg/log"
 	"io/ioutil"
 	"time"
 
@@ -25,7 +25,7 @@ func RequestOutLog(c *gin.Context, startTime time.Time) {
 	// 计算请求执行时间
 	elapsed := time.Since(startTime)
 
-	logger.Info("Request Info",
+	log.Info("Request Info",
 		zap.String("path", path),
 		zap.String("client_ip", clientIP),
 		zap.String("method", method),
@@ -34,7 +34,8 @@ func RequestOutLog(c *gin.Context, startTime time.Time) {
 		zap.String("request_id", requestID),
 		zap.Any("request_headers", responseHeaders),
 		zap.Any("request_body", responseBody),
-		zap.Any("elapsed", elapsed.Seconds()),
+		zap.Duration("elapsed", elapsed),
+		zap.String("trace_id", c.GetString("TraceID")),
 	)
 }
 
@@ -58,7 +59,7 @@ func RequestInLog(c *gin.Context) {
 	requestBodyStr := string(requestBody)
 	requestForm := c.Request.PostForm
 
-	logger.Info("Response Info",
+	log.Info("Response Info",
 		zap.String("path", path),
 		zap.String("client_ip", clientIP),
 		zap.String("method", method),
@@ -67,6 +68,7 @@ func RequestInLog(c *gin.Context) {
 		zap.Any("response_headers", requestHeaders),
 		zap.String("response_body", requestBodyStr),
 		zap.Any("request_form", requestForm),
+		zap.String("trace_id", c.GetString("TraceID")),
 	)
 }
 

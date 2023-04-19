@@ -38,7 +38,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	}
 	list, total, err := dao.PageList[dao.ServiceInfo](c, s.db, queryConditions, param.PageNo, param.PageSize)
 	if err != nil {
-		return nil, 0, fmt.Errorf("PageList(c, param.Info, param.PageNo, param.PageSize)")
+		return nil, 0, fmt.Errorf("failed to get serviceInfo list")
 	}
 
 	// 格式化输出信息
@@ -46,13 +46,13 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	for _, listItem := range list {
 		serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, &listItem)
 		if err != nil {
-			return nil, 0, fmt.Errorf("s.getServiceDetail(c, &listItem)")
+			return nil, 0, fmt.Errorf("get serviceDetail fail")
 		}
 
 		// 根据服务类型和规则生成服务地址
 		serviceAddr, err := s.getServiceAddress(serviceDetail)
 		if err != nil {
-			return nil, 0, fmt.Errorf("s.getServiceAddress(serviceDetail)")
+			return nil, 0, fmt.Errorf("get serviceAddr fail")
 		}
 
 		// 获取IP列表
@@ -81,7 +81,7 @@ func (s *serviceInfoLogic) ServiceDelete(c *gin.Context, param *dto.ServiceDelet
 
 	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
 	if err != nil {
-		return fmt.Errorf("Get(c, serviceInfo)")
+		return fmt.Errorf("service does not exist")
 	}
 
 	// 软删除，将is_delete设置为1；如果您需要物理删除，请使用dao.Delete(c, s.db, serviceInfo)
@@ -89,7 +89,7 @@ func (s *serviceInfoLogic) ServiceDelete(c *gin.Context, param *dto.ServiceDelet
 
 	err = dao.Save(c, s.db, serviceInfo)
 	if err != nil {
-		return fmt.Errorf("Update(c, serviceInfo)")
+		return fmt.Errorf("failed to delete service")
 	}
 
 	return nil
@@ -102,13 +102,13 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDe
 
 	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
 	if err != nil {
-		return nil, fmt.Errorf("Get(c, serviceInfo)")
+		return nil, fmt.Errorf("service does not exist")
 	}
 
 	// 获取服务详情
 	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
 	if err != nil {
-		return nil, fmt.Errorf("ServiceDetail(c, serviceInfo)")
+		return nil, fmt.Errorf("failed to get serviceDetail")
 	}
 
 	return serviceDetail, nil
