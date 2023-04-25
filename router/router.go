@@ -13,8 +13,8 @@ package router
 
 import (
 	"gateway/configs"
+	"gateway/middleware"
 	"gateway/pkg/log"
-	"gateway/pkg/middleware"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"

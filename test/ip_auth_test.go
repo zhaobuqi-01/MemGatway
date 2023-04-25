@@ -1,7 +1,7 @@
 package test
 
 import (
-	"gateway/pkg/middleware"
+	"gateway/internal/middleware"
 	"net/http"
 	"net/http/httptest"
 	"testing"
