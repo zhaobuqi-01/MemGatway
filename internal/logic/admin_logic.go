@@ -15,6 +15,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// AdminLogic定义了管理员业务逻辑的接口
 type AdminLogic interface {
 	Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error)
 	AdminLogout(c *gin.Context) error
@@ -26,22 +27,25 @@ type adminLogic struct {
 	db *gorm.DB
 }
 
+// NewAdminLogic创建一个新的AdminLogic实例
 func NewAdminLogic(tx *gorm.DB) *adminLogic {
 	return &adminLogic{
 		db: tx,
 	}
 }
 
+// Login验证管理员用户名和密码，并创建一个新的会话
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
 	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
 	if err != nil {
-		return nil, fmt.Errorf("the username does not exist. Please enter again")
+		return nil, fmt.Errorf("the username does not exist. Please try again")
 	}
 
 	if err := pkg.ComparePassword(admin.Password, params.Password); err != nil {
-		return nil, fmt.Errorf("wrong password, please re-enter")
+		return nil, fmt.Errorf("incorrect password, please try again")
 	}
 
+	// 创建新的会话信息
 	sessInfo := &dto.AdminSessionInfo{
 		ID:        admin.ID,
 		UserName:  admin.UserName,
@@ -50,48 +54,48 @@ func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.Ad
 
 	sessBts, err := json.Marshal(sessInfo)
 	if err != nil {
-		log.Error("session info marshal failed", zap.Error(err))
-		return nil, fmt.Errorf("session info marshal failed ")
+		log.Error("failed to marshal session info", zap.Error(err))
+		return nil, fmt.Errorf("failed to marshal session info")
 	}
 
 	sess := sessions.Default(c)
 	sess.Set(pkg.AdminSessionInfoKey, string(sessBts))
 	err = sess.Save()
 	if err != nil {
-		log.Error("session save failed", zap.Error(err))
-		return nil, fmt.Errorf("session save failed")
+		log.Error("failed to save session", zap.Error(err))
+		return nil, fmt.Errorf("failed to save session")
 	}
 
 	return sessInfo, nil
 }
 
+// AdminLogout注销管理员会话
 func (s *adminLogic) AdminLogout(c *gin.Context) error {
-	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sess.Delete(pkg.AdminSessionInfoKey)
 	err := sess.Save()
 	if err != nil {
-		log.Error("session save failed", zap.Error(err))
-		return fmt.Errorf("session save failed")
+		log.Error("failed to save session", zap.Error(err))
+		return fmt.Errorf("failed to save session")
 	}
 	return nil
 }
 
+// GetAdminInfo返回当前管理员的信息
 func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
-	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		log.Error("session info is not valid", zap.Error(err))
-		return nil, fmt.Errorf("session info is not valid ")
+		log.Error("invalid session info", zap.Error(err))
+		return nil, fmt.Errorf("invalid session info")
 	}
 
 	out := &dto.AminInfoOutput{
 		ID:            adminSessionInfo.ID,
 		Name:          adminSessionInfo.UserName,
 		LoginTime:     adminSessionInfo.LoginTime,
-		Avatar:        "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
+		Avatar:        "https://images.unsplash.com/photo-1521747116042-5a810fda9664",
 		Introduceions: "I am a super administrator",
 		Roles: []string{
 			"admin",
@@ -100,25 +104,24 @@ func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 	return out, nil
 }
 
+// ChangeAdminPassword修改管理员密码
 func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error {
-	// 业务逻辑代码
 	sess := sessions.Default(c)
 	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
-		log.Error("session info is not valid", zap.Error(err))
-		return fmt.Errorf("session info is not valid")
+		log.Error("invalid session info", zap.Error(err))
+		return fmt.Errorf("invalid session info")
 	}
-
 	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
-		return fmt.Errorf("admin.Get failed")
+		return fmt.Errorf("failed to get admin info")
 	}
 
 	hashedPassword, err := pkg.HashPassword(params.Password)
 	if err != nil {
-		log.Error("GenSaltPassword failed", zap.Error(err))
-		return fmt.Errorf("genSaltPassword failed")
+		log.Error("failed to generate hashed password", zap.Error(err))
+		return fmt.Errorf("failed to generate hashed password")
 	}
 
 	adminInfo.Password = hashedPassword

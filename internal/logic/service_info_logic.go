@@ -7,12 +7,16 @@ import (
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
 	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
+type ServiceInfoLogic interface {
+	ServiceDelete(c *gin.Context, param *dto.ServiceDeleteInput) error
+	GetServiceList(c *gin.Context, param *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error)
+	GetServiceDetail(c *gin.Context, param *dto.ServiceDeleteInput) (*dao.ServiceDetail, error)
+}
 type serviceInfoLogic struct {
 	db *gorm.DB
 }
@@ -30,7 +34,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 		return nil, 0, fmt.Errorf("dao is not initialized")
 	}
 
-	// 从db中分页读取基本信息\
+	// 从db中分页读取基本信息
 	queryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
 			return db.Where("(service_name like ? or service_desc like ?)", "%"+param.Info+"%", "%"+param.Info+"%")
@@ -60,6 +64,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 
 		outputItem := dto.ServiceListItemOutput{
 			ID:          listItem.ID,
+			LoadType:    listItem.LoadType,
 			ServiceName: listItem.ServiceName,
 			ServiceDesc: listItem.ServiceDesc,
 			ServiceAddr: serviceAddr,
@@ -112,34 +117,6 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDe
 	}
 
 	return serviceDetail, nil
-}
-
-func (s *serviceInfoLogic) GetServiceStat(c *gin.Context, param *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error) {
-	// serviceInfo, err := dao.Get(c, s.db, &dao.ServiceInfo{ID: param.ID})
-	// if err != nil {
-	// 	return nil, fmt.Errorf( "Get(c, serviceInfo)")
-	// }
-
-	// // 获取服务详情
-	// _, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
-	// if err != nil {
-	// 	return nil, fmt.Errorf( "ServiceDetail(c, serviceInfo)")
-	// }
-
-	// 获取服务状态
-	todayList := []int64{}
-	yesterdayList := []int64{}
-	for i := 0; i <= time.Now().Hour(); i++ {
-		todayList = append(todayList, 0)
-	}
-	for i := 0; i <= 23; i++ {
-		yesterdayList = append(yesterdayList, 0)
-	}
-
-	return &dto.ServiceStatOutput{
-		Today:     todayList,
-		Yesterday: yesterdayList,
-	}, nil
 }
 
 // 1、http后缀接入 clusterIP+clusterPort+path

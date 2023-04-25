@@ -11,12 +11,12 @@ import (
 )
 
 type dashboardController struct {
-	dashboardLogic logic.DashboardLogic
+	logic logic.DashboardLogic
 }
 
 func NewDashboardController(db *gorm.DB) *dashboardController {
 	return &dashboardController{
-		dashboardLogic: logic.NewDashbordLogic(db),
+		logic: logic.NewDashboardLogic(db),
 	}
 }
 
@@ -27,17 +27,16 @@ func NewDashboardController(db *gorm.DB) *dashboardController {
 // @ID /dashboard/panel_group_data
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} pkg.Response{data=dto.PanelGroupDataOutput} "success"
+// @Success 200 {object} middleware.Response{data=dto.PanelGroupDataOutput} "success"
 // @Router /dashboard/panel_group_data [get]
-
 func (dc *dashboardController) PanelGroupData(c *gin.Context) {
-	out, err := dc.dashboardLogic.PanelGroupData(c)
+	out, err := dc.logic.PanelGroupData(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-		log.Error("PanelGroupData failed", zap.Error(err))
+		log.Error("Admin login out failed", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "", out)
+	pkg.ResponseSuccess(c, "Log out successfully", out)
 }
 
 // ServiceStat godoc
@@ -47,14 +46,14 @@ func (dc *dashboardController) PanelGroupData(c *gin.Context) {
 // @ID /dashboard/service_stat
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} pkg.Response{data=dto.DashServiceStatOutput} "success"
+// @Success 200 {object} middleware.Response{data=dto.DashServiceStatOutput} "success"
 // @Router /dashboard/service_stat [get]
 func (dc *dashboardController) ServiceStat(c *gin.Context) {
-	out, err := dc.dashboardLogic.ServiceStat(c)
+	out, err := dc.logic.ServiceStat(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-		log.Error("ServiceStat failed", zap.Error(err))
+		log.Error("Admin login out failed", zap.Error(err))
 		return
 	}
-	pkg.ResponseSuccess(c, "", out)
+	pkg.ResponseSuccess(c, "Log out successfully", out)
 }

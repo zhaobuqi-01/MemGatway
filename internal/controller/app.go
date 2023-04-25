@@ -148,30 +148,3 @@ func (ac *APPController) APPUpdate(c *gin.Context) {
 	}
 	pkg.ResponseSuccess(c, "successfully updated", "")
 }
-
-// APPStat godoc
-// @Summary APP统计
-// @Description APP统计
-// @Tags APP
-// @ID /app/app_stat
-// @Accept  json
-// @Produce  json
-// @Param id path string true "APP ID"
-//
-//	@Success 200 {object} pkg.Response{data=dto.StatisticsOutput} "success"
-//
-// @Router /app/app_stat [get]
-func (ac *APPController) APPStat(c *gin.Context) {
-	params := &dto.APPDetailInput{}
-	if err := params.BindValidParam(c); err != nil {
-		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
-		return
-	}
-	stat, err := ac.appLogic.AppStat(c, params)
-	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-		log.Error("Failed to get statistics", zap.Error(err))
-		return
-	}
-	pkg.ResponseSuccess(c, "get stats success", stat)
-}

@@ -1,7 +1,11 @@
 package dao
 
 import (
+	"gateway/internal/dto"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 type ServiceInfo struct {
@@ -16,4 +20,12 @@ type ServiceInfo struct {
 
 func (ServiceInfo) TableName() string {
 	return "gateway_service_info"
+}
+
+func (t *ServiceInfo) GroupByLoadType(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
+	list := []dto.DashServiceStatItemOutput{}
+	if err := tx.Where("is_delete=0").Select("load_type, count(*) as value").Group("load_type").Scan(&list).Error; err != nil {
+		return nil, err
+	}
+	return list, nil
 }

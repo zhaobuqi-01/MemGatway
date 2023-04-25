@@ -10,6 +10,11 @@ import (
 	"gorm.io/gorm"
 )
 
+type ServiceHttpLogic interface {
+	AddHTTP(c *gin.Context, param *dto.ServiceAddHTTPInput) error
+	UpdateHTTP(c *gin.Context, param *dto.ServiceUpdateHTTPInput) error
+}
+
 type serviceHttpLogic struct {
 	db *gorm.DB
 }

@@ -114,35 +114,6 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 
 }
 
-// ServiceStat godoc
-// @Summary 服务统计
-// @Description 服务统计
-// @Tags Service
-// @ID /service/service_stat
-// @Accept  json
-// @Produce  json
-// @Param id query  int true "服务id"
-// @Success 200 {object} pkg.Response{data=dto.ServiceStatOutput} "success"
-// @Router /service/service_stat [get]
-func (s *serviceController) ServiceStat(c *gin.Context) {
-	param := &dto.ServiceDeleteInput{}
-
-	if err := param.BindValidParam(c); err != nil {
-		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
-		return
-
-	}
-
-	output, err := s.logic.GetServiceStat(c, param)
-	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
-		log.Error("Failed to get service stat", zap.Error(err))
-		return
-	}
-
-	pkg.ResponseSuccess(c, "", output)
-}
-
 // @Summary 添加HTTP服务
 // @Description 添加HTTP服务
 // @Tags Service

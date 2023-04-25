@@ -11,12 +11,12 @@ import (
 	"gorm.io/gorm"
 )
 
-type AdminController struct {
+type adminController struct {
 	logic logic.AdminLogic
 }
 
-func NewAdminController(db *gorm.DB) *AdminController {
-	return &AdminController{
+func NewAdminController(db *gorm.DB) *adminController {
+	return &adminController{
 		logic: logic.NewAdminLogic(db),
 	}
 }
@@ -31,7 +31,7 @@ func NewAdminController(db *gorm.DB) *AdminController {
 // @Param body body dto.AdminLoginInput true "body"
 // @Success 200 {object} pkg.Response{data=dto.AdminLoginOutput} "success"
 // @Router /admin/login [post]
-func (a *AdminController) AdminLogin(c *gin.Context) {
+func (a *adminController) AdminLogin(c *gin.Context) {
 	// 参数绑定
 	params := &dto.AdminLoginInput{}
 	if err := params.BindValParam(c); err != nil {
@@ -59,7 +59,7 @@ func (a *AdminController) AdminLogin(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /admin/login_out [get]
-func (a *AdminController) AdminLoginOut(c *gin.Context) {
+func (a *adminController) AdminLoginOut(c *gin.Context) {
 	err := a.logic.AdminLogout(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
@@ -79,7 +79,7 @@ func (a *AdminController) AdminLoginOut(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} pkg.Response{data=dto.AminInfoOutput} "success"
 // @Router /admin/admin_info [get]
-func (a *AdminController) AdminInfo(c *gin.Context) {
+func (a *adminController) AdminInfo(c *gin.Context) {
 	out, err := a.logic.GetAdminInfo(c)
 	if err != nil {
 		pkg.ResponseError(c, pkg.InternalErrorCode, err)
@@ -100,7 +100,7 @@ func (a *AdminController) AdminInfo(c *gin.Context) {
 // @Param body body dto.AdminChangePwdInput true "body"
 // @Success 200 {object} pkg.Response{data=string} "success"
 // @Router /admin/change_pwd [post]
-func (a *AdminController) AdminChangePwd(c *gin.Context) {
+func (a *adminController) AdminChangePwd(c *gin.Context) {
 	params := &dto.AdminChangePwdInput{}
 	if err := params.BindValParam(c); err != nil {
 		pkg.ResponseError(c, pkg.ParamBindingErrCode, err)
@@ -114,5 +114,5 @@ func (a *AdminController) AdminChangePwd(c *gin.Context) {
 		return
 	}
 
-	pkg.ResponseSuccess(c, "Password modification successful", "")
+	pkg.ResponseSuccess(c, "Password changed successfully", "")
 }

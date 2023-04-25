@@ -11,6 +11,11 @@ import (
 	"gorm.io/gorm"
 )
 
+type ServiceTcpLogic interface {
+	AddTCP(c *gin.Context, param *dto.ServiceAddTcpInput) error
+	UpdateTCP(c *gin.Context, param *dto.ServiceUpdateTcpInput) error
+}
+
 type serviceTcpLogic struct {
 	db *gorm.DB
 }
