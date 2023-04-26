@@ -264,6 +264,37 @@ definitions:
           type: string
         type: array
     type: object
+  dto.DashServiceStatItemOutput:
+    properties:
+      load_type:
+        type: integer
+      name:
+        type: string
+      value:
+        type: integer
+    type: object
+  dto.DashServiceStatOutput:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.DashServiceStatItemOutput'
+        type: array
+      legend:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.PanelGroupDataOutput:
+    properties:
+      appNum:
+        type: integer
+      currentQps:
+        type: integer
+      serviceNum:
+        type: integer
+      todayRequestNum:
+        type: integer
+    type: object
   dto.ServiceAddGrpcInput:
     properties:
       black_list:
@@ -472,19 +503,6 @@ definitions:
         description: 总数
         type: integer
     type: object
-  dto.ServiceStatOutput:
-    properties:
-      today:
-        description: 列表
-        items:
-          type: integer
-        type: array
-      yesterday:
-        description: 列表
-        items:
-          type: integer
-        type: array
-    type: object
   dto.ServiceUpdateGrpcInput:
     properties:
       black_list:
@@ -670,20 +688,6 @@ definitions:
     - service_name
     - weight_list
     type: object
-  dto.StatisticsOutput:
-    properties:
-      today:
-        items:
-          type: integer
-        type: array
-      yesterday:
-        items:
-          type: integer
-        type: array
-    required:
-    - today
-    - yesterday
-    type: object
   pkg.Response:
     properties:
       data: {}
@@ -691,7 +695,6 @@ definitions:
         type: string
       errno:
         type: integer
-      stack: {}
       trace_id: {}
     type: object
 info:
@@ -913,33 +916,6 @@ paths:
       summary: APP列表
       tags:
       - APP
-  /app/app_stat:
-    get:
-      consumes:
-      - application/json
-      description: APP统计
-      operationId: /app/app_stat
-      parameters:
-      - description: APP ID
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success
-          schema:
-            allOf:
-            - $ref: '#/definitions/pkg.Response'
-            - properties:
-                data:
-                  $ref: '#/definitions/dto.StatisticsOutput'
-              type: object
-      summary: APP统计
-      tags:
-      - APP
   /app/app_update:
     post:
       consumes:
@@ -968,6 +944,48 @@ paths:
       summary: APP更新
       tags:
       - APP
+  /dashboard/panel_group_data:
+    get:
+      consumes:
+      - application/json
+      description: 指标统计
+      operationId: /dashboard/panel_group_data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.PanelGroupDataOutput'
+              type: object
+      summary: 指标统计
+      tags:
+      - Dashboard
+  /dashboard/service_stat:
+    get:
+      consumes:
+      - application/json
+      description: 服务统计
+      operationId: /dashboard/service_stat
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.DashServiceStatOutput'
+              type: object
+      summary: 服务统计
+      tags:
+      - Dashboard
   /service/service_add_grpc:
     post:
       consumes:
@@ -1135,33 +1153,6 @@ paths:
                   $ref: '#/definitions/dto.ServiceListOutput'
               type: object
       summary: 服务列表
-      tags:
-      - Service
-  /service/service_stat:
-    get:
-      consumes:
-      - application/json
-      description: 服务统计
-      operationId: /service/service_stat
-      parameters:
-      - description: 服务id
-        in: query
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success
-          schema:
-            allOf:
-            - $ref: '#/definitions/pkg.Response'
-            - properties:
-                data:
-                  $ref: '#/definitions/dto.ServiceStatOutput'
-              type: object
-      summary: 服务统计
       tags:
       - Service
   /service/service_update_grpc:

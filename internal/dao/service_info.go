@@ -24,7 +24,7 @@ func (ServiceInfo) TableName() string {
 
 func (t *ServiceInfo) GroupByLoadType(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
 	list := []dto.DashServiceStatItemOutput{}
-	if err := tx.Where("is_delete=0").Select("load_type, count(*) as value").Group("load_type").Scan(&list).Error; err != nil {
+	if err := tx.Table(t.TableName()).Where("is_delete=0").Select("load_type, count(*) as value").Group("load_type").Scan(&list).Error; err != nil {
 		return nil, err
 	}
 	return list, nil

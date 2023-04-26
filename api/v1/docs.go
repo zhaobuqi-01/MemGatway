@@ -377,51 +377,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/app/app_stat": {
-            "get": {
-                "description": "APP统计",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "APP"
-                ],
-                "summary": "APP统计",
-                "operationId": "/app/app_stat",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "APP ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/pkg.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/dto.StatisticsOutput"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "/app/app_update": {
             "post": {
                 "description": "APP更新",
@@ -460,6 +415,78 @@ const docTemplate = `{
                                     "properties": {
                                         "data": {
                                             "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/panel_group_data": {
+            "get": {
+                "description": "指标统计",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "指标统计",
+                "operationId": "/dashboard/panel_group_data",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.PanelGroupDataOutput"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/service_stat": {
+            "get": {
+                "description": "服务统计",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "服务统计",
+                "operationId": "/dashboard/service_stat",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.DashServiceStatOutput"
                                         }
                                     }
                                 }
@@ -742,51 +769,6 @@ const docTemplate = `{
                                     "properties": {
                                         "data": {
                                             "$ref": "#/definitions/dto.ServiceListOutput"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "/service/service_stat": {
-            "get": {
-                "description": "服务统计",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Service"
-                ],
-                "summary": "服务统计",
-                "operationId": "/service/service_stat",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "服务id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/pkg.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/dto.ServiceStatOutput"
                                         }
                                     }
                                 }
@@ -1339,6 +1321,54 @@ const docTemplate = `{
                 }
             }
         },
+        "dto.DashServiceStatItemOutput": {
+            "type": "object",
+            "properties": {
+                "load_type": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.DashServiceStatOutput": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.DashServiceStatItemOutput"
+                    }
+                },
+                "legend": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.PanelGroupDataOutput": {
+            "type": "object",
+            "properties": {
+                "appNum": {
+                    "type": "integer"
+                },
+                "currentQps": {
+                    "type": "integer"
+                },
+                "serviceNum": {
+                    "type": "integer"
+                },
+                "todayRequestNum": {
+                    "type": "integer"
+                }
+            }
+        },
         "dto.ServiceAddGrpcInput": {
             "type": "object",
             "required": [
@@ -1620,25 +1650,6 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.ServiceStatOutput": {
-            "type": "object",
-            "properties": {
-                "today": {
-                    "description": "列表",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "yesterday": {
-                    "description": "列表",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
         "dto.ServiceUpdateGrpcInput": {
             "type": "object",
             "required": [
@@ -1884,27 +1895,6 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.StatisticsOutput": {
-            "type": "object",
-            "required": [
-                "today",
-                "yesterday"
-            ],
-            "properties": {
-                "today": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "yesterday": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
         "pkg.Response": {
             "type": "object",
             "properties": {
@@ -1915,7 +1905,6 @@ const docTemplate = `{
                 "errno": {
                     "type": "integer"
                 },
-                "stack": {},
                 "trace_id": {}
             }
         }

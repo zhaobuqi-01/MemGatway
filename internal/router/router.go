@@ -53,5 +53,8 @@ func InitRouter(db *gorm.DB) *gin.Engine {
 	// 注册app路由
 	AppRegister(router, db)
 
+	// 注册dashboard路由
+	DashboardRegister(router, db)
+
 	return router
 }
