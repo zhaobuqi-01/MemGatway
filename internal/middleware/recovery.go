@@ -19,7 +19,7 @@ func RecoveryMiddleware() gin.HandlerFunc {
 				// 记录错误堆栈和日志
 				requestID := c.Writer.Header().Get("X-Request-Id")
 				log.Error(fmt.Sprint(err), zap.String("stack", string(debug.Stack())), zap.String("request_id", requestID))
-				if configs.GetStringConfig("gin.mode") != "debug" {
+				if configs.GetGinConfig().Mode != "debug" {
 					pkg.ResponseError(c, pkg.InternalErrorCode, fmt.Errorf("internal error"))
 					return
 				} else {

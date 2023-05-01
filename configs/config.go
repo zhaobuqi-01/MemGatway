@@ -2,8 +2,11 @@ package configs
 
 import (
 	"fmt"
-	"os"
+	"log"
+	"sync"
+	"time"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
 
@@ -29,11 +32,11 @@ type LogConfig struct {
 
 // MySQLConfig - MySQL配置 (MySQL configuration)
 type MySQLConfig struct {
-	SqlFile      string
-	Host         string
-	Port         int
-	User         string
-	Password     string
+	SqlFile      string `mapstructure:"sql_file"`
+	Host         string `mapstructure:"host"`
+	Port         int    `mapstructure:"port"`
+	User         string `mapstructure:"user"`
+	Password     string `mapstructure:"password"`
 	DBName       string `mapstructure:"dbname"`
 	Charset      string `mapstructure:"charset"`
 	Collation    string `mapstructure:"collation"`
@@ -45,9 +48,9 @@ type MySQLConfig struct {
 // RedisConfig - Redis配置 (Redis configuration)
 type RedisConfig struct {
 	Addr         string `mapstructure:"addr"`
-	Password     string
-	DB           int
-	PoolSize     int
+	Password     string `mapstructure:"password"`
+	DB           int    `mapstructure:"db"`
+	PoolSize     int    `mapstructure:"poolsize"`
 	MinIdleConns int    `mapstructure:"minidleconns"`
 	DialTimeout  string `mapstructure:"dialtimeout"`
 	ReadTimeout  string `mapstructure:"readtimeout"`
@@ -69,131 +72,151 @@ type SwaggerConfig struct {
 }
 
 var (
-	configPath string
-	v          *viper.Viper
+	v           = viper.New()
+	mutex       sync.RWMutex
+	reloadMutex sync.Mutex
+	reloadTimer *time.Timer
+	reloadDelay = 5 * time.Second // 设置防抖动延迟时间
 )
 
-const confPath = "E:\\project\\Api-Gateway\\configs" // 硬编码的配置文件路径
-
-func setConfigPath() {
-	// 获取环境变量的值
-	envConfigPath := os.Getenv("GATEWAY_CONFIG_PATH")
-
-	// 如果环境变量值为空，则使用默认的 Windows 配置路径
-	if envConfigPath == "" {
-		envConfigPath = confPath
-	}
-
-	configPath = envConfigPath
-}
-
-// LoadConfigurations loads configurations from the config files
-// init 初始化配置
 func Init() {
-	// Set configuration file path
-	setConfigPath()
-
-	// Load configuration file
-	readConfig()
-
-	// Load server configuration
-	getCfg()
-}
-
-// readConfig - 读取配置文件 (Read configuration file)
-func readConfig() {
-	// 实例化viper
-	v = viper.New()
-	// 配置文件名称（无扩展名）
 	v.SetConfigName("config")
-	// 配置文件类型，如果配置文件的名称
-	v.SetConfigType("yaml")
-	// 查找配置文件所在的路径
-	v.AddConfigPath(configPath)
+	v.AddConfigPath("./configs")
+	v.SetConfigType("yaml") // 设置配置文件类型
 
-	// 查找并读取配置文件
 	err := v.ReadInConfig()
-
-	// 处理读取配置文件的错误
 	if err != nil {
-		panic(fmt.Errorf("fatal error reading config file: %s", err))
+		panic(fmt.Errorf("fatal error config file: %w", err))
 	}
+
+	loadConfig()
+
+	v.WatchConfig()
+	v.OnConfigChange(func(e fsnotify.Event) {
+		log.Println("Config file changed:", e.Name)
+		scheduleReloadConfig()
+	})
 }
 
-func getConfig[T GinConfig | LogConfig | RedisConfig | MySQLConfig | ServerConfig | SwaggerConfig](describe string, configType *T) *T {
-	err := v.UnmarshalKey(describe, configType)
+func loadConfig() {
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	err := v.UnmarshalKey("server", &serverConfig)
 	if err != nil {
-		panic(fmt.Errorf("unable to unmarshal RedisConfig: %s", err))
+		log.Printf("Error unmarshalling 'server' config: %v\n", err)
 	}
-	return configType
+
+	err = v.UnmarshalKey("log", &logConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'log' config: %v\n", err)
+	}
+
+	err = v.UnmarshalKey("mysql", &mySQLConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'mysql' config: %v\n", err)
+	}
+
+	err = v.UnmarshalKey("redis", &redisConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'redis' config: %v\n", err)
+	}
+
+	err = v.UnmarshalKey("gin", &ginConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'gin' config: %v\n", err)
+	}
+
+	err = v.UnmarshalKey("swagger", &swaggerConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'swagger' config: %v\n", err)
+	}
+
+	log.Println("Reloaded configuration")
+}
+
+func scheduleReloadConfig() {
+	reloadMutex.Lock()
+	defer reloadMutex.Unlock()
+
+	if reloadTimer != nil {
+		reloadTimer.Stop()
+	}
+
+	reloadTimer = time.AfterFunc(reloadDelay, func() {
+		log.Println("Reloading configuration after debounce delay")
+		loadConfig()
+	})
 }
 
 // Global configuration variables
 var (
 	logConfig     *LogConfig
-	mysqlConfig   *MySQLConfig
+	mySQLConfig   *MySQLConfig
 	redisConfig   *RedisConfig
 	serverConfig  *ServerConfig
 	ginConfig     *GinConfig
 	swaggerConfig *SwaggerConfig
 )
 
-func getCfg() {
-	// Load server configuration
-	serverConfig = getConfig("server", new(ServerConfig))
-
-	// Load logger configurations
-	logConfig = getConfig("log", new(LogConfig))
-
-	// Load MySQL configurations
-	mysqlConfig = getConfig("mysql", new(MySQLConfig))
-
-	// Load Redis configurations
-	redisConfig = getConfig("redis", new(RedisConfig))
-
-	ginConfig = getConfig("gin", new(GinConfig))
-
-	swaggerConfig = getConfig("swagger", new(SwaggerConfig))
-}
-
 // 向外部暴露的函数；用于取对应的配置
 func GetServerConfig() *ServerConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return serverConfig
 }
 
 func GetLogConfig() *LogConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return logConfig
 }
 
 func GetMysqlConfig() *MySQLConfig {
-	return mysqlConfig
+	mutex.RLock()
+	defer mutex.RUnlock()
+	return mySQLConfig
 }
 
 func GetRedisConfig() *RedisConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return redisConfig
 }
 
 func GetGinConfig() *GinConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return ginConfig
 }
 
 // 向外部暴露的函数；用于取对应的配置
 func GetSwaggerConfig() *SwaggerConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return swaggerConfig
 }
 
 func GetStringConfig(key string) string {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return v.GetString(key)
 }
 
 func GetIntConfig(key string) int {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return v.GetInt(key)
 }
 
 func GetBoolConfig(key string) bool {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return v.GetBool(key)
 }
 
 func GetSliceConfig(key string) []string {
+	mutex.RLock()
+	defer mutex.RUnlock()
 	return v.GetStringSlice(key)
 }
