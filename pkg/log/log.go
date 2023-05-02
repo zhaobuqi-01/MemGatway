@@ -10,6 +10,7 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+// 全局变量
 var (
 	logger *zap.Logger
 
@@ -21,12 +22,43 @@ var (
 
 // Init 初始化日志
 func Init() {
-	logConfig = configs.GetLogConfig()
 	initLogger()
+	configs.RegisterReloadCallback(initLogger) // 注册回调
+}
+
+// initLogger 初始化zap记录器
+// 原理:
+// 1. 创建zapcore.Core
+// 2. 创建zap.Logger
+// 3. 重定向标准库的日志输出到zap
+// 4. 替换全局logger
+func initLogger() {
+	// 重置
+	logConfig = nil
+	logger = nil
+	fileOutput = nil
+	errorFileOutput = nil
+
+	// 初始化
+	logConfig = configs.GetLogConfig()
+	// 创建zapcore.Core
+	core := getZapCore()
+
+	// 创建zap.Logger
+	// zap.AddCaller() 添加文件和行号
+	// zap.AddStacktrace(zap.ErrorLevel) 添加错误堆栈信息
+	logger = zap.New(core, zap.AddCaller(), zap.AddStacktrace(zap.ErrorLevel))
+
+	// 重定向标准库的日志输出到zap
+	zap.RedirectStdLog(logger)
+
+	// 替换全局logger
+	zap.ReplaceGlobals(logger)
 }
 
 // getEncoder 获取编码器
 func getEncoder() zapcore.Encoder {
+	logConfig = configs.GetLogConfig() // 获取最新的配置
 	encoderConfig := zapcore.EncoderConfig{
 		TimeKey:        "time",
 		LevelKey:       "level",
@@ -40,7 +72,12 @@ func getEncoder() zapcore.Encoder {
 		EncodeDuration: zapcore.SecondsDurationEncoder,
 		EncodeCaller:   zapcore.ShortCallerEncoder,
 	}
-	return zapcore.NewConsoleEncoder(encoderConfig)
+	switch logConfig.Format {
+	case "json":
+		return zapcore.NewJSONEncoder(encoderConfig)
+	default:
+		return zapcore.NewConsoleEncoder(encoderConfig)
+	}
 }
 
 // getFileLogger 获取文件日志
@@ -116,29 +153,6 @@ func getZapCore() zapcore.Core {
 	cores = append(cores, newCoreWithLevel(encoder, errorFileOutput, zap.ErrorLevel))
 
 	return zapcore.NewTee(cores...)
-}
-
-// initLogger 初始化zap记录器
-// 原理:
-// 1. 创建zapcore.Core
-// 2. 创建zap.Logger
-// 3. 重定向标准库的日志输出到zap
-// 4. 替换全局logger
-func initLogger() {
-
-	// 创建zapcore.Core
-	core := getZapCore()
-
-	// 创建zap.Logger
-	// zap.AddCaller() 添加文件和行号
-	// zap.AddStacktrace(zap.ErrorLevel) 添加错误堆栈信息
-	logger = zap.New(core, zap.AddCaller(), zap.AddStacktrace(zap.ErrorLevel))
-
-	// 重定向标准库的日志输出到zap
-	zap.RedirectStdLog(logger)
-
-	// 替换全局logger
-	zap.ReplaceGlobals(logger)
 }
 
 // Close 关闭zap记录器并释放资源

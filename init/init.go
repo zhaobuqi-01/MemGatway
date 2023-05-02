@@ -14,8 +14,8 @@ import (
 func InitAll() {
 	configs.Init()
 	log.Init()
-	mysql.InitDB()
-	redis.InitRedis()
+	mysql.Init()
+	redis.Init()
 }
 
 func CleanupAll() {

@@ -17,13 +17,22 @@ var (
 	db   *gorm.DB
 )
 
-// InitDB 初始化数据库
-func InitDB() {
+// InitDB initializes the database
+func Init() {
+	initMySQL()
+	configs.RegisterReloadCallback(initMySQL)
+}
+func initMySQL() {
+	// 清空已有的全局变量
+	conf = nil
+	db = nil
+
+	// 初始化
 	conf = configs.GetMysqlConfig()
 	var err error
 	db, err = connectMySQL()
 	if err != nil {
-		log.Fatal("Failed to connect to MySQL: %v", zap.Error(err))
+		log.Fatal("Failed to connect to MySQL", zap.Error(err))
 	}
 
 	// 注册钩子函数

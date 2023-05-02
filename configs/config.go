@@ -21,6 +21,7 @@ type ServerConfig struct {
 
 // LogConfig - 日志配置 (Log configuration)
 type LogConfig struct {
+	Format        string `mapstructure:"format"`
 	Level         string `mapstructure:"level"`
 	Filename      string `mapstructure:"filename"`
 	ErrorFilename string `mapstructure:"error_filename"`
@@ -135,6 +136,21 @@ func loadConfig() {
 	log.Println("Reloaded configuration")
 }
 
+// 使用回调函数可以解决循环引用的问题，因为回调函数是在配置文件发生变化时被触发的，
+// 而不是在包的初始化过程中被调用的。这意味着在回调函数中调用其他模块的函数不会导致循环引用的问题。
+// 当我们在一个模块中调用另一个模块的函数时，如果两个模块都引用了对方，就会形成循环引用。
+// 这会导致编译错误或者运行时错误，因为两个模块都无法正确初始化。
+// 但是，如果我们使用回调函数，那么这种情况就不会发生，
+// 因为回调函数是在配置文件发生变化时被触发的。这意味着每个模块都可以独立地初始化，
+// 而不需要在初始化过程中相互依赖。当配置文件发生变化时，每个模块都会被重新初始化，
+// 并被重新注册为回调函数，以确保它们能够正确地响应配置变化。
+var reloadCallbacks []func()
+
+// RegisterReloadCallback 注册配置重新加载回调函数
+func RegisterReloadCallback(callback func()) {
+	reloadCallbacks = append(reloadCallbacks, callback)
+}
+
 func scheduleReloadConfig() {
 	reloadMutex.Lock()
 	defer reloadMutex.Unlock()
@@ -146,6 +162,10 @@ func scheduleReloadConfig() {
 	reloadTimer = time.AfterFunc(reloadDelay, func() {
 		log.Println("Reloading configuration after debounce delay")
 		loadConfig()
+		// 调用所有已注册的回调函数
+		for _, callback := range reloadCallbacks {
+			callback()
+		}
 	})
 }
 

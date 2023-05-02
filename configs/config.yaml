@@ -13,6 +13,7 @@ server:
 
 # Log configuration
 log:
+  format: "text" # json or text
   level : "debug"
   filename: "logs/gateway.log"
   error_filename: "logs/gateway_error.log"

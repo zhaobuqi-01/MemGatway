@@ -11,12 +11,14 @@ import (
 	"go.uber.org/zap"
 )
 
+// 全局变量
 var (
 	redisClient *redis.Client
 	redisConfig *configs.RedisConfig
-	ctx         = context.Background()
+	ctx         context.Context
 )
 
+// Redis常用数据类型别名
 type (
 	Pipeliner     = redis.Pipeliner
 	Client        = redis.Client
@@ -28,12 +30,25 @@ type (
 	DurationCmd   = redis.DurationCmd
 )
 
-// InitRedis 初始化Redis数据库 (Initialize Redis database)
-func InitRedis() {
+// Init
+func Init() {
+	initRedis()
+	configs.RegisterReloadCallback(initRedis) // 注册回调
+}
+
+func initRedis() {
+	// 重置
+	redisClient = nil
+	redisConfig = nil
+	ctx = nil
+
+	// 初始化
 	redisConfig = configs.GetRedisConfig()
+	ctx = context.Background()
+
 	client, err := connectRedis()
 	if err != nil {
-		log.Fatal("Failed to connect to Redis: %v", zap.Error(err))
+		log.Fatal("Failed to connect to Redis", zap.Error(err))
 	}
 	redisClient = client
 }
