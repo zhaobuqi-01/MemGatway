@@ -39,7 +39,7 @@ func (ac *APPController) APPList(c *gin.Context) {
 	}
 	list, total, err := ac.appLogic.AppList(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AppListErrCode, err)
 		log.Error("Failed to fetch list", zap.Error(err))
 		return
 	}
@@ -67,7 +67,7 @@ func (ac *APPController) APPDetail(c *gin.Context) {
 	}
 	app, err := ac.appLogic.AppDetail(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AppDetailErrCode, err)
 		log.Error("Failed to get details", zap.Error(err))
 		return
 	}
@@ -92,7 +92,7 @@ func (ac *APPController) APPDelete(c *gin.Context) {
 	}
 	err := ac.appLogic.AppDelete(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AppDeleteErrCode, err)
 		log.Error("failed to delete", zap.Error(err))
 		return
 	}
@@ -117,7 +117,7 @@ func (ac *APPController) APPAdd(c *gin.Context) {
 	}
 	err := ac.appLogic.AppAdd(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AppAddErrCode, err)
 		log.Error("add failed", zap.Error(err))
 		return
 	}
@@ -142,7 +142,7 @@ func (ac *APPController) APPUpdate(c *gin.Context) {
 	}
 	err := ac.appLogic.AppUpdate(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AppUpdateErrCode, err)
 		log.Error("update failed", zap.Error(err))
 		return
 	}

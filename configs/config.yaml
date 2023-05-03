@@ -3,10 +3,10 @@ gin:
   mode: "debug"
 # Server configuration
 server:
-  addr: "localhost:8080"           # 监听地址, default ":8700"
-  read_timeout: 10        # 读取超时时长
-  write_timeout: 10       # 写入超时时长
-  max_header_bytes: 20    # 最大的header大小，二进制位长度
+  addr: "localhost:8080" # 监听地址, default ":8700"
+  read_timeout: 10 # 读取超时时长
+  write_timeout: 10 # 写入超时时长
+  max_header_bytes: 20 # 最大的header大小，二进制位长度
   allow_ip:
     - "127.0.0.1"
     - "192.168.1.1"
@@ -14,18 +14,17 @@ server:
 # Log configuration
 log:
   format: "text" # json or text
-  level : "debug"
+  level: "debug"
   filename: "logs/gateway.log"
   error_filename: "logs/gateway_error.log"
   max_size: 50
   max_backups: 10
   max_age: 7
   compress: false
- 
 
 # MySQL configuration
 mysql:
-  sql_file : "./gateway.sql"
+  sql_file: "./gateway.sql"
   host: "localhost"
   port: 3306
   user: "root"
@@ -53,9 +52,9 @@ swagger:
   # API 文档的标题
   title: "Gateway API "
   # API 文档的描述
-  description: "" 
-  # API 文档的版本 
-  version: "1.0.0" 
+  description: ""
+  # API 文档的版本
+  version: "1.0.0"
   host: "localhost:8080"
   base_path: ""
   schemes:
@@ -66,4 +65,16 @@ cluster:
   cluster_ip: "127.0.0.1"
   cluster_port: "8080"
   cluster_ssl_port: "4880"
-  
+
+# 代理服务器配置
+http:
+  addr: "localhost:8080"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20
+
+https:
+  addr: "localhost:4433"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20

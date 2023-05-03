@@ -58,7 +58,7 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 }
 
 func (impl *dashboardLogicImpl) ServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
-	list, err := (&dao.ServiceInfo{}).GroupByLoadType(c, impl.db)
+	list, err := dao.GroupByLoadType(c, impl.db)
 	if err != nil {
 		return nil, err
 	}

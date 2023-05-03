@@ -72,6 +72,22 @@ type SwaggerConfig struct {
 	Description string   `mapstructure:"description"`
 }
 
+// HttpProxyConfig - HTTP 代理配置
+type HttpProxyConfig struct {
+	Addr           string `mapstructure:"addr"`
+	ReadTimeout    int    `mapstructure:"read_timeout"`
+	WriteTimeout   int    `mapstructure:"write_timeout"`
+	MaxHeaderBytes int    `mapstructure:"max_header_bytes"`
+}
+
+// HttpsProxyConfig - HTTPS 代理配置
+type HttpsProxyConfig struct {
+	Addr           string `mapstructure:"addr"`
+	ReadTimeout    int    `mapstructure:"read_timeout"`
+	WriteTimeout   int    `mapstructure:"write_timeout"`
+	MaxHeaderBytes int    `mapstructure:"max_header_bytes"`
+}
+
 var (
 	v           = viper.New()
 	mutex       sync.RWMutex
@@ -133,7 +149,15 @@ func loadConfig() {
 		log.Printf("Error unmarshalling 'swagger' config: %v\n", err)
 	}
 
-	log.Println("Reloaded configuration")
+	err = v.UnmarshalKey("http", &httpProxyConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'http' config: %v\n", err)
+	}
+
+	err = v.UnmarshalKey("https", &httpsProxyConfig)
+	if err != nil {
+		log.Printf("Error unmarshalling 'https' config: %v\n", err)
+	}
 }
 
 // 使用回调函数可以解决循环引用的问题，因为回调函数是在配置文件发生变化时被触发的，
@@ -171,12 +195,14 @@ func scheduleReloadConfig() {
 
 // Global configuration variables
 var (
-	logConfig     *LogConfig
-	mySQLConfig   *MySQLConfig
-	redisConfig   *RedisConfig
-	serverConfig  *ServerConfig
-	ginConfig     *GinConfig
-	swaggerConfig *SwaggerConfig
+	logConfig        *LogConfig
+	mySQLConfig      *MySQLConfig
+	redisConfig      *RedisConfig
+	serverConfig     *ServerConfig
+	ginConfig        *GinConfig
+	swaggerConfig    *SwaggerConfig
+	httpProxyConfig  *HttpProxyConfig
+	httpsProxyConfig *HttpsProxyConfig
 )
 
 // 向外部暴露的函数；用于取对应的配置
@@ -210,11 +236,24 @@ func GetGinConfig() *GinConfig {
 	return ginConfig
 }
 
-// 向外部暴露的函数；用于取对应的配置
 func GetSwaggerConfig() *SwaggerConfig {
 	mutex.RLock()
 	defer mutex.RUnlock()
 	return swaggerConfig
+}
+
+// GetHttpProxyConfig 用于获取 HTTP 代理配置
+func GetHttpProxyConfig() *HttpProxyConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
+	return httpProxyConfig
+}
+
+// GetHttpsProxyConfig 用于获取 HTTPS 代理配置
+func GetHttpsProxyConfig() *HttpsProxyConfig {
+	mutex.RLock()
+	defer mutex.RUnlock()
+	return httpsProxyConfig
 }
 
 func GetStringConfig(key string) string {

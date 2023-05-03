@@ -42,7 +42,7 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 
 	outputList, total, err := s.logic.GetServiceList(c, param)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.ServiceListErrCode, err)
 		log.Error("Failed to fetch list", zap.Error(err))
 		return
 	}
@@ -74,7 +74,7 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 
 	err := s.logic.ServiceDelete(c, param)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.ServiceDeleteErrCode, err)
 		log.Error("Failed to delete service", zap.Error(err))
 		return
 	}
@@ -104,7 +104,7 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 	output, err := s.logic.GetServiceDetail(c, param)
 
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.ServiceDetailErrCode, err)
 		log.Error("Failed to get service detail", zap.Error(err))
 		return
 
@@ -132,7 +132,7 @@ func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 
 	err := s.logic.AddHTTP(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AddHttpServiceErrCode, err)
 		log.Error("Failed to add http service", zap.Error(err))
 		return
 	}
@@ -159,7 +159,7 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 
 	err := s.logic.UpdateHTTP(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UpdateHttpServiceErrCode, err)
 		log.Error("Failed to update http service", zap.Error(err))
 		return
 	}
@@ -186,7 +186,7 @@ func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 
 	err := s.logic.AddTCP(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AddTCPServiceErrCode, err)
 		log.Error("Failed to add tcp service", zap.Error(err))
 		return
 	}
@@ -213,7 +213,7 @@ func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 
 	err := s.logic.UpdateTCP(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UpdateTCPServiceErrCode, err)
 		log.Error("Failed to update tcp service", zap.Error(err))
 		return
 	}
@@ -240,7 +240,7 @@ func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 
 	err := s.logic.AddGrpc(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.AddGRPCServiceErrCode, err)
 		log.Error("Failed to add grpc service", zap.Error(err))
 		return
 	}
@@ -267,7 +267,7 @@ func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
 
 	err := s.logic.UpdateGrpc(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UpdateGRPCServiceErrCode, err)
 		log.Error("Failed to update grpc service", zap.Error(err))
 		return
 	}

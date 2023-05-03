@@ -6,7 +6,6 @@ import (
 	"gateway/internal/dao"
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -22,7 +21,7 @@ type serviceInfoLogic struct {
 }
 
 // NewserviceInfoLogic 创建serviceInfoLogic
-func NewServiceInfoLogic(tx *gorm.DB) *serviceInfoLogic {
+func NewServiceInfoLogic(tx *gorm.DB) ServiceInfoLogic {
 	return &serviceInfoLogic{
 		db: tx,
 	}
@@ -48,7 +47,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	// 格式化输出信息
 	outputList := []dto.ServiceListItemOutput{}
 	for _, listItem := range list {
-		serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, &listItem)
+		serviceDetail, err := dao.GetServiceDetail(c, s.db, &listItem)
 		if err != nil {
 			return nil, 0, fmt.Errorf("get serviceDetail fail")
 		}
@@ -60,7 +59,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 		}
 
 		// 获取IP列表
-		ipList := s.getIPList(c, serviceDetail.LoadBalance)
+		ipList := pkg.SplitStringByComma(serviceDetail.LoadBalance.IpList)
 
 		outputItem := dto.ServiceListItemOutput{
 			ID:          listItem.ID,
@@ -111,7 +110,7 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, param *dto.ServiceDe
 	}
 
 	// 获取服务详情
-	serviceDetail, err := (&dao.ServiceDetail{}).ServiceDetail(c, s.db, serviceInfo)
+	serviceDetail, err := dao.GetServiceDetail(c, s.db, serviceInfo)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceDetail")
 	}
@@ -147,9 +146,4 @@ func (s *serviceInfoLogic) getServiceAddress(serviceDetail *dao.ServiceDetail) (
 	default:
 		return "unknown", fmt.Errorf("unsupported load type")
 	}
-}
-
-// 获取IP列表
-func (s *serviceInfoLogic) getIPList(c *gin.Context, data *dao.LoadBalance) []string {
-	return strings.Split(data.IpList, ",")
 }

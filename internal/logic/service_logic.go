@@ -6,22 +6,22 @@ import (
 
 type ServiceLogic interface {
 	ServiceInfoLogic
-	ServiceTcpLogic
-	ServiceHttpLogic
-	ServiceGrpcLogic
+	TcpServiceLogic
+	HttpServiceLogic
+	GrpcServiceLogic
 }
 type serviceLogic struct {
 	ServiceInfoLogic
-	ServiceHttpLogic
-	ServiceTcpLogic
-	ServiceGrpcLogic
+	HttpServiceLogic
+	TcpServiceLogic
+	GrpcServiceLogic
 }
 
 func NewServiceLogic(db *gorm.DB) ServiceLogic {
 	return &serviceLogic{
 		ServiceInfoLogic: NewServiceInfoLogic(db),
-		ServiceHttpLogic: NewServiceHttpLogic(db),
-		ServiceTcpLogic:  NewServiceTcpLogic(db),
-		ServiceGrpcLogic: NewServiceGrpcLogic(db),
+		HttpServiceLogic: NewHttpServiceLogic(db),
+		TcpServiceLogic:  NewTcpServiceLogic(db),
+		GrpcServiceLogic: NewGrpcServiceLogic(db),
 	}
 }

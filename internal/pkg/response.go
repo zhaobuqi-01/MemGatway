@@ -6,7 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ResponseCode 错误码类型，1000以下为通用码，1000以上为用户自定义码
 type ResponseCode int
 
 // Response 响应结构体

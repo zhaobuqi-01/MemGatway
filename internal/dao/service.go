@@ -1,7 +1,12 @@
 package dao
 
 import (
-	"gateway/pkg/log"
+	"fmt"
+	"gateway/internal/pkg"
+	"gateway/pkg/database/mysql"
+	"net/http/httptest"
+	"strings"
+	"sync"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -16,50 +21,105 @@ type ServiceDetail struct {
 	AccessControl *AccessControl `json:"access_control" description:"access_control"`
 }
 
-func (s *ServiceDetail) ServiceDetail(c *gin.Context, db *gorm.DB, search *ServiceInfo) (*ServiceDetail, error) {
-	if search.ServiceName == "" {
-		info, err := Get(c, db, search)
-		if err != nil {
-			return nil, err
+var ServiceManagerHandler *ServiceManager
+
+func init() {
+	ServiceManagerHandler = NewServiceManager()
+}
+
+type ServiceManager struct {
+	ServiceMap   map[string]*ServiceDetail
+	ServiceSlice []*ServiceDetail
+	Locker       sync.RWMutex
+	init         sync.Once
+	err          error
+}
+
+func NewServiceManager() *ServiceManager {
+	return &ServiceManager{
+		ServiceMap:   map[string]*ServiceDetail{},
+		ServiceSlice: []*ServiceDetail{},
+		Locker:       sync.RWMutex{},
+		init:         sync.Once{},
+	}
+}
+
+func (s *ServiceManager) GetTcpServiceList() []*ServiceDetail {
+	list := []*ServiceDetail{}
+	for _, serverItem := range s.ServiceSlice {
+		tempItem := serverItem
+		if tempItem.Info.LoadType == pkg.LoadTypeTCP {
+			list = append(list, tempItem)
 		}
-		search = info
 	}
+	return list
+}
 
-	log.Debug("get start")
-	httpRule, err := Get(c, db, &HttpRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
+func (s *ServiceManager) GetGrpcServiceList() []*ServiceDetail {
+	list := []*ServiceDetail{}
+	for _, serverItem := range s.ServiceSlice {
+		tempItem := serverItem
+		if tempItem.Info.LoadType == pkg.LoadTypeGRPC {
+			list = append(list, tempItem)
+		}
 	}
+	return list
+}
 
-	tcpRule, err := Get(c, db, &TcpRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
+func (s *ServiceManager) HTTPAccessMode(c *gin.Context) (*ServiceDetail, error) {
+	//1、前缀匹配 /abc ==> serviceSlice.rule
+	//2、域名匹配 www.test.com ==> serviceSlice.rule
+	//host c.Request.Host
+	//path c.Request.URL.Path
+	host := c.Request.Host
+	host = host[0:strings.Index(host, ":")]
+	path := c.Request.URL.Path
+	for _, serviceItem := range s.ServiceSlice {
+		if serviceItem.Info.LoadType != pkg.LoadTypeHTTP {
+			continue
+		}
+		if serviceItem.HTTPRule.RuleType == pkg.HTTPRuleTypeDomain {
+			if serviceItem.HTTPRule.Rule == host {
+				return serviceItem, nil
+			}
+		}
+		if serviceItem.HTTPRule.RuleType == pkg.HTTPRuleTypePrefixURL {
+			if strings.HasPrefix(path, serviceItem.HTTPRule.Rule) {
+				return serviceItem, nil
+			}
+		}
 	}
+	return nil, fmt.Errorf("not matched service")
+}
 
-	grpcRule, err := Get(c, db, &GrpcRule{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
+func (s *ServiceManager) LoadOnce() error {
+	s.init.Do(func() {
+		c, _ := gin.CreateTestContext(httptest.NewRecorder())
+		tx := mysql.GetDB()
 
-	accessControl, err := Get(c, db, &AccessControl{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
+		queryConditions := []func(db *gorm.DB) *gorm.DB{
+			func(db *gorm.DB) *gorm.DB {
+				return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
+			},
+		}
+		list, _, err := PageList[ServiceInfo](c, tx, queryConditions, 1, 99999)
+		if err != nil {
+			s.err = err
+			return
+		}
 
-	loadBalance, err := Get(c, db, &LoadBalance{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	detail := &ServiceDetail{
-		Info:          search,
-		HTTPRule:      httpRule,
-		TCPRule:       tcpRule,
-		GRPCRule:      grpcRule,
-		LoadBalance:   loadBalance,
-		AccessControl: accessControl,
-	}
-
-	log.Debug("success")
-	return detail, nil
+		s.Locker.Lock()
+		defer s.Locker.Unlock()
+		for _, listItem := range list {
+			tmpItem := listItem
+			serviceDetail, err := GetServiceDetail(c, tx, &tmpItem)
+			if err != nil {
+				s.err = err
+				return
+			}
+			s.ServiceMap[listItem.ServiceName] = serviceDetail
+			s.ServiceSlice = append(s.ServiceSlice, serviceDetail)
+		}
+	})
+	return s.err
 }

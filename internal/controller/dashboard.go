@@ -32,7 +32,7 @@ func NewDashboardController(db *gorm.DB) *dashboardController {
 func (dc *dashboardController) PanelGroupData(c *gin.Context) {
 	out, err := dc.logic.PanelGroupData(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.PanelGroupDataErrCode, err)
 		log.Error("failed to get data", zap.Error(err))
 		return
 	}
@@ -51,7 +51,7 @@ func (dc *dashboardController) PanelGroupData(c *gin.Context) {
 func (dc *dashboardController) ServiceStat(c *gin.Context) {
 	out, err := dc.logic.ServiceStat(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.ServiceStatErrCode, err)
 		log.Error("failed to get serviceStat", zap.Error(err))
 		return
 	}

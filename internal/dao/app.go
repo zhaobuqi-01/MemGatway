@@ -1,6 +1,8 @@
 package dao
 
-import "time"
+import (
+	"time"
+)
 
 type App struct {
 	ID        int64     `json:"id" gorm:"primary_key"`

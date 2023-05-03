@@ -77,7 +77,7 @@ func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*dao.
 func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error {
 	// 使用dao中的Get方法获取指定ID的应用程序信息
 	search := &dao.App{
-		// ID: params.ID,
+		ID: params.ID,
 	}
 	info, err := dao.Get(c, al.db, search)
 	if err != nil {
@@ -85,7 +85,7 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 	}
 	// 将应用程序标记为已删除
 	info.IsDelete = 1
-	if err := dao.Update(c, al.db, info); err != nil {
+	if err := dao.Save(c, al.db, info); err != nil {
 		return fmt.Errorf("failed to delete app")
 	}
 	return nil
@@ -135,7 +135,7 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 	info.WhiteIPS = params.WhiteIPS
 	info.Qpd = params.Qpd
 	info.Qps = params.Qps
-	if err := dao.Save(c, al.db, info); err != nil {
+	if err := dao.Update(c, al.db, info); err != nil {
 		return fmt.Errorf("failed to update app information")
 	}
 	return nil

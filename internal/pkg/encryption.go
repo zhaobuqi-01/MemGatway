@@ -1,7 +1,6 @@
 package pkg
 
 import (
-	"encoding/json"
 	"gateway/pkg/log"
 
 	"go.uber.org/zap"
@@ -21,17 +20,4 @@ func HashPassword(password string) (string, error) {
 // ComparePassword 对比密码
 func ComparePassword(hashedPassword, password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
-}
-
-func Obj2Json(s interface{}) string {
-	bts, _ := json.Marshal(s)
-	return string(bts)
-}
-func InStringSlice(slice []string, str string) bool {
-	for _, item := range slice {
-		if str == item {
-			return true
-		}
-	}
-	return false
 }

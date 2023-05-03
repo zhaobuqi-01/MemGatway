@@ -40,7 +40,7 @@ func (a *adminController) AdminLogin(c *gin.Context) {
 
 	sessInfo, err := a.logic.Login(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UserLoginErrCode, err)
 		log.Error("Admin login failed", zap.String("username", params.UserName), zap.Error(err))
 		return
 
@@ -62,7 +62,7 @@ func (a *adminController) AdminLogin(c *gin.Context) {
 func (a *adminController) AdminLoginOut(c *gin.Context) {
 	err := a.logic.AdminLogout(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UserLoginOutErrCode, err)
 		log.Error("Admin login out failed", zap.Error(err))
 		return
 	}
@@ -82,7 +82,7 @@ func (a *adminController) AdminLoginOut(c *gin.Context) {
 func (a *adminController) AdminInfo(c *gin.Context) {
 	out, err := a.logic.GetAdminInfo(c)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UserInfoErrCode, err)
 		log.Error("Get admin info failed", zap.Error(err))
 		return
 	}
@@ -109,7 +109,7 @@ func (a *adminController) AdminChangePwd(c *gin.Context) {
 
 	err := a.logic.ChangeAdminPassword(c, params)
 	if err != nil {
-		pkg.ResponseError(c, pkg.InternalErrorCode, err)
+		pkg.ResponseError(c, pkg.UserChangePwdErrCode, err)
 		log.Error("Change admin password failed", zap.Error(err))
 		return
 	}
