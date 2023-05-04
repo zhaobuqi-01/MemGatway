@@ -25,11 +25,12 @@ func NewDashboardLogic(tx *gorm.DB) *dashboardLogicImpl {
 	}
 }
 
+// PanelGroupData 展示app数量，service数量
 func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error) {
 	// 从db中分页读取基本信息
 	serviceInfoQueryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
-			return db.Where("(service_name like ? or service_desc like ?)", "%"+""+"%", "%"+""+"%")
+			return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
 		},
 	}
 	_, serviceNum, err := dao.PageList[dao.ServiceInfo](c, impl.db, serviceInfoQueryConditions, 1, 1)
@@ -39,7 +40,7 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 
 	appQueryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
-			return db.Where("(name like ? or app_id like ?)", "%"+""+"%", "%"+""+"%")
+			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
 	_, appNum, err := dao.PageList[dao.App](c, impl.db, appQueryConditions, 1, 1)
@@ -48,15 +49,14 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 	}
 
 	out := &dto.PanelGroupDataOutput{
-		ServiceNum:      serviceNum,
-		AppNum:          appNum,
-		TodayRequestNum: 0,
-		CurrentQPS:      0,
+		ServiceNum: serviceNum,
+		AppNum:     appNum,
 	}
 
 	return out, nil
 }
 
+// ServiceStat 统计各种服务的占比
 func (impl *dashboardLogicImpl) ServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
 	list, err := dao.GroupByLoadType(c, impl.db)
 	if err != nil {

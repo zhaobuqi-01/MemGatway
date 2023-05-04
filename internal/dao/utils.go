@@ -26,7 +26,7 @@ import (
 //	fmt.Println(user) // Output: User{ID: 1, Name: "John Doe", ...}
 func Get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	// log记录查询信息
-	log.Info(fmt.Sprintf("searching for %v", search), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start get", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
 
 	var out T
 	result := db.Where(search).First(&out)
@@ -41,7 +41,7 @@ func Get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 		return nil, result.Error
 	}
 
-	log.Info(fmt.Sprintf(" %v was found", search), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("get successful", zap.Any("result", result), zap.String("trace_id", c.GetString("TraceID")))
 	return &out, nil
 }
 
@@ -61,14 +61,14 @@ func Get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 //	fmt.Println("User updated") // Output: User updated
 func Update[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录更新信息
-	log.Info(fmt.Sprintf("updating %v", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start update", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 
 	if err := db.Model(data).Updates(data).Error; err != nil {
 		log.Error(fmt.Sprintf("error updating : %v ", data), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
-	log.Info(fmt.Sprintf("%v updated", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("update successful", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
 
@@ -88,14 +88,14 @@ func Update[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 //	fmt.Println("User saved") // Output: User saved
 func Save[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录保存信息
-	log.Info(fmt.Sprintf("saving %v", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start save", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 
 	if err := db.Save(data).Error; err != nil {
 		log.Error(fmt.Sprintf("error saving : %v ", data), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
-	log.Info(fmt.Sprintf("%v Saved", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("Saved successfully", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
 
@@ -115,14 +115,14 @@ func Save[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 //	fmt.Println("User deleted") // Output: User deleted
 func Delete[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录删除信息
-	log.Info(fmt.Sprintf("deleting %v", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start deleting ", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 
 	if err := db.Delete(data).Error; err != nil {
 		log.Error(fmt.Sprintf("error deleting : %v ", data), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}
 
-	log.Info(fmt.Sprintf("%v deleted", data), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("deleted sucessfully", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
 
@@ -143,7 +143,7 @@ func Delete[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 //	fmt.Println(count)    // Output: 5
 func ListByServiceID[T Model](c *gin.Context, db *gorm.DB, serviceID int64) ([]T, int64, error) {
 	// log记录查询信息
-	log.Info(fmt.Sprintf("searching for %v", serviceID), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start listByServiceID ", zap.String("trace_id", c.GetString("TraceID")))
 
 	var list []T
 	var count int64
@@ -160,7 +160,7 @@ func ListByServiceID[T Model](c *gin.Context, db *gorm.DB, serviceID int64) ([]T
 		return nil, 0, err
 	}
 
-	log.Info(fmt.Sprintf("%v was found", serviceID), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("ListByServiceID successful", zap.Any("list", list), zap.String("trace_id", c.GetString("TraceID")))
 	return list, count, nil
 }
 
@@ -185,7 +185,7 @@ func ListByServiceID[T Model](c *gin.Context, db *gorm.DB, serviceID int64) ([]T
 //	fmt.Println(total) // Output: 42
 func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
 	// log记录查询信息
-	log.Info(fmt.Sprintf("searching for %v", queryConditions), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start pageList ", zap.String("trace_id", c.GetString("TraceID")))
 
 	total := int64(0)
 	list := []T{}
@@ -201,7 +201,8 @@ func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *g
 	}
 	query.Limit(PageSize).Offset(offset).Count(&total)
 
-	log.Info(fmt.Sprintf("%v was found", query), zap.String("trace_id", c.GetString("TraceID")))
+	// log记录成功信息
+	log.Info("pageList successful", zap.Any("list", list), zap.String("trace_id", c.GetString("TraceID")))
 	return list, total, nil
 }
 
@@ -221,7 +222,7 @@ func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *g
 //	fmt.Println(detail) // Output: ServiceDetail{Info: {ID: 1, ...}, HTTPRule: {...}, ...}
 func GetServiceDetail(c *gin.Context, db *gorm.DB, search *ServiceInfo) (*ServiceDetail, error) {
 	// log记录查询信息
-	log.Info(fmt.Sprintf("searching for %v", search), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("start getting service detail", zap.String("trace_id", c.GetString("TraceID")))
 
 	if search.ServiceName == "" {
 		info, err := Get(c, db, search)
@@ -233,28 +234,38 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *ServiceInfo) (*Servic
 
 	httpRule, err := Get(c, db, &HttpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Error("error retrieving http rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return nil, err
 	}
+	log.Info("get http rule successful", zap.Any("httpRule", httpRule), zap.String("trace_id", c.GetString("TraceID")))
 
 	tcpRule, err := Get(c, db, &TcpRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Error("error retrieving tcp rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return nil, err
 	}
+	log.Info("get tcp rule successful", zap.Any("tcpRule", tcpRule), zap.String("trace_id", c.GetString("TraceID")))
 
 	grpcRule, err := Get(c, db, &GrpcRule{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Error("error retrieving grpc rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return nil, err
 	}
+	log.Info("get grpc rule successful", zap.Any("grpcRule", grpcRule), zap.String("trace_id", c.GetString("TraceID")))
 
 	accessControl, err := Get(c, db, &AccessControl{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Error("error retrieving access control", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return nil, err
 	}
+	log.Info("get access control successful", zap.Any("accessControl", accessControl), zap.String("trace_id", c.GetString("TraceID")))
 
 	loadBalance, err := Get(c, db, &LoadBalance{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Error("error retrieving load balance", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return nil, err
 	}
+	log.Info("get load balance successful", zap.Any("loadBalance", loadBalance), zap.String("trace_id", c.GetString("TraceID")))
 
 	detail := &ServiceDetail{
 		Info:          search,
@@ -266,7 +277,7 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *ServiceInfo) (*Servic
 	}
 
 	// log记录成功取到信息
-	log.Info(fmt.Sprintf("%v was found", search), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("get service detail successful", zap.Any("detail", detail), zap.String("trace_id", c.GetString("TraceID")))
 	return detail, nil
 }
 

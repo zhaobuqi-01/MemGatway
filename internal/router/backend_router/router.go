@@ -18,14 +18,14 @@ import (
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
 // InitRouter 初始化路由，可以传入多个中间件
 func InitRouter(db *gorm.DB) *gin.Engine {
-	// 使用默认中间件（log 和 recovery 中间件）创建 gin 路由
-	router := gin.Default()
+	router := gin.New()
 
 	store, err := sessions.NewRedisStore(10, "tcp", configs.GetRedisConfig().Addr, configs.GetRedisConfig().Password, []byte("secret"))
 	if err != nil {
@@ -41,6 +41,8 @@ func InitRouter(db *gorm.DB) *gin.Engine {
 		middleware.TranslationMiddleware(),    // 国际化中间件
 	)
 
+	// 注册prometheus监控路由
+	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	// 注册swagger路由
 	swaggerRegister(router)
 

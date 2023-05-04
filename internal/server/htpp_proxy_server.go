@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"gateway/configs"
+	"gateway/internal/metrics"
 	"gateway/internal/router/http_proxy_router"
 	"gateway/pkg/log"
 	"net/http"
@@ -21,6 +22,8 @@ func HtppProxyServerRun() {
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)
 
+	//
+	metrics.RecordSystemMetrics("http_proxy")
 	// 初始化路由
 	r := http_proxy_router.InitRouter()
 
@@ -54,6 +57,7 @@ func HttpsProxyServerRun() {
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)
 
+	metrics.RecordSystemMetrics("https_proxy")
 	// 初始化路由
 	r := http_proxy_router.InitRouter()
 

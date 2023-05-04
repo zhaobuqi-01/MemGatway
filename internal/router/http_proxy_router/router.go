@@ -1,10 +1,12 @@
 package http_proxy_router
 
 import (
+	"gateway/internal/metrics"
 	"gateway/internal/middleware"
 	"gateway/internal/middleware/http_proxy_middleware"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func InitRouter() *gin.Engine {
@@ -15,6 +17,11 @@ func InitRouter() *gin.Engine {
 		middleware.RequestLog(),
 	)
 
+	metrics.RecordErrorRateMetrics("http_proxy")
+	// 注册prometheus监控路由
+	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
+
+	// 注册健康检查路由
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
@@ -28,11 +35,10 @@ func InitRouter() *gin.Engine {
 
 	router.Use(
 		http_proxy_middleware.HTTPAccessModeMiddleware(),
-		http_proxy_middleware.HTTPFlowCountMiddleware(),
 		http_proxy_middleware.HTTPFlowLimitMiddleware(),
-		http_proxy_middleware.HTTPJwtAuthTokenMiddleware(),
-		http_proxy_middleware.HTTPJwtFlowCountMiddleware(),
-		http_proxy_middleware.HTTPJwtFlowLimitMiddleware(),
+		// http_proxy_middleware.HTTPJwtAuthTokenMiddleware(),
+		// http_proxy_middleware.HTTPJwtFlowCountMiddleware(),
+		// http_proxy_middleware.HTTPJwtFlowLimitMiddleware(),
 		http_proxy_middleware.HTTPWhiteListMiddleware(),
 		http_proxy_middleware.HTTPBlackListMiddleware(),
 		http_proxy_middleware.HTTPHeaderTransferMiddleware(),

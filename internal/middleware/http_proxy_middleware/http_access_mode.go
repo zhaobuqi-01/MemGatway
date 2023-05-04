@@ -1,7 +1,7 @@
 package http_proxy_middleware
 
 import (
-	"gateway/internal/dao"
+	"gateway/internal/logic"
 	"gateway/internal/pkg"
 	"gateway/pkg/log"
 
@@ -9,10 +9,10 @@ import (
 	"go.uber.org/zap"
 )
 
-// 匹配接入方式 基于请求信息
 func HTTPAccessModeMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		service, err := dao.ServiceManagerHandler.HTTPAccessMode(c)
+		// serviceManager.HTTPAccessMode 获取service信息
+		service, err := logic.NewServiceManager().HTTPAccessMode(c)
 		if err != nil {
 			pkg.ResponseError(c, pkg.HTTPAccessModeErrCode, err)
 			c.Abort()

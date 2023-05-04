@@ -2,17 +2,24 @@ package http_proxy_middleware
 
 import (
 	"fmt"
-	"gateway/internal/pkg"
 	"strings"
 
 	"gateway/internal/dao"
+	"gateway/internal/pkg"
 
 	"github.com/gin-gonic/gin"
 )
 
-// 匹配接入方式 基于请求信息
+// HTTPHeaderTransferMiddleware is a Gin middleware function that modifies
+// the HTTP headers of a request according to the specified transformation rules.
+// The transformation rules are retrieved from the service detail's HTTPRule.
+// Supported operations are "add", "edit", and "del".
+//
+// The function returns a Gin HandlerFunc that can be used as a middleware
+// in a Gin HTTP server.
 func HTTPHeaderTransferMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// Get the service detail from the context
 		serverInterface, ok := c.Get("service")
 		if !ok {
 			pkg.ResponseError(c, pkg.ServiceNotFoundErrCode, fmt.Errorf("service not found"))
@@ -20,18 +27,24 @@ func HTTPHeaderTransferMiddleware() gin.HandlerFunc {
 			return
 		}
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
+
+		// Split the header transformation rules and apply them to the request
 		for _, item := range strings.Split(serviceDetail.HTTPRule.HeaderTransfor, ",") {
 			items := strings.Split(item, " ")
 			if len(items) != 3 {
 				continue
 			}
-			if items[0] == "add" || items[0] == "edit" {
-				c.Request.Header.Set(items[1], items[2])
-			}
-			if items[0] == "del" {
-				c.Request.Header.Del(items[1])
+
+			operation, headerKey, headerValue := items[0], items[1], items[2]
+
+			switch operation {
+			case "add", "edit":
+				c.Request.Header.Set(headerKey, headerValue)
+			case "del":
+				c.Request.Header.Del(headerKey)
 			}
 		}
+
 		c.Next()
 	}
 }

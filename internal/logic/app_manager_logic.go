@@ -10,12 +10,6 @@ import (
 	"gorm.io/gorm"
 )
 
-var AppManagerHandler *appManager
-
-func init() {
-	AppManagerHandler = NewAppManager()
-}
-
 type appManager struct {
 	AppMap   map[string]*dao.App
 	AppSlice []*dao.App
@@ -43,7 +37,7 @@ func (s *appManager) LoadOnce() error {
 		tx := mysql.GetDB()
 		queryConditions := []func(db *gorm.DB) *gorm.DB{
 			func(db *gorm.DB) *gorm.DB {
-				return db.Where("name LIKE ? OR app_id LIKE ?", "%", "%")
+				return db.Where("(name like ? or app_id like ?)", "%"+""+"%", "%"+""+"%")
 			},
 		}
 

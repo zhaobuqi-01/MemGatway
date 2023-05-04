@@ -37,8 +37,8 @@ func main() {
 		pkg.InitAll()
 		defer pkg.CleanupAll()
 
-		logic.ServiceManagerHandler.LoadOnce()
-		logic.AppManagerHandler.LoadOnce()
+		logic.NewServiceManager().LoadOnce()
+		logic.NewAppManager().LoadOnce()
 
 		server.HtppProxyServerRun()
 		server.HttpsProxyServerRun()

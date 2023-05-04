@@ -22,6 +22,18 @@ const (
 	ClientIPInBlackListErrCode
 	// ClientIPNotInWhiteListCode 客户端IP不在白名单中
 	ClientIPNotInWhiteListCode
+	// GetLoadBalancerErrCode 获取负载均衡器失败
+	GetLoadBalancerErrCode
+	// GetTransportorErrCode 获取传输器失败
+	GetTransportorErrCode
+	// GetLimiterErrCode 获取限流器失败
+	GetLimiterErrCode
+	// ServerLimiterAllowErrCode 服务端限流
+	ServerLimiterAllowErrCode
+	// ClientIPLimiterAllowErrCode 客户端IP限流
+	ClientIPLimiterAllowErrCode
+	// ReverseProxyErrCode 反向代理失败
+	ReverseProxyErrCode
 )
 
 // 用户相关错误码
@@ -90,8 +102,4 @@ const (
 const (
 	// HttpAccessModeErrCode HTTP接入方式匹配失败
 	HTTPAccessModeErrCode = iota + 5001
-	// GetLoadBalancerErrCode 获取负载均衡器失败
-	GetLoadBalancerErrCode
-	// GetTransportorErrCode 获取传输器失败
-	GetTransportorErrCode
 )

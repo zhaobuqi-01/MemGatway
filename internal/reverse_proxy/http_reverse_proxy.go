@@ -16,10 +16,12 @@ func NewLoadBalanceReverseProxy(c *gin.Context, lb load_balance.LoadBalance, tra
 	//请求协调者
 	director := func(req *http.Request) {
 		nextAddr, err := lb.Get(req.URL.String())
-		//todo 优化点3
 		if err != nil || nextAddr == "" {
 			panic("get next addr fail")
 		}
+		// 保存当前请求的服务地址到上下文
+		c.Set("service_addr", nextAddr)
+
 		target, err := url.Parse(nextAddr)
 		if err != nil {
 			panic(err)
@@ -45,36 +47,10 @@ func NewLoadBalanceReverseProxy(c *gin.Context, lb load_balance.LoadBalance, tra
 			return nil
 		}
 
-		//todo 优化点2
-		//var payload []byte
-		//var readErr error
-		//
-		//if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
-		//	gr, err := gzip.NewReader(resp.Body)
-		//	if err != nil {
-		//		return err
-		//	}
-		//	payload, readErr = ioutil.ReadAll(gr)
-		//	resp.Header.Del("Content-Encoding")
-		//} else {
-		//	payload, readErr = ioutil.ReadAll(resp.Body)
-		//}
-		//if readErr != nil {
-		//	return readErr
-		//}
-		//
-		//c.Set("status_code", resp.StatusCode)
-		//c.Set("payload", payload)
-		//resp.Body = ioutil.NopCloser(bytes.NewBuffer(payload))
-		//resp.ContentLength = int64(len(payload))
-		//resp.Header.Set("Content-Length", strconv.FormatInt(int64(len(payload)), 10))
 		return nil
 	}
-
-	//错误回调 ：关闭real_server时测试，错误回调
-	//范围：transport.RoundTrip发生的错误、以及ModifyResponse发生的错误
 	errFunc := func(w http.ResponseWriter, r *http.Request, err error) {
-		pkg.ResponseError(c, 999, err)
+		pkg.ResponseError(c, pkg.ReverseProxyErrCode, err)
 	}
 	return &httputil.ReverseProxy{Director: director, ModifyResponse: modifyFunc, ErrorHandler: errFunc}
 }

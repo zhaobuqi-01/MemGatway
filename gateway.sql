@@ -33,9 +33,10 @@ CREATE TABLE `gateway_admin` (
 -- 转存表中的数据 `gateway_admin`
 --
 
-INSERT INTO `gateway_admin` (`id`, `user_name`, `salt`, `password`, `create_at`, `update_at`, `is_delete`) VALUES
+INSERT INTO `gateway_admin` (`id`, `user_name`, `password`, `create_at`, `update_at`, `is_delete`) VALUES
 (1, 'admin',  '$2a$10$4oKTR0e.UKEdVVJwWwl/pu.njPTVem/bmNM0eb16FF34g9kcPK1rK', '2020-04-10 16:42:05', '2020-04-21 06:35:08', 0);
 
+-- $2a$10$1jFsmThr.6z6J9bUcvzFVerTqtf7vPLsE1i1Z5d9c1rODaeEj4J3O
 -- --------------------------------------------------------
 
 --

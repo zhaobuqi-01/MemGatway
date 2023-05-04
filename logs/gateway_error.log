@@ -13,3 +13,2184 @@ gateway/pkg/log.Fatal
 	/mnt/e/project/Api-Gateway/pkg/log/log.go:184
 main.main.func1
 	/mnt/e/project/Api-Gateway/cmd/server/main.go:43
+2023-05-04T17:14:34+08:00	FATAL	log/log.go:198	Failed to connect to MySQL	{"error": "dial tcp 127.0.0.1:3306: connect: connection refused"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/pkg/database/mysql.initMySQL
+	/mnt/e/project/Api-Gateway/pkg/database/mysql/mysql.go:35
+gateway/pkg/database/mysql.Init
+	/mnt/e/project/Api-Gateway/pkg/database/mysql/mysql.go:22
+gateway/internal/pkg.InitAll
+	/mnt/e/project/Api-Gateway/internal/pkg/init.go:17
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:37
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 69 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 69 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 68 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 68 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 66 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 66 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 65 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 65 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 62 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 62 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:98
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:15:11+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 69 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 69 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 68 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 68 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 66 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 66 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 65 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 65 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 62 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 62 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T17:21:05+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:30:08+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:239
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:244
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:52:34+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:240
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:246
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:240
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:246
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:240
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:246
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:240
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:234
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:246
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:240
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:246
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T18:56:37+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:241
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:247
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:241
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:247
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:241
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:247
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:241
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:247
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:241
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:247
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:10:45+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:18:03+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 61 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 61 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 60 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 60 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 59 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 59 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 58 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 58 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 57 0  0 0 0  } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:235
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 57 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 56 0} not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:242
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	ERROR	log/log.go:186	 &{0 56 0 } not found 	{"error": "record not found", "trace_id": ""}
+gateway/pkg/log.Error
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:186
+gateway/internal/dao.Get[...]
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:36
+gateway/internal/dao.GetServiceDetail
+	/mnt/e/project/Api-Gateway/internal/dao/utils.go:249
+gateway/internal/logic.(*ServiceManager).LoadOnce.func1
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:99
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:74
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:65
+gateway/internal/logic.(*ServiceManager).LoadOnce
+	/mnt/e/project/Api-Gateway/internal/logic/service_manager_logic.go:79
+main.main
+	/mnt/e/project/Api-Gateway/cmd/server/main.go:40
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+2023-05-04T19:20:01+08:00	FATAL	log/log.go:198	listen: 	{"addr": "localhost:4433", "error": "open ./cert_file/server.crt: no such file or directory"}
+gateway/pkg/log.Fatal
+	/mnt/e/project/Api-Gateway/pkg/log/log.go:198
+gateway/internal/server.HttpsProxyServerRun.func1
+	/mnt/e/project/Api-Gateway/internal/server/htpp_proxy_server.go:76

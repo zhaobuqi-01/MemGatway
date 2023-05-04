@@ -2,42 +2,48 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
 var (
-	AppQPS = prometheus.NewGaugeVec(
-		prometheus.GaugeOpts{
-			Name: "app_qps",
-			Help: "QPS per App",
-		},
-		[]string{"app_id"},
-	)
-	AppQPD = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "app_qpd",
-			Help: "QPD per App",
-		},
-		[]string{"app_id"},
-	)
-	LoadBalancerCounter = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "load_balancer_total",
-			Help: "Total number of requests processed by the load balancer.",
-		},
-		[]string{"service_name", "load_balancer_type"},
-	)
-	TotalTrafficCounter = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "total_traffic_bytes",
-			Help: "Total traffic in bytes processed by the gateway.",
-		},
-		[]string{"direction"}, // "inbound" or "outbound"
-	)
-)
+	requestsTotal = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "requests_total",
+		Help: "The total number of requests",
+	}, []string{"name", "addr", "type"})
 
-func init() {
-	prometheus.MustRegister(LoadBalancerCounter)
-	prometheus.MustRegister(TotalTrafficCounter)
-	prometheus.MustRegister(AppQPS)
-	prometheus.MustRegister(AppQPD)
-}
+	responseTimeHistogram = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name:    "response_time_seconds",
+		Help:    "The response time of the application",
+		Buckets: prometheus.ExponentialBuckets(0.001, 2, 10),
+	}, []string{"type"})
+
+	throughput = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Name: "throughput",
+		Help: "The number of requests processed per second",
+	}, []string{"type"})
+
+	errorRate = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "error_rate",
+		Help: "The total number of errors occurred",
+	}, []string{"type"})
+
+	memoryUsage = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Name: "memory_usage",
+		Help: "The current memory usage",
+	}, []string{"type"})
+
+	cpuUsage = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Name: "cpu_usage",
+		Help: "The current CPU usage (percentage)",
+	}, []string{"type"})
+
+	limiterCount = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "limiter_count",
+		Help: "The total number of limiter events",
+	}, []string{"type"})
+
+	circuitBreakerCount = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "circuit_breaker_count",
+		Help: "The total number of circuit breaker events",
+	}, []string{"type", "state"})
+)

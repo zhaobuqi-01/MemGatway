@@ -20,6 +20,9 @@ type Response struct {
 func ResponseError(c *gin.Context, code ResponseCode, err error) {
 	// 设置响应头
 	c.Header("Content-Type", "application/json; charset=utf-8")
+
+	c.Set("ErrorCode", int(code))
+
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: code,
@@ -35,6 +38,9 @@ func ResponseSuccess(c *gin.Context, msg string, data any) {
 	if msg == "" {
 		msg = "success"
 	}
+
+	c.Set("ErrorCode", int(SuccessCode))
+
 	// 构造响应体
 	c.JSON(http.StatusOK, Response{
 		ErrorCode: SuccessCode,

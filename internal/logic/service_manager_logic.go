@@ -13,12 +13,6 @@ import (
 	"gorm.io/gorm"
 )
 
-var ServiceManagerHandler *ServiceManager
-
-func init() {
-	ServiceManagerHandler = NewServiceManager()
-}
-
 type ServiceManager struct {
 	ServiceMap   map[string]*dao.ServiceDetail
 	ServiceSlice []*dao.ServiceDetail
@@ -86,9 +80,10 @@ func (s *ServiceManager) LoadOnce() error {
 		c, _ := gin.CreateTestContext(httptest.NewRecorder())
 		tx := mysql.GetDB()
 
+		// 从db中分页读取基本信息
 		queryConditions := []func(db *gorm.DB) *gorm.DB{
 			func(db *gorm.DB) *gorm.DB {
-				return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
+				return db.Where("(service_name like ? or service_desc like ?)", "%"+""+"%", "%"+""+"%")
 			},
 		}
 		list, _, err := dao.PageList[dao.ServiceInfo](c, tx, queryConditions, 1, 99999)

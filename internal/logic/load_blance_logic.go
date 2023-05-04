@@ -11,33 +11,21 @@ import (
 	"time"
 )
 
-// LoadBalancer 定义负载均衡器接口
-type LoadBalancer interface {
-	GetLoadBalancer(service *dao.ServiceDetail) (load_balance.LoadBalance, error)
-}
-
-// Transportor 定义传输器接口
-type Transportor interface {
-	GetTransportor(service *dao.ServiceDetail) (*http.Transport, error)
-}
-
-// loadBalance 实现 LoadBalancer 接口
 type loadBalance struct {
 	loadBalanceMap sync.Map // 存储LoadBalancerItem的同步映射e
 }
 
-// transport 实现 Transportor 接口
 type transport struct {
 	transportMap sync.Map // 存储TransportItem的同步映射
 }
 
 // NewLoadBalancer 返回一个新的 LoadBalancer 实例
-func NewLoadBalancer() LoadBalancer {
+func NewLoadBalancer() *loadBalance {
 	return &loadBalance{}
 }
 
 // NewTransportor 返回一个新的 Transportor 实例
-func NewTransportor() Transportor {
+func NewTransportor() *transport {
 	return &transport{}
 }
 

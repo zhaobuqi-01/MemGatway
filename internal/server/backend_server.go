@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"gateway/configs"
+	"gateway/internal/metrics"
 	"gateway/internal/router/backend_router"
 	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
@@ -18,6 +19,9 @@ var srv *http.Server
 func HtppServerRun() {
 	// 设置gin模式
 	gin.SetMode(configs.GetGinConfig().Mode)
+
+	// 记录系统指标
+	metrics.RecordSystemMetrics("api_gateway")
 
 	// 初始化路由
 	db := mysql.GetDB()

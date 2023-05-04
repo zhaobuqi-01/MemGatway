@@ -6,6 +6,7 @@ import (
 	"gateway/internal/dao"
 	"gateway/internal/dto"
 	"gateway/internal/pkg"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -49,6 +50,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, param *dto.ServiceList
 	for _, listItem := range list {
 		serviceDetail, err := dao.GetServiceDetail(c, s.db, &listItem)
 		if err != nil {
+			log.Error("failed to get serviceDetail")
 			return nil, 0, fmt.Errorf("get serviceDetail fail")
 		}
 
