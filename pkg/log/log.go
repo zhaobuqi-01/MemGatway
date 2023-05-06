@@ -21,24 +21,12 @@ var (
 )
 
 // Init 初始化日志
-func Init() {
-	initLogger()
-	configs.RegisterReloadCallback(initLogger) // 注册回调
-}
-
-// initLogger 初始化zap记录器
 // 原理:
 // 1. 创建zapcore.Core
 // 2. 创建zap.Logger
 // 3. 重定向标准库的日志输出到zap
 // 4. 替换全局logger
-func initLogger() {
-	// 重置
-	logConfig = nil
-	logger = nil
-	fileOutput = nil
-	errorFileOutput = nil
-
+func Init() {
 	// 初始化
 	logConfig = configs.GetLogConfig()
 	// 创建zapcore.Core

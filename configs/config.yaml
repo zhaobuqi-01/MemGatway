@@ -1,15 +1,19 @@
-# 每一个键值对必须填写
-gin:
-  mode: "debug"
 # Server configuration
-server:
-  addr: "localhost:8081" # 监听地址, default ":8700"
+gateway:
+  addr: "localhost:8880" # 监听地址, default ":8700"
   read_timeout: 10 # 读取超时时长
   write_timeout: 10 # 写入超时时长
   max_header_bytes: 20 # 最大的header大小，二进制位长度
   allow_ip:
     - "127.0.0.1"
     - "192.168.1.1"
+
+# 监控服务器配置
+metrics:
+  addr: "localhost:8881"
+  read_timeout: 10 # 读取超时时长
+  write_timeout: 10 # 写入超时时长
+  max_header_bytes: 20 # 最大的header大小，二进制位长度
 
 # Log configuration
 log:
@@ -64,7 +68,7 @@ swagger:
 cluster:
   cluster_ip: "127.0.0.1"
   cluster_port: "8080"
-  cluster_ssl_port: "4880"
+  cluster_ssl_port: "4433"
 
 # 代理服务器配置
 http:

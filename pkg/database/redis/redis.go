@@ -30,18 +30,8 @@ type (
 	DurationCmd   = redis.DurationCmd
 )
 
-// Init
+// Init 初始化Redis数据库
 func Init() {
-	initRedis()
-	configs.RegisterReloadCallback(initRedis) // 注册回调
-}
-
-func initRedis() {
-	// 重置
-	redisClient = nil
-	redisConfig = nil
-	ctx = nil
-
 	// 初始化
 	redisConfig = configs.GetRedisConfig()
 	ctx = context.Background()
