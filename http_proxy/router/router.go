@@ -4,10 +4,11 @@ import (
 	"gateway/http_proxy/middleware"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-func InitRouter() *gin.Engine {
-	router := gin.New()
+func InitRouter(serverName string) *gin.Engine {
+	router := gin.Default()
 
 	router.Use(
 		middleware.SetTraceID(),
@@ -15,6 +16,8 @@ func InitRouter() *gin.Engine {
 		middleware.RequestLog(),
 	)
 
+	// 注册prometheus监控路由
+	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	// 注册健康检查路由
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -29,7 +32,7 @@ func InitRouter() *gin.Engine {
 
 	router.Use(
 		middleware.HTTPAccessModeMiddleware(),
-		middleware.HTTPTrafficStats(),
+		middleware.HTTPTrafficStats(serverName),
 		middleware.HTTPFlowLimitMiddleware(),
 		// http_proxy_middleware.HTTPJwtAuthTokenMiddleware(),
 		// http_proxy_middleware.HTTPJwtFlowCountMiddleware(),

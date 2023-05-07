@@ -8,13 +8,6 @@ gateway:
     - "127.0.0.1"
     - "192.168.1.1"
 
-# 监控服务器配置
-metrics:
-  addr: "localhost:8881"
-  read_timeout: 10 # 读取超时时长
-  write_timeout: 10 # 写入超时时长
-  max_header_bytes: 20 # 最大的header大小，二进制位长度
-
 # Log configuration
 log:
   format: "text" # json or text

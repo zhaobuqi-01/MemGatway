@@ -3,11 +3,8 @@ package main
 import (
 	"flag"
 	"gateway/backend"
-	"gateway/configs"
 	"gateway/http_proxy"
-	"gateway/pkg/database/mysql"
-	"gateway/pkg/database/redis"
-	"gateway/pkg/log"
+	"gateway/metrics"
 	"gateway/utils"
 
 	"os"
@@ -15,7 +12,6 @@ import (
 	"syscall"
 
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 var run = flag.String("run", "", "input gateway or proxy")
@@ -26,13 +22,13 @@ func main() {
 		flag.Usage()
 		os.Exit(1)
 	}
-
+	metrics.RecordSystemMetrics()
 	gin.SetMode(gin.DebugMode)
 
 	if *run == "gateway" {
 		// 启动后台服务器
-		InitAll()
-		defer CleanupAll()
+		utils.InitAll()
+		defer utils.CleanupAll()
 
 		go func() {
 			backend.GatewayServerRun()
@@ -46,8 +42,8 @@ func main() {
 
 	} else {
 		// 启动代理服务器
-		InitAll()
-		defer CleanupAll()
+		utils.InitAll()
+		defer utils.CleanupAll()
 
 		utils.ServiceManagerHandler.LoadOnce()
 		utils.AppManagerHandler.LoadOnce()
@@ -66,38 +62,4 @@ func main() {
 		http_proxy.HttpsProxyServerStop()
 
 	}
-}
-
-func InitAll() {
-	configs.Init()
-	log.Init()
-	mysql.Init()
-	redis.Init()
-}
-
-func CleanupAll() {
-	Cleanuplog()
-	CleanupRedis()
-	CleanupMySQL()
-	// flow_counter.CleanupFlowCounter()
-}
-
-func Cleanuplog() {
-	if err := log.Close(); err != nil {
-		log.Fatal("Failed to close log: %v", zap.Error(err))
-	}
-	log.Info("log closed")
-}
-
-func CleanupRedis() {
-	if err := redis.CloseRedis(); err != nil {
-		log.Fatal("Failed to close redis: %v", zap.Error(err))
-	}
-	log.Info("Redis closed")
-}
-func CleanupMySQL() {
-	if err := mysql.CloseDB(); err != nil {
-		log.Fatal("Failed to close database: %v", zap.Error(err))
-	}
-	log.Info("Mysql closed")
 }

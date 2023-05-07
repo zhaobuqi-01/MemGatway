@@ -16,7 +16,8 @@ func RequestOutLog(c *gin.Context, responseTime time.Duration) {
 	path := c.Request.URL.Path
 	clientIP := c.ClientIP()
 	method := c.Request.Method
-	statusCode := c.Writer.Status()
+	statusCode := c.GetInt("ErrorCode")
+	// log.Warn("错误码是否可以读取", zap.Int("错误码", statusCode))
 	userAgent := c.Request.UserAgent()
 	requestID := c.Writer.Header().Get("X-Request-Id")
 	responseHeaders := c.Writer.Header()

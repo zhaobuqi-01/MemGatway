@@ -19,6 +19,7 @@ import (
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
@@ -40,7 +41,11 @@ func InitRouter(db *gorm.DB) *gin.Engine {
 		middleware.RecoveryMiddleware(),       // 恢复中间件
 		middleware.RequestLog(),               // 请求日志中间件
 		middleware.TranslationMiddleware(),    // 国际化中间件
+		middleware.TrafficStats(),
 	)
+
+	// 注册prometheus监控路由
+	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
 
 	// 注册swagger路由
 	swaggerRegister(router)

@@ -6,8 +6,18 @@ import (
 	"golang.org/x/time/rate"
 )
 
+const smallSliceSize = 50
+
+var GloablFlowLimiter *FlowLimiter
+
+func init() {
+	GloablFlowLimiter = NewFlowLimiter()
+}
+
 type FlowLimiter struct {
-	flowLimiterMap sync.Map
+	flowLimiterMap   sync.Map
+	flowLimiterSlice []*FlowLimiterItem
+	locker           sync.Mutex
 }
 
 type FlowLimiterItem struct {
@@ -16,13 +26,41 @@ type FlowLimiterItem struct {
 }
 
 func NewFlowLimiter() *FlowLimiter {
-	return &FlowLimiter{}
+	return &FlowLimiter{
+		flowLimiterSlice: make([]*FlowLimiterItem, 0),
+		locker:           sync.Mutex{},
+	}
 }
 
 func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limiter, error) {
-	value, ok := fl.flowLimiterMap.Load(serviceName)
-	if ok {
-		return value.(*FlowLimiterItem).limiter, nil
+	if len(fl.flowLimiterSlice) < smallSliceSize {
+		for _, item := range fl.flowLimiterSlice {
+			if item.serviceName == serviceName {
+				return item.limiter, nil
+			}
+		}
+	} else {
+		value, ok := fl.flowLimiterMap.Load(serviceName)
+		if ok {
+			return value.(*FlowLimiterItem).limiter, nil
+		}
+	}
+
+	fl.locker.Lock()
+	defer fl.locker.Unlock()
+
+	// Double check after acquiring the lock
+	if len(fl.flowLimiterSlice) < smallSliceSize {
+		for _, item := range fl.flowLimiterSlice {
+			if item.serviceName == serviceName {
+				return item.limiter, nil
+			}
+		}
+	} else {
+		value, ok := fl.flowLimiterMap.Load(serviceName)
+		if ok {
+			return value.(*FlowLimiterItem).limiter, nil
+		}
 	}
 
 	newLimiter := rate.NewLimiter(rate.Limit(qps), int(qps*3))
@@ -31,6 +69,11 @@ func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limite
 		limiter:     newLimiter,
 	}
 
-	fl.flowLimiterMap.Store(serviceName, item)
+	if len(fl.flowLimiterSlice) < smallSliceSize {
+		fl.flowLimiterSlice = append(fl.flowLimiterSlice, item)
+	} else {
+		fl.flowLimiterMap.Store(serviceName, item)
+	}
+
 	return newLimiter, nil
 }

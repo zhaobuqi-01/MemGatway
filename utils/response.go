@@ -23,8 +23,20 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 
 	c.Set("ErrorCode", int(code))
 
+	var httpstatus int
+	switch code {
+	case UserNotLoggedInErrCode:
+		httpstatus = http.StatusUnauthorized
+	case ClientIPLimiterAllowErrCode:
+		httpstatus = http.StatusTooManyRequests
+	case ServerLimiterAllowErrCode, CircuitBreakerOpenErrCode:
+		httpstatus = http.StatusServiceUnavailable
+	default:
+		httpstatus = http.StatusOK
+	}
+
 	// 构造响应体
-	c.JSON(http.StatusOK, Response{
+	c.JSON(httpstatus, Response{
 		ErrorCode: code,
 		ErrorMsg:  err.Error(),
 		TraceID:   c.GetString("TraceID"),

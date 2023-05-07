@@ -3,7 +3,7 @@ package http_proxy
 import (
 	"context"
 	"gateway/configs"
-	http_proxy_router "gateway/http_proxy/router"
+	"gateway/http_proxy/router"
 	"gateway/pkg/log"
 	"net/http"
 	"time"
@@ -18,7 +18,7 @@ var (
 
 func HtppProxyServerRun() {
 	// 初始化路由
-	r := http_proxy_router.InitRouter()
+	r := router.InitRouter("http_proxy")
 
 	serverConfig := configs.GetHttpProxyConfig()
 	log.Info("httpServerConfig", zap.Any("serverConfig", serverConfig))
@@ -48,7 +48,8 @@ func HttpProxyServerStop() {
 }
 
 func HttpsProxyServerRun() {
-	r := http_proxy_router.InitRouter()
+	// 初始化路由
+	r := router.InitRouter("http_proxy")
 
 	serverConfig := configs.GetHttpsProxyConfig()
 	log.Info("httpsServerConfig", zap.Any("serverConfig", serverConfig))

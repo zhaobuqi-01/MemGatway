@@ -8,6 +8,7 @@ import (
 	"gateway/utils"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 func HTTPFlowLimitMiddleware() gin.HandlerFunc {
@@ -21,7 +22,7 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 		}
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
 		if serviceDetail.AccessControl.ServiceFlowLimit != 0 {
-			serviceLimiter, err := utils.NewFlowLimiter().GetLimiter(
+			serviceLimiter, err := utils.GloablFlowLimiter.GetLimiter(
 				utils.FlowServicePrefix+serviceDetail.Info.ServiceName,
 				float64(serviceDetail.AccessControl.ServiceFlowLimit))
 			if err != nil {
@@ -31,13 +32,14 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 			}
 			if !serviceLimiter.Allow() {
 				utils.ResponseError(c, utils.ServerLimiterAllowErrCode, fmt.Errorf(fmt.Sprintf("service flow limit %v", serviceDetail.AccessControl.ServiceFlowLimit)))
+				log.Warn("service flow limit", zap.Any("service flow limit", serviceDetail.AccessControl.ServiceFlowLimit))
 				c.Abort()
 				return
 			}
 		}
 
 		if serviceDetail.AccessControl.ClientIPFlowLimit > 0 {
-			clientLimiter, err := utils.NewFlowLimiter().GetLimiter(
+			clientLimiter, err := utils.GloablFlowLimiter.GetLimiter(
 				utils.FlowServicePrefix+serviceDetail.Info.ServiceName+"_"+c.ClientIP(),
 				float64(serviceDetail.AccessControl.ClientIPFlowLimit))
 			if err != nil {

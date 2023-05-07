@@ -1,0 +1,1238 @@
+definitions:
+  dao.AccessControl:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      id:
+        type: integer
+      open_auth:
+        type: integer
+      service_flow_limit:
+        type: integer
+      service_id:
+        type: integer
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    type: object
+  dao.App:
+    properties:
+      app_id:
+        type: string
+      create_at:
+        type: string
+      id:
+        type: integer
+      is_delete:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      update_at:
+        type: string
+      white_ips:
+        type: string
+    type: object
+  dao.GrpcRule:
+    properties:
+      header_transfor:
+        type: string
+      id:
+        type: integer
+      port:
+        type: integer
+      service_id:
+        type: integer
+    type: object
+  dao.HttpRule:
+    properties:
+      header_transfor:
+        type: string
+      id:
+        type: integer
+      need_https:
+        type: integer
+      need_strip_uri:
+        type: integer
+      need_websocket:
+        type: integer
+      rule:
+        type: string
+      rule_type:
+        type: integer
+      service_id:
+        type: integer
+      url_rewrite:
+        type: string
+    type: object
+  dao.LoadBalance:
+    properties:
+      check_interval:
+        type: integer
+      check_method:
+        type: integer
+      check_timeout:
+        type: integer
+      forbid_list:
+        type: string
+      id:
+        type: integer
+      ip_list:
+        type: string
+      round_type:
+        type: integer
+      service_id:
+        type: integer
+      upstream_connect_timeout:
+        type: integer
+      upstream_header_timeout:
+        type: integer
+      upstream_idle_timeout:
+        type: integer
+      upstream_max_idle:
+        type: integer
+      weight_list:
+        type: string
+    type: object
+  dao.ServiceDetail:
+    properties:
+      access_control:
+        $ref: '#/definitions/dao.AccessControl'
+      grpc_rule:
+        $ref: '#/definitions/dao.GrpcRule'
+      http_rule:
+        $ref: '#/definitions/dao.HttpRule'
+      info:
+        $ref: '#/definitions/dao.ServiceInfo'
+      load_balance:
+        $ref: '#/definitions/dao.LoadBalance'
+      tcp_rule:
+        $ref: '#/definitions/dao.TcpRule'
+    type: object
+  dao.ServiceInfo:
+    properties:
+      create_at:
+        type: string
+      id:
+        type: integer
+      is_delete:
+        type: integer
+      load_type:
+        type: integer
+      service_desc:
+        type: string
+      service_name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  dao.TcpRule:
+    properties:
+      id:
+        type: integer
+      port:
+        type: integer
+      service_id:
+        type: integer
+    type: object
+  dto.APPAddHttpInput:
+    properties:
+      app_id:
+        type: string
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      white_ips:
+        type: string
+    required:
+    - app_id
+    - name
+    type: object
+  dto.APPListItemOutput:
+    properties:
+      app_id:
+        type: string
+      create_at:
+        type: string
+      id:
+        type: integer
+      is_delete:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      real_qpd:
+        type: integer
+      real_qps:
+        type: integer
+      secret:
+        type: string
+      update_at:
+        type: string
+      white_ips:
+        type: string
+    type: object
+  dto.APPListOutput:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/dto.APPListItemOutput'
+        type: array
+      total:
+        type: integer
+    type: object
+  dto.APPUpdateHttpInput:
+    properties:
+      app_id:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      qpd:
+        type: integer
+      qps:
+        type: integer
+      secret:
+        type: string
+      white_ips:
+        type: string
+    required:
+    - id
+    - name
+    - secret
+    type: object
+  dto.AdminChangePwdInput:
+    properties:
+      password:
+        example: "123456"
+        type: string
+    required:
+    - password
+    type: object
+  dto.AdminLoginInput:
+    properties:
+      password:
+        description: 密码
+        example: "123456"
+        type: string
+      username:
+        description: 管理员用户名
+        example: admin
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  dto.AdminLoginOutput:
+    properties:
+      token:
+        description: token
+        example: token
+        type: string
+    type: object
+  dto.AminInfoOutput:
+    properties:
+      avatar:
+        type: string
+      id:
+        type: integer
+      introduceion:
+        type: string
+      login_time:
+        type: string
+      name:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.DashServiceStatItemOutput:
+    properties:
+      load_type:
+        type: integer
+      name:
+        type: string
+      value:
+        type: integer
+    type: object
+  dto.DashServiceStatOutput:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.DashServiceStatItemOutput'
+        type: array
+      legend:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.PanelGroupDataOutput:
+    properties:
+      appNum:
+        type: integer
+      serviceNum:
+        type: integer
+    type: object
+  dto.ServiceAddGrpcInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceAddHTTPInput:
+    properties:
+      black_list:
+        description: 黑名单ip
+        type: string
+      clientip_flow_limit:
+        description: 客户端ip限流
+        minimum: 0
+        type: integer
+      header_transfor:
+        description: header转换
+        type: string
+      ip_list:
+        description: ip列表
+        type: string
+      need_https:
+        description: 支持https
+        maximum: 1
+        minimum: 0
+        type: integer
+      need_strip_uri:
+        description: 启用strip_uri
+        maximum: 1
+        minimum: 0
+        type: integer
+      need_websocket:
+        description: 是否支持websocket
+        maximum: 1
+        minimum: 0
+        type: integer
+      open_auth:
+        description: 关键词
+        maximum: 1
+        minimum: 0
+        type: integer
+      round_type:
+        description: 轮询方式
+        maximum: 3
+        minimum: 0
+        type: integer
+      rule:
+        description: 域名或者前缀
+        type: string
+      rule_type:
+        description: 接入类型
+        maximum: 1
+        minimum: 0
+        type: integer
+      service_desc:
+        description: 服务描述
+        maxLength: 255
+        minLength: 1
+        type: string
+      service_flow_limit:
+        description: 服务端限流
+        minimum: 0
+        type: integer
+      service_name:
+        description: 服务名
+        type: string
+      upstream_connect_timeout:
+        description: 建立连接超时, 单位s
+        minimum: 0
+        type: integer
+      upstream_header_timeout:
+        description: 获取header超时, 单位s
+        minimum: 0
+        type: integer
+      upstream_idle_timeout:
+        description: 链接最大空闲时间, 单位s
+        minimum: 0
+        type: integer
+      upstream_max_idle:
+        description: 最大空闲链接数
+        minimum: 0
+        type: integer
+      url_rewrite:
+        description: url重写功能
+        type: string
+      weight_list:
+        description: 权重列表
+        type: string
+      white_list:
+        description: 白名单ip
+        type: string
+    required:
+    - ip_list
+    - rule
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceAddTcpInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceListItemOutput:
+    properties:
+      id:
+        description: 服务ID
+        type: integer
+      load_type:
+        description: 负载类型
+        type: integer
+      qpd:
+        description: QPD
+        type: integer
+      qps:
+        description: QPS
+        type: integer
+      service_addr:
+        description: 服务地址
+        type: string
+      service_desc:
+        description: 服务描述
+        type: string
+      service_name:
+        description: 服务名称
+        type: string
+      total_node:
+        description: 节点总数
+        type: integer
+    type: object
+  dto.ServiceListOutput:
+    properties:
+      list:
+        description: 列表
+        items:
+          $ref: '#/definitions/dto.ServiceListItemOutput'
+        type: array
+      total:
+        description: 总数
+        type: integer
+    type: object
+  dto.ServiceUpdateGrpcInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      header_transfor:
+        type: string
+      id:
+        type: integer
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - id
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceUpdateHTTPInput:
+    properties:
+      black_list:
+        description: 黑名单ip
+        type: string
+      clientip_flow_limit:
+        description: 客户端ip限流
+        minimum: 0
+        type: integer
+      header_transfor:
+        description: header转换
+        type: string
+      id:
+        description: 服务ID
+        example: 62
+        minimum: 1
+        type: integer
+      ip_list:
+        description: ip列表
+        example: 127.0.0.1:80
+        type: string
+      need_https:
+        description: 支持https
+        maximum: 1
+        minimum: 0
+        type: integer
+      need_strip_uri:
+        description: 启用strip_uri
+        maximum: 1
+        minimum: 0
+        type: integer
+      need_websocket:
+        description: 是否支持websocket
+        maximum: 1
+        minimum: 0
+        type: integer
+      open_auth:
+        description: 关键词
+        maximum: 1
+        minimum: 0
+        type: integer
+      round_type:
+        description: 轮询方式
+        maximum: 3
+        minimum: 0
+        type: integer
+      rule:
+        description: 域名或者前缀
+        example: /test_http_service_indb
+        type: string
+      rule_type:
+        description: 接入类型
+        maximum: 1
+        minimum: 0
+        type: integer
+      service_desc:
+        description: 服务描述
+        example: test_http_service_indb
+        maxLength: 255
+        minLength: 1
+        type: string
+      service_flow_limit:
+        description: 服务端限流
+        minimum: 0
+        type: integer
+      service_name:
+        description: 服务名
+        example: test_http_service_indb
+        type: string
+      upstream_connect_timeout:
+        description: 建立连接超时, 单位s
+        minimum: 0
+        type: integer
+      upstream_header_timeout:
+        description: 获取header超时, 单位s
+        minimum: 0
+        type: integer
+      upstream_idle_timeout:
+        description: 链接最大空闲时间, 单位s
+        minimum: 0
+        type: integer
+      upstream_max_idle:
+        description: 最大空闲链接数
+        minimum: 0
+        type: integer
+      url_rewrite:
+        description: url重写功能
+        type: string
+      weight_list:
+        description: 权重列表
+        example: "50"
+        type: string
+      white_list:
+        description: 白名单ip
+        type: string
+    required:
+    - id
+    - ip_list
+    - rule
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  dto.ServiceUpdateTcpInput:
+    properties:
+      black_list:
+        type: string
+      clientip_flow_limit:
+        type: integer
+      forbid_list:
+        type: string
+      id:
+        type: integer
+      ip_list:
+        type: string
+      open_auth:
+        type: integer
+      port:
+        maximum: 8999
+        minimum: 8001
+        type: integer
+      round_type:
+        type: integer
+      service_desc:
+        type: string
+      service_flow_limit:
+        type: integer
+      service_name:
+        type: string
+      weight_list:
+        type: string
+      white_host_name:
+        type: string
+      white_list:
+        type: string
+    required:
+    - id
+    - ip_list
+    - port
+    - service_desc
+    - service_name
+    - weight_list
+    type: object
+  utils.Response:
+    properties:
+      data: {}
+      errmsg:
+        type: string
+      errno:
+        type: integer
+      trace_id: {}
+    type: object
+info:
+  contact: {}
+paths:
+  /admin/admin_info:
+    get:
+      consumes:
+      - application/json
+      description: 管理员信息
+      operationId: /admin/admin_info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.AminInfoOutput'
+              type: object
+      summary: 管理员信息
+      tags:
+      - Admin
+  /admin/change_pwd:
+    post:
+      consumes:
+      - application/json
+      description: 管理员密码修改
+      operationId: /admin/change_pwd
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AdminChangePwdInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 管理员密码修改
+      tags:
+      - Admin
+  /admin/login:
+    post:
+      consumes:
+      - application/json
+      description: 管理员登陆
+      operationId: /admin/login
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AdminLoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.AdminLoginOutput'
+              type: object
+      summary: 管理员登陆
+      tags:
+      - Admin
+  /admin/login_out:
+    get:
+      consumes:
+      - application/json
+      description: 管理员退出登陆
+      operationId: /admin/login_out
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 管理员退出登陆
+      tags:
+      - Admin
+  /app/app_add:
+    post:
+      consumes:
+      - application/json
+      description: APP添加
+      operationId: /app/app_add
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.APPAddHttpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP添加
+      tags:
+      - APP
+  /app/app_delete:
+    get:
+      consumes:
+      - application/json
+      description: APP删除
+      operationId: /app/app_delete
+      parameters:
+      - description: App ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP删除
+      tags:
+      - APP
+  /app/app_detail:
+    get:
+      consumes:
+      - application/json
+      description: APP详情
+      operationId: /app/app_detail
+      parameters:
+      - description: App ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dao.App'
+              type: object
+      summary: APP详情
+      tags:
+      - APP
+  /app/app_list:
+    get:
+      consumes:
+      - application/json
+      description: APP列表
+      operationId: /app/app_list
+      parameters:
+      - description: 搜索关键字
+        in: query
+        name: info
+        type: string
+      - description: 页码
+        in: query
+        name: page_no
+        required: true
+        type: string
+      - description: 每页数量
+        in: query
+        name: page_size
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.APPListOutput'
+              type: object
+      summary: APP列表
+      tags:
+      - APP
+  /app/app_update:
+    post:
+      consumes:
+      - application/json
+      description: APP更新
+      operationId: /app/app_update
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.APPUpdateHttpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: APP更新
+      tags:
+      - APP
+  /dashboard/panel_group_data:
+    get:
+      consumes:
+      - application/json
+      description: 指标统计
+      operationId: /dashboard/panel_group_data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.PanelGroupDataOutput'
+              type: object
+      summary: 指标统计
+      tags:
+      - Dashboard
+  /dashboard/service_stat:
+    get:
+      consumes:
+      - application/json
+      description: 服务统计
+      operationId: /dashboard/service_stat
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.DashServiceStatOutput'
+              type: object
+      summary: 服务统计
+      tags:
+      - Dashboard
+  /service/service_add_grpc:
+    post:
+      consumes:
+      - application/json
+      description: 添加GRPC服务
+      operationId: /service/service_add_grpc
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceAddGrpcInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 添加GRPC服务
+      tags:
+      - Service
+  /service/service_add_http:
+    post:
+      consumes:
+      - application/json
+      description: 添加HTTP服务
+      operationId: /service/service_add_http
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceAddHTTPInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 添加HTTP服务
+      tags:
+      - Service
+  /service/service_add_tcp:
+    post:
+      consumes:
+      - application/json
+      description: 添加TCP服务
+      operationId: /service/service_add_tcp
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceAddTcpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 添加TCP服务
+      tags:
+      - Service
+  /service/service_delete:
+    get:
+      consumes:
+      - application/json
+      description: 服务删除
+      operationId: /service/service_delete
+      parameters:
+      - description: 服务id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 服务删除
+      tags:
+      - Service
+  /service/service_detail:
+    get:
+      description: 服务详情
+      parameters:
+      - description: 服务ID
+        in: query
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dao.ServiceDetail'
+              type: object
+      summary: 服务详情
+      tags:
+      - Service
+  /service/service_list:
+    get:
+      consumes:
+      - application/json
+      description: 服务列表
+      operationId: /service/service_list
+      parameters:
+      - description: 关键词
+        in: query
+        name: info
+        type: string
+      - description: 页码
+        in: query
+        name: page_no
+        required: true
+        type: integer
+      - description: 每页条数
+        in: query
+        name: page_size
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ServiceListOutput'
+              type: object
+      summary: 服务列表
+      tags:
+      - Service
+  /service/service_update_grpc:
+    post:
+      consumes:
+      - application/json
+      description: 更新GRPC服务
+      operationId: /service/service_update_grpc
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceUpdateGrpcInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 更新GRPC服务
+      tags:
+      - Service
+  /service/service_update_http:
+    post:
+      consumes:
+      - application/json
+      description: 更新HTTP服务
+      operationId: /service/service_update_http
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceUpdateHTTPInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 更新HTTP服务
+      tags:
+      - Service
+  /service/service_update_tcp:
+    post:
+      consumes:
+      - application/json
+      description: 更新TCP服务
+      operationId: /service/service_update_tcp
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ServiceUpdateTcpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 更新TCP服务
+      tags:
+      - Service
+swagger: "2.0"

@@ -1,7 +1,6 @@
 package proxy
 
 import (
-	"fmt"
 	"gateway/load_balance"
 	"gateway/utils"
 
@@ -21,14 +20,17 @@ func NewLoadBalanceReverseProxy(c *gin.Context, lb load_balance.LoadBalance, tra
 		if err != nil || nextAddr == "" {
 			panic("get next addr fail")
 		}
-		fmt.Printf("Next address: %s\n", nextAddr)
-		// 保存当前请求的服务地址到上下文
-		c.Set("service_addr", nextAddr)
 
 		target, err := url.Parse(nextAddr)
 		if err != nil {
 			panic(err)
 		}
+
+		// 提取主机和端口
+		hostAndPort := target.Host
+		// 保存当前请求的服务地址（不包括http://）到上下文
+		c.Set("service_addr", hostAndPort)
+
 		targetQuery := target.RawQuery
 		req.URL.Scheme = target.Scheme
 		req.URL.Host = target.Host

@@ -26,8 +26,9 @@ func RecordSystemMetrics() {
 				log.Warn("get virtual memory failed", zap.Error(err))
 				continue
 			}
-			memoryUsage.Set(float64(virtMem.Used))
-			cpuUsage.Set(cpuPercent[0])
+			usedMemoryPercent := (float64(virtMem.Used) / float64(virtMem.Total)) * 100
+			memoryUsagePercent.Set(usedMemoryPercent) // 使用 memoryUsagePercent 而不是 memoryUsage
+			cpuUsage.Set(cpuPercent[0])               // 不需要乘以 100，因为 gopsutil 已经返回了百分比形式的 CPU 使用率
 
 			time.Sleep(5 * time.Second)
 		}

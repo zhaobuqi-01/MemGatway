@@ -32,6 +32,8 @@ const (
 	ServerLimiterAllowErrCode
 	// ClientIPLimiterAllowErrCode 客户端IP限流
 	ClientIPLimiterAllowErrCode
+	// CircuitBreakerOpenErrCode 熔断器打开
+	CircuitBreakerOpenErrCode
 	// ReverseProxyErrCode 反向代理失败
 	ReverseProxyErrCode
 	// NoSuchHostErrCode 无此主机
@@ -44,7 +46,7 @@ const (
 	UserNotLoggedInErrCode = iota + 1001
 	// UserLoginErrCode 用户登录失败
 	UserLoginErrCode
-	// UserLoginErrCode 用户登录失败
+	// UserLoginErrCode 用户退出登录失败
 	UserLoginOutErrCode
 	// UserInfoErrCode 获取用户信息失败
 	UserInfoErrCode

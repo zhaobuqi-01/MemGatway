@@ -9,7 +9,7 @@ swag init --generalInfo cmd/server/main.go --output api/v1
 ### 网址
 
 ```
- http://localhost:8080/swagger/index.html 
+ http://localhost:8880/swagger/index.html 
 ```
 
 ### 注解

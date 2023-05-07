@@ -10,6 +10,12 @@ import (
 
 func TrafficStats() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// 如果是 Prometheus 请求，不记录指标
+		if c.Request.URL.Path == "/metrics" {
+			c.Next()
+			return
+		}
+
 		startTime := time.Now()
 
 		// 处理请求

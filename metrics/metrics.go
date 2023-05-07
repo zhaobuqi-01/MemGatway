@@ -22,9 +22,9 @@ var (
 		Help: "The total number of errors occurred",
 	}, []string{"name"})
 
-	memoryUsage = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "memory_usage",
-		Help: "The current memory usage",
+	memoryUsagePercent = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "memory_usage_percent",
+		Help: "The current memory usage (percentage)",
 	})
 
 	cpuUsage = promauto.NewGauge(prometheus.GaugeOpts{
