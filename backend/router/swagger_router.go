@@ -1,7 +1,7 @@
 package router
 
 import (
-	v1 "gateway/api/v1"
+	v1 "gateway/backend/api/v1"
 	"gateway/configs"
 
 	"github.com/gin-gonic/gin"

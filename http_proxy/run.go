@@ -18,7 +18,7 @@ var (
 
 func HtppProxyServerRun() {
 	// 初始化路由
-	r := router.InitRouter("http_proxy")
+	r := router.InitRouter()
 
 	serverConfig := configs.GetHttpProxyConfig()
 	log.Info("httpServerConfig", zap.Any("serverConfig", serverConfig))
@@ -49,7 +49,7 @@ func HttpProxyServerStop() {
 
 func HttpsProxyServerRun() {
 	// 初始化路由
-	r := router.InitRouter("http_proxy")
+	r := router.InitRouter()
 
 	serverConfig := configs.GetHttpsProxyConfig()
 	log.Info("httpsServerConfig", zap.Any("serverConfig", serverConfig))

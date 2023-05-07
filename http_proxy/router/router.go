@@ -1,23 +1,34 @@
 package router
 
 import (
+	"gateway/http_proxy/controller"
 	"gateway/http_proxy/middleware"
 
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-func InitRouter(serverName string) *gin.Engine {
+func InitRouter() *gin.Engine {
 	router := gin.Default()
 
 	router.Use(
 		middleware.SetTraceID(),
 		middleware.RecoveryMiddleware(),
 		middleware.RequestLog(),
+		middleware.TrafficStats(),
 	)
+
+	// 注册oauth路由
+	aouthRouter := router.Group("/oauth")
+	aouthRouter.Use(middleware.TranslationMiddleware())
+	{
+		controller := controller.NewOAuthController()
+		aouthRouter.POST("/tokens", controller.Tokens)
+	}
 
 	// 注册prometheus监控路由
 	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
+
 	// 注册健康检查路由
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -25,14 +36,9 @@ func InitRouter(serverName string) *gin.Engine {
 		})
 	})
 
-	// oauth := router.Group("/oauth")
-	// oauth.Use(middleware.TranslationMiddleware())
-
-	// 	controller.OAuthRegister(oauth)
-
 	router.Use(
 		middleware.HTTPAccessModeMiddleware(),
-		middleware.HTTPTrafficStats(serverName),
+		middleware.HTTPTrafficStats(),
 		middleware.HTTPFlowLimitMiddleware(),
 		// http_proxy_middleware.HTTPJwtAuthTokenMiddleware(),
 		// http_proxy_middleware.HTTPJwtFlowCountMiddleware(),

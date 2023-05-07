@@ -23,14 +23,13 @@ func TrafficStats() gin.HandlerFunc {
 
 		// 获取请求信息
 		statusCode := c.GetInt("ErrorCode")
-		// 更新请求总数
-		metrics.RecordRequestTotalMetrics("gateway")
 
 		// 如果发生错误，请更新错误率
 		if statusCode != utils.SuccessCode {
 			metrics.RecordErrorRateMetrics("gateway")
 		}
-
+		// 更新请求总数
+		metrics.RecordRequestTotalMetrics("gateway")
 		// 更新响应时间直方图
 		responseTime := time.Since(startTime).Seconds()
 		metrics.RecordResponseTimeMetrics("gateway", responseTime)

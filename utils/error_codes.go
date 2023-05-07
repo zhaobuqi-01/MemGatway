@@ -1,13 +1,5 @@
 package utils
 
-// 0-999 通用错误码
-// 1000-1999 用户相关错误码
-// 2000-2999 应用相关错误码
-// 3000-3999 面板相关错误码
-// 4000-4999 服务相关错误码
-// 5000-5999 代理服务相关错误码
-
-// 通用错误码
 const (
 	// SuccessCode 成功
 	SuccessCode = iota
@@ -38,12 +30,18 @@ const (
 	ReverseProxyErrCode
 	// NoSuchHostErrCode 无此主机
 	NoSuchHostErrCode
-)
 
-// 用户相关错误码
-const (
+	// Jwt
+	TokensErrCode
+	// JwtDecodeErrCode jwt解码失败
+	JwtDecodeErrCode
+	// ValidAppErrCode 无效的应用
+	ValidAppErrCode
+	// APPLimiterAllowErrCode 应用限流
+	APPLimiterAllowErrCode
+
 	// UserNotLoggedInErrCode 用户未登录
-	UserNotLoggedInErrCode = iota + 1001
+	UserNotLoggedInErrCode
 	// UserLoginErrCode 用户登录失败
 	UserLoginErrCode
 	// UserLoginErrCode 用户退出登录失败
@@ -52,12 +50,9 @@ const (
 	UserInfoErrCode
 	// UserChangePwdErrCode 修改密码失败
 	UserChangePwdErrCode
-)
 
-// 应用相关错误码
-const (
 	// AppNotFoundErrCode 应用未找到
-	AppNotFoundErrCode = iota + 2001
+	AppNotFoundErrCode
 	// AppListErrCode 获取应用列表失败
 	AppListErrCode
 	// AppDetailErrCode 获取应用详情失败
@@ -68,20 +63,14 @@ const (
 	AppAddErrCode
 	// AppUpdateErrCode 更新应用失败
 	AppUpdateErrCode
-)
 
-// 面板相关错误码
-const (
 	// PanelGroupDataErrCode 获取面板分组数据失败
-	PanelGroupDataErrCode = iota + 3001
+	PanelGroupDataErrCode
 	// ServiceStatErrCode 获取服务统计数据失败
 	ServiceStatErrCode
-)
 
-// 服务相关错误码
-const (
 	// ServiceNotFoundErrCode 服务未找到
-	ServiceNotFoundErrCode = iota + 4001
+	ServiceNotFoundErrCode
 	// ServiceListErrCode 获取服务列表失败
 	ServiceListErrCode
 	// ServiceDeleteErrCode 删除服务失败
@@ -100,10 +89,7 @@ const (
 	AddGRPCServiceErrCode
 	// UpdateGRPCServiceErrCode 更新UDP服务失败
 	UpdateGRPCServiceErrCode
-)
 
-// proxy相关错误码
-const (
 	// HttpAccessModeErrCode HTTP接入方式匹配失败
-	HTTPAccessModeErrCode = iota + 5001
+	HTTPAccessModeErrCode
 )

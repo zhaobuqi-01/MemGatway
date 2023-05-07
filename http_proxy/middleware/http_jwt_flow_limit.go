@@ -1,37 +1,36 @@
 package middleware
 
-// import (
-// 	"fmt"
+import (
+	"fmt"
+	"gateway/dao"
+	"gateway/utils"
 
-// 	"github.com/e421083458/go_gateway/dao"
-// 	"github.com/e421083458/go_gateway/pkg"
-// 	"github.com/e421083458/go_gateway/public"
-// 	"github.com/gin-gonic/gin"
-// )
+	"github.com/gin-gonic/gin"
+)
 
-// func HTTPJwtFlowLimitMiddleware() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		appInterface, ok := c.Get("app")
-// 		if !ok {
-// 			c.Next()
-// 			return
-// 		}
-// 		appInfo := appInterface.(*dao.App)
-// 		if appInfo.Qps > 0 {
-// 			clientLimiter, err := public.FlowLimiterHandler.GetLimiter(
-// 				public.FlowAppPrefix+appInfo.AppID+"_"+c.ClientIP(),
-// 				float64(appInfo.Qps))
-// 			if err != nil {
-// 				pkg.ResponseError(c, 5001, err)
-// 				c.Abort()
-// 				return
-// 			}
-// 			if !clientLimiter.Allow() {
-// 				pkg.ResponseError(c, 5002, fmt.Errorf(fmt.Sprintf("%v flow limit %v", c.ClientIP(), appInfo.Qps)))
-// 				c.Abort()
-// 				return
-// 			}
-// 		}
-// 		c.Next()
-// 	}
-// }
+func HTTPJwtFlowLimitMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		appInterface, ok := c.Get("app")
+		if !ok {
+			c.Next()
+			return
+		}
+		appInfo := appInterface.(*dao.App)
+		if appInfo.Qps > 0 {
+			clientLimiter, err := utils.GloablFlowLimiter.GetLimiter(
+				utils.FlowAppPrefix+appInfo.AppID+"_"+c.ClientIP(),
+				float64(appInfo.Qps))
+			if err != nil {
+				utils.ResponseError(c, utils.GetLimiterErrCode, err)
+				c.Abort()
+				return
+			}
+			if !clientLimiter.Allow() {
+				utils.ResponseError(c, utils.APPLimiterAllowErrCode, fmt.Errorf(fmt.Sprintf("%v flow limit %v", c.ClientIP(), appInfo.Qps)))
+				c.Abort()
+				return
+			}
+		}
+		c.Next()
+	}
+}

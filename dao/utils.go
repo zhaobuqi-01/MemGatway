@@ -40,7 +40,7 @@ func Update[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录更新信息
 	log.Info("start updating", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 
-	if err := db.Model(data).Updates(data).Error; err != nil {
+	if err := db.Save(data).Error; err != nil {
 		log.Error(fmt.Sprintf("error updating : %v ", data), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return err
 	}

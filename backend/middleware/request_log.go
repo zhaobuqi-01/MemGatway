@@ -3,6 +3,7 @@ package middleware
 import (
 	"bytes"
 	"gateway/pkg/log"
+
 	"io/ioutil"
 	"time"
 
@@ -13,26 +14,21 @@ import (
 func RequestOutLog(c *gin.Context, responseTime time.Duration) {
 	// after request
 	// 记录响应信息
-	path := c.Request.URL.Path
-	clientIP := c.ClientIP()
+	uri := c.Request.RequestURI
+	ip := c.ClientIP()
 	method := c.Request.Method
-	statusCode := c.GetInt("ErrorCode")
-	// log.Warn("错误码是否可以读取", zap.Int("错误码", statusCode))
-	userAgent := c.Request.UserAgent()
-	requestID := c.Writer.Header().Get("X-Request-Id")
-	responseHeaders := c.Writer.Header()
-	responseBody := c.GetString("response")
+	statusCode := c.Writer.Status()
+	args := c.Request.PostForm
+	response := c.GetString("response")
 
-	log.Info("Request Info",
-		zap.String("path", path),
-		zap.String("client_ip", clientIP),
+	log.Info("Response Info",
+		zap.String("uri", uri),
+		zap.String("client_ip", ip),
 		zap.String("method", method),
 		zap.Int("status_code", statusCode),
-		zap.String("user_agent", userAgent),
-		zap.String("request_id", requestID),
-		zap.Any("request_headers", responseHeaders),
-		zap.Any("request_body", responseBody),
-		zap.Duration("elapsed", responseTime),
+		zap.Any("args", args),
+		zap.Any("response", response),
+		zap.Duration("response_time", responseTime),
 		zap.String("trace_id", c.GetString("TraceID")),
 	)
 }
@@ -48,24 +44,16 @@ func RequestInLog(c *gin.Context) {
 	c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestBody))
 
 	// 记录请求信息
-	path := c.Request.URL.Path
+	uri := c.Request.RequestURI
 	clientIP := c.ClientIP()
 	method := c.Request.Method
-	userAgent := c.Request.UserAgent()
-	requestID := c.Request.Header.Get("X-Request-Id")
-	requestHeaders := c.Request.Header
 	requestBodyStr := string(requestBody)
-	requestForm := c.Request.PostForm
 
-	log.Info("Response Info",
-		zap.String("path", path),
+	log.Info("Request Info",
+		zap.String("uri", uri),
 		zap.String("client_ip", clientIP),
 		zap.String("method", method),
-		zap.String("user_agent", userAgent),
-		zap.String("request_id", requestID),
-		zap.Any("response_headers", requestHeaders),
-		zap.String("response_body", requestBodyStr),
-		zap.Any("request_form", requestForm),
+		zap.String("reques_body", requestBodyStr),
 		zap.String("trace_id", c.GetString("TraceID")),
 	)
 }

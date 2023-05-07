@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"gateway/pkg/log"
 	"gateway/utils"
-
 	"runtime/debug"
 
 	"github.com/gin-gonic/gin"
@@ -17,8 +16,8 @@ func RecoveryMiddleware() gin.HandlerFunc {
 			if err := recover(); err != nil {
 				fmt.Println(string(debug.Stack()))
 				// 记录错误堆栈和日志
-				requestID := c.Writer.Header().Get("X-Request-Id")
-				log.Error(fmt.Sprint(err), zap.String("stack", string(debug.Stack())), zap.String("request_id", requestID))
+				trace_id := c.GetString("TraceID")
+				log.Error(fmt.Sprintf("recover error %v", err), zap.String("trace_id", trace_id))
 
 				utils.ResponseError(c, utils.InternalErrorCode, fmt.Errorf("internal error"))
 				return

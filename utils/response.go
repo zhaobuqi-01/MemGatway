@@ -24,6 +24,7 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 	c.Set("ErrorCode", int(code))
 
 	var httpstatus int
+
 	switch code {
 	case UserNotLoggedInErrCode:
 		httpstatus = http.StatusUnauthorized
@@ -31,6 +32,8 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 		httpstatus = http.StatusTooManyRequests
 	case ServerLimiterAllowErrCode, CircuitBreakerOpenErrCode:
 		httpstatus = http.StatusServiceUnavailable
+	case InternalErrorCode, ParamBindingErrCode:
+		httpstatus = http.StatusInternalServerError
 	default:
 		httpstatus = http.StatusOK
 	}

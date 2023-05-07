@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"io"
 	"log"
 	"net/http"
@@ -43,18 +43,34 @@ func (r *RealServer) Run() {
 	}()
 }
 
-func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
-	//127.0.0.1:8008/abc?sdsdsa=11
-	//r.Addr=127.0.0.1:8008
-	//req.URL.Path=/abc
-	//fmt.Println(req.Host)
-	upath := fmt.Sprintf("http://%s%s\n", r.Addr, req.URL.Path)
-	realIP := fmt.Sprintf("RemoteAddr=%s,X-Forwarded-For=%v,X-Real-Ip=%v\n", req.RemoteAddr, req.Header.Get("X-Forwarded-For"), req.Header.Get("X-Real-Ip"))
-	header := fmt.Sprintf("headers =%v\n", req.Header)
-	io.WriteString(w, upath)
-	io.WriteString(w, realIP)
-	io.WriteString(w, header)
+type Response struct {
+	Path      string              `json:"path"`
+	RealIP    string              `json:"real_ip"`
+	UserAgent string              `json:"user_agent"`
+	Headers   map[string][]string `json:"headers"`
+}
 
+func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
+	upath := req.URL.Path
+	realIP := req.Header.Get("X-Real-Ip")
+	userAgent := req.Header.Get("User-Agent")
+	headers := req.Header
+
+	resp := &Response{
+		Path:      upath,
+		RealIP:    realIP,
+		UserAgent: userAgent,
+		Headers:   headers,
+	}
+
+	jsonData, err := json.Marshal(resp)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonData)
 }
 
 func (r *RealServer) ErrorHandler(w http.ResponseWriter, req *http.Request) {

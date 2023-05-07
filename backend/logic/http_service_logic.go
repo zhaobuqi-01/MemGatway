@@ -20,7 +20,7 @@ type httpServiceLogic struct {
 }
 
 // NewHttpServiceLogic 创建serviceHttpLogic
-func NewHttpServiceLogic(tx *gorm.DB) HttpServiceLogic {
+func NewHttpServiceLogic(tx *gorm.DB) *httpServiceLogic {
 	return &httpServiceLogic{
 		db: tx,
 	}

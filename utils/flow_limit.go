@@ -69,10 +69,11 @@ func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limite
 		limiter:     newLimiter,
 	}
 
+	// map存储全部的限流器
+	fl.flowLimiterMap.Store(serviceName, item)
+	// slice存储最近50个服务的限流器
 	if len(fl.flowLimiterSlice) < smallSliceSize {
 		fl.flowLimiterSlice = append(fl.flowLimiterSlice, item)
-	} else {
-		fl.flowLimiterMap.Store(serviceName, item)
 	}
 
 	return newLimiter, nil

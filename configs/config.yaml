@@ -52,7 +52,7 @@ swagger:
   description: ""
   # API 文档的版本
   version: "1.0.0"
-  host: "localhost:8080"
+  host: "localhost:8880"
   base_path: ""
   schemes:
     - "http"
