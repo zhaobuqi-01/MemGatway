@@ -4,13 +4,24 @@ import (
 	"gateway/backend/dto"
 	"gateway/backend/logic"
 	"gateway/pkg/log"
-	"gateway/utils"
+	"gateway/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
+type Service interface {
+	ServiceList(c *gin.Context)
+	ServiceDelete(c *gin.Context)
+	ServiceDetail(c *gin.Context)
+	ServiceAddHttp(c *gin.Context)
+	ServiceUpdateHttp(c *gin.Context)
+	ServiceAddTcp(c *gin.Context)
+	ServiceUpdateTcp(c *gin.Context)
+	ServiceAddGrpc(c *gin.Context)
+	ServiceUpdateGrpc(c *gin.Context)
+}
 type serviceController struct {
 	logic logic.ServiceLogic
 }
@@ -31,18 +42,18 @@ func NewServiceController(db *gorm.DB) *serviceController {
 // @Param info query  string false "关键词"
 // @Param page_no query  int true "页码"
 // @Param page_size query  int true "每页条数"
-// @Success 200 {object} utils.Response{data=dto.ServiceListOutput} "success"
+// @Success 200 {object} response.Response{data=dto.ServiceListOutput} "success"
 // @Router /service/service_list [get]
 func (s *serviceController) ServiceList(c *gin.Context) {
 	param := &dto.ServiceListInput{}
 	if err := param.BindValParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	outputList, total, err := s.logic.GetServiceList(c, param)
 	if err != nil {
-		utils.ResponseError(c, utils.ServiceListErrCode, err)
+		response.ResponseError(c, response.ServiceListErrCode, err)
 		log.Error("Failed to fetch list", zap.Error(err))
 		return
 	}
@@ -52,7 +63,7 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 		List:  outputList,
 	}
 
-	utils.ResponseSuccess(c, "", output)
+	response.ResponseSuccess(c, "", output)
 }
 
 // ServiceAdd godoc
@@ -63,23 +74,22 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id query  int true "服务id"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_delete [get]
 func (s *serviceController) ServiceDelete(c *gin.Context) {
-	param := &dto.ServiceDeleteInput{}
-	if err := param.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+	params := &dto.ServiceDeleteInput{}
+	if err := params.BindValidParam(c); err != nil {
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
-	err := s.logic.ServiceDelete(c, param)
+	err := s.logic.ServiceDelete(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.ServiceDeleteErrCode, err)
+		response.ResponseError(c, response.ServiceDeleteErrCode, err)
 		log.Error("Failed to delete service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "", "delete success")
+	response.ResponseSuccess(c, "", "delete success")
 }
 
 // ServiceDetail godoc
@@ -90,27 +100,27 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 // Accept json
 // Produce json
 // @Param id query string true "服务ID"
-// @Success 200 {object} utils.Response{data=dao.ServiceDetail} "success"
+// @Success 200 {object} response.Response{data=dao.ServiceDetail} "success"
 // @Router /service/service_detail [get]
 func (s *serviceController) ServiceDetail(c *gin.Context) {
 
 	param := &dto.ServiceDeleteInput{}
 
 	if err := param.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	output, err := s.logic.GetServiceDetail(c, param)
 
 	if err != nil {
-		utils.ResponseError(c, utils.ServiceDetailErrCode, err)
+		response.ResponseError(c, response.ServiceDetailErrCode, err)
 		log.Error("Failed to get service detail", zap.Error(err))
 		return
 
 	}
 
-	utils.ResponseSuccess(c, "", output)
+	response.ResponseSuccess(c, "", output)
 
 }
 
@@ -121,23 +131,22 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceAddHTTPInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_add_http [post]
 func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 	params := &dto.ServiceAddHTTPInput{}
 	if err := params.BindValParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddHTTP(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.AddHttpServiceErrCode, err)
+		response.ResponseError(c, response.AddHttpServiceErrCode, err)
 		log.Error("Failed to add http service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "add httpService success", nil)
+	response.ResponseSuccess(c, "add httpService success", nil)
 }
 
 // ServiceUpadteHTTP godoc
@@ -148,23 +157,22 @@ func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceUpdateHTTPInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_update_http [post]
 func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 	params := &dto.ServiceUpdateHTTPInput{}
 	if err := params.BindValParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-
+	log.Debug("httpService params", zap.Any("params", params))
 	err := s.logic.UpdateHTTP(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.UpdateHttpServiceErrCode, err)
+		response.ResponseError(c, response.UpdateHttpServiceErrCode, err)
 		log.Error("Failed to update http service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "update httpService success", nil)
+	response.ResponseSuccess(c, "update httpService success", nil)
 }
 
 // ServiceAddTcp godoc
@@ -175,23 +183,22 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceAddTcpInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_add_tcp [post]
 func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 	params := &dto.ServiceAddTcpInput{}
 	if err := params.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddTCP(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.AddTCPServiceErrCode, err)
+		response.ResponseError(c, response.AddTCPServiceErrCode, err)
 		log.Error("Failed to add tcp service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "add tcpService success", nil)
+	response.ResponseSuccess(c, "add tcpService success", nil)
 }
 
 // ServiceUpdateTcp godoc
@@ -202,23 +209,22 @@ func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceUpdateTcpInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_update_tcp [post]
 func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 	params := &dto.ServiceUpdateTcpInput{}
 	if err := params.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.UpdateTCP(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.UpdateTCPServiceErrCode, err)
+		response.ResponseError(c, response.UpdateTCPServiceErrCode, err)
 		log.Error("Failed to update tcp service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "update tcpService success", nil)
+	response.ResponseSuccess(c, "update tcpService success", nil)
 }
 
 // ServiceAddGrpc godoc
@@ -229,23 +235,22 @@ func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceAddGrpcInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_add_grpc [post]
 func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 	params := &dto.ServiceAddGrpcInput{}
 	if err := params.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.AddGrpc(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.AddGRPCServiceErrCode, err)
+		response.ResponseError(c, response.AddGRPCServiceErrCode, err)
 		log.Error("Failed to add grpc service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "add grpcService success", nil)
+	response.ResponseSuccess(c, "add grpcService success", nil)
 }
 
 // ServiceUpdateGrpc godoc
@@ -256,21 +261,20 @@ func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param body body dto.ServiceUpdateGrpcInput true "body"
-// @Success 200 {object} utils.Response{data=string} "success"
+// @Success 200 {object} response.Response{data=string} "success"
 // @Router /service/service_update_grpc [post]
 func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
 	params := &dto.ServiceUpdateGrpcInput{}
 	if err := params.BindValidParam(c); err != nil {
-		utils.ResponseError(c, utils.ParamBindingErrCode, err)
+		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
 
 	err := s.logic.UpdateGrpc(c, params)
 	if err != nil {
-		utils.ResponseError(c, utils.UpdateGRPCServiceErrCode, err)
+		response.ResponseError(c, response.UpdateGRPCServiceErrCode, err)
 		log.Error("Failed to update grpc service", zap.Error(err))
 		return
 	}
-
-	utils.ResponseSuccess(c, "update grpcService success", nil)
+	response.ResponseSuccess(c, "update grpcService success", nil)
 }

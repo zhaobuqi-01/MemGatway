@@ -2,11 +2,16 @@ package logic
 
 import (
 	"fmt"
+	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/dao"
+	"gateway/backend/utils"
+	"gateway/enity"
+	"gateway/globals"
+	"gateway/pkg/log"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -33,13 +38,13 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 	}
 
 	tx := s.db.Begin()
-	serviceInfo := &dao.ServiceInfo{ServiceName: params.ServiceName}
+	serviceInfo := &enity.ServiceInfo{ServiceName: params.ServiceName}
 	if _, err := dao.Get(c, tx, serviceInfo); err == nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service already exists")
 	}
 
-	httpUrl := &dao.HttpRule{
+	httpUrl := &enity.HttpRule{
 		RuleType: params.RuleType,
 		Rule:     params.Rule,
 	}
@@ -48,7 +53,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		tx.Rollback()
 		return fmt.Errorf("HTTP service access prefix or domain name already exists")
 	}
-	serviceModel := &dao.ServiceInfo{
+	serviceModel := &enity.ServiceInfo{
 		ServiceName: params.ServiceName,
 		ServiceDesc: params.ServiceDesc,
 	}
@@ -58,7 +63,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		return fmt.Errorf("failed to add HTTP service information")
 	}
 
-	httpRule := &dao.HttpRule{
+	httpRule := &enity.HttpRule{
 		ServiceID:      serviceModel.ID,
 		RuleType:       params.RuleType,
 		Rule:           params.Rule,
@@ -73,7 +78,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		return fmt.Errorf("failed to add HTTP service information")
 	}
 
-	accessControl := &dao.AccessControl{
+	accessControl := &enity.AccessControl{
 		ServiceID:         serviceModel.ID,
 		OpenAuth:          params.OpenAuth,
 		BlackList:         params.BlackList,
@@ -86,7 +91,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		return fmt.Errorf("failed to add HTTP service permission")
 	}
 
-	loadbalance := &dao.LoadBalance{
+	loadbalance := &enity.LoadBalance{
 		ServiceID:              serviceModel.ID,
 		RoundType:              params.RoundType,
 		IpList:                 params.IpList,
@@ -101,17 +106,28 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		return fmt.Errorf("failed to add HTTP service load balancing error")
 	}
 	tx.Commit()
+
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.ServiceName,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
 
-func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdateHTTPInput) error {
-	if len(strings.Split(paramss.IpList, ",")) != len(strings.Split(paramss.WeightList, ",")) {
+func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateHTTPInput) error {
+	if len(strings.Split(params.IpList, ",")) != len(strings.Split(params.WeightList, ",")) {
 		return fmt.Errorf("the IP list is inconsistent with the number of weight lists")
 	}
 
 	tx := s.db.Begin()
 
-	serviceInfo, err := dao.Get(c, tx, &dao.ServiceInfo{ServiceName: paramss.ServiceName})
+	serviceInfo, err := dao.Get(c, tx, &enity.ServiceInfo{ServiceName: params.ServiceName})
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service does not exist")
@@ -124,48 +140,59 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, paramss *dto.ServiceUpdate
 	}
 
 	info := serviceDetail.Info
-	info.ServiceDesc = paramss.ServiceDesc
-	if err := dao.Update(c, tx, info); err != nil {
+	info.ServiceDesc = params.ServiceDesc
+	if err := dao.Save(c, tx, info); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update HTTP service description")
+		return fmt.Errorf("failed to Save HTTP service description")
 	}
 
 	httpRule := serviceDetail.HTTPRule
-	httpRule.NeedHttps = paramss.NeedHttps
-	httpRule.NeedStripUri = paramss.NeedStripUri
-	httpRule.NeedWebsocket = paramss.NeedWebsocket
-	httpRule.UrlRewrite = paramss.UrlRewrite
-	httpRule.HeaderTransfor = paramss.HeaderTransfor
-	if err := dao.Update(c, tx, httpRule); err != nil {
+	httpRule.NeedHttps = params.NeedHttps
+	httpRule.NeedStripUri = params.NeedStripUri
+	httpRule.NeedWebsocket = params.NeedWebsocket
+	httpRule.UrlRewrite = params.UrlRewrite
+	httpRule.HeaderTransfor = params.HeaderTransfor
+	if err := dao.Save(c, tx, httpRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update HTTP service rules")
+		return fmt.Errorf("failed to Save HTTP service rules")
 	}
 
 	accessControl := serviceDetail.AccessControl
-	accessControl.OpenAuth = paramss.OpenAuth
-	accessControl.BlackList = paramss.BlackList
-	accessControl.WhiteList = paramss.WhiteList
-	accessControl.ClientIPFlowLimit = paramss.ClientipFlowLimit
-	accessControl.ServiceFlowLimit = paramss.ServiceFlowLimit
-	if err := dao.Update(c, tx, accessControl); err != nil {
+	accessControl.OpenAuth = params.OpenAuth
+	accessControl.BlackList = params.BlackList
+	accessControl.WhiteList = params.WhiteList
+	accessControl.ClientIPFlowLimit = params.ClientipFlowLimit
+	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
+	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update HTTP service permissions")
+		return fmt.Errorf("failed to Save HTTP service permissions")
 	}
 
 	loadbalance := serviceDetail.LoadBalance
-	loadbalance.RoundType = paramss.RoundType
-	loadbalance.IpList = paramss.IpList
-	loadbalance.WeightList = paramss.WeightList
-	loadbalance.UpstreamConnectTimeout = paramss.UpstreamConnectTimeout
-	loadbalance.UpstreamHeaderTimeout = paramss.UpstreamHeaderTimeout
-	loadbalance.UpstreamIdleTimeout = paramss.UpstreamIdleTimeout
-	loadbalance.UpstreamMaxIdle = paramss.UpstreamMaxIdle
-	if err := dao.Update(c, tx, loadbalance); err != nil {
+	loadbalance.RoundType = params.RoundType
+	loadbalance.IpList = params.IpList
+	loadbalance.WeightList = params.WeightList
+	loadbalance.UpstreamConnectTimeout = params.UpstreamConnectTimeout
+	loadbalance.UpstreamHeaderTimeout = params.UpstreamHeaderTimeout
+	loadbalance.UpstreamIdleTimeout = params.UpstreamIdleTimeout
+	loadbalance.UpstreamMaxIdle = params.UpstreamMaxIdle
+	if err := dao.Save(c, tx, loadbalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update HTTP service load balancing error")
+		return fmt.Errorf("failed to Save HTTP service load balancing error")
 	}
 
 	tx.Commit()
+
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.ServiceName,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
 
 	return nil
 }

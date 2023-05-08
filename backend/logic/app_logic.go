@@ -2,18 +2,22 @@ package logic
 
 import (
 	"fmt"
+	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/dao"
-	"gateway/utils"
+	"gateway/backend/utils"
+	"gateway/enity"
+	"gateway/globals"
+	"gateway/pkg/log"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
 // AppLogic是应用程序逻辑的接口
 type AppLogic interface {
 	AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APPListItemOutput, int64, error)
-	AppDetail(c *gin.Context, params *dto.APPDetailInput) (*dao.App, error)
+	AppDetail(c *gin.Context, params *dto.APPDetailInput) (*enity.App, error)
 	AppDelete(c *gin.Context, params *dto.APPDetailInput) error
 	AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error
 	AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) error
@@ -26,7 +30,9 @@ type appLogic struct {
 
 // NewAppLogic创建一个新的appLogic实例
 func NewAppLogic(tx *gorm.DB) *appLogic {
-	return &appLogic{db: tx}
+	return &appLogic{
+		db: tx,
+	}
 }
 
 // AppList返回应用程序列表
@@ -38,7 +44,7 @@ func (al *appLogic) AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APP
 		},
 	}
 	// 使用dao中的PageList方法获取分页的应用程序列表
-	list, total, err := dao.PageList[dao.App](c, al.db, queryConditions, params.PageNo, params.PageSize)
+	list, total, err := dao.PageList[enity.App](c, al.db, queryConditions, params.PageNo, params.PageSize)
 	if err != nil {
 		return nil, 0, fmt.Errorf("failed to get all app data")
 	}
@@ -61,9 +67,9 @@ func (al *appLogic) AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APP
 }
 
 // AppDetail返回应用程序的详细信息
-func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*dao.App, error) {
+func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*enity.App, error) {
 	// 使用dao中的Get方法获取指定ID的应用程序信息
-	search := &dao.App{
+	search := &enity.App{
 		ID: params.ID,
 	}
 	detail, err := dao.Get(c, al.db, search)
@@ -76,7 +82,7 @@ func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*dao.
 // AppDelete删除指定的应用程序
 func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error {
 	// 使用dao中的Get方法获取指定ID的应用程序信息
-	search := &dao.App{
+	search := &enity.App{
 		ID: params.ID,
 	}
 	info, err := dao.Get(c, al.db, search)
@@ -88,13 +94,25 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 	if err := dao.Save(c, al.db, info); err != nil {
 		return fmt.Errorf("failed to delete app")
 	}
+
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: info.AppID,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
+
 	return nil
 }
 
 // AppAdd添加一个新的应用程序
 func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 	// 检查应用程序ID是否已经存在
-	search := &dao.App{
+	search := &enity.App{
 		AppID: params.AppID,
 	}
 	if _, err := dao.Get(c, al.db, search); err == nil {
@@ -105,7 +123,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 		params.Secret, _ = utils.HashPassword(params.AppID)
 	}
 	// 创建新的应用程序对象
-	app := &dao.App{
+	app := &enity.App{
 		AppID:    params.AppID,
 		Name:     params.Name,
 		Secret:   params.Secret,
@@ -117,13 +135,24 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 	if err := dao.Save(c, al.db, app); err != nil {
 		return fmt.Errorf("failed to add app")
 	}
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.AppID,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
+
 	return nil
 }
 
 // AppUpdate更新指定应用程序的信息
 func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) error {
 	// 使用dao中的Get方法获取指定ID的应用程序信息
-	search := &dao.App{
+	search := &enity.App{
 		ID: params.ID,
 	}
 	info, err := dao.Get(c, al.db, search)
@@ -135,8 +164,20 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 	info.WhiteIPS = params.WhiteIPS
 	info.Qpd = params.Qpd
 	info.Qps = params.Qps
-	if err := dao.Update(c, al.db, info); err != nil {
-		return fmt.Errorf("failed to update app information")
+	if err := dao.Save(c, al.db, info); err != nil {
+		return fmt.Errorf("failed to Save app information")
 	}
+
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.AppID,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
+
 	return nil
 }

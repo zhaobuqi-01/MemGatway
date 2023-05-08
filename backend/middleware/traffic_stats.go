@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"gateway/metrics"
-	"gateway/utils"
+	"gateway/pkg/response"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -25,7 +25,7 @@ func TrafficStats() gin.HandlerFunc {
 		statusCode := c.GetInt("ErrorCode")
 
 		// 如果发生错误，请更新错误率
-		if statusCode != utils.SuccessCode {
+		if statusCode != response.SuccessCode {
 			metrics.RecordErrorRateMetrics("gateway")
 		}
 		// 更新请求总数

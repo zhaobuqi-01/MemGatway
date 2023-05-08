@@ -2,8 +2,10 @@ package middleware
 
 import (
 	"fmt"
+
+	"gateway/globals"
 	"gateway/pkg/log"
-	"gateway/utils"
+	"gateway/pkg/response"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -13,9 +15,9 @@ import (
 func SessionAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := sessions.Default(c)
-		if adminInfo, ok := session.Get(utils.AdminSessionInfoKey).(string); !ok || adminInfo == "" {
+		if adminInfo, ok := session.Get(globals.AdminSessionInfoKey).(string); !ok || adminInfo == "" {
 			log.Error("user not login", zap.String("trace_id", c.GetString("TraceID")))
-			utils.ResponseError(c, utils.UserNotLoggedInErrCode, fmt.Errorf("user not login"))
+			response.ResponseError(c, response.UserNotLoggedInErrCode, fmt.Errorf("user not login"))
 			c.Abort()
 			return
 		}

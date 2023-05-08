@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"gateway/configs"
 	"gateway/pkg/log"
-	"gateway/utils"
+	"gateway/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -25,7 +25,7 @@ func IPAuthMiddleware() gin.HandlerFunc {
 		if !isMatched {
 			// 如果不匹配，则返回错误信息
 			log.Error("ip not match", zap.String("ip", c.ClientIP()), zap.String("trace_id", c.GetString("TraceID")))
-			utils.ResponseError(c, utils.IpMismatchErrCode, fmt.Errorf("%v, not in iplist", c.ClientIP()))
+			response.ResponseError(c, response.IpMismatchErrCode, fmt.Errorf("%v, not in iplist", c.ClientIP()))
 			c.Abort()
 			return
 		}

@@ -2,13 +2,12 @@ package logic
 
 import (
 	"fmt"
+	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/dao"
-	"gateway/pkg/log"
-	"gateway/utils"
+	"gateway/enity"
+	"gateway/globals"
 
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -35,7 +34,7 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 			return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
 		},
 	}
-	_, serviceNum, err := dao.PageList[dao.ServiceInfo](c, impl.db, serviceInfoQueryConditions, 1, 1)
+	_, serviceNum, err := dao.PageList[enity.ServiceInfo](c, impl.db, serviceInfoQueryConditions, 1, 1)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceNum")
 	}
@@ -45,7 +44,7 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
-	_, appNum, err := dao.PageList[dao.App](c, impl.db, appQueryConditions, 1, 1)
+	_, appNum, err := dao.PageList[enity.App](c, impl.db, appQueryConditions, 1, 1)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get appNum ")
 	}
@@ -60,13 +59,13 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 
 // ServiceStat 统计各种服务的占比
 func (impl *dashboardLogicImpl) ServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
-	list, err := GroupByLoadType(c, impl.db)
+	list, err := dao.GetLoadTypeByGroup(c, impl.db)
 	if err != nil {
 		return nil, err
 	}
 	legend := []string{}
 	for index, item := range list {
-		name, ok := utils.LoadTypeMap[item.LoadType]
+		name, ok := globals.LoadTypeMap[item.LoadType]
 		if !ok {
 			return nil, fmt.Errorf("load type not found")
 		}
@@ -78,20 +77,4 @@ func (impl *dashboardLogicImpl) ServiceStat(c *gin.Context) (*dto.DashServiceSta
 		Data:   list,
 	}
 	return out, nil
-}
-
-// GroupByLoadType 按照负载类型分组
-func GroupByLoadType(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
-	// log记录开始查询
-	log.Info("searching for group by load type", zap.String("trace_id", c.GetString("TraceID")))
-
-	list := []dto.DashServiceStatItemOutput{}
-	if err := tx.Table(dao.ServiceInfo{}.TableName()).Where("is_delete=0").Select("load_type, count(*) as value").Group("load_type").Scan(&list).Error; err != nil {
-		log.Error("error retrieving", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-		return nil, err
-	}
-
-	// log记录成功取到信息
-	log.Info("group by load type was found", zap.String("trace_id", c.GetString("TraceID")))
-	return list, nil
 }

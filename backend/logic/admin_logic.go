@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/dao"
+	"gateway/backend/utils"
+	"gateway/enity"
+	"gateway/globals"
 	"gateway/pkg/log"
-	"gateway/utils"
 	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -37,7 +39,7 @@ func NewAdminLogic(tx *gorm.DB) *adminLogic {
 
 // Login验证管理员用户名和密码，并创建一个新的会话
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
-	admin, err := dao.Get(c, s.db, &dao.Admin{UserName: params.UserName})
+	admin, err := dao.Get(c, s.db, &enity.Admin{UserName: params.UserName})
 	if err != nil {
 		return nil, fmt.Errorf("the username does not exist. Please try again")
 	}
@@ -60,7 +62,7 @@ func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.Ad
 	}
 
 	sess := sessions.Default(c)
-	sess.Set(utils.AdminSessionInfoKey, string(sessBts))
+	sess.Set(globals.AdminSessionInfoKey, string(sessBts))
 	err = sess.Save()
 	if err != nil {
 		log.Error("failed to save session", zap.Error(err))
@@ -73,7 +75,7 @@ func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.Ad
 // AdminLogout注销管理员会话
 func (s *adminLogic) AdminLogout(c *gin.Context) error {
 	sess := sessions.Default(c)
-	sess.Delete(utils.AdminSessionInfoKey)
+	sess.Delete(globals.AdminSessionInfoKey)
 	err := sess.Save()
 	if err != nil {
 		log.Error("failed to save session", zap.Error(err))
@@ -85,7 +87,7 @@ func (s *adminLogic) AdminLogout(c *gin.Context) error {
 // GetAdminInfo返回当前管理员的信息
 func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 	sess := sessions.Default(c)
-	sessInfo := sess.Get(utils.AdminSessionInfoKey)
+	sessInfo := sess.Get(globals.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		log.Error("invalid session info", zap.Error(err))
@@ -108,13 +110,13 @@ func (s *adminLogic) GetAdminInfo(c *gin.Context) (*dto.AminInfoOutput, error) {
 // ChangeAdminPassword修改管理员密码
 func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChangePwdInput) error {
 	sess := sessions.Default(c)
-	sessInfo := sess.Get(utils.AdminSessionInfoKey)
+	sessInfo := sess.Get(globals.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		log.Error("invalid session info", zap.Error(err))
 		return fmt.Errorf("invalid session info")
 	}
-	adminInfo, err := dao.Get(c, s.db, &dao.Admin{UserName: adminSessionInfo.UserName})
+	adminInfo, err := dao.Get(c, s.db, &enity.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
 		return fmt.Errorf("failed to get admin info")
 	}
@@ -127,7 +129,7 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 
 	adminInfo.Password = hashedPassword
 
-	if err := dao.Update(c, s.db, adminInfo); err != nil {
+	if err := dao.Save(c, s.db, adminInfo); err != nil {
 		return fmt.Errorf("failed to change password")
 	}
 

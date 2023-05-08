@@ -2,13 +2,17 @@ package logic
 
 import (
 	"fmt"
+	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/dao"
-	"gateway/utils"
+	"gateway/backend/utils"
+	"gateway/enity"
+	"gateway/globals"
+	"gateway/pkg/log"
 
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -24,13 +28,15 @@ type grpcServiceLogic struct {
 
 // NewGrpcServiceLogic 构造函数
 func NewGrpcServiceLogic(tx *gorm.DB) GrpcServiceLogic {
-	return &grpcServiceLogic{db: tx}
+	return &grpcServiceLogic{
+		db: tx,
+	}
 }
 
 // AddGrpc 添加 GRPC 服务
 func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInput) error {
 	// 验证 service_name 是否被占用
-	infoSearch := &dao.ServiceInfo{
+	infoSearch := &enity.ServiceInfo{
 		ServiceName: params.ServiceName,
 		IsDelete:    0,
 	}
@@ -42,14 +48,14 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 
 	// 验证端口是否被占用
-	tcpRuleSearch := &dao.TcpRule{
+	tcpRuleSearch := &enity.TcpRule{
 		Port: params.Port,
 	}
 	if _, err := dao.Get(c, s.db, tcpRuleSearch); err == nil {
 		return fmt.Errorf("port already exists, please change the port")
 	}
 
-	grpcRuleSearch := &dao.GrpcRule{
+	grpcRuleSearch := &enity.GrpcRule{
 		Port: params.Port,
 	}
 	if _, err := dao.Get(c, s.db, grpcRuleSearch); err == nil {
@@ -65,8 +71,8 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	tx := s.db.Begin()
 
 	// 保存服务信息
-	info := &dao.ServiceInfo{
-		LoadType:    utils.LoadTypeGRPC,
+	info := &enity.ServiceInfo{
+		LoadType:    globals.LoadTypeGRPC,
 		ServiceName: params.ServiceName,
 		ServiceDesc: params.ServiceDesc,
 	}
@@ -76,7 +82,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 
 	// 保存负载均衡信息
-	loadBalance := &dao.LoadBalance{
+	loadBalance := &enity.LoadBalance{
 		ServiceID:  info.ID,
 		RoundType:  params.RoundType,
 		IpList:     params.IpList,
@@ -89,7 +95,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 
 	// 保存 GRPC 规则
-	grpcRule := &dao.GrpcRule{
+	grpcRule := &enity.GrpcRule{
 		ServiceID:      info.ID,
 		Port:           params.Port,
 		HeaderTransfor: params.HeaderTransfor,
@@ -100,7 +106,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 
 	// 保存访问控制信息
-	accessControl := &dao.AccessControl{
+	accessControl := &enity.AccessControl{
 		ServiceID:         info.ID,
 		OpenAuth:          params.OpenAuth,
 		BlackList:         params.BlackList,
@@ -115,6 +121,16 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	}
 	tx.Commit()
 
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.ServiceName,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
 
@@ -128,7 +144,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	tx := s.db.Begin()
 
 	// 获取服务详情
-	service := &dao.ServiceInfo{
+	service := &enity.ServiceInfo{
 		ID: params.ID,
 	}
 	detail, err := dao.GetServiceDetail(c, s.db, service)
@@ -139,13 +155,13 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	// 更新服务信息
 	info := detail.Info
 	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Update(c, tx, info); err != nil {
+	if err := dao.Save(c, tx, info); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update GRPC service information")
+		return fmt.Errorf("failed to Save GRPC service information")
 	}
 
 	// 更新负载均衡信息
-	loadBalance := &dao.LoadBalance{}
+	loadBalance := &enity.LoadBalance{}
 	if detail.LoadBalance != nil {
 		loadBalance = detail.LoadBalance
 	}
@@ -154,25 +170,25 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	loadBalance.IpList = params.IpList
 	loadBalance.WeightList = params.WeightList
 	loadBalance.ForbidList = params.ForbidList
-	if err := dao.Update(c, tx, loadBalance); err != nil {
+	if err := dao.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update GRPC service load balancing")
+		return fmt.Errorf("failed to Save GRPC service load balancing")
 	}
 
 	// 更新 GRPC 规则
-	grpcRule := &dao.GrpcRule{}
+	grpcRule := &enity.GrpcRule{}
 	if detail.GRPCRule != nil {
 		grpcRule = detail.GRPCRule
 	}
 	grpcRule.ServiceID = info.ID
 	grpcRule.HeaderTransfor = params.HeaderTransfor
-	if err := dao.Update(c, tx, grpcRule); err != nil {
+	if err := dao.Save(c, tx, grpcRule); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update GRPC service rules")
+		return fmt.Errorf("failed to Save GRPC service rules")
 	}
 
 	// 更新访问控制信息
-	accessControl := &dao.AccessControl{}
+	accessControl := &enity.AccessControl{}
 	if detail.AccessControl != nil {
 		accessControl = detail.AccessControl
 	}
@@ -183,13 +199,23 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	accessControl.WhiteHostName = params.WhiteHostName
 	accessControl.ClientIPFlowLimit = params.ClientIPFlowLimit
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Update(c, tx, accessControl); err != nil {
+	if err := dao.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
-		return fmt.Errorf("failed to update GRPC service permissions")
+		return fmt.Errorf("failed to Save GRPC service permissions")
 	}
 
 	// 提交事务
 	tx.Commit()
 
+	// Publish data change message
+	message := &globals.DataChangeMessage{
+		Type:    "service",
+		Payload: params.ServiceName,
+	}
+	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+		return fmt.Errorf("failed to publish save message")
+	}
+	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
 	return nil
 }
