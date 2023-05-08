@@ -6,7 +6,6 @@ import (
 
 	"gateway/enity"
 	"gateway/pkg/log"
-	"gateway/proxy/http_proxy/utils"
 	"gateway/proxy/pkg"
 
 	"gateway/pkg/response"
@@ -34,7 +33,7 @@ func HTTPJwtAuthTokenMiddleware() gin.HandlerFunc {
 
 		appMatched := false
 		if token != "" {
-			claims, err := utils.JwtDecode(token)
+			claims, err := pkg.JwtDecode(token)
 			if err != nil {
 				response.ResponseError(c, response.JwtDecodeErrCode, err)
 				c.Abort()

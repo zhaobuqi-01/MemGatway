@@ -5,7 +5,7 @@ import (
 	"gateway/enity"
 
 	"gateway/pkg/response"
-	"gateway/proxy/http_proxy/proxy"
+	proxy "gateway/proxy/http_proxy/reverse_proxy"
 	"gateway/proxy/pkg"
 
 	"github.com/gin-gonic/gin"

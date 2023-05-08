@@ -4,7 +4,6 @@ import (
 	"encoding/base64"
 	"fmt"
 	"gateway/proxy/http_proxy/dto"
-	"gateway/proxy/http_proxy/utils"
 	"gateway/proxy/pkg"
 	"strings"
 	"time"
@@ -44,14 +43,14 @@ func (o *oauthLogic) Tokens(c *gin.Context, param *dto.TokensInput) (*dto.Tokens
 		if appInfo.AppID == parts[0] && appInfo.Secret == parts[1] {
 			claims := jwt.StandardClaims{
 				Issuer:    appInfo.AppID,
-				ExpiresAt: time.Now().Add(utils.JwtExpires * time.Second).Unix(),
+				ExpiresAt: time.Now().Add(pkg.JwtExpires * time.Second).Unix(),
 			}
-			token, err := utils.JwtEncode(claims)
+			token, err := pkg.JwtEncode(claims)
 			if err != nil {
 				return nil, err
 			}
 			output := &dto.TokensOutput{
-				ExpiresIn:   utils.JwtExpires,
+				ExpiresIn:   pkg.JwtExpires,
 				TokenType:   "Bearer",
 				AccessToken: token,
 				Scope:       "read_write",
