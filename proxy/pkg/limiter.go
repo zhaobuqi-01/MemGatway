@@ -7,12 +7,12 @@ import (
 
 var (
 	limiterOnce sync.Once
-	FlowLimter  limiter.Limter
+	FlowLimiter limiter.Limiter
 )
 
 func InitFlowLimiter() {
 	limiterOnce.Do(
 		func() {
-			FlowLimter = limiter.NewFlowLimiter()
+			FlowLimiter = limiter.NewFlowLimiter()
 		})
 }

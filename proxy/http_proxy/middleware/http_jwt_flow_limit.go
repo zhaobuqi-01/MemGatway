@@ -18,7 +18,7 @@ func HTTPJwtFlowLimitMiddleware() gin.HandlerFunc {
 		}
 		appInfo := appInterface.(*enity.App)
 		if appInfo.Qps > 0 {
-			clientLimiter, err := pkg.FlowLimter.GetLimiter(
+			clientLimiter, err := pkg.FlowLimiter.GetLimiter(
 				appInfo.AppID+"_"+c.ClientIP(),
 				float64(appInfo.Qps))
 			if err != nil {

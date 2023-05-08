@@ -7,7 +7,7 @@ import (
 
 type appCacheAndServiceCache struct {
 	cache.AppCache
-	cache.ServeiceCache
+	cache.ServiceCache
 }
 
 var (

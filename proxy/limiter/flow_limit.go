@@ -14,7 +14,7 @@ const smallSliceSize = 50
 // 	GloablFlowLimiter = NewFlowLimiter()
 // }
 
-type Limter interface {
+type Limiter interface {
 	GetLimiter(serviceName string, qps float64) (*rate.Limiter, error)
 }
 

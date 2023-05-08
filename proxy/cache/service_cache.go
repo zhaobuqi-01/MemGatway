@@ -18,7 +18,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type ServeiceCache interface {
+type ServiceCache interface {
 	LoadService() error
 	UpdateServiceCache(serviceName string) error
 	HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, error)

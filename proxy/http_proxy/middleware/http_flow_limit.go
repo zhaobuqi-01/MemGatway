@@ -23,7 +23,7 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 		serviceDetail := serverInterface.(*enity.ServiceDetail)
 		if serviceDetail.AccessControl.ServiceFlowLimit != 0 {
 			log.Info("get serviceLimiter", zap.Any("serviceNnme", serviceDetail.Info.ServiceName))
-			serviceLimiter, err := pkg.FlowLimter.GetLimiter(
+			serviceLimiter, err := pkg.FlowLimiter.GetLimiter(
 				serviceDetail.Info.ServiceName,
 				float64(serviceDetail.AccessControl.ServiceFlowLimit))
 			if err != nil {
@@ -41,7 +41,7 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 
 		if serviceDetail.AccessControl.ClientIPFlowLimit > 0 {
 			log.Info("get clientLimiter", zap.Any("serviceNnme", serviceDetail.Info.ServiceName), zap.Any("clientIP", c.ClientIP()))
-			clientLimiter, err := pkg.FlowLimter.GetLimiter(
+			clientLimiter, err := pkg.FlowLimiter.GetLimiter(
 				serviceDetail.Info.ServiceName+"_"+c.ClientIP(),
 				float64(serviceDetail.AccessControl.ClientIPFlowLimit))
 			if err != nil {
