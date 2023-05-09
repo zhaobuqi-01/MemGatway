@@ -26,7 +26,7 @@ type serviceController struct {
 	logic.ServiceLogic
 }
 
-func NewServiceController(db *gorm.DB) Service {
+func NewServiceController(db *gorm.DB) *serviceController {
 	return &serviceController{
 		logic.NewServiceLogic(db),
 	}

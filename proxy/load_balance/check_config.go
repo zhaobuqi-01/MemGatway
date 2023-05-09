@@ -91,7 +91,7 @@ func (s *LoadBalanceCheckConf) UpdateConf(conf []string) {
 	}
 }
 
-func NewLoadBalanceCheckConf(format string, conf map[string]string) (*LoadBalanceCheckConf, error) {
+func NewLoadBalanceCheckConf(format string, conf map[string]string) (LoadBalanceConf, error) {
 	aList := []string{}
 	//默认初始化
 	for item, _ := range conf {

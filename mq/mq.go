@@ -25,7 +25,7 @@ type messageQueue struct {
 
 const defaultExpiration = 1 * time.Minute
 
-func New(client *redis.Client, messageExpiration time.Duration) MQ {
+func New(client *redis.Client, messageExpiration time.Duration) *messageQueue {
 	return &messageQueue{
 		redisClient:       client,
 		ctx:               context.Background(),
@@ -35,7 +35,7 @@ func New(client *redis.Client, messageExpiration time.Duration) MQ {
 	}
 }
 
-func Default(client *redis.Client) MQ {
+func Default(client *redis.Client) *messageQueue {
 	return New(client, defaultExpiration)
 }
 

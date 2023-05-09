@@ -22,7 +22,7 @@ type adminController struct {
 	logic.AdminLogic
 }
 
-func NewAdminController(db *gorm.DB) Admin {
+func NewAdminController(db *gorm.DB) *adminController {
 	return &adminController{
 		logic.NewAdminLogic(db),
 	}

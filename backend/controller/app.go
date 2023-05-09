@@ -22,7 +22,7 @@ type appController struct {
 	logic.AppLogic
 }
 
-func NewAPPController(db *gorm.DB) App {
+func NewAPPController(db *gorm.DB) *appController {
 	return &appController{logic.NewAppLogic(db)}
 }
 

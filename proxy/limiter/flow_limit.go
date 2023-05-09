@@ -8,7 +8,7 @@ import (
 
 const smallSliceSize = 50
 
-// var GloablFlowLimiter *FlowLimiter
+// var GloablFlowLimiter *flowLimiter
 
 // func init() {
 // 	GloablFlowLimiter = NewFlowLimiter()
@@ -18,25 +18,25 @@ type Limiter interface {
 	GetLimiter(serviceName string, qps float64) (*rate.Limiter, error)
 }
 
-type FlowLimiter struct {
+type flowLimiter struct {
 	flowLimiterMap   sync.Map
-	flowLimiterSlice []*FlowLimiterItem
+	flowLimiterSlice []*flowLimiterItem
 	locker           sync.Mutex
 }
 
-type FlowLimiterItem struct {
+type flowLimiterItem struct {
 	serviceName string
 	limiter     *rate.Limiter
 }
 
-func NewFlowLimiter() *FlowLimiter {
-	return &FlowLimiter{
-		flowLimiterSlice: make([]*FlowLimiterItem, 0),
+func NewFlowLimiter() *flowLimiter {
+	return &flowLimiter{
+		flowLimiterSlice: make([]*flowLimiterItem, 0),
 		locker:           sync.Mutex{},
 	}
 }
 
-func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limiter, error) {
+func (fl *flowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limiter, error) {
 	if len(fl.flowLimiterSlice) < smallSliceSize {
 		for _, item := range fl.flowLimiterSlice {
 			if item.serviceName == serviceName {
@@ -46,7 +46,7 @@ func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limite
 	} else {
 		value, ok := fl.flowLimiterMap.Load(serviceName)
 		if ok {
-			return value.(*FlowLimiterItem).limiter, nil
+			return value.(*flowLimiterItem).limiter, nil
 		}
 	}
 
@@ -63,12 +63,12 @@ func (fl *FlowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limite
 	} else {
 		value, ok := fl.flowLimiterMap.Load(serviceName)
 		if ok {
-			return value.(*FlowLimiterItem).limiter, nil
+			return value.(*flowLimiterItem).limiter, nil
 		}
 	}
 
 	newLimiter := rate.NewLimiter(rate.Limit(qps), int(qps*3))
-	item := &FlowLimiterItem{
+	item := &flowLimiterItem{
 		serviceName: serviceName,
 		limiter:     newLimiter,
 	}

@@ -19,7 +19,7 @@ type dashboardController struct {
 	logic.DashboardLogic
 }
 
-func NewDashboardController(db *gorm.DB) Dashboard {
+func NewDashboardController(db *gorm.DB) *dashboardController {
 	return &dashboardController{logic.NewDashboardLogic(db)}
 }
 

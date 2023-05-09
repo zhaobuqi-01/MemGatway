@@ -18,7 +18,7 @@ type serviceLogic struct {
 	GrpcServiceLogic
 }
 
-func NewServiceLogic(db *gorm.DB) ServiceLogic {
+func NewServiceLogic(db *gorm.DB) *serviceLogic {
 	return &serviceLogic{
 		ServiceInfoLogic: NewServiceInfoLogic(db),
 		HttpServiceLogic: NewHttpServiceLogic(db),

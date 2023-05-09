@@ -27,7 +27,7 @@ type grpcServiceLogic struct {
 }
 
 // NewGrpcServiceLogic 构造函数
-func NewGrpcServiceLogic(tx *gorm.DB) GrpcServiceLogic {
+func NewGrpcServiceLogic(tx *gorm.DB) *grpcServiceLogic {
 	return &grpcServiceLogic{
 		db: tx,
 	}

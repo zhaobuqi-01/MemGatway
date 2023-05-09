@@ -27,7 +27,7 @@ type tcpServiceLogic struct {
 }
 
 // NewTcpServiceLogic 创建tcpServiceLogic
-func NewTcpServiceLogic(tx *gorm.DB) TcpServiceLogic {
+func NewTcpServiceLogic(tx *gorm.DB) *tcpServiceLogic {
 	return &tcpServiceLogic{
 		db: tx,
 	}

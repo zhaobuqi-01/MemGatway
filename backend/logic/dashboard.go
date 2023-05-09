@@ -20,7 +20,7 @@ type dashboardLogicImpl struct {
 	db *gorm.DB
 }
 
-func NewDashboardLogic(tx *gorm.DB) DashboardLogic {
+func NewDashboardLogic(tx *gorm.DB) *dashboardLogicImpl {
 	return &dashboardLogicImpl{
 		db: tx,
 	}

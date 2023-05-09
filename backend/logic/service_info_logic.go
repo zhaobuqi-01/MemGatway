@@ -25,7 +25,7 @@ type serviceInfoLogic struct {
 }
 
 // NewserviceInfoLogic 创建serviceInfoLogic
-func NewServiceInfoLogic(tx *gorm.DB) ServiceInfoLogic {
+func NewServiceInfoLogic(tx *gorm.DB) *serviceInfoLogic {
 	return &serviceInfoLogic{
 		db: tx,
 	}
