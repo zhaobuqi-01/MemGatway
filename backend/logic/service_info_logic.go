@@ -16,7 +16,7 @@ import (
 )
 
 type ServiceInfoLogic interface {
-	ServiceDelete(c *gin.Context, params *dto.ServiceDeleteInput) error
+	DeleteService(c *gin.Context, params *dto.ServiceDeleteInput) error
 	GetServiceList(c *gin.Context, params *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error)
 	GetServiceDetail(c *gin.Context, params *dto.ServiceDeleteInput) (*enity.ServiceDetail, error)
 }
@@ -83,7 +83,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, params *dto.ServiceLis
 }
 
 // 删除服务
-func (s *serviceInfoLogic) ServiceDelete(c *gin.Context, params *dto.ServiceDeleteInput) error {
+func (s *serviceInfoLogic) DeleteService(c *gin.Context, params *dto.ServiceDeleteInput) error {
 	// 在这里，您需要定义服务信息的实体。假设它是 `dao.ServiceInfo`
 	var err error
 	serviceInfo := &enity.ServiceInfo{ID: params.ID}

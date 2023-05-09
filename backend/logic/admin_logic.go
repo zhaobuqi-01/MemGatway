@@ -31,7 +31,7 @@ type adminLogic struct {
 }
 
 // NewAdminLogic创建一个新的AdminLogic实例
-func NewAdminLogic(tx *gorm.DB) *adminLogic {
+func NewAdminLogic(tx *gorm.DB) AdminLogic {
 	return &adminLogic{
 		db: tx,
 	}

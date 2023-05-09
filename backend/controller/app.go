@@ -16,13 +16,14 @@ type App interface {
 	APPDetail(c *gin.Context)
 	APPDelete(c *gin.Context)
 	APPAdd(c *gin.Context)
+	APPUpdate(c *gin.Context)
 }
 type appController struct {
-	appLogic logic.AppLogic
+	logic.AppLogic
 }
 
-func NewAPPController(db *gorm.DB) *appController {
-	return &appController{appLogic: logic.NewAppLogic(db)}
+func NewAPPController(db *gorm.DB) App {
+	return &appController{logic.NewAppLogic(db)}
 }
 
 // APPList godoc
@@ -43,7 +44,7 @@ func (ac *appController) APPList(c *gin.Context) {
 		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-	list, total, err := ac.appLogic.AppList(c, params)
+	list, total, err := ac.AppList(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AppListErrCode, err)
 		log.Error("Failed to fetch list", zap.Error(err))
@@ -71,7 +72,7 @@ func (ac *appController) APPDetail(c *gin.Context) {
 		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-	app, err := ac.appLogic.AppDetail(c, params)
+	app, err := ac.AppDetail(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AppDetailErrCode, err)
 		log.Error("Failed to get details", zap.Error(err))
@@ -96,7 +97,7 @@ func (ac *appController) APPDelete(c *gin.Context) {
 		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-	err := ac.appLogic.AppDelete(c, params)
+	err := ac.AppDelete(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AppDeleteErrCode, err)
 		log.Error("failed to delete", zap.Error(err))
@@ -121,7 +122,7 @@ func (ac *appController) APPAdd(c *gin.Context) {
 		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-	err := ac.appLogic.AppAdd(c, params)
+	err := ac.AppAdd(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AppAddErrCode, err)
 		log.Error("add failed", zap.Error(err))
@@ -146,7 +147,7 @@ func (ac *appController) APPUpdate(c *gin.Context) {
 		response.ResponseError(c, response.ParamBindingErrCode, err)
 		return
 	}
-	err := ac.appLogic.AppUpdate(c, params)
+	err := ac.AppUpdate(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AppUpdateErrCode, err)
 		log.Error("update failed", zap.Error(err))

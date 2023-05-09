@@ -23,12 +23,12 @@ type Service interface {
 	ServiceUpdateGrpc(c *gin.Context)
 }
 type serviceController struct {
-	logic logic.ServiceLogic
+	logic.ServiceLogic
 }
 
-func NewServiceController(db *gorm.DB) *serviceController {
+func NewServiceController(db *gorm.DB) Service {
 	return &serviceController{
-		logic: logic.NewServiceLogic(db),
+		logic.NewServiceLogic(db),
 	}
 }
 
@@ -51,7 +51,7 @@ func (s *serviceController) ServiceList(c *gin.Context) {
 		return
 	}
 
-	outputList, total, err := s.logic.GetServiceList(c, param)
+	outputList, total, err := s.GetServiceList(c, param)
 	if err != nil {
 		response.ResponseError(c, response.ServiceListErrCode, err)
 		log.Error("Failed to fetch list", zap.Error(err))
@@ -83,7 +83,7 @@ func (s *serviceController) ServiceDelete(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.ServiceDelete(c, params)
+	err := s.DeleteService(c, params)
 	if err != nil {
 		response.ResponseError(c, response.ServiceDeleteErrCode, err)
 		log.Error("Failed to delete service", zap.Error(err))
@@ -111,7 +111,7 @@ func (s *serviceController) ServiceDetail(c *gin.Context) {
 		return
 	}
 
-	output, err := s.logic.GetServiceDetail(c, param)
+	output, err := s.GetServiceDetail(c, param)
 
 	if err != nil {
 		response.ResponseError(c, response.ServiceDetailErrCode, err)
@@ -140,7 +140,7 @@ func (s *serviceController) ServiceAddHttp(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.AddHTTP(c, params)
+	err := s.AddHTTP(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AddHttpServiceErrCode, err)
 		log.Error("Failed to add http service", zap.Error(err))
@@ -166,7 +166,7 @@ func (s *serviceController) ServiceUpdateHttp(c *gin.Context) {
 		return
 	}
 	log.Debug("httpService params", zap.Any("params", params))
-	err := s.logic.UpdateHTTP(c, params)
+	err := s.UpdateHTTP(c, params)
 	if err != nil {
 		response.ResponseError(c, response.UpdateHttpServiceErrCode, err)
 		log.Error("Failed to update http service", zap.Error(err))
@@ -192,7 +192,7 @@ func (s *serviceController) ServiceAddTcp(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.AddTCP(c, params)
+	err := s.AddTCP(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AddTCPServiceErrCode, err)
 		log.Error("Failed to add tcp service", zap.Error(err))
@@ -218,7 +218,7 @@ func (s *serviceController) ServiceUpdateTcp(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.UpdateTCP(c, params)
+	err := s.UpdateTCP(c, params)
 	if err != nil {
 		response.ResponseError(c, response.UpdateTCPServiceErrCode, err)
 		log.Error("Failed to update tcp service", zap.Error(err))
@@ -244,7 +244,7 @@ func (s *serviceController) ServiceAddGrpc(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.AddGrpc(c, params)
+	err := s.AddGrpc(c, params)
 	if err != nil {
 		response.ResponseError(c, response.AddGRPCServiceErrCode, err)
 		log.Error("Failed to add grpc service", zap.Error(err))
@@ -270,7 +270,7 @@ func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
 		return
 	}
 
-	err := s.logic.UpdateGrpc(c, params)
+	err := s.UpdateGrpc(c, params)
 	if err != nil {
 		response.ResponseError(c, response.UpdateGRPCServiceErrCode, err)
 		log.Error("Failed to update grpc service", zap.Error(err))

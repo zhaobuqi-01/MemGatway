@@ -10,6 +10,7 @@ type ServiceLogic interface {
 	HttpServiceLogic
 	GrpcServiceLogic
 }
+
 type serviceLogic struct {
 	ServiceInfoLogic
 	HttpServiceLogic

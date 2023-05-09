@@ -16,13 +16,11 @@ type Dashboard interface {
 }
 
 type dashboardController struct {
-	logic logic.DashboardLogic
+	logic.DashboardLogic
 }
 
-func NewDashboardController(db *gorm.DB) *dashboardController {
-	return &dashboardController{
-		logic: logic.NewDashboardLogic(db),
-	}
+func NewDashboardController(db *gorm.DB) Dashboard {
+	return &dashboardController{logic.NewDashboardLogic(db)}
 }
 
 // PanelGroupData godoc
@@ -35,7 +33,7 @@ func NewDashboardController(db *gorm.DB) *dashboardController {
 // @Success 200 {object} response.Response{data=dto.PanelGroupDataOutput} "success"
 // @Router /dashboard/panel_group_data [get]
 func (dc *dashboardController) PanelGroupData(c *gin.Context) {
-	out, err := dc.logic.PanelGroupData(c)
+	out, err := dc.GetPanelGroupData(c)
 	if err != nil {
 		response.ResponseError(c, response.PanelGroupDataErrCode, err)
 		log.Error("failed to get data", zap.Error(err))
@@ -54,7 +52,7 @@ func (dc *dashboardController) PanelGroupData(c *gin.Context) {
 // @Success 200 {object} response.Response{data=dto.DashServiceStatOutput} "success"
 // @Router /dashboard/service_stat [get]
 func (dc *dashboardController) ServiceStat(c *gin.Context) {
-	out, err := dc.logic.ServiceStat(c)
+	out, err := dc.GetServiceStat(c)
 	if err != nil {
 		response.ResponseError(c, response.ServiceStatErrCode, err)
 		log.Error("failed to get serviceStat", zap.Error(err))

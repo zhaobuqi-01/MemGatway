@@ -12,22 +12,22 @@ import (
 )
 
 type DashboardLogic interface {
-	PanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error)
-	ServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error)
+	GetPanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error)
+	GetServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error)
 }
 
 type dashboardLogicImpl struct {
 	db *gorm.DB
 }
 
-func NewDashboardLogic(tx *gorm.DB) *dashboardLogicImpl {
+func NewDashboardLogic(tx *gorm.DB) DashboardLogic {
 	return &dashboardLogicImpl{
 		db: tx,
 	}
 }
 
 // PanelGroupData 展示app数量，service数量
-func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error) {
+func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error) {
 	// 从db中分页读取基本信息
 	serviceInfoQueryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
@@ -58,7 +58,7 @@ func (impl *dashboardLogicImpl) PanelGroupData(c *gin.Context) (*dto.PanelGroupD
 }
 
 // ServiceStat 统计各种服务的占比
-func (impl *dashboardLogicImpl) ServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
+func (impl *dashboardLogicImpl) GetServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
 	list, err := dao.GetLoadTypeByGroup(c, impl.db)
 	if err != nil {
 		return nil, err

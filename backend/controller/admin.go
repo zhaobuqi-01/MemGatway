@@ -19,12 +19,12 @@ type Admin interface {
 }
 
 type adminController struct {
-	logic logic.AdminLogic
+	logic.AdminLogic
 }
 
-func NewAdminController(db *gorm.DB) *adminController {
+func NewAdminController(db *gorm.DB) Admin {
 	return &adminController{
-		logic: logic.NewAdminLogic(db),
+		logic.NewAdminLogic(db),
 	}
 }
 
@@ -45,7 +45,7 @@ func (a *adminController) AdminLogin(c *gin.Context) {
 		return
 	}
 
-	sessInfo, err := a.logic.Login(c, params)
+	sessInfo, err := a.Login(c, params)
 	if err != nil {
 		response.ResponseError(c, response.UserLoginErrCode, err)
 		log.Error("Admin login failed", zap.String("username", params.UserName), zap.Error(err))
@@ -67,7 +67,7 @@ func (a *adminController) AdminLogin(c *gin.Context) {
 // @Success 200 {object} response.Response{data=string} "success"
 // @Router /admin/login_out [get]
 func (a *adminController) AdminLoginOut(c *gin.Context) {
-	err := a.logic.AdminLogout(c)
+	err := a.AdminLogout(c)
 	if err != nil {
 		response.ResponseError(c, response.UserLoginOutErrCode, err)
 		log.Error("Admin login out failed", zap.Error(err))
@@ -87,7 +87,7 @@ func (a *adminController) AdminLoginOut(c *gin.Context) {
 // @Success 200 {object} response.Response{data=dto.AminInfoOutput} "success"
 // @Router /admin/admin_info [get]
 func (a *adminController) AdminInfo(c *gin.Context) {
-	out, err := a.logic.GetAdminInfo(c)
+	out, err := a.GetAdminInfo(c)
 	if err != nil {
 		response.ResponseError(c, response.UserInfoErrCode, err)
 		log.Error("Get admin info failed", zap.Error(err))
@@ -114,7 +114,7 @@ func (a *adminController) AdminChangePwd(c *gin.Context) {
 		return
 	}
 
-	err := a.logic.ChangeAdminPassword(c, params)
+	err := a.ChangeAdminPassword(c, params)
 	if err != nil {
 		response.ResponseError(c, response.UserChangePwdErrCode, err)
 		log.Error("Change admin password failed", zap.Error(err))
