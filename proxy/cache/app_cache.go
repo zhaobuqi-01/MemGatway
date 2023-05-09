@@ -5,7 +5,6 @@ import (
 	"gateway/enity"
 	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
-	"sync"
 
 	"github.com/patrickmn/go-cache"
 	"go.uber.org/zap"
@@ -22,21 +21,17 @@ type AppCache interface {
 type appCache struct {
 	AppCache     *cache.Cache
 	singleFlight singleflight.Group
-	rwmutex      sync.RWMutex
 }
 
-func NewAppGoCache() *appCache {
+func NewAppCache() *appCache {
 	return &appCache{
 		AppCache:     cache.New(defaultExpiration, cleanupInterval),
 		singleFlight: singleflight.Group{},
-		rwmutex:      sync.RWMutex{},
 	}
 }
 
 func (s *appCache) GetAppList() []*enity.App {
-	s.rwmutex.RLock()
 	items := s.AppCache.Items()
-	s.rwmutex.RUnlock()
 
 	appList := make([]*enity.App, 0)
 	for _, app := range items {
@@ -62,13 +57,11 @@ func (a *appCache) LoadAppCache() error {
 	}
 
 	// Load new data into cache
-	a.rwmutex.Lock()
 	a.AppCache.Flush()
 	for _, listItem := range list {
 		tmpItem := listItem
 		a.AppCache.Set(tmpItem.AppID, &tmpItem, cache.DefaultExpiration)
 	}
-	a.rwmutex.Unlock()
 
 	log.Info("load app to cache successfully")
 	return nil
@@ -98,9 +91,7 @@ func (s *appCache) UpdateAppCache(appID string) error {
 }
 
 func (s *appCache) findAppInfoByID(appID string) (*enity.App, error) {
-	s.rwmutex.RLock()
 	appInfo, found := s.AppCache.Get(appID)
-	s.rwmutex.RUnlock()
 	if !found {
 		return nil, fmt.Errorf("app not found")
 	}
@@ -109,9 +100,7 @@ func (s *appCache) findAppInfoByID(appID string) (*enity.App, error) {
 }
 
 func (s *appCache) PrintCache() {
-	s.rwmutex.RLock()
 	items := s.AppCache.Items()
-	s.rwmutex.RUnlock()
 
 	for key, item := range items {
 		log.Debug("all service info ", zap.Any("key", key), zap.Any("item", item))

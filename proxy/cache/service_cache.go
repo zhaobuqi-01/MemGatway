@@ -9,8 +9,6 @@ import (
 	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 
-	"sync"
-
 	"github.com/gin-gonic/gin"
 	"github.com/patrickmn/go-cache"
 	"go.uber.org/zap"
@@ -29,14 +27,12 @@ type ServiceCache interface {
 type serviceCache struct {
 	ServiceCache *cache.Cache
 	sf           singleflight.Group
-	rwmutex      sync.RWMutex
 }
 
-func NewServiceGoCache() *serviceCache {
+func NewServiceCache() *serviceCache {
 	return &serviceCache{
 		ServiceCache: cache.New(defaultExpiration, cleanupInterval),
 		sf:           singleflight.Group{},
-		rwmutex:      sync.RWMutex{},
 	}
 }
 
@@ -55,7 +51,6 @@ func (s *serviceCache) LoadService() error {
 		return err
 	}
 
-	s.rwmutex.Lock()
 	s.ServiceCache.Flush()
 	for _, listItem := range list {
 		tmpItem := listItem
@@ -65,7 +60,6 @@ func (s *serviceCache) LoadService() error {
 		}
 		s.ServiceCache.Set(tmpItem.ServiceName, serviceDetail, cache.DefaultExpiration)
 	}
-	s.rwmutex.Unlock()
 
 	log.Info("load service manager successfully")
 	return nil
@@ -102,8 +96,6 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 	host = host[0:strings.Index(host, ":")]
 	path := c.Request.URL.Path
 
-	s.rwmutex.RLock()
-	defer s.rwmutex.RUnlock()
 	for key := range s.ServiceCache.Items() {
 		serviceDetail, err := s.findServiceDetailByName(key)
 		if err != nil {
@@ -128,9 +120,7 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 }
 
 func (s *serviceCache) GetGrpcServiceList() []*enity.ServiceDetail {
-	s.rwmutex.RLock()
 	items := s.ServiceCache.Items()
-	s.rwmutex.RUnlock()
 
 	list := []*enity.ServiceDetail{}
 	for _, item := range items {
@@ -143,9 +133,7 @@ func (s *serviceCache) GetGrpcServiceList() []*enity.ServiceDetail {
 }
 
 func (s *serviceCache) GetTcpServiceList() []*enity.ServiceDetail {
-	s.rwmutex.RLock()
 	items := s.ServiceCache.Items()
-	s.rwmutex.RUnlock()
 
 	list := []*enity.ServiceDetail{}
 	for _, item := range items {
@@ -158,9 +146,7 @@ func (s *serviceCache) GetTcpServiceList() []*enity.ServiceDetail {
 }
 
 func (s *serviceCache) findServiceDetailByName(serviceName string) (*enity.ServiceDetail, error) {
-	s.rwmutex.RLock()
 	serviceDetail, found := s.ServiceCache.Get(serviceName)
-	s.rwmutex.RUnlock()
 	if !found {
 		return nil, fmt.Errorf("service not found")
 	}
@@ -168,9 +154,7 @@ func (s *serviceCache) findServiceDetailByName(serviceName string) (*enity.Servi
 }
 
 func (s *serviceCache) PrintCache() {
-	s.rwmutex.RLock()
 	items := s.ServiceCache.Items()
-	s.rwmutex.RUnlock()
 
 	for key, item := range items {
 		log.Debug("all service info ", zap.Any("key", key), zap.Any("item", item))
