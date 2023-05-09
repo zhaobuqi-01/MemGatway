@@ -1,8 +1,7 @@
-package grpc_proxy_router
+package router
 
 import (
 	"fmt"
-	"log"
 	"net"
 
 	"gateway/proxy/grpc_proxy/reverse_proxy"
@@ -12,7 +11,9 @@ import (
 	"gateway/proxy/grpc_proxy/proxy"
 
 	"gateway/enity"
+	"gateway/pkg/log"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
 
@@ -23,7 +24,7 @@ type warpGrpcServer struct {
 	*grpc.Server
 }
 
-func GrpcServerRun() {
+func GrpcProxyServerRun() {
 	serviceList := pkg.Cache.GetGrpcServiceList()
 	for _, serviceItem := range serviceList {
 		tempItem := serviceItem
@@ -31,12 +32,12 @@ func GrpcServerRun() {
 			addr := fmt.Sprintf(":%d", serviceDetail.GRPCRule.Port)
 			rb, err := pkg.LoadBalanceTransport.GetLoadBalancer(serviceDetail)
 			if err != nil {
-				log.Fatalf(" [INFO] GetTcpLoadBalancer %v err:%v\n", addr, err)
+				log.Fatal("get tcpLoadBalancer failed", zap.String("addr", addr), zap.Error(err))
 				return
 			}
 			lis, err := net.Listen("tcp", addr)
 			if err != nil {
-				log.Fatalf(" [INFO] GrpcListen %v err:%v\n", addr, err)
+				log.Fatal(" grpcProxy listen failed", zap.String("addr", addr), zap.Error(err))
 			}
 			grpcHandler := reverse_proxy.NewGrpcLoadBalanceHandler(rb)
 			s := grpc.NewServer(
@@ -57,17 +58,17 @@ func GrpcServerRun() {
 				Addr:   addr,
 				Server: s,
 			})
-			log.Printf(" [INFO] grpc_proxy_run %v\n", addr)
+			log.Info("grpcProxy running", zap.String("addr", addr))
 			if err := s.Serve(lis); err != nil {
-				log.Fatalf(" [INFO] grpc_proxy_run %v err:%v\n", addr, err)
+				log.Fatal("grpcProxy fail to run ", zap.String("addr", addr), zap.Error(err))
 			}
 		}(tempItem)
 	}
 }
 
-func GrpcServerStop() {
+func GrpcProxyServerStop() {
 	for _, grpcServer := range grpcServerList {
 		grpcServer.GracefulStop()
-		log.Printf(" [INFO] grpc_proxy_stop %v stopped\n", grpcServer.Addr)
+		log.Info("grpcProxy is stopped", zap.String("addr", grpcServer.Addr))
 	}
 }

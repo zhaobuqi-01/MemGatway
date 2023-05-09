@@ -3,15 +3,15 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
+	"gateway/pkg/log"
 	"gateway/proxy/grpc_proxy/utils"
-	"log"
 	"strings"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )
 
-// 匹配接入方式 基于请求信息
 func GrpcWhiteListMiddleware(serviceDetail *enity.ServiceDetail) func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 	return func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 		iplist := []string{}
@@ -32,7 +32,7 @@ func GrpcWhiteListMiddleware(serviceDetail *enity.ServiceDetail) func(srv interf
 			}
 		}
 		if err := handler(srv, ss); err != nil {
-			log.Printf("RPC failed with error %v\n", err)
+			log.Error("RPC failed ", zap.Error(err))
 			return err
 		}
 		return nil

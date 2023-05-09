@@ -25,7 +25,7 @@ type appCache struct {
 	rwmutex      sync.RWMutex
 }
 
-func NewAppCache() *appCache {
+func NewAppGoCache() *appCache {
 	return &appCache{
 		AppCache:     cache.New(defaultExpiration, cleanupInterval),
 		singleFlight: singleflight.Group{},

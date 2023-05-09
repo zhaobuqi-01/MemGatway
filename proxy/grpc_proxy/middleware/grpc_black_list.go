@@ -3,10 +3,11 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
+	"gateway/pkg/log"
 	"gateway/proxy/grpc_proxy/utils"
-	"log"
 	"strings"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )
@@ -34,7 +35,7 @@ func GrpcBlackListMiddleware(serviceDetail *enity.ServiceDetail) func(srv interf
 			}
 		}
 		if err := handler(srv, ss); err != nil {
-			log.Printf("RPC failed with error %v\n", err)
+			log.Error("RPC failed with error ", zap.Error(err))
 			return err
 		}
 		return nil

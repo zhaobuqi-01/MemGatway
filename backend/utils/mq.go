@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	MessageQueue *mq.MessageQueue
+	MessageQueue mq.MQ
 	once         sync.Once
 )
 

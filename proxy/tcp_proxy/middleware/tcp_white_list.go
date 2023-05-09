@@ -7,7 +7,6 @@ import (
 	"strings"
 )
 
-// 匹配接入方式 基于请求信息
 func TCPWhiteListMiddleware() func(c *TcpSliceRouterContext) {
 	return func(c *TcpSliceRouterContext) {
 		serverInterface := c.Get("service")

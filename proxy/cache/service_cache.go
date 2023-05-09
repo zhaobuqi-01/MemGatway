@@ -32,7 +32,7 @@ type serviceCache struct {
 	rwmutex      sync.RWMutex
 }
 
-func NewServiceCache() *serviceCache {
+func NewServiceGoCache() *serviceCache {
 	return &serviceCache{
 		ServiceCache: cache.New(defaultExpiration, cleanupInterval),
 		sf:           singleflight.Group{},

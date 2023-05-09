@@ -3,9 +3,10 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
-	"log"
+	"gateway/pkg/log"
 	"strings"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
@@ -33,7 +34,7 @@ func GrpcHeaderTransferMiddleware(serviceDetail *enity.ServiceDetail) func(srv i
 			return fmt.Errorf("SetHeader %v", err)
 		}
 		if err := handler(srv, ss); err != nil {
-			log.Printf("RPC failed with error %v\n", err)
+			log.Error("RPC failed", zap.Error(err))
 			return err
 		}
 		return nil

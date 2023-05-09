@@ -2,12 +2,13 @@ package middleware
 
 import (
 	"fmt"
+	"gateway/pkg/log"
 	"gateway/proxy/pkg"
-	"log"
 	"strings"
 
 	"gateway/enity"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )
@@ -44,7 +45,7 @@ func GrpcFlowLimitMiddleware(serviceDetail *enity.ServiceDetail) func(srv interf
 			}
 		}
 		if err := handler(srv, ss); err != nil {
-			log.Printf("GrpcFlowLimitMiddleware failed with error %v\n", err)
+			log.Error("grpcFlowLimitMiddleware failed ", zap.Error(err))
 			return err
 		}
 		return nil

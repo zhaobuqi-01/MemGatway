@@ -3,11 +3,12 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
+	"gateway/pkg/log"
 	"gateway/proxy/grpc_proxy/utils"
 	"gateway/proxy/pkg"
-	"log"
 	"strings"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
@@ -44,7 +45,7 @@ func GrpcJwtAuthTokenMiddleware(serviceDetail *enity.ServiceDetail) func(srv int
 			return fmt.Errorf("not match valid app")
 		}
 		if err := handler(srv, ss); err != nil {
-			log.Printf("GrpcJwtAuthTokenMiddleware failed with error %v\n", err)
+			log.Error("grpcJwtAuthTokenMiddleware failed ", zap.Error(err))
 			return err
 		}
 		return nil
