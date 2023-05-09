@@ -25,7 +25,7 @@ type appCache struct {
 
 func NewAppCache() *appCache {
 	return &appCache{
-		AppCache:     cache.New(defaultExpiration, cleanupInterval),
+		AppCache:     cache.New(cache.NoExpiration, cleanupInterval),
 		singleFlight: singleflight.Group{},
 	}
 }
@@ -60,7 +60,7 @@ func (a *appCache) LoadAppCache() error {
 	a.AppCache.Flush()
 	for _, listItem := range list {
 		tmpItem := listItem
-		a.AppCache.Set(tmpItem.AppID, &tmpItem, cache.DefaultExpiration)
+		a.AppCache.Set(tmpItem.AppID, &tmpItem, cache.NoExpiration)
 	}
 
 	log.Info("load app to cache successfully")
@@ -84,7 +84,7 @@ func (s *appCache) UpdateAppCache(appID string) error {
 		}
 
 		// 将新的app设置到缓存中
-		s.AppCache.Set(appID, appInfo, cache.DefaultExpiration)
+		s.AppCache.Set(appID, appInfo, cache.NoExpiration)
 		return nil, nil
 	})
 	return err

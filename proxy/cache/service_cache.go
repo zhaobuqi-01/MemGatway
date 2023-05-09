@@ -31,7 +31,7 @@ type serviceCache struct {
 
 func NewServiceCache() *serviceCache {
 	return &serviceCache{
-		ServiceCache: cache.New(defaultExpiration, cleanupInterval),
+		ServiceCache: cache.New(cache.NoExpiration, cleanupInterval),
 		sf:           singleflight.Group{},
 	}
 }
@@ -58,7 +58,7 @@ func (s *serviceCache) LoadService() error {
 		if err != nil {
 			return err
 		}
-		s.ServiceCache.Set(tmpItem.ServiceName, serviceDetail, cache.DefaultExpiration)
+		s.ServiceCache.Set(tmpItem.ServiceName, serviceDetail, cache.NoExpiration)
 	}
 
 	log.Info("load service manager successfully")
@@ -85,7 +85,7 @@ func (s *serviceCache) UpdateServiceCache(serviceName string) error {
 		}
 
 		// 将新的服务详情设置到缓存中
-		s.ServiceCache.Set(serviceName, updatedServiceDetail, cache.DefaultExpiration)
+		s.ServiceCache.Set(serviceName, updatedServiceDetail, cache.NoExpiration)
 		return nil, nil
 	})
 	return err
