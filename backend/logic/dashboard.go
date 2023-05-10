@@ -6,14 +6,19 @@ import (
 	"gateway/backend/dto"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/log"
+
+	"time"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
 type DashboardLogic interface {
 	GetPanelGroupData(c *gin.Context) (*dto.PanelGroupDataOutput, error)
 	GetServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error)
+	GetFlowStat(c *gin.Context) (*dto.ServiceStatOutput, error)
 }
 
 type dashboardLogicImpl struct {
@@ -75,6 +80,36 @@ func (impl *dashboardLogicImpl) GetServiceStat(c *gin.Context) (*dto.DashService
 	out := &dto.DashServiceStatOutput{
 		Legend: legend,
 		Data:   list,
+	}
+	return out, nil
+}
+
+// flow_stat流量统计
+func (impl *dashboardLogicImpl) GetFlowStat(c *gin.Context) (*dto.ServiceStatOutput, error) {
+	counter, err := globals.FlowCounter.GetCounter(globals.FlowTotal)
+	if err != nil {
+		log.Error("failed to get flow counter ", zap.Error(err))
+		return nil, err
+	}
+	todayList := []int64{}
+	currentTime := time.Now()
+	for i := 0; i <= currentTime.Hour(); i++ {
+		dateTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		todayList = append(todayList, hourData)
+	}
+
+	yesterdayList := []int64{}
+	yesterTime := currentTime.Add(-1 * time.Duration(time.Hour*24))
+	for i := 0; i <= 23; i++ {
+		dateTime := time.Date(yesterTime.Year(), yesterTime.Month(), yesterTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		yesterdayList = append(yesterdayList, hourData)
+	}
+
+	out := &dto.ServiceStatOutput{
+		Today:     todayList,
+		Yesterday: yesterdayList,
 	}
 	return out, nil
 }

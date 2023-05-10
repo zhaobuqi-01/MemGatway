@@ -6,10 +6,10 @@ import (
 
 	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/backend/utils"
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
+	"gateway/utils"
 	"time"
 
 	"github.com/gin-gonic/contrib/sessions"

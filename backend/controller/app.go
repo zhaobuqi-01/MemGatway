@@ -17,6 +17,7 @@ type App interface {
 	APPDelete(c *gin.Context)
 	APPAdd(c *gin.Context)
 	APPUpdate(c *gin.Context)
+	APPStat(c *gin.Context)
 }
 type appController struct {
 	logic.AppLogic
@@ -154,4 +155,28 @@ func (ac *appController) APPUpdate(c *gin.Context) {
 		return
 	}
 	response.ResponseSuccess(c, "successfully updated", "")
+}
+
+// APPStat godoc
+// @Summary APP统计
+// @Description APP统计
+// @Tags APP
+// @ID /app/app_stat
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} response.Response{data=dto.APPStatOutput} "success"
+// @Router /app/app_stat [get]
+func (ac *appController) APPStat(c *gin.Context) {
+	params := &dto.APPDetailInput{}
+	if err := params.BindValidParam(c); err != nil {
+		response.ResponseError(c, response.ParamBindingErrCode, err)
+		return
+	}
+	out, err := ac.AppStat(c, params)
+	if err != nil {
+		response.ResponseError(c, response.CommErrCode, err)
+		log.Error("failed to get data", zap.Error(err))
+		return
+	}
+	response.ResponseSuccess(c, "Get data successfully", out)
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"gateway/enity"
 	"gateway/pkg/log"
-	"gateway/proxy/grpc_proxy/utils"
+	"gateway/utils"
 	"strings"
 
 	"go.uber.org/zap"

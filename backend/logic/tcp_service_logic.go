@@ -5,7 +5,6 @@ import (
 
 	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/backend/utils"
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
@@ -107,7 +106,7 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 		Type:    "service",
 		Payload: params.ServiceName,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
@@ -185,7 +184,7 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 		Type:    "service",
 		Payload: params.ServiceName,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}

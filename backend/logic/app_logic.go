@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/backend/utils"
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
+	"gateway/utils"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -21,6 +22,7 @@ type AppLogic interface {
 	AppDelete(c *gin.Context, params *dto.APPDetailInput) error
 	AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error
 	AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) error
+	AppStat(c *gin.Context, params *dto.APPDetailInput) (*dto.StatisticsOutput, error)
 }
 
 // appLogic是实现AppLogic接口的结构体
@@ -100,7 +102,7 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 		Type:    "service",
 		Payload: info.AppID,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
@@ -140,7 +142,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 		Type:    "service",
 		Payload: params.AppID,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
@@ -173,11 +175,48 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 		Type:    "service",
 		Payload: params.AppID,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
 	log.Info("published save message successfully", zap.Any("data", params), zap.String("trace_id", c.GetString("TraceID")))
 
 	return nil
+}
+
+// AppStat返回指定应用程序的统计信息
+func (al *appLogic) AppStat(c *gin.Context, params *dto.APPDetailInput) (*dto.StatisticsOutput, error) {
+	// 使用dao中的Get方法获取指定ID的应用程序信息
+	search := &enity.App{
+		ID: params.ID,
+	}
+	detail, err := dao.Get(c, al.db, search)
+	if err != nil {
+		return nil, fmt.Errorf("app not found")
+	}
+	counter, err := globals.FlowCounter.GetCounter(detail.AppID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get app flow counter")
+	}
+	todayList := []int64{}
+	currentTime := time.Now()
+	for i := 0; i <= currentTime.Hour(); i++ {
+		dateTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		todayList = append(todayList, hourData)
+	}
+
+	yesterdayList := []int64{}
+	yesterTime := currentTime.Add(-1 * time.Duration(time.Hour*24))
+	for i := 0; i <= 23; i++ {
+		dateTime := time.Date(yesterTime.Year(), yesterTime.Month(), yesterTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		yesterdayList = append(yesterdayList, hourData)
+	}
+
+	out := &dto.StatisticsOutput{
+		Today:     todayList,
+		Yesterday: yesterdayList,
+	}
+	return out, nil
 }

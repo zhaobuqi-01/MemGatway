@@ -19,5 +19,6 @@ func DashboardRegister(router *gin.Engine, db *gorm.DB) {
 
 		dashboardRouter.GET("/panel_group_data", controller.PanelGroupData)
 		dashboardRouter.GET("/service_stat", controller.ServiceStat)
+		dashboardRouter.GET("flow_stat", controller.FlowStat)
 	}
 }

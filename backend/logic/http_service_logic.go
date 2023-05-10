@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/backend/utils"
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
@@ -112,7 +111,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		Type:    "service",
 		Payload: params.ServiceName,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
@@ -188,7 +187,7 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 		Type:    "service",
 		Payload: params.ServiceName,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}

@@ -26,5 +26,6 @@ func ServiceRegister(router *gin.Engine, db *gorm.DB) {
 		serviceRouter.POST("/service_update_tcp", controller.ServiceUpdateTcp)
 		serviceRouter.POST("/service_add_grpc", controller.ServiceAddGrpc)
 		serviceRouter.POST("/service_update_grpc", controller.ServiceUpdateGrpc)
+		serviceRouter.GET("/service_stat", controller.ServiceStat)
 	}
 }

@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"gateway/enity"
 	"gateway/pkg/log"
-	"gateway/proxy/grpc_proxy/utils"
 	"gateway/proxy/pkg"
+	"gateway/utils"
+
 	"strings"
 
 	"go.uber.org/zap"
@@ -28,7 +29,7 @@ func GrpcJwtAuthTokenMiddleware(serviceDetail *enity.ServiceDetail) func(srv int
 		token := strings.ReplaceAll(authToken, "Bearer ", "")
 		appMatched := false
 		if token != "" {
-			claims, err := pkg.JwtDecode(token)
+			claims, err := utils.JwtDecode(token)
 			if err != nil {
 				return fmt.Errorf("JwtDecode %v", err)
 			}

@@ -4,6 +4,8 @@ const (
 	// SuccessCode 成功
 	SuccessCode = iota
 
+	// 通用错误
+	CommErrCode
 	// ParamBindingErrCode 参数绑定失败
 	ParamBindingErrCode
 	// InternalErrorCode 内部错误

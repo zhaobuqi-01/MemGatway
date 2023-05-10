@@ -21,6 +21,7 @@ type Service interface {
 	ServiceUpdateTcp(c *gin.Context)
 	ServiceAddGrpc(c *gin.Context)
 	ServiceUpdateGrpc(c *gin.Context)
+	ServiceStat(c *gin.Context)
 }
 type serviceController struct {
 	logic.ServiceLogic
@@ -277,4 +278,31 @@ func (s *serviceController) ServiceUpdateGrpc(c *gin.Context) {
 		return
 	}
 	response.ResponseSuccess(c, "update grpcService success", nil)
+}
+
+// ServiceStat godoc
+// @Summary 服务统计
+// @Description 服务统计
+// @Tags Service
+// @ID /service/service_stat
+// @Accept  json
+// @Produce  json
+// @Param id query string true "服务ID"
+// @Success 200 {object} response.Response{data=dto.ServiceStatOutput}
+// @Router /service/service_stat [get]
+func (s *serviceController) ServiceStat(c *gin.Context) {
+	params := &dto.ServiceDeleteInput{}
+	if err := params.BindValidParam(c); err != nil {
+		response.ResponseError(c, response.ParamBindingErrCode, err)
+		return
+	}
+
+	output, err := s.GetServiceStat(c, params)
+	if err != nil {
+		response.ResponseError(c, response.CommErrCode, err)
+		log.Error("Failed to get service stat", zap.Error(err))
+		return
+	}
+
+	response.ResponseSuccess(c, "", output)
 }

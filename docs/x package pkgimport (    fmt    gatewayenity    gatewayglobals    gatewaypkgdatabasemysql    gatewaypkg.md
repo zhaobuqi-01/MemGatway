@@ -212,3 +212,4 @@ func (s *appManager) Load(logMsg string) error {
 
 ```
 
+我的tcp反向代理，grpc反向代理，http反向代理都会使用缓存在内存的消息；tcp，grpc，http，https服务器同时运行在一台机器上，怎么进行缓存，可以使得性能最优

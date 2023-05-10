@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"gateway/enity"
 	"gateway/pkg/response"
-	"gateway/proxy/http_proxy/utils"
+	"gateway/utils"
 	"strings"
 
 	"github.com/gin-gonic/gin"

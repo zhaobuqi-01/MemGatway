@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"gateway/backend/router"
-	"gateway/backend/utils"
 	"gateway/configs"
+	"gateway/globals"
 	"os"
 	"os/signal"
 	"syscall"
@@ -20,14 +20,14 @@ import (
 
 func main() {
 	// 启动后台服务器
-	Init.InitAll()
-	defer Init.CleanupAll()
+	globals.Init()
+	Init.Init()
+	defer Init.Cleanup()
 
 	// Create a message queue instance
 
 	db := mysql.GetDB()
 	r := router.InitRouter(db)
-	utils.InitMq()
 
 	serverConfig := configs.GetGatewayServerConfig()
 	log.Info("gatewayServerConfig", zap.Any("serverConfig", serverConfig))

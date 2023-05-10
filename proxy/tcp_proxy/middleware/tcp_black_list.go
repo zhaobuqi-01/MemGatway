@@ -3,7 +3,7 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
-	"gateway/proxy/tcp_proxy/utils"
+	"gateway/utils"
 	"strings"
 )
 

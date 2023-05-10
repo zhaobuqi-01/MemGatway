@@ -36,7 +36,7 @@ func TcpProxyServerRun() {
 			//构建路由及设置中间件
 			router := middleware.NewTcpSliceRouter()
 			router.Group("/").Use(
-				// middleware.TCPFlowCountMiddleware(),
+				middleware.TCPFlowCountMiddleware(),
 				middleware.TCPFlowLimitMiddleware(),
 				middleware.TCPWhiteListMiddleware(),
 				middleware.TCPBlackListMiddleware(),

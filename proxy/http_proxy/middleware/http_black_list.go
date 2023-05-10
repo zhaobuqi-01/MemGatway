@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"gateway/enity"
 	"gateway/pkg/log"
-	"gateway/proxy/http_proxy/utils"
+	"gateway/utils"
 	"strings"
 
 	"gateway/pkg/response"

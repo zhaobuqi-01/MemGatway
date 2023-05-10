@@ -19,7 +19,7 @@ func RecoveryMiddleware() gin.HandlerFunc {
 				trace_id := c.GetString("TraceID")
 				log.Error(fmt.Sprintf("recover error %v", err), zap.String("trace_id", trace_id))
 
-				response.ResponseError(c, response.InternalErrorCode, fmt.Errorf("internal error"))
+				response.ResponseError(c, response.InternalErrorCode, fmt.Errorf("internal error %v", err))
 				return
 
 			}

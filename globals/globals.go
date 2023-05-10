@@ -1,5 +1,12 @@
 package globals
 
+import (
+	"gateway/flow_counter"
+	"gateway/mq"
+	"gateway/pkg/database/redis"
+	"sync"
+)
+
 const (
 	LoadTypeHTTP = iota
 	LoadTypeTCP
@@ -13,6 +20,11 @@ const (
 	AdminSessionInfoKey string = "AdminSessionInfoKey"
 
 	DataChange = "data_change"
+
+	FlowTotal = "flow_total"
+
+	JwtSignKey = "my_sign_key"
+	JwtExpires = 60 * 60
 )
 
 var (
@@ -26,4 +38,17 @@ var (
 type DataChangeMessage struct {
 	Type    string `json:"type"`
 	Payload string `json:"payload"`
+}
+
+var (
+	MessageQueue mq.MQ
+	FlowCounter  flow_counter.FlowCounter
+	once         sync.Once
+)
+
+func Init() {
+	once.Do(func() {
+		MessageQueue = mq.Default(redis.GetRedisConnection())
+		FlowCounter = flow_counter.NewFlowCounter()
+	})
 }

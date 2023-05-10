@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/backend/utils"
 	"gateway/configs"
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
+	"gateway/utils"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -19,6 +20,7 @@ type ServiceInfoLogic interface {
 	DeleteService(c *gin.Context, params *dto.ServiceDeleteInput) error
 	GetServiceList(c *gin.Context, params *dto.ServiceListInput) ([]dto.ServiceListItemOutput, int64, error)
 	GetServiceDetail(c *gin.Context, params *dto.ServiceDeleteInput) (*enity.ServiceDetail, error)
+	GetServiceStat(c *gin.Context, params *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error)
 }
 type serviceInfoLogic struct {
 	db *gorm.DB
@@ -106,7 +108,7 @@ func (s *serviceInfoLogic) DeleteService(c *gin.Context, params *dto.ServiceDele
 		Type:    "service",
 		Payload: serviceInfo.ServiceName,
 	}
-	if err := utils.MessageQueue.Publish(globals.DataChange, message); err != nil {
+	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
 		return fmt.Errorf("failed to publish save message")
 	}
@@ -163,4 +165,38 @@ func (s *serviceInfoLogic) getServiceAddress(serviceDetail *enity.ServiceDetail)
 	default:
 		return "unknown", fmt.Errorf("unsupported load type")
 	}
+}
+
+// 获取服务统计信息
+func (s *serviceInfoLogic) GetServiceStat(c *gin.Context, params *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error) {
+	serviceInfo := &enity.ServiceInfo{ID: params.ID}
+	serviceDetail, err := dao.GetServiceDetail(c, s.db, serviceInfo)
+	if err != nil {
+		return nil, fmt.Errorf("service does not exist")
+	}
+	counter, err := globals.FlowCounter.GetCounter(serviceDetail.Info.ServiceName)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get app flow counter")
+	}
+	todayList := []int64{}
+	currentTime := time.Now()
+	for i := 0; i <= currentTime.Hour(); i++ {
+		dateTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		todayList = append(todayList, hourData)
+	}
+
+	yesterdayList := []int64{}
+	yesterTime := currentTime.Add(-1 * time.Duration(time.Hour*24))
+	for i := 0; i <= 23; i++ {
+		dateTime := time.Date(yesterTime.Year(), yesterTime.Month(), yesterTime.Day(), i, 0, 0, 0, time.UTC)
+		hourData, _ := counter.GetHourData(dateTime)
+		yesterdayList = append(yesterdayList, hourData)
+	}
+
+	out := &dto.ServiceStatOutput{
+		Today:     todayList,
+		Yesterday: yesterdayList,
+	}
+	return out, nil
 }

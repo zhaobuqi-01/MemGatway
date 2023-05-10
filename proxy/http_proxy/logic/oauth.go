@@ -3,10 +3,13 @@ package logic
 import (
 	"encoding/base64"
 	"fmt"
+	"gateway/globals"
 	"gateway/proxy/http_proxy/dto"
 	"gateway/proxy/pkg"
 	"strings"
 	"time"
+
+	"gateway/utils"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
@@ -43,14 +46,14 @@ func (o *oauthLogic) Tokens(c *gin.Context, param *dto.TokensInput) (*dto.Tokens
 		if appInfo.AppID == parts[0] && appInfo.Secret == parts[1] {
 			claims := jwt.StandardClaims{
 				Issuer:    appInfo.AppID,
-				ExpiresAt: time.Now().Add(pkg.JwtExpires * time.Second).Unix(),
+				ExpiresAt: time.Now().Add(globals.JwtExpires * time.Second).Unix(),
 			}
-			token, err := pkg.JwtEncode(claims)
+			token, err := utils.JwtEncode(claims)
 			if err != nil {
 				return nil, err
 			}
 			output := &dto.TokensOutput{
-				ExpiresIn:   pkg.JwtExpires,
+				ExpiresIn:   globals.JwtExpires,
 				TokenType:   "Bearer",
 				AccessToken: token,
 				Scope:       "read_write",

@@ -60,3 +60,22 @@ func (dc *dashboardController) ServiceStat(c *gin.Context) {
 	}
 	response.ResponseSuccess(c, "get serviceStat successfully", out)
 }
+
+// FlowStat godoc
+// @Summary 服务统计
+// @Description 服务统计
+// @Tags 首页大盘
+// @ID /dashboard/flow_stat
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} response.Response{data=dto.ServiceStatOutput} "success"
+// @Router /dashboard/flow_stat [get]
+func (service *dashboardController) FlowStat(c *gin.Context) {
+	out, err := service.GetFlowStat(c)
+	if err != nil {
+		response.ResponseError(c, response.CommErrCode, err)
+		log.Error("failed to get serviceStat", zap.Error(err))
+		return
+	}
+	response.ResponseSuccess(c, "get serviceStat successfully", out)
+}

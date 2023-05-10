@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"gateway/backend/utils"
+	"gateway/utils"
 
 	"github.com/gin-gonic/gin"
 )

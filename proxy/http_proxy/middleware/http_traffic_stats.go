@@ -3,6 +3,7 @@ package middleware
 import (
 	"fmt"
 	"gateway/enity"
+	"gateway/globals"
 	"gateway/metrics"
 	"gateway/pkg/response"
 	"time"
@@ -12,33 +13,31 @@ import (
 
 func HTTPTrafficStats() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		startTime := time.Now()
 
-		// 处理请求
-		c.Next()
-
-		serverInAny, ok := c.Get("service")
+		serverInterface, ok := c.Get("service")
 		if !ok {
 			response.ResponseError(c, response.ServiceNotFoundErrCode, fmt.Errorf("service not found"))
 			c.Abort()
 			return
 		}
-		loadBalanceAddr := c.GetString("service_addr")
-		statusCode := c.GetInt("ErrorCode")
-		responseTime := time.Since(startTime).Seconds()
-		serviceName := serverInAny.(*enity.ServiceDetail).Info.ServiceName
 
-		if statusCode == response.ServerLimiterAllowErrCode {
-			metrics.RecordLimiterMetrics(serviceName)
-		} else if statusCode == response.ClientIPLimiterAllowErrCode {
-			metrics.RecordLimiterMetrics(serviceName + "_client")
+		serviceDetail := serverInterface.(*enity.ServiceDetail)
+
+		totalCounter, err := globals.FlowCounter.GetCounter(globals.FlowTotal)
+		if err != nil {
+			response.ResponseError(c, response.CommErrCode, err)
+			c.Abort()
+			return
 		}
-		// 更新service请求总数
-		metrics.RecordRequestTotalMetrics(serviceName)
-		// 更新service负载均衡器请求总数
-		metrics.RecordRequestTotalMetrics(loadBalanceAddr)
-		// 更新service响应时间指标
-		metrics.RecordResponseTimeMetrics(serviceName, responseTime)
+		totalCounter.Increase()
+		serviceCounter, err := globals.FlowCounter.GetCounter(serviceDetail.Info.ServiceName)
+		if err != nil {
+			response.ResponseError(c, response.CommErrCode, err)
+			c.Abort()
+			return
+		}
+		serviceCounter.Increase()
+		c.Next()
 	}
 }
 

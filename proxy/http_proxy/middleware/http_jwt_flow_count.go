@@ -1,9 +1,9 @@
 package middleware
 
 import (
+	"fmt"
 	"gateway/enity"
-	"gateway/metrics"
-	"gateway/pkg/log"
+	"gateway/globals"
 	"gateway/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -16,17 +16,21 @@ func HTTPJwtFlowCountMiddleware() gin.HandlerFunc {
 			c.Next()
 			return
 		}
-		appName := appInterface.(*enity.App).Name
+		appInfo := appInterface.(*enity.App)
 
-		statusCode := c.GetInt("ErrorCode")
-
-		// 记录请求总数
-		metrics.RecordRequestTotalMetrics(appName)
-		// 记录limit次数
-		if statusCode == response.APPLimiterAllowErrCode {
-			metrics.RecordLimiterMetrics(appName)
-			log.Info("start app limit")
+		appCounter, err := globals.FlowCounter.GetCounter(appInfo.AppID)
+		if err != nil {
+			response.ResponseError(c, response.CommErrCode, err)
+			c.Abort()
+			return
 		}
+		appCounter.Increase()
+		if appInfo.Qpd > 0 && appCounter.TotalCount > appInfo.Qpd {
+			response.ResponseError(c, 2003, fmt.Errorf("租户日请求量限流 limit:%v current:%v", appInfo.Qpd, appCounter.TotalCount))
+			c.Abort()
+			return
+		}
+		c.Next()
 
 		c.Next()
 	}

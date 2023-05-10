@@ -2,23 +2,21 @@ package utils
 
 import (
 	"gateway/configs"
-
 	"gateway/pkg/database/mysql"
 	"gateway/pkg/database/redis"
-
 	"gateway/pkg/log"
 
 	"go.uber.org/zap"
 )
 
-func InitAll() {
+func Init() {
 	configs.Init()
 	log.Init()
 	mysql.Init()
 	redis.Init()
 }
 
-func CleanupAll() {
+func Cleanup() {
 	Cleanuplog()
 	CleanupRedis()
 	CleanupMySQL()
