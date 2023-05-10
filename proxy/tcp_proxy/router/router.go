@@ -24,6 +24,9 @@ func (t *tcpHandler) ServeTCP(ctx context.Context, src net.Conn) {
 func TcpProxyServerRun() {
 	serviceList := pkg.Cache.GetTcpServiceList()
 	for _, serviceItem := range serviceList {
+		if serviceItem == nil {
+			continue
+		}
 		tempItem := serviceItem
 		go func(serviceDetail *enity.ServiceDetail) {
 			addr := fmt.Sprintf(":%d", serviceDetail.TCPRule.Port)

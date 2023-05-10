@@ -6,8 +6,10 @@ import (
 	"gateway/mq"
 	"gateway/pkg/database/redis"
 	"gateway/pkg/log"
+	grpcRouter "gateway/proxy/grpc_proxy/router"
 	httpRouter "gateway/proxy/http_proxy/router"
 	"gateway/proxy/pkg"
+	tcpRouter "gateway/proxy/tcp_proxy/router"
 	"os"
 	"os/signal"
 	"syscall"
@@ -18,11 +20,10 @@ import (
 )
 
 func main() {
-	pkg.Init()
-	globals.Init()
 	Init.Init()
 	defer Init.Cleanup()
-
+	pkg.Init()
+	globals.Init()
 	// Load data from the database
 	if err := pkg.Cache.LoadService(); err != nil {
 		log.Fatal("failed to load service manager", zap.Error(err))
@@ -75,17 +76,17 @@ func main() {
 		httpRouter.HttpsProxyServerRun()
 	}()
 
-	// // 启动GrpcProxyServer
-	// go func() {
-	// 	// grpc_proxy.Run()
-	// 	grpcRouter.GrpcProxyServerRun()
-	// }()
+	// 启动GrpcProxyServer
+	go func() {
+		// grpc_proxy.Run()
+		grpcRouter.GrpcProxyServerRun()
+	}()
 
-	// // run tcp proxy server
-	// go func() {
-	// 	// tcp_proxy.Run()
-	// 	tcpRouter.TcpProxyServerRun()
-	// }()
+	// run tcp proxy server
+	go func() {
+		// tcp_proxy.Run()
+		tcpRouter.TcpProxyServerRun()
+	}()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -93,8 +94,8 @@ func main() {
 
 	// stop http proxy server
 	httpRouter.HttpProxyServerStop()
-	// // stop grpc proxy server
-	// grpcRouter.GrpcProxyServerStop()
-	// // stop tcp proxy server
-	// tcpRouter.TcpProxyServerStop()
+	// stop grpc proxy server
+	grpcRouter.GrpcProxyServerStop()
+	// stop tcp proxy server
+	tcpRouter.TcpProxyServerStop()
 }

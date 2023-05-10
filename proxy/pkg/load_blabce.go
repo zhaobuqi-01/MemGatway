@@ -40,34 +40,51 @@ func NewLoadBalancerAndTransport() *loadBalanceAndTransport {
 
 // GetLoadBalancer 获取LoadBalancer实例，如果不存在则创建一个新的实例并添加到映射中
 func (lbr *loadBalanceAndTransport) GetLoadBalancer(service *enity.ServiceDetail) (load_balance.LoadBalance, error) {
-	// 如果已经存在该服务的 LoadBalancerItem，则直接返回
+	if service == nil || service.Info == nil || service.LoadBalance == nil {
+		return nil, fmt.Errorf("service or service info or load balance is nil")
+	}
+	if service.GRPCRule == nil && service.HTTPRule == nil && service.TCPRule == nil {
+		return nil, fmt.Errorf("grpc rule, http rule and tcp rule are all nil")
+	}
+	if ipList := utils.SplitStringByComma(service.LoadBalance.IpList); ipList == nil {
+		return nil, fmt.Errorf("ip list is nil")
+	}
+	if weightList := utils.SplitStringByComma(service.LoadBalance.WeightList); weightList == nil {
+		return nil, fmt.Errorf("weight list is nil")
+	}
+
 	if lbrItem, ok := lbr.loadBalanceMap.Load(service.Info.ServiceName); ok {
 		return lbrItem.(load_balance.LoadBalance), nil
 	}
 
-	// 根据服务信息创建 LoadBalancerItem
 	schema := "http://"
-	if service.HTTPRule.NeedHttps == 1 {
+	if service.HTTPRule != nil && service.HTTPRule.NeedHttps == 1 {
 		schema = "https://"
 	}
 	if service.Info.LoadType == globals.LoadTypeTCP || service.Info.LoadType == globals.LoadTypeGRPC {
 		schema = ""
 	}
-	ipList := utils.SplitStringByComma(service.LoadBalance.IpList)
-	weightList := utils.SplitStringByComma(service.LoadBalance.WeightList)
-	ipConf := make(map[string]string, len(ipList))
-	for ipIndex, ipItem := range ipList {
-		ipConf[ipItem] = weightList[ipIndex]
+
+	ipConf := make(map[string]string)
+	if ipList := utils.SplitStringByComma(service.LoadBalance.IpList); ipList != nil {
+		weightList := utils.SplitStringByComma(service.LoadBalance.WeightList)
+		for i := 0; i < len(ipList); i++ {
+			if i < len(weightList) {
+				ipConf[ipList[i]] = weightList[i]
+			} else {
+				ipConf[ipList[i]] = "1"
+			}
+		}
 	}
 
 	mConf, err := load_balance.NewLoadBalanceCheckConf(fmt.Sprintf("%s%s", schema, "%s"), ipConf)
 	if err != nil {
 		return nil, err
 	}
-	lb := load_balance.LoadBanlanceFactorWithConf(load_balance.LbType(service.LoadBalance.RoundType), mConf)
 
-	// 将 LoadBalancerItem 添加到映射中并返回
+	lb := load_balance.LoadBanlanceFactorWithConf(load_balance.LbType(service.LoadBalance.RoundType), mConf)
 	lbr.loadBalanceMap.Store(service.Info.ServiceName, lb)
+
 	return lb, nil
 }
 

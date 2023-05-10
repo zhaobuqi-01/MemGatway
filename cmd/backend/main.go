@@ -20,10 +20,9 @@ import (
 
 func main() {
 	// 启动后台服务器
-	globals.Init()
 	Init.Init()
 	defer Init.Cleanup()
-
+	globals.Init()
 	// Create a message queue instance
 
 	db := mysql.GetDB()
