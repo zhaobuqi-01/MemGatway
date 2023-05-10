@@ -30,10 +30,8 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 		httpstatus = http.StatusUnauthorized
 	case ClientIPLimiterAllowErrCode:
 		httpstatus = http.StatusTooManyRequests
-	case ServerLimiterAllowErrCode, CircuitBreakerOpenErrCode:
+	case ServerLimiterAllowErrCode:
 		httpstatus = http.StatusServiceUnavailable
-	case InternalErrorCode, ParamBindingErrCode:
-		httpstatus = http.StatusInternalServerError
 	default:
 		httpstatus = http.StatusOK
 	}

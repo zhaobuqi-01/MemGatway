@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pingpong;
+
+option go_package = "/mnt/e/project/gateway/test/grpc";
+
+service PingPong {
+  rpc Ping (PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+  string message = 1;
+}
+
+message PingResponse {
+  string message = 1;
+}

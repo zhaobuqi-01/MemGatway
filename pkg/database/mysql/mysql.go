@@ -1,7 +1,6 @@
 package mysql
 
 import (
-	"context"
 	"fmt"
 	"gateway/configs"
 	"gateway/pkg/log"
@@ -60,7 +59,7 @@ func connectMySQL() (*gorm.DB, error) {
 
 	// 连接数据库 (Connect to the database)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		Logger: NewGormLogger(logger.Info),
+		Logger: logger.Discard,
 	})
 	if err != nil {
 		return nil, err
@@ -91,43 +90,43 @@ func CloseDB() error {
 	return sqlDB.Close()
 }
 
-type GormLogger struct {
-	level logger.LogLevel
-}
+// type GormLogger struct {
+// 	level logger.LogLevel
+// }
 
-func NewGormLogger(level logger.LogLevel) *GormLogger {
-	return &GormLogger{level: level}
-}
+// func NewGormLogger(level logger.LogLevel) *GormLogger {
+// 	return &GormLogger{level: level}
+// }
 
-func (l *GormLogger) LogMode(level logger.LogLevel) logger.Interface {
-	newlogger := *l
-	newlogger.level = level
-	return &newlogger
-}
+// func (l *GormLogger) LogMode(level logger.LogLevel) logger.Interface {
+// 	newlogger := *l
+// 	newlogger.level = level
+// 	return &newlogger
+// }
 
-func (l GormLogger) Info(ctx context.Context, msg string, data ...interface{}) {
-	log.Info(fmt.Sprintf(msg, data...))
-}
+// func (l GormLogger) Info(ctx context.Context, msg string, data ...interface{}) {
+// 	log.Info(fmt.Sprintf(msg, data...))
+// }
 
-func (l GormLogger) Warn(ctx context.Context, msg string, data ...interface{}) {
-	log.Warn(fmt.Sprintf(msg, data...))
-}
+// func (l GormLogger) Warn(ctx context.Context, msg string, data ...interface{}) {
+// 	log.Warn(fmt.Sprintf(msg, data...))
+// }
 
-func (l GormLogger) Error(ctx context.Context, msg string, data ...interface{}) {
-	log.Error(fmt.Sprintf(msg, data...))
-}
+// func (l GormLogger) Error(ctx context.Context, msg string, data ...interface{}) {
+// 	log.Error(fmt.Sprintf(msg, data...))
+// }
 
-func (l GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {
-	elapsed := time.Since(begin)
-	switch {
-	case err != nil && l.level >= logger.Error:
-		sql, rows := fc()
-		log.Error("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed), zap.Error(err))
-	case elapsed > 200*time.Millisecond && l.level >= logger.Warn:
-		sql, rows := fc()
-		log.Warn("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed))
-	case l.level >= logger.Info:
-		sql, rows := fc()
-		log.Info("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed))
-	}
-}
+// func (l GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {
+// 	elapsed := time.Since(begin)
+// 	switch {
+// 	case err != nil && l.level >= logger.Error:
+// 		sql, rows := fc()
+// 		log.Error("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed), zap.Error(err))
+// 	case elapsed > 200*time.Millisecond && l.level >= logger.Warn:
+// 		sql, rows := fc()
+// 		log.Warn("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed))
+// 	case l.level >= logger.Info:
+// 		sql, rows := fc()
+// 		log.Info("trace", zap.String("sql", sql), zap.Int64("rows", rows), zap.Duration("elapsed", elapsed))
+// 	}
+// }
