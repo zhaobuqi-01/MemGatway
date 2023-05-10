@@ -5,7 +5,7 @@ import (
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/log"
-	"time"
+	"sync"
 
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -128,76 +128,97 @@ func getServiceDetail(db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDet
 	// log记录查询信息
 	log.Info("start getting service detail")
 
-	ch := make(chan *enity.ServiceDetail, 1)
-	errCh := make(chan error, 1)
-
-	go getServiceRule(db, search, ch, errCh)
-
-	var detail *enity.ServiceDetail
-	var err error
-
-	select {
-	case detail = <-ch:
-	case err = <-errCh:
-	case <-time.After(time.Second * 5):
-		err = fmt.Errorf("timed out while getting service detail for %s", search.ServiceName)
+	if search.ServiceName == "" {
+		info, err := get(db, search)
+		if err != nil {
+			return nil, err
+		}
+		search = info
 	}
 
-	return detail, err
-}
+	var (
+		httpRule      *enity.HttpRule
+		tcpRule       *enity.TcpRule
+		grpcRule      *enity.GrpcRule
+		accessControl *enity.AccessControl
+		loadBalance   *enity.LoadBalance
+	)
 
-func getServiceRule(db *gorm.DB, search *enity.ServiceInfo, ch chan *enity.ServiceDetail, errCh chan error) {
-	var detail *enity.ServiceDetail
+	var err, acErr, lbErr error
+	var wg sync.WaitGroup
 
-	switch search.LoadType {
-	case globals.LoadTypeHTTP:
-		httpRule, err := get(db, &enity.HttpRule{ServiceID: search.ID})
-		if err != nil && err != gorm.ErrRecordNotFound {
-			errCh <- err
-			return
+	wg.Add(3) // we will launch three goroutines
+
+	// goroutine for getting rules
+	go func() {
+		defer wg.Done()
+
+		switch search.LoadType {
+		case globals.LoadTypeHTTP:
+			httpRule, err = get(db, &enity.HttpRule{ServiceID: search.ID})
+			if err != nil && err != gorm.ErrRecordNotFound {
+				log.Error("error retrieving http rule", zap.Error(err))
+			} else {
+				log.Info("get http rule successful", zap.Any("httpRule", httpRule))
+			}
+		case globals.LoadTypeTCP:
+			tcpRule, err = get(db, &enity.TcpRule{ServiceID: search.ID})
+			if err != nil && err != gorm.ErrRecordNotFound {
+				log.Error("error retrieving tcp rule", zap.Error(err))
+			} else {
+				log.Info("get tcp rule successful", zap.Any("tcpRule", tcpRule))
+			}
+		case globals.LoadTypeGRPC:
+			grpcRule, err = get(db, &enity.GrpcRule{ServiceID: search.ID})
+			if err != nil && err != gorm.ErrRecordNotFound {
+				log.Error("error retrieving grpc rule", zap.Error(err))
+			} else {
+				log.Info("get grpc rule successful", zap.Any("grpcRule", grpcRule))
+			}
 		}
-		detail = &enity.ServiceDetail{
-			Info:     search,
-			HTTPRule: httpRule,
+	}()
+
+	// goroutine for getting access control
+	go func() {
+		defer wg.Done()
+
+		accessControl, acErr = get(db, &enity.AccessControl{ServiceID: search.ID})
+		if acErr != nil && acErr != gorm.ErrRecordNotFound {
+			log.Error("error retrieving access control", zap.Error(acErr))
+		} else {
+			log.Info("get access control successful", zap.Any("accessControl", accessControl))
 		}
-	case globals.LoadTypeTCP:
-		tcpRule, err := get(db, &enity.TcpRule{ServiceID: search.ID})
-		if err != nil && err != gorm.ErrRecordNotFound {
-			errCh <- err
-			return
+	}()
+
+	// goroutine for getting load balance
+	go func() {
+		defer wg.Done()
+
+		loadBalance, lbErr = get(db, &enity.LoadBalance{ServiceID: search.ID})
+		if lbErr != nil && lbErr != gorm.ErrRecordNotFound {
+			log.Error("error retrieving load balance", zap.Error(lbErr))
+		} else {
+			log.Info("get load balance successfully", zap.Any("loadBalance", loadBalance))
 		}
-		detail = &enity.ServiceDetail{
-			Info:    search,
-			TCPRule: tcpRule,
-		}
-	case globals.LoadTypeGRPC:
-		grpcRule, err := get(db, &enity.GrpcRule{ServiceID: search.ID})
-		if err != nil && err != gorm.ErrRecordNotFound {
-			errCh <- err
-			return
-		}
-		detail = &enity.ServiceDetail{
-			Info:     search,
-			GRPCRule: grpcRule,
-		}
-	default:
-		errCh <- fmt.Errorf("unknown load type: %d", search.LoadType)
-		return
+	}()
+
+	wg.Wait() // wait for all goroutines to finish
+
+	// check errors after all goroutines have finished
+	if err != nil || acErr != nil || lbErr != nil {
+		return nil, fmt.Errorf("error getting service detail: %v, %v, %v", err, acErr, lbErr)
 	}
 
-	accessControl, err := get(db, &enity.AccessControl{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		errCh <- err
-		return
+	detail := &enity.ServiceDetail{
+		Info:          search,
+		HTTPRule:      httpRule,
+		TCPRule:       tcpRule,
+		GRPCRule:      grpcRule,
+		LoadBalance:   loadBalance,
+		AccessControl: accessControl,
 	}
-	detail.AccessControl = accessControl
 
-	loadBalance, err := get(db, &enity.LoadBalance{ServiceID: search.ID})
-	if err != nil && err != gorm.ErrRecordNotFound {
-		errCh <- err
-		return
-	}
-	detail.LoadBalance = loadBalance
-
-	ch <- detail
+	// log记录成功取到信息
+	log.Info("get service detail successful", zap.Any("detail", detail))
+	return detail, nil
 }

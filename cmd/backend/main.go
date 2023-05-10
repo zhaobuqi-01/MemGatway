@@ -23,7 +23,6 @@ func main() {
 	Init.Init()
 	defer Init.Cleanup()
 	globals.Init()
-	// Create a message queue instance
 
 	db := mysql.GetDB()
 	r := router.InitRouter(db)

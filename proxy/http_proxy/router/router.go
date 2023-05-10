@@ -21,7 +21,6 @@ func InitRouter() *gin.Engine {
 		middleware.SetTraceID(),
 		middleware.RecoveryMiddleware(),
 		middleware.RequestLog(),
-		middleware.TrafficStats(),
 	)
 
 	// 注册oauth路由

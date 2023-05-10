@@ -44,9 +44,41 @@ func (r *RealServer) Run() {
 	}()
 }
 
+// func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
+// 	//127.0.0.1:8008/abc?sdsdsa=11
+// 	//r.Addr=127.0.0.1:8008
+// 	//req.URL.Path=/abc
+// 	//fmt.Println(req.Host)
+// 	upath := fmt.Sprintf("http://%s%s\n", r.Addr, req.URL.Path)
+// 	realIP := fmt.Sprintf("RemoteAddr=%s,X-Forwarded-For=%v,X-Real-Ip=%v\n", req.RemoteAddr, req.Header.Get("X-Forwarded-For"), req.Header.Get("X-Real-Ip"))
+// 	header := fmt.Sprintf("headers =%v\n", req.Header)
+// 	io.WriteString(w, upath)
+// 	io.WriteString(w, realIP)
+// 	io.WriteString(w, header)
+
+// }
+
+func (r *RealServer) ErrorHandler(w http.ResponseWriter, req *http.Request) {
+	upath := "error handler"
+	w.WriteHeader(500)
+	io.WriteString(w, upath)
+}
+
+func (r *RealServer) TimeoutHandler(w http.ResponseWriter, req *http.Request) {
+	time.Sleep(6 * time.Second)
+	upath := "timeout handler"
+	w.WriteHeader(200)
+	io.WriteString(w, upath)
+}
+
 func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
 	// 设置服务器 IP 地址
 	serverIP := r.Addr
+
+	// 获取请求的URL路径、X-Forwarded-For头部信息、X-Real-Ip头部信息，以及所有的HTTP请求头部信息
+	upath := fmt.Sprintf("http://%s%s", r.Addr, req.URL.Path)
+	realIP := fmt.Sprintf("RemoteAddr=%s,X-Forwarded-For=%v,X-Real-Ip=%v", req.RemoteAddr, req.Header.Get("X-Forwarded-For"), req.Header.Get("X-Real-Ip"))
+	header := fmt.Sprintf("headers =%v", formatHeaders(req.Header))
 
 	// 构造 HTML 页面
 	html := fmt.Sprintf(`
@@ -59,15 +91,13 @@ func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
 				<h2>Server IP: %s</h2>
 				<h3>URL Path:</h3>
 				<pre>%s</pre>
-				<h3>X-Forwarded-For:</h3>
-				<pre>%s</pre>
-				<h3>X-Real-Ip:</h3>
+				<h3>X-Forwarded-For and X-Real-Ip:</h3>
 				<pre>%s</pre>
 				<h3>HTTP Request Headers:</h3>
 				<pre>%s</pre>
 			</body>
 		</html>
-	`, serverIP, serverIP, req.URL.Path, req.Header.Get("X-Forwarded-For"), req.Header.Get("X-Real-Ip"), formatHeaders(req.Header))
+	`, serverIP, serverIP, upath, realIP, header)
 
 	// 设置 HTTP 响应头和正文
 	w.Header().Set("Content-Type", "text/html")
@@ -82,17 +112,4 @@ func formatHeaders(headers http.Header) string {
 		headerString += fmt.Sprintf("%s: %s\n", k, strings.Join(v, ", "))
 	}
 	return headerString
-}
-
-func (r *RealServer) ErrorHandler(w http.ResponseWriter, req *http.Request) {
-	upath := "error handler"
-	w.WriteHeader(500)
-	io.WriteString(w, upath)
-}
-
-func (r *RealServer) TimeoutHandler(w http.ResponseWriter, req *http.Request) {
-	time.Sleep(6 * time.Second)
-	upath := "timeout handler"
-	w.WriteHeader(200)
-	io.WriteString(w, upath)
 }
