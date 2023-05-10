@@ -22,6 +22,7 @@ func AppRegister(router *gin.Engine, db *gorm.DB) {
 		appRouter.GET("/app_delete", controller.APPDelete)
 		appRouter.POST("/app_add", controller.APPAdd)
 		appRouter.POST("/app_update", controller.APPUpdate)
+		appRouter.GET("/app_stat", controller.APPStat)
 
 	}
 }
