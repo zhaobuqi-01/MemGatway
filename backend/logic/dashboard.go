@@ -39,7 +39,7 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 			return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
 		},
 	}
-	_, serviceNum, err := dao.PageList[enity.ServiceInfo](c, impl.db, serviceInfoQueryConditions, 1, 1)
+	serviceList, err := dao.GetAll[enity.ServiceInfo](c, impl.db, serviceInfoQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceNum")
 	}
@@ -49,14 +49,14 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
-	_, appNum, err := dao.PageList[enity.App](c, impl.db, appQueryConditions, 1, 1)
+	appList, err := dao.GetAll[enity.App](c, impl.db, appQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get appNum ")
 	}
 
 	out := &dto.PanelGroupDataOutput{
-		ServiceNum: serviceNum,
-		AppNum:     appNum,
+		ServiceNum: int64(len(serviceList)),
+		AppNum:     int64(len(appList)),
 	}
 
 	return out, nil

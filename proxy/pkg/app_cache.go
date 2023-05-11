@@ -49,7 +49,7 @@ func (a *appCache) LoadAppCache() error {
 		},
 	}
 	// 使用dao中的PageList方法获取分页的应用程序列表
-	list, _, err := pageList[enity.App](tx, appQueryConditions, 1, 9999)
+	list, err := getAll[enity.App](tx, appQueryConditions)
 	if err != nil {
 		return err
 	}
