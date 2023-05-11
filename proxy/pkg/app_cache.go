@@ -1,3 +1,4 @@
+// 包 pkg 提供了应用程序缓存的功能。
 package pkg
 
 import (
@@ -5,7 +6,6 @@ import (
 	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/database/mysql"
-
 	"gateway/pkg/log"
 	"sync"
 
@@ -13,22 +13,23 @@ import (
 	"gorm.io/gorm"
 )
 
-// AppCache is the interface of app cache
+// AppCache 是 app 缓存的接口。
 type AppCache interface {
-	// LoadAppCache 加载所有app数据到缓存
+	// LoadAppCache 将所有app数据加载到缓存中。
 	LoadAppCache() error
-	// UpdateAppCache 通过appID,operation更新app缓存
+	// UpdateAppCache 通过appID和operation更新app缓存。
 	UpdateAppCache(appID string, operation string) error
-	// GetApp 通过appID获取app
+	// GetApp 通过appID获取app。
 	GetApp(appID string) (*enity.App, error)
 }
 
+// appCache 结构体实现了 AppCache 接口。
 type appCache struct {
 	AppCache     *sync.Map
 	singleFlight singleflight.Group
 }
 
-// NewAppCache returns a new appCache instance
+// NewAppCache 返回一个新的 appCache 实例。
 func NewAppCache() *appCache {
 	return &appCache{
 		AppCache:     &sync.Map{},
@@ -36,7 +37,7 @@ func NewAppCache() *appCache {
 	}
 }
 
-// GetApp returns app by appID
+// GetApp 通过 appID 返回 app。
 func (s *appCache) GetApp(appID string) (*enity.App, error) {
 	any, ok := s.AppCache.Load(appID)
 	if !ok {
@@ -45,7 +46,7 @@ func (s *appCache) GetApp(appID string) (*enity.App, error) {
 	return any.(*enity.App), nil
 }
 
-// LoadAppCache loads all app data into cache
+// LoadAppCache 将所有 app 数据加载到缓存中。
 func (a *appCache) LoadAppCache() error {
 	log.Info("start loading app to cache")
 	tx := mysql.GetDB()
@@ -60,7 +61,7 @@ func (a *appCache) LoadAppCache() error {
 		return err
 	}
 
-	// Load new data into cache
+	// 将新数据加载到缓存中
 	a.AppCache = &sync.Map{}
 	for _, listItem := range list {
 		tmpItem := listItem
@@ -71,7 +72,7 @@ func (a *appCache) LoadAppCache() error {
 	return nil
 }
 
-// UpdateAppCache updates app cache
+// UpdateAppCache 通过 appID 和 operation 更新 app 缓存。
 func (s *appCache) UpdateAppCache(appID string, operation string) error {
 	_, err, _ := s.singleFlight.Do(appID, func() (interface{}, error) {
 		tx := mysql.GetDB()
@@ -103,6 +104,7 @@ func (s *appCache) UpdateAppCache(appID string, operation string) error {
 	return err
 }
 
+// findAppInfoByID 通过 appID 查找 app 信息。
 func (s *appCache) findAppInfoByID(appID string) (*enity.App, error) {
 	appInfo, found := s.AppCache.Load(appID)
 	if !found {

@@ -5,6 +5,7 @@ import (
 	"gateway/globals"
 )
 
+// TCPFlowCountMiddleware 流量统计中间件
 func TCPFlowCountMiddleware() func(c *TcpSliceRouterContext) {
 	return func(c *TcpSliceRouterContext) {
 		serverInterface := c.Get("service")

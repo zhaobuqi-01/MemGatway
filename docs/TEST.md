@@ -96,6 +96,7 @@ hey -n 1000 -c 100  -t 10 -z 10s http://127.0.0.1:8080/test_http_string/abbb
 
 ```
 telnet 127.0.0.1 8011
- grpcurl -plaintext -proto pingpong.proto -d '{"message": "ping"}' localhost:50051 pingpong.PingPong/Ping
+grpcurl -plaintext -proto pingpong.proto -d '{"message": "ping"}' 127.0.0.1:50051 pingpong.PingPong/Ping
 ```
 
+ grpcurl -plaintext -proto pingpong.proto -d '{"message": "ping"}' localhost:50051 pingpong.PingPong/Ping

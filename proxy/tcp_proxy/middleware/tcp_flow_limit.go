@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// TCPFlowLimitMiddleware 流量控制中间件
 func TCPFlowLimitMiddleware() func(c *TcpSliceRouterContext) {
 	return func(c *TcpSliceRouterContext) {
 		serverInterface := c.Get("service")

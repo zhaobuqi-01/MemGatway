@@ -1,3 +1,4 @@
+// reverse_proxy 构建反向代理
 package reverse_proxy
 
 import (
@@ -10,6 +11,7 @@ import (
 	"time"
 )
 
+// NewTcpLoadBalanceReverseProxy 构建一个新的反向代理
 func NewTcpLoadBalanceReverseProxy(c *middleware.TcpSliceRouterContext, lb load_balance.LoadBalance) *TcpReverseProxy {
 	return func() *TcpReverseProxy {
 		nextAddr, err := lb.Get("")

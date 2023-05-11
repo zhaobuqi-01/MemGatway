@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// TCPWhiteListMiddleware 白名单中间件
 func TCPWhiteListMiddleware() func(c *TcpSliceRouterContext) {
 	return func(c *TcpSliceRouterContext) {
 		serverInterface := c.Get("service")

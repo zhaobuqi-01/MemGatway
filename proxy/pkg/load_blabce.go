@@ -12,6 +12,7 @@ import (
 	"time"
 )
 
+// LoadBalanceAndTransport 接口组合了 GetLoadBalancer 和 GetTransportor 两个接口
 type LoadBalanceAndTransport interface {
 	GetLoadBalancer(service *enity.ServiceDetail) (load_balance.LoadBalance, error)
 	GetTransportor(service *enity.ServiceDetail) (*http.Transport, error)

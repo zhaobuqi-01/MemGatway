@@ -15,6 +15,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// ServiceCache 是 service 缓存的接口。
 type ServiceCache interface {
 	LoadService() error
 	UpdateServiceCache(serviceName string, serviceType int, operation string) error
@@ -30,6 +31,7 @@ type serviceCache struct {
 	sf           singleflight.Group
 }
 
+// NewServiceCache 返回一个新的 serviceCache 实例。
 func NewServiceCache() *serviceCache {
 	return &serviceCache{
 		HTTPServices: &sync.Map{},
@@ -39,6 +41,7 @@ func NewServiceCache() *serviceCache {
 	}
 }
 
+// LoadService 将所有 service 数据加载到缓存中。
 func (s *serviceCache) LoadService() error {
 	log.Info("start loading service manager")
 	tx := mysql.GetDB()
@@ -76,6 +79,7 @@ func (s *serviceCache) LoadService() error {
 	return nil
 }
 
+// UpdateServiceCache 通过 serviceName ,serviceType,operation 更新 service 缓存。
 func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, operation string) error {
 	// 使用singleflight.Group确保同时只有一个goroutine在执行更新操作
 	_, err, _ := s.sf.Do(serviceName, func() (interface{}, error) {
@@ -122,6 +126,7 @@ func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, o
 	return err
 }
 
+// HTTPAccessMode 根据请求的host和path，从URL解析出服务名，通过服务名从缓存中获取对应的服务详情。
 func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, error) {
 	host := c.Request.Host
 	host = host[0:strings.Index(host, ":")]
@@ -153,14 +158,17 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 	return nil, fmt.Errorf("not matched service")
 }
 
+// GetGrpcServiceList 遍历map获取所有的 gRPC 服务列表。
 func (s *serviceCache) GetGrpcServiceList() []*enity.ServiceDetail {
 	return s.getServiceListFromMap(s.GRPCServices)
 }
 
+// GetTcpServiceList 遍历map获取所有的 TCP 服务列表。
 func (s *serviceCache) GetTcpServiceList() []*enity.ServiceDetail {
 	return s.getServiceListFromMap(s.TCPServices)
 }
 
+// getServiceListFromMap 工具函数，工具传入的map进行遍历，返回[]*enity.ServiceDetail。
 func (s *serviceCache) getServiceListFromMap(serviceMap *sync.Map) []*enity.ServiceDetail {
 	list := []*enity.ServiceDetail{}
 	serviceMap.Range(func(key, value interface{}) bool {
@@ -172,6 +180,7 @@ func (s *serviceCache) getServiceListFromMap(serviceMap *sync.Map) []*enity.Serv
 
 }
 
+// findServiceDetailByName 通过 serviceName 从缓存中获取服务详情。
 func (s *serviceCache) findServiceDetailByName(serviceName string, serviceMap *sync.Map) (*enity.ServiceDetail, error) {
 	value, ok := serviceMap.Load(serviceName)
 	if !ok {
