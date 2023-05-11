@@ -42,13 +42,10 @@ func HTTPJwtAuthTokenMiddleware() gin.HandlerFunc {
 			}
 			log.Debug("claims.Issuer", zap.String("claims.Issuer", claims.Issuer))
 
-			appList := pkg.Cache.GetAppList()
-			for _, appInfo := range appList {
-				if appInfo.AppID == claims.Issuer {
-					c.Set("app", appInfo)
-					appMatched = true
-					break
-				}
+			appInfo, err := pkg.Cache.GetApp(claims.Issuer)
+			if err == nil {
+				c.Set("app", appInfo)
+				appMatched = true
 			}
 		}
 		if serviceDetail.AccessControl.OpenAuth == 1 && !appMatched {

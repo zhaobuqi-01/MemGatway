@@ -33,13 +33,10 @@ func GrpcJwtAuthTokenMiddleware(serviceDetail *enity.ServiceDetail) func(srv int
 			if err != nil {
 				return fmt.Errorf("JwtDecode %v", err)
 			}
-			appList := pkg.Cache.GetAppList()
-			for _, appInfo := range appList {
-				if appInfo.AppID == claims.Issuer {
-					md.Set("app", utils.Obj2Json(appInfo))
-					appMatched = true
-					break
-				}
+			appInfo, err := pkg.Cache.GetApp(claims.Issuer)
+			if err == nil {
+				md.Set("app", utils.Obj2Json(appInfo))
+				appMatched = true
 			}
 		}
 		if serviceDetail.AccessControl.OpenAuth == 1 && !appMatched {

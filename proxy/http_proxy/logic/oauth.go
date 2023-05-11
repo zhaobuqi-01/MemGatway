@@ -41,25 +41,25 @@ func (o *oauthLogic) Tokens(c *gin.Context, param *dto.TokensInput) (*dto.Tokens
 	if len(parts) != 2 {
 		return nil, fmt.Errorf("用户名或密码格式错误")
 	}
-	appList := pkg.Cache.GetAppList()
-	for _, appInfo := range appList {
-		if appInfo.AppID == parts[0] && appInfo.Secret == parts[1] {
-			claims := jwt.StandardClaims{
-				Issuer:    appInfo.AppID,
-				ExpiresAt: time.Now().Add(globals.JwtExpires * time.Second).Unix(),
-			}
-			token, err := utils.JwtEncode(claims)
-			if err != nil {
-				return nil, err
-			}
-			output := &dto.TokensOutput{
-				ExpiresIn:   globals.JwtExpires,
-				TokenType:   "Bearer",
-				AccessToken: token,
-				Scope:       "read_write",
-			}
-			return output, nil
+
+	appInfo, err := pkg.Cache.GetApp(parts[0])
+	if err == nil && appInfo.Secret == parts[1] {
+		claims := jwt.StandardClaims{
+			Issuer:    appInfo.AppID,
+			ExpiresAt: time.Now().Add(globals.JwtExpires * time.Second).Unix(),
 		}
+		token, err := utils.JwtEncode(claims)
+		if err != nil {
+			return nil, err
+		}
+		output := &dto.TokensOutput{
+			ExpiresIn:   globals.JwtExpires,
+			TokenType:   "Bearer",
+			AccessToken: token,
+			Scope:       "read_write",
+		}
+		return output, nil
 	}
+
 	return nil, fmt.Errorf("未匹配正确APP信息")
 }

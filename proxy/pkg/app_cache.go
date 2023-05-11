@@ -13,10 +13,14 @@ import (
 	"gorm.io/gorm"
 )
 
+// AppCache is the interface of app cache
 type AppCache interface {
+	// LoadAppCache 加载所有app数据到缓存
 	LoadAppCache() error
+	// UpdateAppCache 通过appID,operation更新app缓存
 	UpdateAppCache(appID string, operation string) error
-	GetAppList() []*enity.App
+	// GetApp 通过appID获取app
+	GetApp(appID string) (*enity.App, error)
 }
 
 type appCache struct {
@@ -24,6 +28,7 @@ type appCache struct {
 	singleFlight singleflight.Group
 }
 
+// NewAppCache returns a new appCache instance
 func NewAppCache() *appCache {
 	return &appCache{
 		AppCache:     &sync.Map{},
@@ -31,15 +36,16 @@ func NewAppCache() *appCache {
 	}
 }
 
-func (s *appCache) GetAppList() []*enity.App {
-	appList := make([]*enity.App, 0)
-	s.AppCache.Range(func(_, value interface{}) bool {
-		appList = append(appList, value.(*enity.App))
-		return true
-	})
-	return appList
+// GetApp returns app by appID
+func (s *appCache) GetApp(appID string) (*enity.App, error) {
+	any, ok := s.AppCache.Load(appID)
+	if !ok {
+		return nil, fmt.Errorf("app not found")
+	}
+	return any.(*enity.App), nil
 }
 
+// LoadAppCache loads all app data into cache
 func (a *appCache) LoadAppCache() error {
 	log.Info("start loading app to cache")
 	tx := mysql.GetDB()
@@ -49,7 +55,6 @@ func (a *appCache) LoadAppCache() error {
 			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
-	// 使用dao中的PageList方法获取分页的应用程序列表
 	list, err := getAll[enity.App](tx, appQueryConditions)
 	if err != nil {
 		return err
@@ -66,6 +71,7 @@ func (a *appCache) LoadAppCache() error {
 	return nil
 }
 
+// UpdateAppCache updates app cache
 func (s *appCache) UpdateAppCache(appID string, operation string) error {
 	_, err, _ := s.singleFlight.Do(appID, func() (interface{}, error) {
 		tx := mysql.GetDB()
@@ -82,8 +88,7 @@ func (s *appCache) UpdateAppCache(appID string, operation string) error {
 			return nil, err
 		}
 
-		// 将新的app设置到缓存中
-		// 将新的服务详情设置到缓存
+		// 根据操作类型更新缓存
 		switch operation {
 		case globals.DataInsert, globals.DataUpdate:
 			s.AppCache.Store(appID, appInfo)
