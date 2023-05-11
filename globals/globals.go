@@ -36,9 +36,17 @@ var (
 )
 
 type DataChangeMessage struct {
-	Type    string `json:"type"`
-	Payload string `json:"payload"`
+	Type        string `json:"type"`
+	Payload     string `json:"payload"`
+	ServiceType int    `json:"service_type"`
+	Operation   string `json:"operation"`
 }
+
+const (
+	DataDelete = "delete"
+	DataUpdate = "update"
+	DataInsert = "insert"
+)
 
 var (
 	MessageQueue mq.MQ

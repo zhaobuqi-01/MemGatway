@@ -122,8 +122,10 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeGRPC,
+		Operation:   globals.DataInsert,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
@@ -208,8 +210,10 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeGRPC,
+		Operation:   globals.DataUpdate,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))

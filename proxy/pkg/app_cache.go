@@ -3,6 +3,7 @@ package pkg
 import (
 	"fmt"
 	"gateway/enity"
+	"gateway/globals"
 	"gateway/pkg/database/mysql"
 
 	"gateway/pkg/log"
@@ -14,7 +15,7 @@ import (
 
 type AppCache interface {
 	LoadAppCache() error
-	UpdateAppCache(appID string) error
+	UpdateAppCache(appID string, operation string) error
 	GetAppList() []*enity.App
 }
 
@@ -65,7 +66,7 @@ func (a *appCache) LoadAppCache() error {
 	return nil
 }
 
-func (s *appCache) UpdateAppCache(appID string) error {
+func (s *appCache) UpdateAppCache(appID string, operation string) error {
 	_, err, _ := s.singleFlight.Do(appID, func() (interface{}, error) {
 		tx := mysql.GetDB()
 
@@ -82,8 +83,17 @@ func (s *appCache) UpdateAppCache(appID string) error {
 		}
 
 		// 将新的app设置到缓存中
-		s.AppCache.Store(appID, appInfo)
-		return nil, nil
+		// 将新的服务详情设置到缓存
+		switch operation {
+		case globals.DataInsert, globals.DataUpdate:
+			s.AppCache.Store(appID, appInfo)
+			return nil, nil
+		case globals.DataDelete:
+			s.AppCache.Delete(appID)
+			return nil, nil
+		default:
+			return nil, fmt.Errorf("invalid operation")
+		}
 	})
 	return err
 }

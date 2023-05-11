@@ -108,8 +108,10 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeHTTP,
+		Operation:   globals.DataInsert,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
@@ -184,8 +186,10 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeHTTP,
+		Operation:   globals.DataUpdate,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))

@@ -47,15 +47,18 @@ func main() {
 		switch dataChangeMsg.Type {
 		case "app":
 			appID := dataChangeMsg.Payload
+			operation := dataChangeMsg.Operation
 			//  update app cache
-			if err := pkg.Cache.UpdateAppCache(appID); err != nil {
+			if err := pkg.Cache.UpdateAppCache(appID, operation); err != nil {
 				log.Error("failed to update app cache", zap.Error(err))
 				return
 			}
 		case "service":
 			serviceName := dataChangeMsg.Payload
+			serviceType := dataChangeMsg.ServiceType
+			operation := dataChangeMsg.Operation
 			// update service cache
-			if err := pkg.Cache.UpdateServiceCache(serviceName); err != nil {
+			if err := pkg.Cache.UpdateServiceCache(serviceName, serviceType, operation); err != nil {
 				log.Error("failed to update service cache", zap.Error(err))
 				return
 			}

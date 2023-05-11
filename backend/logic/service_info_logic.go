@@ -105,8 +105,10 @@ func (s *serviceInfoLogic) DeleteService(c *gin.Context, params *dto.ServiceDele
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: serviceInfo.ServiceName,
+		Type:        "service",
+		Payload:     serviceInfo.ServiceName,
+		ServiceType: serviceInfo.LoadType,
+		Operation:   globals.DataDelete,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))

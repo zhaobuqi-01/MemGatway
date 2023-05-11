@@ -99,8 +99,9 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: info.AppID,
+		Type:      "service",
+		Payload:   info.AppID,
+		Operation: globals.DataDelete,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
@@ -139,8 +140,9 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 	}
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.AppID,
+		Type:      "service",
+		Payload:   params.AppID,
+		Operation: globals.DataInsert,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
@@ -172,8 +174,9 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.AppID,
+		Type:      "service",
+		Payload:   params.AppID,
+		Operation: globals.DataUpdate,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))

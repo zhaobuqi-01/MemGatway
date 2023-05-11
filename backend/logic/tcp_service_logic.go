@@ -103,8 +103,10 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeTCP,
+		Operation:   globals.DataInsert,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
@@ -181,8 +183,10 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 
 	// Publish data change message
 	message := &globals.DataChangeMessage{
-		Type:    "service",
-		Payload: params.ServiceName,
+		Type:        "service",
+		Payload:     params.ServiceName,
+		ServiceType: globals.LoadTypeTCP,
+		Operation:   globals.DataUpdate,
 	}
 	if err := globals.MessageQueue.Publish(globals.DataChange, message); err != nil {
 		log.Error("error publishing message", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))

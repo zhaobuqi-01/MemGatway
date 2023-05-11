@@ -251,13 +251,28 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*
 	}
 
 	if httpRule != nil {
-		detail.HTTPRule = httpRule.(*enity.HttpRule)
-	}
-	if tcpRule != nil {
-		detail.TCPRule = tcpRule.(*enity.TcpRule)
+		if rule, ok := httpRule.(*enity.HttpRule); ok {
+			detail.HTTPRule = rule
+		} else {
+			log.Error("error retrieving http rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
 	}
 	if grpcRule != nil {
-		detail.GRPCRule = grpcRule.(*enity.GrpcRule)
+		if rule, ok := grpcRule.(*enity.GrpcRule); ok {
+			detail.GRPCRule = rule
+		} else {
+			log.Error("error retrieving grpc rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
+	}
+	if tcpRule != nil {
+		if rule, ok := tcpRule.(*enity.TcpRule); ok {
+			detail.TCPRule = rule
+		} else {
+			log.Error("error retrieving tcp rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
 	}
 
 	// log记录成功取到信息

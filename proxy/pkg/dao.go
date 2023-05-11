@@ -16,27 +16,24 @@ type Model interface {
 }
 
 // PageList 分页查询
-func pageList[T Model](db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
+func getAll[T Model](db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB) ([]T, error) {
 	// log记录查询信息
 	log.Info("start pageList ")
 
-	total := int64(0)
 	list := []T{}
-	offset := (PageNo - 1) * PageSize
 
 	query := db.Where("is_delete=0")
 	for _, condition := range queryConditions {
 		query = condition(query)
 	}
-	if err := query.Limit(PageSize).Offset(offset).Order("id desc").Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
+	if err := query.Order("id desc").Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
 		log.Error(fmt.Sprintf("error retrieving :%v ", query), zap.Error(err))
-		return nil, 0, err
+		return nil, err
 	}
-	query.Limit(PageSize).Offset(offset).Count(&total)
 
 	// log记录成功信息
 	log.Info("pageList successfully", zap.Any("list", list))
-	return list, total, nil
+	return list, nil
 }
 
 // GetServiceDetail 获取服务详情
@@ -184,13 +181,28 @@ func getServiceDetail(db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDet
 	}
 
 	if httpRule != nil {
-		detail.HTTPRule = httpRule.(*enity.HttpRule)
-	}
-	if tcpRule != nil {
-		detail.TCPRule = tcpRule.(*enity.TcpRule)
+		if rule, ok := httpRule.(*enity.HttpRule); ok {
+			detail.HTTPRule = rule
+		} else {
+			log.Error("error retrieving http rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
 	}
 	if grpcRule != nil {
-		detail.GRPCRule = grpcRule.(*enity.GrpcRule)
+		if rule, ok := grpcRule.(*enity.GrpcRule); ok {
+			detail.GRPCRule = rule
+		} else {
+			log.Error("error retrieving grpc rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
+	}
+	if tcpRule != nil {
+		if rule, ok := tcpRule.(*enity.TcpRule); ok {
+			detail.TCPRule = rule
+		} else {
+			log.Error("error retrieving tcp rule: unexpected type", zap.Any("tcpRule", tcpRule))
+			return nil, fmt.Errorf("unexpected type for TCP rule: %T", tcpRule)
+		}
 	}
 
 	// log记录成功取到信息
