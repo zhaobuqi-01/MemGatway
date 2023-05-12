@@ -3,7 +3,10 @@ package configs
 import (
 	"fmt"
 	"log"
+	"sync"
+	"time"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
 
@@ -90,6 +93,9 @@ var (
 	httpsProxyConfig    *ServerConfig
 	metricsServerConfig *ServerConfig
 	clusterConfig       *ClusterConfig
+
+	reloadTimer *time.Timer
+	reloadDelay = 5 * time.Second // 设置防抖动延迟时间
 )
 
 func Init() {
@@ -103,6 +109,23 @@ func Init() {
 	}
 
 	loadConfig()
+
+	v.WatchConfig()
+	v.OnConfigChange(func(e fsnotify.Event) {
+		log.Println("Config file changed:", e.Name)
+		scheduleReloadConfig()
+	})
+}
+
+func scheduleReloadConfig() {
+	if reloadTimer != nil {
+		reloadTimer.Stop()
+	}
+
+	reloadTimer = time.AfterFunc(reloadDelay, func() {
+		log.Println("Reloading configuration after debounce delay")
+		loadConfig()
+	})
 }
 
 func loadConfig() {
@@ -188,4 +211,12 @@ func GetHttpsProxyConfig() *ServerConfig {
 
 func GetClusterConfig() *ClusterConfig {
 	return clusterConfig
+}
+
+var rwmutex sync.RWMutex
+
+func GetInt(key string) int {
+	rwmutex.RLock()
+	defer rwmutex.RUnlock()
+	return v.GetInt(key)
 }

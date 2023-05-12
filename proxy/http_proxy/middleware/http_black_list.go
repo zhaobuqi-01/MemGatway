@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gateway/enity"
 	"gateway/pkg/log"
+	"gateway/proxy/pkg"
 	"gateway/utils"
 	"strings"
 
@@ -15,7 +16,7 @@ import (
 
 func HTTPBlackListMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Debug("start sBlackListMiddleware")
+		log.Debug("start BlackListMiddleware")
 		serverInterface, ok := c.Get("service")
 		if !ok {
 			response.ResponseError(c, response.ServiceNotFoundErrCode, fmt.Errorf("service not found"))
@@ -43,6 +44,13 @@ func HTTPBlackListMiddleware() gin.HandlerFunc {
 				return
 			}
 		}
+
+		if _, found := pkg.BlackIpCache.Get(c.ClientIP()); found {
+			response.ResponseError(c, response.ClientIPInBlackListErrCode, fmt.Errorf(fmt.Sprintf("%s in black ip list", c.ClientIP())))
+			c.Abort()
+			return
+		}
+
 		c.Next()
 	}
 }

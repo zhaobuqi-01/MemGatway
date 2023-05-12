@@ -75,3 +75,14 @@ https:
   read_timeout: 10
   write_timeout: 10
   max_header_bytes: 20
+
+# 配置支持热加载
+# 但只有以下配置进行热加载才不会使服务重启
+# 动态IP黑名单配置
+blacklist:
+  # 黑名单过期时间（单位是秒）
+  expire: 60
+  # 黑名单清理时间间隔（单位是秒）
+  clean_interval: 60
+  # 错误请求次数阈值
+  error_threshold: 100

@@ -32,6 +32,10 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 		httpstatus = http.StatusTooManyRequests
 	case ServerLimiterAllowErrCode:
 		httpstatus = http.StatusServiceUnavailable
+	case ServiceNotFoundErrCode:
+		httpstatus = http.StatusNotFound
+	case HTTPAccessModeErrCode:
+		httpstatus = http.StatusBadRequest
 	default:
 		httpstatus = http.StatusOK
 	}

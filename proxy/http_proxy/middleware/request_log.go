@@ -2,7 +2,10 @@ package middleware
 
 import (
 	"bytes"
+	"gateway/configs"
 	"gateway/pkg/log"
+	"gateway/pkg/response"
+	"gateway/proxy/pkg"
 
 	"io/ioutil"
 	"time"
@@ -67,8 +70,25 @@ func RequestLog() gin.HandlerFunc {
 		// 处理请求
 		c.Next()
 
+		switch c.GetInt("ErrorCode") {
+		case response.SuccessCode, response.ClientIPInBlackListErrCode, response.ClientIPNotInWhiteListCode,
+			response.ServerLimiterAllowErrCode, response.ClientIPLimiterAllowErrCode:
+			break
+		default:
+			log.Debug("开始记录错误次数")
+			count, _ := pkg.ErrorCounts.LoadOrStore(c.ClientIP(), 0)
+			count = count.(int) + 1
+			pkg.ErrorCounts.Store(c.ClientIP(), count)
+
+			if count.(int) > pkg.ErrorThreshold {
+				pkg.BlackIpCache.Set(c.ClientIP(), true, time.Duration(configs.GetInt("blacklist.expire"))*time.Second)
+			}
+		}
+
 		responseTime := time.Since(startTime)
 		// 处理请求后记录响应信息和请求执行时间
 		RequestOutLog(c, responseTime)
+
+		log.Debug("BlackIpCache", zap.Any("BlackIpCache", pkg.BlackIpCache))
 	}
 }

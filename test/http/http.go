@@ -60,7 +60,7 @@ func (r *RealServer) WebSocketHandler(w http.ResponseWriter, req *http.Request) 
 func (r *RealServer) Run() {
 	log.Println("Starting httpserver at " + r.Addr)
 	mux := http.NewServeMux()
-	mux.HandleFunc("/test_http_string/hello", r.HelloHandler)
+	mux.HandleFunc("/test_http_string", r.HelloHandler)
 	mux.HandleFunc("/test_http_string/ws", r.WebSocketHandler) // 添加 WebSocket handler
 	mux.HandleFunc("/base/error", r.ErrorHandler)
 	mux.HandleFunc("/test_http_string/test_http_string/aaa", r.TimeoutHandler)
