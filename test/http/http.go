@@ -10,6 +10,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/gorilla/websocket"
 )
 
 func main() {
@@ -19,7 +21,7 @@ func main() {
 	rs2.Run()
 
 	//监听关闭信号
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 }
@@ -28,10 +30,38 @@ type RealServer struct {
 	Addr string
 }
 
+var upgrader = websocket.Upgrader{}
+
+func (r *RealServer) WebSocketHandler(w http.ResponseWriter, req *http.Request) {
+	println("websocket")
+	conn, err := upgrader.Upgrade(w, req, nil)
+	if err != nil {
+		log.Println("Upgrade error:", err)
+		return
+	}
+	defer conn.Close()
+
+	for {
+		mt, message, err := conn.ReadMessage()
+		if err != nil {
+			log.Println("Read error:", err)
+			break
+		}
+		log.Printf("Received: %s", message)
+
+		err = conn.WriteMessage(mt, message)
+		if err != nil {
+			log.Println("Write error:", err)
+			break
+		}
+	}
+}
+
 func (r *RealServer) Run() {
 	log.Println("Starting httpserver at " + r.Addr)
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", r.HelloHandler)
+	mux.HandleFunc("/test_http_string/hello", r.HelloHandler)
+	mux.HandleFunc("/test_http_string/ws", r.WebSocketHandler) // 添加 WebSocket handler
 	mux.HandleFunc("/base/error", r.ErrorHandler)
 	mux.HandleFunc("/test_http_string/test_http_string/aaa", r.TimeoutHandler)
 	server := &http.Server{
@@ -72,6 +102,7 @@ func (r *RealServer) TimeoutHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Println("hello")
 	// 设置服务器 IP 地址
 	serverIP := r.Addr
 
