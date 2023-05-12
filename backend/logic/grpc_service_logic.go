@@ -2,10 +2,11 @@ package logic
 
 import (
 	"fmt"
-	"gateway/backend/dao"
 	"gateway/backend/dto"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 
 	"strings"
@@ -20,15 +21,26 @@ type GrpcServiceLogic interface {
 	UpdateGrpc(c *gin.Context, param *dto.ServiceUpdateGrpcInput) error
 }
 
-// grpcServiceLogic 结构体
 type grpcServiceLogic struct {
-	db *gorm.DB
+	info dao.ServiceInfoService
+	tcp  dao.TcpService
+	grpc dao.GrpcService
+	http dao.HttpService
+	lb   dao.LoadBalanceService
+	ac   dao.AccessControlService
+	db   *gorm.DB
 }
 
 // NewGrpcServiceLogic 构造函数
-func NewGrpcServiceLogic(tx *gorm.DB) *grpcServiceLogic {
+func NewGrpcServiceLogic() *grpcServiceLogic {
 	return &grpcServiceLogic{
-		db: tx,
+		dao.NewServiceInfoService(),
+		dao.NewTcpService(),
+		dao.NewGrpcService(),
+		dao.NewHttpService(),
+		dao.NewLoadBalanceService(),
+		dao.NewAccessControlService(),
+		mysql.GetDB(),
 	}
 }
 
@@ -39,7 +51,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		ServiceName: params.ServiceName,
 		IsDelete:    0,
 	}
-	if info, err := dao.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
+	if info, err := s.info.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
 		if err == nil && info != nil {
 			return fmt.Errorf("GRPC service name already exists, please change the service name")
 		}
@@ -50,14 +62,14 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 	tcpRuleSearch := &enity.TcpRule{
 		Port: params.Port,
 	}
-	if _, err := dao.Get(c, s.db, tcpRuleSearch); err == nil {
+	if _, err := s.tcp.Get(c, s.db, tcpRuleSearch); err == nil {
 		return fmt.Errorf("port already exists, please change the port")
 	}
 
 	grpcRuleSearch := &enity.GrpcRule{
 		Port: params.Port,
 	}
-	if _, err := dao.Get(c, s.db, grpcRuleSearch); err == nil {
+	if _, err := s.grpc.Get(c, s.db, grpcRuleSearch); err == nil {
 		return fmt.Errorf("port already exists, please change the port")
 	}
 
@@ -75,7 +87,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		ServiceName: params.ServiceName,
 		ServiceDesc: params.ServiceDesc,
 	}
-	if err := dao.Save(c, tx, info); err != nil {
+	if err := s.info.Save(c, tx, info); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add GRPC service information")
 	}
@@ -88,7 +100,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		WeightList: params.WeightList,
 		ForbidList: params.ForbidList,
 	}
-	if err := dao.Save(c, tx, loadBalance); err != nil {
+	if err := s.lb.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add GRPC service load balancer")
 	}
@@ -99,7 +111,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		Port:           params.Port,
 		HeaderTransfor: params.HeaderTransfor,
 	}
-	if err := dao.Save(c, tx, grpcRule); err != nil {
+	if err := s.grpc.Save(c, tx, grpcRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add GRPC service rule")
 	}
@@ -114,7 +126,7 @@ func (s *grpcServiceLogic) AddGrpc(c *gin.Context, params *dto.ServiceAddGrpcInp
 		ClientIPFlowLimit: params.ClientIPFlowLimit,
 		ServiceFlowLimit:  params.ServiceFlowLimit,
 	}
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add GRPC service permission")
 	}
@@ -148,7 +160,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	service := &enity.ServiceInfo{
 		ID: params.ID,
 	}
-	detail, err := dao.GetServiceDetail(c, s.db, service)
+	detail, err := s.info.GetServiceDetail(c, s.db, service)
 	if err != nil {
 		return fmt.Errorf("gRPC service does not exist")
 	}
@@ -156,7 +168,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	// 更新服务信息
 	info := detail.Info
 	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Save(c, tx, info); err != nil {
+	if err := s.info.Save(c, tx, info); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save GRPC service information")
 	}
@@ -171,7 +183,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	loadBalance.IpList = params.IpList
 	loadBalance.WeightList = params.WeightList
 	loadBalance.ForbidList = params.ForbidList
-	if err := dao.Save(c, tx, loadBalance); err != nil {
+	if err := s.lb.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save GRPC service load balancing")
 	}
@@ -183,7 +195,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	}
 	grpcRule.ServiceID = info.ID
 	grpcRule.HeaderTransfor = params.HeaderTransfor
-	if err := dao.Save(c, tx, grpcRule); err != nil {
+	if err := s.grpc.Save(c, tx, grpcRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save GRPC service rules")
 	}
@@ -200,7 +212,7 @@ func (s *grpcServiceLogic) UpdateGrpc(c *gin.Context, params *dto.ServiceUpdateG
 	accessControl.WhiteHostName = params.WhiteHostName
 	accessControl.ClientIPFlowLimit = params.ClientIPFlowLimit
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save GRPC service permissions")
 	}

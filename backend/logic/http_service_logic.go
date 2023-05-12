@@ -2,10 +2,12 @@ package logic
 
 import (
 	"fmt"
-	"gateway/backend/dao"
+
 	"gateway/backend/dto"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 	"strings"
 
@@ -20,13 +22,25 @@ type HttpServiceLogic interface {
 }
 
 type httpServiceLogic struct {
-	db *gorm.DB
+	info dao.ServiceInfoService
+	tcp  dao.TcpService
+	grpc dao.GrpcService
+	http dao.HttpService
+	lb   dao.LoadBalanceService
+	ac   dao.AccessControlService
+	db   *gorm.DB
 }
 
 // NewHttpServiceLogic 创建serviceHttpLogic
-func NewHttpServiceLogic(tx *gorm.DB) *httpServiceLogic {
+func NewHttpServiceLogic() *httpServiceLogic {
 	return &httpServiceLogic{
-		db: tx,
+		dao.NewServiceInfoService(),
+		dao.NewTcpService(),
+		dao.NewGrpcService(),
+		dao.NewHttpService(),
+		dao.NewLoadBalanceService(),
+		dao.NewAccessControlService(),
+		mysql.GetDB(),
 	}
 }
 
@@ -38,7 +52,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 
 	tx := s.db.Begin()
 	serviceInfo := &enity.ServiceInfo{ServiceName: params.ServiceName}
-	if _, err := dao.Get(c, tx, serviceInfo); err == nil {
+	if _, err := s.info.Get(c, tx, serviceInfo); err == nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service already exists")
 	}
@@ -48,7 +62,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		Rule:     params.Rule,
 	}
 
-	if _, err := dao.Get(c, tx, httpUrl); err == nil {
+	if _, err := s.http.Get(c, tx, httpUrl); err == nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service access prefix or domain name already exists")
 	}
@@ -57,7 +71,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		ServiceDesc: params.ServiceDesc,
 	}
 
-	if err := dao.Save(c, tx, serviceModel); err != nil {
+	if err := s.info.Save(c, tx, serviceModel); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add HTTP service information")
 	}
@@ -72,7 +86,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		UrlRewrite:     params.UrlRewrite,
 		HeaderTransfor: params.HeaderTransfor,
 	}
-	if err := dao.Save(c, tx, httpRule); err != nil {
+	if err := s.http.Save(c, tx, httpRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add HTTP service information")
 	}
@@ -85,7 +99,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		ClientIPFlowLimit: params.ClientipFlowLimit,
 		ServiceFlowLimit:  params.ServiceFlowLimit,
 	}
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add HTTP service permission")
 	}
@@ -100,7 +114,7 @@ func (s *httpServiceLogic) AddHTTP(c *gin.Context, params *dto.ServiceAddHTTPInp
 		UpstreamIdleTimeout:    params.UpstreamIdleTimeout,
 		UpstreamMaxIdle:        params.UpstreamMaxIdle,
 	}
-	if err := dao.Save(c, tx, loadbalance); err != nil {
+	if err := s.lb.Save(c, tx, loadbalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add HTTP service load balancing error")
 	}
@@ -128,13 +142,13 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 
 	tx := s.db.Begin()
 
-	serviceInfo, err := dao.Get(c, tx, &enity.ServiceInfo{ServiceName: params.ServiceName})
+	serviceInfo, err := s.info.Get(c, tx, &enity.ServiceInfo{ServiceName: params.ServiceName})
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service does not exist")
 	}
 
-	serviceDetail, err := dao.GetServiceDetail(c, tx, serviceInfo)
+	serviceDetail, err := s.info.GetServiceDetail(c, tx, serviceInfo)
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("HTTP service does not exist")
@@ -142,7 +156,7 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 
 	info := serviceDetail.Info
 	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Save(c, tx, info); err != nil {
+	if err := s.info.Save(c, tx, info); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save HTTP service description")
 	}
@@ -153,7 +167,7 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	httpRule.NeedWebsocket = params.NeedWebsocket
 	httpRule.UrlRewrite = params.UrlRewrite
 	httpRule.HeaderTransfor = params.HeaderTransfor
-	if err := dao.Save(c, tx, httpRule); err != nil {
+	if err := s.http.Save(c, tx, httpRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save HTTP service rules")
 	}
@@ -164,7 +178,7 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	accessControl.WhiteList = params.WhiteList
 	accessControl.ClientIPFlowLimit = params.ClientipFlowLimit
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save HTTP service permissions")
 	}
@@ -177,7 +191,7 @@ func (s *httpServiceLogic) UpdateHTTP(c *gin.Context, params *dto.ServiceUpdateH
 	loadbalance.UpstreamHeaderTimeout = params.UpstreamHeaderTimeout
 	loadbalance.UpstreamIdleTimeout = params.UpstreamIdleTimeout
 	loadbalance.UpstreamMaxIdle = params.UpstreamMaxIdle
-	if err := dao.Save(c, tx, loadbalance); err != nil {
+	if err := s.lb.Save(c, tx, loadbalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save HTTP service load balancing error")
 	}

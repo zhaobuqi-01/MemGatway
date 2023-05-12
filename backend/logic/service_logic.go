@@ -1,9 +1,5 @@
 package logic
 
-import (
-	"gorm.io/gorm"
-)
-
 type ServiceLogic interface {
 	ServiceInfoLogic
 	TcpServiceLogic
@@ -18,11 +14,11 @@ type serviceLogic struct {
 	GrpcServiceLogic
 }
 
-func NewServiceLogic(db *gorm.DB) *serviceLogic {
+func NewServiceLogic() *serviceLogic {
 	return &serviceLogic{
-		ServiceInfoLogic: NewServiceInfoLogic(db),
-		HttpServiceLogic: NewHttpServiceLogic(db),
-		TcpServiceLogic:  NewTcpServiceLogic(db),
-		GrpcServiceLogic: NewGrpcServiceLogic(db),
+		ServiceInfoLogic: NewServiceInfoLogic(),
+		HttpServiceLogic: NewHttpServiceLogic(),
+		TcpServiceLogic:  NewTcpServiceLogic(),
+		GrpcServiceLogic: NewGrpcServiceLogic(),
 	}
 }

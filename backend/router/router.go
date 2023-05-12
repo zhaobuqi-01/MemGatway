@@ -21,11 +21,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 // InitRouter 初始化路由，可以传入多个中间件
-func InitRouter(db *gorm.DB) *gin.Engine {
+func InitRouter() *gin.Engine {
 	// 使用默认中间件（log 和 recovery 中间件）创建 gin 路由
 	router := gin.Default()
 
@@ -51,16 +50,15 @@ func InitRouter(db *gorm.DB) *gin.Engine {
 	swaggerRegister(router)
 
 	// 注册admin路由
-	AdminRegister(router, db)
+	AdminRegister(router)
 
 	// 注册service路由
-	ServiceRegister(router, db)
+	ServiceRegister(router)
 
 	// 注册app路由
-	AppRegister(router, db)
-
+	AppRegister(router)
 	// 注册dashboard路由
-	DashboardRegister(router, db)
+	DashboardRegister(router)
 
 	return router
 }

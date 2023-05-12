@@ -2,10 +2,10 @@ package logic
 
 import (
 	"fmt"
-	"gateway/backend/dao"
 	"gateway/backend/dto"
-	"gateway/enity"
+	"gateway/dao"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 
 	"time"
@@ -22,12 +22,14 @@ type DashboardLogic interface {
 }
 
 type dashboardLogicImpl struct {
+	dao.Dashboard
 	db *gorm.DB
 }
 
-func NewDashboardLogic(tx *gorm.DB) *dashboardLogicImpl {
+func NewDashboardLogic() *dashboardLogicImpl {
 	return &dashboardLogicImpl{
-		db: tx,
+		dao.NewDashboard(),
+		mysql.GetDB(),
 	}
 }
 
@@ -39,7 +41,7 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 			return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
 		},
 	}
-	serviceList, err := dao.GetAll[enity.ServiceInfo](c, impl.db, serviceInfoQueryConditions)
+	serviceList, err := impl.GetAll(c, impl.db, serviceInfoQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceNum")
 	}
@@ -49,7 +51,7 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
-	appList, err := dao.GetAll[enity.App](c, impl.db, appQueryConditions)
+	appList, err := impl.GetAll(c, impl.db, appQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get appNum ")
 	}
@@ -64,7 +66,7 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 
 // ServiceStat 统计各种服务的占比
 func (impl *dashboardLogicImpl) GetServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
-	list, err := dao.GetLoadTypeByGroup(c, impl.db)
+	list, err := impl.GetLoadTypeByGroup(c, impl.db)
 	if err != nil {
 		return nil, err
 	}

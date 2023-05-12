@@ -1,4 +1,3 @@
-// 包 pkg 提供了应用程序缓存的功能。
 package pkg
 
 import (

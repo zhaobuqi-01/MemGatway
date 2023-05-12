@@ -2,10 +2,11 @@ package logic
 
 import (
 	"fmt"
-	"gateway/backend/dao"
 	"gateway/backend/dto"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 	"gateway/utils"
 	"time"
@@ -27,13 +28,15 @@ type AppLogic interface {
 
 // appLogic是实现AppLogic接口的结构体
 type appLogic struct {
+	dao.APP
 	db *gorm.DB
 }
 
 // NewAppLogic创建一个新的appLogic实例
-func NewAppLogic(tx *gorm.DB) *appLogic {
+func NewAppLogic() *appLogic {
 	return &appLogic{
-		db: tx,
+		dao.NewApp(),
+		mysql.GetDB(),
 	}
 }
 
@@ -46,7 +49,7 @@ func (al *appLogic) AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APP
 		},
 	}
 	// 使用dao中的PageList方法获取分页的应用程序列表
-	list, total, err := dao.PageList[enity.App](c, al.db, queryConditions, params.PageNo, params.PageSize)
+	list, total, err := al.PageList(c, al.db, queryConditions, params.PageNo, params.PageSize)
 	if err != nil {
 		return nil, 0, fmt.Errorf("failed to get all app data")
 	}
@@ -74,7 +77,7 @@ func (al *appLogic) AppDetail(c *gin.Context, params *dto.APPDetailInput) (*enit
 	search := &enity.App{
 		ID: params.ID,
 	}
-	detail, err := dao.Get(c, al.db, search)
+	detail, err := al.Get(c, al.db, search)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get app details")
 	}
@@ -87,13 +90,13 @@ func (al *appLogic) AppDelete(c *gin.Context, params *dto.APPDetailInput) error 
 	search := &enity.App{
 		ID: params.ID,
 	}
-	info, err := dao.Get(c, al.db, search)
+	info, err := al.Get(c, al.db, search)
 	if err != nil {
 		return fmt.Errorf("app not found")
 	}
 	// 将应用程序标记为已删除
 	info.IsDelete = 1
-	if err := dao.Save(c, al.db, info); err != nil {
+	if err := al.Save(c, al.db, info); err != nil {
 		return fmt.Errorf("failed to delete app")
 	}
 
@@ -118,7 +121,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 	search := &enity.App{
 		AppID: params.AppID,
 	}
-	if _, err := dao.Get(c, al.db, search); err == nil {
+	if _, err := al.Get(c, al.db, search); err == nil {
 		return fmt.Errorf("app ID is already taken")
 	}
 	// 如果没有指定密钥，则使用默认的appID哈希值作为密钥
@@ -135,7 +138,7 @@ func (al *appLogic) AppAdd(c *gin.Context, params *dto.APPAddHttpInput) error {
 		Qps:      params.Qps,
 	}
 	// 保存应用程序对象
-	if err := dao.Save(c, al.db, app); err != nil {
+	if err := al.Save(c, al.db, app); err != nil {
 		return fmt.Errorf("failed to add app")
 	}
 	// Publish data change message
@@ -159,7 +162,7 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 	search := &enity.App{
 		ID: params.ID,
 	}
-	info, err := dao.Get(c, al.db, search)
+	info, err := al.Get(c, al.db, search)
 	if err != nil {
 		return fmt.Errorf("app not found")
 	}
@@ -168,7 +171,7 @@ func (al *appLogic) AppUpdate(c *gin.Context, params *dto.APPUpdateHttpInput) er
 	info.WhiteIPS = params.WhiteIPS
 	info.Qpd = params.Qpd
 	info.Qps = params.Qps
-	if err := dao.Save(c, al.db, info); err != nil {
+	if err := al.Save(c, al.db, info); err != nil {
 		return fmt.Errorf("failed to Save app information")
 	}
 
@@ -193,7 +196,7 @@ func (al *appLogic) AppStat(c *gin.Context, params *dto.APPDetailInput) (*dto.St
 	search := &enity.App{
 		ID: params.ID,
 	}
-	detail, err := dao.Get(c, al.db, search)
+	detail, err := al.Get(c, al.db, search)
 	if err != nil {
 		return nil, fmt.Errorf("app not found")
 	}

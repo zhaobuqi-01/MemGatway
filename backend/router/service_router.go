@@ -5,17 +5,16 @@ import (
 	"gateway/backend/middleware"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
-func ServiceRegister(router *gin.Engine, db *gorm.DB) {
+func ServiceRegister(router *gin.Engine) {
 	serviceRouter := router.Group("/service")
 	{
 		serviceRouter.Use(
 			middleware.SessionAuthMiddleware(),
 		)
 
-		controller := controller.NewServiceController(db)
+		controller := controller.NewServiceController()
 
 		serviceRouter.GET("/service_list", controller.ServiceList)
 		serviceRouter.GET("/service_delete", controller.ServiceDelete)

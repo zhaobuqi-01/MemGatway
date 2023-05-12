@@ -8,7 +8,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 type Admin interface {
@@ -22,9 +21,9 @@ type adminController struct {
 	logic.AdminLogic
 }
 
-func NewAdminController(db *gorm.DB) *adminController {
+func NewAdminController() *adminController {
 	return &adminController{
-		logic.NewAdminLogic(db),
+		logic.NewAdminLogic(),
 	}
 }
 

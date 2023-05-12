@@ -7,7 +7,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 type Dashboard interface {
@@ -19,8 +18,8 @@ type dashboardController struct {
 	logic.DashboardLogic
 }
 
-func NewDashboardController(db *gorm.DB) *dashboardController {
-	return &dashboardController{logic.NewDashboardLogic(db)}
+func NewDashboardController() *dashboardController {
+	return &dashboardController{logic.NewDashboardLogic()}
 }
 
 // PanelGroupData godoc

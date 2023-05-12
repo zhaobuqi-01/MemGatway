@@ -12,8 +12,134 @@ import (
 	"gorm.io/gorm"
 )
 
-// Get查询单条数据
-func Get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
+type APP interface {
+	Getter[enity.App]
+	Saver[enity.App]
+	Deleter[enity.App]
+	PagedLister[enity.App]
+	AllGetter[enity.App]
+}
+
+func NewApp() APP {
+	return New[enity.App]()
+}
+
+type Admin interface {
+	Getter[enity.Admin]
+	Saver[enity.Admin]
+}
+
+func NewAdmin() Admin {
+	return New[enity.Admin]()
+}
+
+type TcpService interface {
+	Getter[enity.TcpRule]
+	Saver[enity.TcpRule]
+	Deleter[enity.TcpRule]
+}
+
+func NewTcpService() TcpService {
+	return New[enity.TcpRule]()
+}
+
+type GrpcService interface {
+	Getter[enity.GrpcRule]
+	Saver[enity.GrpcRule]
+	Deleter[enity.GrpcRule]
+}
+
+func NewGrpcService() GrpcService {
+	return New[enity.GrpcRule]()
+}
+
+type HttpService interface {
+	Getter[enity.HttpRule]
+	Saver[enity.HttpRule]
+	Deleter[enity.HttpRule]
+}
+
+func NewHttpService() HttpService {
+	return New[enity.HttpRule]()
+}
+
+type LoadBalanceService interface {
+	Getter[enity.LoadBalance]
+	Saver[enity.LoadBalance]
+	Deleter[enity.LoadBalance]
+}
+
+func NewLoadBalanceService() LoadBalanceService {
+	return New[enity.LoadBalance]()
+}
+
+type AccessControlService interface {
+	Getter[enity.AccessControl]
+	Saver[enity.AccessControl]
+	Deleter[enity.AccessControl]
+}
+
+func NewAccessControlService() AccessControlService {
+	return New[enity.AccessControl]()
+}
+
+type ServiceInfoService interface {
+	Getter[enity.ServiceInfo]
+	Saver[enity.ServiceInfo]
+	Deleter[enity.ServiceInfo]
+	PagedLister[enity.ServiceInfo]
+	AllGetter[enity.ServiceInfo]
+	LoadTypeGrouper[enity.ServiceInfo]
+	ServiceDetailGetter[enity.ServiceInfo]
+}
+
+func NewServiceInfoService() ServiceInfoService {
+	return New[enity.ServiceInfo]()
+}
+
+type Dashboard interface {
+	AllGetter[enity.ServiceInfo]
+	LoadTypeGrouper[enity.ServiceInfo]
+}
+
+func NewDashboard() Dashboard {
+	return New[enity.ServiceInfo]()
+}
+
+type Getter[T Model] interface {
+	Get(c *gin.Context, db *gorm.DB, search *T) (*T, error)
+}
+
+type Saver[T Model] interface {
+	Save(c *gin.Context, db *gorm.DB, data *T) error
+}
+
+type Deleter[T Model] interface {
+	Delete(c *gin.Context, db *gorm.DB, data *T) error
+}
+
+type PagedLister[T Model] interface {
+	PageList(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error)
+}
+
+type AllGetter[T Model] interface {
+	GetAll(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB) ([]T, error)
+}
+
+type LoadTypeGrouper[T Model] interface {
+	GetLoadTypeByGroup(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error)
+}
+
+type ServiceDetailGetter[T Model] interface {
+	GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDetail, error)
+}
+type gormDao[T Model] struct{}
+
+func New[T Model]() *gormDao[T] {
+	return &gormDao[T]{}
+}
+
+func (dao *gormDao[T]) Get(c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	// log记录查询信息
 	log.Info("start getting", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
 
@@ -38,8 +164,7 @@ func Get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	return &out, nil
 }
 
-// Save保存对象
-func Save[T Model](c *gin.Context, db *gorm.DB, data *T) error {
+func (dao *gormDao[T]) Save(c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录保存信息
 	log.Info("start saving", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 	if err := db.Save(data).Error; err != nil {
@@ -51,8 +176,7 @@ func Save[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	return nil
 }
 
-// delete删除对象
-func Delete[T Model](c *gin.Context, db *gorm.DB, data *T) error {
+func (dao *gormDao[T]) Delete(c *gin.Context, db *gorm.DB, data *T) error {
 	// log记录删除信息
 	log.Info("start deleting", zap.Any("data", data), zap.String("trace_id", c.GetString("TraceID")))
 
@@ -65,32 +189,7 @@ func Delete[T Model](c *gin.Context, db *gorm.DB, data *T) error {
 	return nil
 }
 
-// ListByServiceID 根据服务ID查询列表
-func ListByServiceID[T Model](c *gin.Context, db *gorm.DB, serviceID int64) ([]T, int64, error) {
-	// log记录查询信息
-	log.Info("start listByServiceID ", zap.String("trace_id", c.GetString("TraceID")))
-
-	var list []T
-	var count int64
-	query := db.Select("*")
-	query = query.Where("service_id=?", serviceID)
-	err := query.Order("id desc").Find(&list).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
-		log.Error(fmt.Sprintf("error retrieving :%v ", serviceID), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-		return nil, 0, err
-	}
-	errCount := query.Count(&count).Error
-	if errCount != nil {
-		log.Error(fmt.Sprintf("error retrieving :%v ", serviceID), zap.Error(errCount), zap.String("trace_id", c.GetString("TraceID")))
-		return nil, 0, err
-	}
-
-	log.Info("ListByServiceID successfully", zap.Any("list", list), zap.String("trace_id", c.GetString("TraceID")))
-	return list, count, nil
-}
-
-// PageList 分页查询
-func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
+func (dao *gormDao[T]) PageList(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
 	// log记录查询信息
 	log.Info("start pageList ", zap.String("trace_id", c.GetString("TraceID")))
 
@@ -113,69 +212,8 @@ func PageList[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *g
 	return list, total, nil
 }
 
-// GetServiceDetail 获取服务详情
-// func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDetail, error) {
-// 	// log记录查询信息
-// 	log.Info("start getting service detail", zap.String("trace_id", c.GetString("TraceID")))
-
-// 	if search.ServiceName == "" {
-// 		info, err := Get(c, db, search)
-// 		if err != nil {
-// 			return nil, err
-// 		}
-// 		search = info
-// 	}
-
-// 	httpRule, err := Get(c, db, &enity.HttpRule{ServiceID: search.ID})
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		log.Error("error retrieving http rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-// 		return nil, err
-// 	}
-// 	log.Info("get http rule successful", zap.Any("httpRule", httpRule), zap.String("trace_id", c.GetString("TraceID")))
-
-// 	tcpRule, err := Get(c, db, &enity.TcpRule{ServiceID: search.ID})
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		log.Error("error retrieving tcp rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-// 		return nil, err
-// 	}
-// 	log.Info("get tcp rule successful", zap.Any("tcpRule", tcpRule), zap.String("trace_id", c.GetString("TraceID")))
-
-// 	grpcRule, err := Get(c, db, &enity.GrpcRule{ServiceID: search.ID})
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		log.Error("error retrieving grpc rule", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-// 		return nil, err
-// 	}
-// 	log.Info("get grpc rule successful", zap.Any("grpcRule", grpcRule), zap.String("trace_id", c.GetString("TraceID")))
-
-// 	accessControl, err := Get(c, db, &enity.AccessControl{ServiceID: search.ID})
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		log.Error("error retrieving access control", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-// 		return nil, err
-// 	}
-// 	log.Info("get access control successful", zap.Any("accessControl", accessControl), zap.String("trace_id", c.GetString("TraceID")))
-
-// 	loadBalance, err := Get(c, db, &enity.LoadBalance{ServiceID: search.ID})
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		log.Error("error retrieving load balance", zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-// 		return nil, err
-// 	}
-// 	log.Info("get load balance successfully", zap.Any("loadBalance", loadBalance), zap.String("trace_id", c.GetString("TraceID")))
-
-// 	detail := &enity.ServiceDetail{
-// 		Info:          search,
-// 		HTTPRule:      httpRule,
-// 		TCPRule:       tcpRule,
-// 		GRPCRule:      grpcRule,
-// 		LoadBalance:   loadBalance,
-// 		AccessControl: accessControl,
-// 	}
-
-// 	// log记录成功取到信息
-// 	log.Info("get service detail successful", zap.Any("detail", detail), zap.String("trace_id", c.GetString("TraceID")))
-// 	return detail, nil
-// }
-
-func GetLoadTypeByGroup(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
+// GetLoadTypeByGroup 根据服务ID和分组获取负载类型
+func (dao *gormDao[T]) GetLoadTypeByGroup(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
 	// log记录开始查询
 	log.Info("searching for group by load type", zap.String("trace_id", c.GetString("TraceID")))
 
@@ -190,12 +228,13 @@ func GetLoadTypeByGroup(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemO
 	return list, nil
 }
 
-func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDetail, error) {
+// GetServiceDetail
+func (dao *gormDao[T]) GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*enity.ServiceDetail, error) {
 	// log记录查询信息
 	log.Info("start getting service detail")
 
 	if search.ServiceName == "" {
-		info, err := Get(c, db, search)
+		info, err := get(c, db, search)
 		if err != nil {
 			return nil, err
 		}
@@ -208,21 +247,21 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*
 	// 优化后的查询代码
 	switch search.LoadType {
 	case globals.LoadTypeHTTP:
-		httpRule, err = Get(c, db, &enity.HttpRule{ServiceID: search.ID})
+		httpRule, err = get(c, db, &enity.HttpRule{ServiceID: search.ID})
 		if err != nil && err != gorm.ErrRecordNotFound {
 			log.Error("error retrieving http rule", zap.Error(err))
 			return nil, err
 		}
 		log.Info("get http rule successful", zap.Any("httpRule", httpRule))
 	case globals.LoadTypeTCP:
-		tcpRule, err = Get(c, db, &enity.TcpRule{ServiceID: search.ID})
+		tcpRule, err = get(c, db, &enity.TcpRule{ServiceID: search.ID})
 		if err != nil && err != gorm.ErrRecordNotFound {
 			log.Error("error retrieving tcp rule", zap.Error(err))
 			return nil, err
 		}
 		log.Info("get tcp rule successful", zap.Any("tcpRule", tcpRule))
 	case globals.LoadTypeGRPC:
-		grpcRule, err = Get(c, db, &enity.GrpcRule{ServiceID: search.ID})
+		grpcRule, err = get(c, db, &enity.GrpcRule{ServiceID: search.ID})
 		if err != nil && err != gorm.ErrRecordNotFound {
 			log.Error("error retrieving grpc rule", zap.Error(err))
 			return nil, err
@@ -230,14 +269,14 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*
 		log.Info("get grpc rule successful", zap.Any("grpcRule", grpcRule))
 	}
 
-	accessControl, err := Get(c, db, &enity.AccessControl{ServiceID: search.ID})
+	accessControl, err := get(c, db, &enity.AccessControl{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		log.Error("error retrieving access control", zap.Error(err))
 		return nil, err
 	}
 	log.Info("get access control successful", zap.Any("accessControl", accessControl))
 
-	loadBalance, err := Get(c, db, &enity.LoadBalance{ServiceID: search.ID})
+	loadBalance, err := get(c, db, &enity.LoadBalance{ServiceID: search.ID})
 	if err != nil && err != gorm.ErrRecordNotFound {
 		log.Error("error retrieving load balance", zap.Error(err))
 		return nil, err
@@ -280,7 +319,8 @@ func GetServiceDetail(c *gin.Context, db *gorm.DB, search *enity.ServiceInfo) (*
 	return detail, nil
 }
 
-func GetAll[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB) ([]T, error) {
+// GetAll
+func (dao *gormDao[T]) GetAll(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB) ([]T, error) {
 	// log记录查询信息
 	log.Info("start pageList ", zap.String("trace_id", c.GetString("TraceID")))
 
@@ -298,4 +338,29 @@ func GetAll[T Model](c *gin.Context, db *gorm.DB, queryConditions []func(db *gor
 	// log记录成功信息
 	log.Info("pageList successfully", zap.Any("list", list), zap.String("trace_id", c.GetString("TraceID")))
 	return list, nil
+}
+
+func get[T Model](c *gin.Context, db *gorm.DB, search *T) (*T, error) {
+	// log记录查询信息
+	log.Info("start getting", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
+
+	var out T
+	result := db.Where(search).First(&out)
+
+	if result.Error != nil {
+		// buf := make([]byte, 1<<16)
+		// stackSize := runtime.Stack(buf, false)
+		// log.Error("Error stack trace", zap.ByteString("stack", buf[:stackSize]))
+
+		if result.Error == gorm.ErrRecordNotFound {
+			log.Error("record not found", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
+			return nil, result.Error
+		}
+
+		log.Error(fmt.Sprintf("error retrieving :%v ", search), zap.Error(result.Error), zap.String("trace_id", c.GetString("TraceID")))
+		return nil, result.Error
+	}
+
+	log.Info("got successfully", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
+	return &out, nil
 }

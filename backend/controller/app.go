@@ -8,7 +8,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 type App interface {
@@ -23,8 +22,8 @@ type appController struct {
 	logic.AppLogic
 }
 
-func NewAPPController(db *gorm.DB) *appController {
-	return &appController{logic.NewAppLogic(db)}
+func NewAPPController() *appController {
+	return &appController{logic.NewAppLogic()}
 }
 
 // APPList godoc

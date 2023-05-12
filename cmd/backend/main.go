@@ -10,7 +10,6 @@ import (
 	"syscall"
 
 	Init "gateway/init"
-	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 	"net/http"
 	"time"
@@ -24,8 +23,7 @@ func main() {
 	defer Init.Cleanup()
 	globals.Init()
 
-	db := mysql.GetDB()
-	r := router.InitRouter(db)
+	r := router.InitRouter()
 
 	serverConfig := configs.GetGatewayServerConfig()
 	log.Info("gatewayServerConfig", zap.Any("serverConfig", serverConfig))

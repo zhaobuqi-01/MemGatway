@@ -2,11 +2,12 @@ package logic
 
 import (
 	"fmt"
-	"gateway/backend/dao"
 	"gateway/backend/dto"
 	"gateway/configs"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 	"gateway/utils"
 	"time"
@@ -23,13 +24,25 @@ type ServiceInfoLogic interface {
 	GetServiceStat(c *gin.Context, params *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error)
 }
 type serviceInfoLogic struct {
-	db *gorm.DB
+	info dao.ServiceInfoService
+	tcp  dao.TcpService
+	grpc dao.GrpcService
+	http dao.HttpService
+	lb   dao.LoadBalanceService
+	ac   dao.AccessControlService
+	db   *gorm.DB
 }
 
 // NewserviceInfoLogic 创建serviceInfoLogic
-func NewServiceInfoLogic(tx *gorm.DB) *serviceInfoLogic {
+func NewServiceInfoLogic() *serviceInfoLogic {
 	return &serviceInfoLogic{
-		db: tx,
+		dao.NewServiceInfoService(),
+		dao.NewTcpService(),
+		dao.NewGrpcService(),
+		dao.NewHttpService(),
+		dao.NewLoadBalanceService(),
+		dao.NewAccessControlService(),
+		mysql.GetDB(),
 	}
 }
 
@@ -45,7 +58,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, params *dto.ServiceLis
 			return db.Where("(service_name like ? or service_desc like ?)", "%"+params.Info+"%", "%"+params.Info+"%")
 		},
 	}
-	list, total, err := dao.PageList[enity.ServiceInfo](c, s.db, queryConditions, params.PageNo, params.PageSize)
+	list, total, err := s.info.PageList(c, s.db, queryConditions, params.PageNo, params.PageSize)
 	if err != nil {
 		return nil, 0, fmt.Errorf("failed to get serviceInfo list")
 	}
@@ -53,7 +66,7 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, params *dto.ServiceLis
 	// 格式化输出信息
 	outputList := []dto.ServiceListItemOutput{}
 	for _, listItem := range list {
-		serviceDetail, err := dao.GetServiceDetail(c, s.db, &listItem)
+		serviceDetail, err := s.info.GetServiceDetail(c, s.db, &listItem)
 		if err != nil {
 			log.Error("failed to get serviceDetail")
 			return nil, 0, fmt.Errorf("get serviceDetail fail")
@@ -90,7 +103,7 @@ func (s *serviceInfoLogic) DeleteService(c *gin.Context, params *dto.ServiceDele
 	var err error
 	serviceInfo := &enity.ServiceInfo{ID: params.ID}
 
-	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
+	serviceInfo, err = s.info.Get(c, s.db, serviceInfo)
 	if err != nil {
 		return fmt.Errorf("service does not exist")
 	}
@@ -98,7 +111,7 @@ func (s *serviceInfoLogic) DeleteService(c *gin.Context, params *dto.ServiceDele
 	// 软删除，将is_delete设置为1；如果您需要物理删除，请使用dao.Delete(c, s.db, serviceInfo)
 	serviceInfo.IsDelete = 1
 
-	err = dao.Save(c, s.db, serviceInfo)
+	err = s.info.Save(c, s.db, serviceInfo)
 	if err != nil {
 		return fmt.Errorf("failed to delete service")
 	}
@@ -124,13 +137,13 @@ func (s *serviceInfoLogic) GetServiceDetail(c *gin.Context, params *dto.ServiceD
 	var err error
 	serviceInfo := &enity.ServiceInfo{ID: params.ID}
 
-	serviceInfo, err = dao.Get(c, s.db, serviceInfo)
+	serviceInfo, err = s.info.Get(c, s.db, serviceInfo)
 	if err != nil {
 		return nil, fmt.Errorf("service does not exist")
 	}
 
 	// 获取服务详情
-	serviceDetail, err := dao.GetServiceDetail(c, s.db, serviceInfo)
+	serviceDetail, err := s.info.GetServiceDetail(c, s.db, serviceInfo)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceDetail")
 	}
@@ -172,7 +185,7 @@ func (s *serviceInfoLogic) getServiceAddress(serviceDetail *enity.ServiceDetail)
 // 获取服务统计信息
 func (s *serviceInfoLogic) GetServiceStat(c *gin.Context, params *dto.ServiceDeleteInput) (*dto.ServiceStatOutput, error) {
 	serviceInfo := &enity.ServiceInfo{ID: params.ID}
-	serviceDetail, err := dao.GetServiceDetail(c, s.db, serviceInfo)
+	serviceDetail, err := s.info.GetServiceDetail(c, s.db, serviceInfo)
 	if err != nil {
 		return nil, fmt.Errorf("service does not exist")
 	}

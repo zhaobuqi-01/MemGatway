@@ -3,10 +3,11 @@ package logic
 import (
 	"fmt"
 
-	"gateway/backend/dao"
 	"gateway/backend/dto"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 
 	"strings"
@@ -22,13 +23,25 @@ type TcpServiceLogic interface {
 }
 
 type tcpServiceLogic struct {
-	db *gorm.DB
+	info dao.ServiceInfoService
+	tcp  dao.TcpService
+	grpc dao.GrpcService
+	http dao.HttpService
+	lb   dao.LoadBalanceService
+	ac   dao.AccessControlService
+	db   *gorm.DB
 }
 
 // NewTcpServiceLogic 创建tcpServiceLogic
-func NewTcpServiceLogic(tx *gorm.DB) *tcpServiceLogic {
+func NewTcpServiceLogic() *tcpServiceLogic {
 	return &tcpServiceLogic{
-		db: tx,
+		dao.NewServiceInfoService(),
+		dao.NewTcpService(),
+		dao.NewGrpcService(),
+		dao.NewHttpService(),
+		dao.NewLoadBalanceService(),
+		dao.NewAccessControlService(),
+		mysql.GetDB(),
 	}
 }
 
@@ -36,7 +49,7 @@ func NewTcpServiceLogic(tx *gorm.DB) *tcpServiceLogic {
 func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput) error {
 	// 检查服务名是否被占用
 	infoSearch := &enity.ServiceInfo{ServiceName: params.ServiceName, IsDelete: 0}
-	if info, err := dao.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
+	if info, err := s.info.Get(c, s.db, infoSearch); err != gorm.ErrRecordNotFound {
 		if err == nil && info != nil {
 			return fmt.Errorf("the TCP service name already exists, please change the service name")
 		}
@@ -44,10 +57,10 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 	}
 
 	// 检查端口是否被占用
-	if _, err := dao.Get(c, s.db, &enity.TcpRule{Port: params.Port}); err == nil {
+	if _, err := s.tcp.Get(c, s.db, &enity.TcpRule{Port: params.Port}); err == nil {
 		return fmt.Errorf("the port already exists, please change the port")
 	}
-	if _, err := dao.Get(c, s.db, &enity.GrpcRule{Port: params.Port}); err == nil {
+	if _, err := s.grpc.Get(c, s.db, &enity.GrpcRule{Port: params.Port}); err == nil {
 		return fmt.Errorf("the port already exists, please change the port")
 	}
 
@@ -63,7 +76,7 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 		ServiceDesc: params.ServiceDesc,
 	}
 
-	if err := dao.Save(c, tx, info); err != nil {
+	if err := s.info.Save(c, tx, info); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add TCP service information")
 	}
@@ -74,7 +87,7 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 		WeightList: params.WeightList,
 		ForbidList: params.ForbidList,
 	}
-	if err := dao.Save(c, tx, loadBalance); err != nil {
+	if err := s.lb.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add TCP service load balancing information")
 	}
@@ -82,7 +95,7 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 		ServiceID: info.ID,
 		Port:      params.Port,
 	}
-	if err := dao.Save(c, tx, tcpRule); err != nil {
+	if err := s.tcp.Save(c, tx, tcpRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add TCP service rule information")
 	}
@@ -95,7 +108,7 @@ func (s *tcpServiceLogic) AddTCP(c *gin.Context, params *dto.ServiceAddTcpInput)
 		ClientIPFlowLimit: params.ClientIPFlowLimit,
 		ServiceFlowLimit:  params.ServiceFlowLimit,
 	}
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to add TCP service permission information")
 	}
@@ -126,14 +139,14 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 
 	tx := s.db.Begin()
 
-	detail, err := dao.GetServiceDetail(c, s.db, &enity.ServiceInfo{ID: params.ID})
+	detail, err := s.info.GetServiceDetail(c, s.db, &enity.ServiceInfo{ID: params.ID})
 	if err != nil {
 		return fmt.Errorf("TCP service does not exist")
 	}
 
 	info := detail.Info
 	info.ServiceDesc = params.ServiceDesc
-	if err := dao.Save(c, tx, info); err != nil {
+	if err := s.info.Save(c, tx, info); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save TCP service description")
 	}
@@ -147,7 +160,7 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	loadBalance.IpList = params.IpList
 	loadBalance.WeightList = params.WeightList
 	loadBalance.ForbidList = params.ForbidList
-	if err := dao.Save(c, tx, loadBalance); err != nil {
+	if err := s.lb.Save(c, tx, loadBalance); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save TCP service load balancing information")
 	}
@@ -158,7 +171,7 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	}
 	tcpRule.ServiceID = info.ID
 	tcpRule.Port = params.Port
-	if err := dao.Save(c, tx, tcpRule); err != nil {
+	if err := s.tcp.Save(c, tx, tcpRule); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save TCP service rule information")
 	}
@@ -174,7 +187,7 @@ func (s *tcpServiceLogic) UpdateTCP(c *gin.Context, params *dto.ServiceUpdateTcp
 	accessControl.WhiteHostName = params.WhiteHostName
 	accessControl.ClientIPFlowLimit = params.ClientIPFlowLimit
 	accessControl.ServiceFlowLimit = params.ServiceFlowLimit
-	if err := dao.Save(c, tx, accessControl); err != nil {
+	if err := s.ac.Save(c, tx, accessControl); err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to Save TCP service permission information")
 	}

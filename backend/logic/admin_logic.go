@@ -3,11 +3,11 @@ package logic
 import (
 	"encoding/json"
 	"fmt"
-
-	"gateway/backend/dao"
 	"gateway/backend/dto"
+	"gateway/dao"
 	"gateway/enity"
 	"gateway/globals"
+	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
 	"gateway/utils"
 	"time"
@@ -27,19 +27,21 @@ type AdminLogic interface {
 }
 
 type adminLogic struct {
+	dao.Admin
 	db *gorm.DB
 }
 
 // NewAdminLogic创建一个新的AdminLogic实例
-func NewAdminLogic(tx *gorm.DB) *adminLogic {
+func NewAdminLogic() *adminLogic {
 	return &adminLogic{
-		db: tx,
+		dao.NewAdmin(),
+		mysql.GetDB(),
 	}
 }
 
 // Login验证管理员用户名和密码，并创建一个新的会话
 func (s *adminLogic) Login(c *gin.Context, params *dto.AdminLoginInput) (*dto.AdminSessionInfo, error) {
-	admin, err := dao.Get(c, s.db, &enity.Admin{UserName: params.UserName})
+	admin, err := s.Get(c, s.db, &enity.Admin{UserName: params.UserName})
 	if err != nil {
 		return nil, fmt.Errorf("the username does not exist. Please try again")
 	}
@@ -116,7 +118,7 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 		log.Error("invalid session info", zap.Error(err))
 		return fmt.Errorf("invalid session info")
 	}
-	adminInfo, err := dao.Get(c, s.db, &enity.Admin{UserName: adminSessionInfo.UserName})
+	adminInfo, err := s.Get(c, s.db, &enity.Admin{UserName: adminSessionInfo.UserName})
 	if err != nil {
 		return fmt.Errorf("failed to get admin info")
 	}
@@ -129,7 +131,7 @@ func (s *adminLogic) ChangeAdminPassword(c *gin.Context, params *dto.AdminChange
 
 	adminInfo.Password = hashedPassword
 
-	if err := dao.Save(c, s.db, adminInfo); err != nil {
+	if err := s.Save(c, s.db, adminInfo); err != nil {
 		return fmt.Errorf("failed to change password")
 	}
 

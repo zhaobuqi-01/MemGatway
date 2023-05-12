@@ -5,17 +5,16 @@ import (
 	"gateway/backend/middleware"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
-func DashboardRegister(router *gin.Engine, db *gorm.DB) {
+func DashboardRegister(router *gin.Engine) {
 	dashboardRouter := router.Group("/dashboard")
 	{
 		dashboardRouter.Use(
 			middleware.SessionAuthMiddleware(),
 		)
 
-		controller := controller.NewDashboardController(db)
+		controller := controller.NewDashboardController()
 
 		dashboardRouter.GET("/panel_group_data", controller.PanelGroupData)
 		dashboardRouter.GET("/service_stat", controller.ServiceStat)

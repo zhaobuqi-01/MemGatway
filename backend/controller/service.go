@@ -8,7 +8,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 type Service interface {
@@ -27,9 +26,9 @@ type serviceController struct {
 	logic.ServiceLogic
 }
 
-func NewServiceController(db *gorm.DB) *serviceController {
+func NewServiceController() *serviceController {
 	return &serviceController{
-		logic.NewServiceLogic(db),
+		logic.NewServiceLogic(),
 	}
 }
 
