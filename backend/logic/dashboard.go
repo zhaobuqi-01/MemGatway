@@ -67,9 +67,15 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 	}
 	log.Debug("end to get appNum", zap.Int("appNum", len(appList)))
 
+	counter, err := globals.FlowCounter.GetCounter(globals.FlowTotal)
+	if err != nil {
+		return nil, fmt.Errorf("get flow counter failed")
+	}
 	out := &dto.PanelGroupDataOutput{
-		ServiceNum: int64(len(serviceList)),
-		AppNum:     int64(len(appList)),
+		ServiceNum:      int64(len(serviceList)),
+		AppNum:          int64(len(appList)),
+		TodayRequestNum: counter.QPD,
+		CurrentQPS:      counter.QPS,
 	}
 
 	return out, nil

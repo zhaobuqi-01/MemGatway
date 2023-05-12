@@ -78,6 +78,11 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, params *dto.ServiceLis
 			return nil, 0, fmt.Errorf("get serviceAddr fail")
 		}
 
+		counter, err := globals.FlowCounter.GetCounter(serviceDetail.Info.ServiceName)
+		if err != nil {
+			return nil, 0, fmt.Errorf("failed to get service flow counter")
+		}
+
 		// 获取IP列表
 		ipList := utils.SplitStringByComma(serviceDetail.LoadBalance.IpList)
 
@@ -87,8 +92,8 @@ func (s *serviceInfoLogic) GetServiceList(c *gin.Context, params *dto.ServiceLis
 			ServiceName: listItem.ServiceName,
 			ServiceDesc: listItem.ServiceDesc,
 			ServiceAddr: serviceAddr,
-			Qps:         0,
-			Qpd:         0,
+			Qps:         int(counter.QPS),
+			Qpd:         int(counter.QPD),
 			TotalNode:   len(ipList),
 		}
 		outputList = append(outputList, outputItem)
@@ -191,7 +196,7 @@ func (s *serviceInfoLogic) GetServiceStat(c *gin.Context, params *dto.ServiceDel
 	}
 	counter, err := globals.FlowCounter.GetCounter(serviceDetail.Info.ServiceName)
 	if err != nil {
-		return nil, fmt.Errorf("failed to get app flow counter")
+		return nil, fmt.Errorf("failed to get service flow counter")
 	}
 	todayList := []int64{}
 	currentTime := time.Now()

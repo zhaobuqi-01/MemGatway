@@ -48,26 +48,35 @@ func (al *appLogic) AppList(c *gin.Context, params *dto.APPListInput) ([]dto.APP
 			return db.Where("(name like ? or app_id like ?)", "%"+params.Info+"%", "%"+params.Info+"%")
 		},
 	}
+
+	outputList := []dto.APPListItemOutput{}
 	// 使用dao中的PageList方法获取分页的应用程序列表
 	list, total, err := al.PageList(c, al.db, queryConditions, params.PageNo, params.PageSize)
 	if err != nil {
 		return nil, 0, fmt.Errorf("failed to get all app data")
 	}
-	// 转换为输出DTO对象
-	outputList := []dto.APPListItemOutput{}
 	for _, item := range list {
-		outputList = append(outputList, dto.APPListItemOutput{
-			ID:       item.ID,
-			AppID:    item.AppID,
-			Name:     item.Name,
-			Secret:   item.Secret,
-			WhiteIPS: item.WhiteIPS,
-			Qpd:      item.Qpd,
-			Qps:      item.Qps,
-			RealQpd:  0,
-			RealQps:  0,
-		})
+		counter, err := globals.FlowCounter.GetCounter(item.AppID)
+		if err != nil {
+			return nil, 0, fmt.Errorf("failed to get app flow counter")
+		}
+		// 转换为输出DTO对象
+		outputList = []dto.APPListItemOutput{}
+		for _, item := range list {
+			outputList = append(outputList, dto.APPListItemOutput{
+				ID:       item.ID,
+				AppID:    item.AppID,
+				Name:     item.Name,
+				Secret:   item.Secret,
+				WhiteIPS: item.WhiteIPS,
+				Qpd:      counter.QPD,
+				Qps:      counter.QPS,
+				RealQpd:  0,
+				RealQps:  0,
+			})
+		}
 	}
+
 	return outputList, total, nil
 }
 

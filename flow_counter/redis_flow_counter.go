@@ -22,7 +22,7 @@ type redisFlowCounter struct {
 	QPS         int64
 	Unix        int64
 	TickerCount int64
-	TotalCount  int64
+	QPD         int64
 }
 
 func NewRedisFlowCountService(CounterName string, interval time.Duration) *redisFlowCounter {
@@ -78,9 +78,9 @@ func NewRedisFlowCountService(CounterName string, interval time.Duration) *redis
 				reqCounter.Unix = time.Now().Unix()
 				continue
 			}
-			tickerCount = totalCount - reqCounter.TotalCount
+			tickerCount = totalCount - reqCounter.QPD
 			if nowUnix > reqCounter.Unix {
-				reqCounter.TotalCount = totalCount
+				reqCounter.QPD = totalCount
 				reqCounter.QPS = tickerCount / (nowUnix - reqCounter.Unix)
 				reqCounter.Unix = time.Now().Unix()
 			}

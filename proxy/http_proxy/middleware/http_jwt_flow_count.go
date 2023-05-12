@@ -25,8 +25,8 @@ func HTTPJwtFlowCountMiddleware() gin.HandlerFunc {
 			return
 		}
 		appCounter.Increase()
-		if appInfo.Qpd > 0 && appCounter.TotalCount > appInfo.Qpd {
-			response.ResponseError(c, 2003, fmt.Errorf("租户日请求量限流 limit:%v current:%v", appInfo.Qpd, appCounter.TotalCount))
+		if appInfo.Qpd > 0 && appCounter.QPD > appInfo.Qpd {
+			response.ResponseError(c, 2003, fmt.Errorf("租户日请求量限流 limit:%v current:%v", appInfo.Qpd, appCounter.QPD))
 			c.Abort()
 			return
 		}
