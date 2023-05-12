@@ -71,10 +71,7 @@ func RequestLog() gin.HandlerFunc {
 		c.Next()
 
 		switch c.GetInt("ErrorCode") {
-		case response.SuccessCode, response.ClientIPInBlackListErrCode, response.ClientIPNotInWhiteListCode,
-			response.ServerLimiterAllowErrCode, response.ClientIPLimiterAllowErrCode:
-			break
-		default:
+		case response.ServiceNotFoundErrCode, response.HTTPAccessModeErrCode, response.AppNotFoundErrCode:
 			log.Debug("开始记录错误次数")
 			count, _ := pkg.ErrorCounts.LoadOrStore(c.ClientIP(), 0)
 			count = count.(int) + 1
