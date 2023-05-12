@@ -97,15 +97,6 @@ func NewServiceInfoService() ServiceInfoService {
 	return New[enity.ServiceInfo]()
 }
 
-type Dashboard interface {
-	AllGetter[enity.ServiceInfo]
-	LoadTypeGrouper[enity.ServiceInfo]
-}
-
-func NewDashboard() Dashboard {
-	return New[enity.ServiceInfo]()
-}
-
 type Getter[T Model] interface {
 	Get(c *gin.Context, db *gorm.DB, search *T) (*T, error)
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gateway/backend/dto"
 	"gateway/dao"
+	"gateway/enity"
 	"gateway/globals"
 	"gateway/pkg/database/mysql"
 	"gateway/pkg/log"
@@ -22,13 +23,17 @@ type DashboardLogic interface {
 }
 
 type dashboardLogicImpl struct {
-	dao.Dashboard
-	db *gorm.DB
+	service dao.AllGetter[enity.ServiceInfo]
+	getData dao.LoadTypeGrouper[enity.ServiceInfo]
+	app     dao.AllGetter[enity.App]
+	db      *gorm.DB
 }
 
 func NewDashboardLogic() *dashboardLogicImpl {
 	return &dashboardLogicImpl{
-		dao.NewDashboard(),
+		dao.New[enity.ServiceInfo](),
+		dao.New[enity.ServiceInfo](),
+		dao.New[enity.App](),
 		mysql.GetDB(),
 	}
 }
@@ -41,20 +46,26 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 			return db.Where("(service_name like ? or service_desc like ?)", "%", "%")
 		},
 	}
-	serviceList, err := impl.GetAll(c, impl.db, serviceInfoQueryConditions)
+
+	log.Debug("start to get serviceNum")
+	serviceList, err := impl.service.GetAll(c, impl.db, serviceInfoQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get serviceNum")
 	}
+	log.Debug("end to get serviceNum", zap.Int("serviceNum", len(serviceList)))
 
 	appQueryConditions := []func(db *gorm.DB) *gorm.DB{
 		func(db *gorm.DB) *gorm.DB {
 			return db.Where("(name like ? or app_id like ?)", "%", "%")
 		},
 	}
-	appList, err := impl.GetAll(c, impl.db, appQueryConditions)
+
+	log.Debug("start to get appNum")
+	appList, err := impl.app.GetAll(c, impl.db, appQueryConditions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get appNum ")
 	}
+	log.Debug("end to get appNum", zap.Int("appNum", len(appList)))
 
 	out := &dto.PanelGroupDataOutput{
 		ServiceNum: int64(len(serviceList)),
@@ -66,7 +77,7 @@ func (impl *dashboardLogicImpl) GetPanelGroupData(c *gin.Context) (*dto.PanelGro
 
 // ServiceStat 统计各种服务的占比
 func (impl *dashboardLogicImpl) GetServiceStat(c *gin.Context) (*dto.DashServiceStatOutput, error) {
-	list, err := impl.GetLoadTypeByGroup(c, impl.db)
+	list, err := impl.getData.GetLoadTypeByGroup(c, impl.db)
 	if err != nil {
 		return nil, err
 	}
@@ -113,5 +124,7 @@ func (impl *dashboardLogicImpl) GetFlowStat(c *gin.Context) (*dto.ServiceStatOut
 		Today:     todayList,
 		Yesterday: yesterdayList,
 	}
+
+	log.Debug("get flow stat successfully", zap.Any("data", out))
 	return out, nil
 }
