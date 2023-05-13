@@ -12,9 +12,7 @@ import (
 	tcpRouter "gateway/proxy/tcp_proxy/router"
 	"os"
 	"os/signal"
-	"sync"
 	"syscall"
-	"time"
 
 	Init "gateway/init"
 
@@ -93,12 +91,12 @@ func main() {
 		tcpRouter.TcpProxyServerRun()
 	}()
 
-	go func() {
-		// 每分钟清零错误请求计数器
-		for range time.Tick(1 * time.Minute) {
-			pkg.ErrorCounts = sync.Map{}
-		}
-	}()
+	// go func() {
+	// 	// 每分钟清零错误请求计数器
+	// 	for range time.Tick(1 * time.Minute) {
+	// 		pkg.ErrorCounts = sync.Map{}
+	// 	}
+	// }()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
