@@ -11,7 +11,7 @@ gateway:
 # Log configuration
 log:
   format: "text" # json or text
-  level: "debug"
+  level: "info"
   filename: "logs/gateway.log"
   error_filename: "logs/gateway_error.log"
   max_size: 50
@@ -88,3 +88,6 @@ blacklist:
   error_threshold: 100
   # 错误间隔时间
   frequency_check: 1
+
+gin:
+  mode: "release"

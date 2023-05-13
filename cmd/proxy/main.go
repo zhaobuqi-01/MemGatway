@@ -20,10 +20,12 @@ import (
 )
 
 func main() {
+
 	Init.Init()
 	defer Init.Cleanup()
 	pkg.Init()
 	globals.Init()
+
 	// Load data from the database
 	if err := pkg.Cache.LoadService(); err != nil {
 		log.Fatal("failed to load service manager", zap.Error(err))

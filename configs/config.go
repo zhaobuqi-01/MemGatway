@@ -220,3 +220,9 @@ func GetInt(key string) int {
 	defer rwmutex.RUnlock()
 	return v.GetInt(key)
 }
+
+func GetString(key string) string {
+	rwmutex.RLock()
+	defer rwmutex.RUnlock()
+	return v.GetString(key)
+}

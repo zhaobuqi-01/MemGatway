@@ -15,7 +15,7 @@ import (
 )
 
 func InitRouter() *gin.Engine {
-	router := gin.Default()
+	router := gin.New()
 
 	router.Use(
 		middleware.SetTraceID(),
@@ -65,6 +65,7 @@ var (
 )
 
 func HtppProxyServerRun() {
+	gin.SetMode(configs.GetString("gin.mode"))
 	// 初始化路由
 	r := InitRouter()
 

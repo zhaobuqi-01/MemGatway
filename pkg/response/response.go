@@ -34,8 +34,8 @@ func ResponseError(c *gin.Context, code ResponseCode, err error) {
 		httpstatus = http.StatusServiceUnavailable
 	case ServiceNotFoundErrCode, AppNotFoundErrCode:
 		httpstatus = http.StatusNotFound
-	case HTTPAccessModeErrCode:
-		httpstatus = http.StatusBadRequest
+	// case HTTPAccessModeErrCode:
+	// 	httpstatus = http.StatusBadRequest
 	default:
 		httpstatus = http.StatusOK
 	}
