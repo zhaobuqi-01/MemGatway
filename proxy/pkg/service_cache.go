@@ -134,6 +134,8 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 	segments := strings.Split(path, "/")
 	serviceName := segments[1]
 
+	log.Debug("serviceName", zap.String("serviceName", serviceName))
+
 	log.Debug("http host", zap.String("host", serviceName))
 	serviceDetail, ok := s.HTTPServices.Load(serviceName)
 	log.Debug("http serviceDetail", zap.Any("detail", serviceDetail))
@@ -146,16 +148,22 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 		if detail.HTTPRule.Rule == host {
 			c.Set("service", detail)
 			return detail, nil
+		} else {
+			log.Info("host does not match domain rule", zap.String("host", host), zap.String("rule", detail.HTTPRule.Rule))
+			return nil, fmt.Errorf("host does not match domain rule")
 		}
 	}
 	if detail.HTTPRule.RuleType == globals.HTTPRuleTypePrefixURL {
 		if strings.HasPrefix(path, detail.HTTPRule.Rule) {
 			c.Set("service", detail)
 			return detail, nil
+		} else {
+			log.Info("path does not match prefix URL rule", zap.String("path", path), zap.String("rule", detail.HTTPRule.Rule))
+			return nil, fmt.Errorf("path does not match prefix URL rule")
 		}
 	}
 
-	return nil, fmt.Errorf("not matched service")
+	return nil, nil
 }
 
 // GetGrpcServiceList 遍历map获取所有的 gRPC 服务列表。

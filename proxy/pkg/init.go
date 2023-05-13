@@ -41,8 +41,12 @@ var (
 
 	BlackIpCache *cache.Cache
 
-	ErrorThreshold = configs.GetInt("blacklist_error_threshold")
-	ErrorCounts    sync.Map
+	ErrorThreshold     = configs.GetInt("blacklist.error_threshold")
+	ErrorCounts        sync.Map
+	RecentRequestTimes sync.Map
+
+	SyncToDBChan        = make(chan struct{})
+	FrequentRequestTime = time.Duration(configs.GetInt("blacklist.frequency_check")) * time.Millisecond
 )
 
 // Init 函数用于初始化全局变量，它只会被执行一次
@@ -53,5 +57,6 @@ func Init() {
 		LoadBalanceTransport = NewLoadBalancerAndTransport()
 		BlackIpCache = cache.New(time.Duration(configs.GetInt("blacklist.expire")*int(time.Second)), time.Duration(configs.GetInt("blacklist.clean_interval")*int(time.Second)))
 		ErrorCounts = sync.Map{}
+		RecentRequestTimes = sync.Map{}
 	})
 }

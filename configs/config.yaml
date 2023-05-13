@@ -86,3 +86,11 @@ blacklist:
   clean_interval: 60
   # 错误请求次数阈值
   error_threshold: 100
+  # 错误间隔时间
+  frequency_check: 1
+  # 写回数据库的时间小于该值时，不写回数据库
+  # 单位是秒
+  # 该值必须小于clean_interval
+  # 大于0时，才会写回数据库
+  # 大于clean_interval时，缓存被清理无法写回数据库
+  write_back_threshold: 10
