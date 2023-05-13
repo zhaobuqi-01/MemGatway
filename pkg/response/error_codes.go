@@ -12,10 +12,12 @@ const (
 	InternalErrorCode
 	//IPMismatchErrCode IP不匹配
 	IpMismatchErrCode
+
 	// ClientIPInBlackListErrCode 客户端IP在黑名单中
 	ClientIPInBlackListErrCode
 	// ClientIPNotInWhiteListCode 客户端IP不在白名单中
 	ClientIPNotInWhiteListCode
+
 	// GetLoadBalancerErrCode 获取负载均衡器失败
 	GetLoadBalancerErrCode
 	// GetTransportorErrCode 获取传输器失败
