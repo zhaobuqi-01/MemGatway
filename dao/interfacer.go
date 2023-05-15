@@ -138,10 +138,6 @@ func (dao *gormDao[T]) Get(c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	result := db.Where(search).First(&out)
 
 	if result.Error != nil {
-		// buf := make([]byte, 1<<16)
-		// stackSize := runtime.Stack(buf, false)
-		// log.Error("Error stack trace", zap.ByteString("stack", buf[:stackSize]))
-
 		if result.Error == gorm.ErrRecordNotFound {
 			log.Error("record not found", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
 			return nil, result.Error
@@ -151,7 +147,7 @@ func (dao *gormDao[T]) Get(c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 		return nil, result.Error
 	}
 
-	log.Info("got successfully", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
+	log.Info("got successfully", zap.Any("out", out), zap.String("trace_id", c.GetString("TraceID")))
 	return &out, nil
 }
 
@@ -180,25 +176,27 @@ func (dao *gormDao[T]) Delete(c *gin.Context, db *gorm.DB, data *T) error {
 	return nil
 }
 
-func (dao *gormDao[T]) PageList(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, PageNo, PageSize int) ([]T, int64, error) {
-	// log记录查询信息
+func (dao *gormDao[T]) PageList(c *gin.Context, db *gorm.DB, queryConditions []func(db *gorm.DB) *gorm.DB, pageNo, pageSize int) ([]T, int64, error) {
+	// log records query information
 	log.Info("start pageList ", zap.String("trace_id", c.GetString("TraceID")))
 
 	total := int64(0)
 	list := []T{}
-	offset := (PageNo - 1) * PageSize
+	offset := (pageNo - 1) * pageSize
 
 	query := db.Where("is_delete=0")
 	for _, condition := range queryConditions {
 		query = condition(query)
 	}
-	if err := query.Limit(PageSize).Offset(offset).Order("id desc").Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
-		log.Error(fmt.Sprintf("error retrieving :%v ", query), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
-		return nil, 0, err
+	if err := query.Limit(pageSize).Offset(offset).Order("id desc").Find(&list).Error; err != nil {
+		if err != gorm.ErrRecordNotFound {
+			log.Error(fmt.Sprintf("error retrieving :%v ", query), zap.Error(err), zap.String("trace_id", c.GetString("TraceID")))
+			return nil, 0, err
+		}
 	}
-	query.Limit(PageSize).Offset(offset).Count(&total)
+	query.Limit(pageSize).Offset(offset).Count(&total)
 
-	// log记录成功信息
+	// log records success information
 	log.Info("pageList successfully", zap.Any("list", list), zap.String("trace_id", c.GetString("TraceID")))
 	return list, total, nil
 }

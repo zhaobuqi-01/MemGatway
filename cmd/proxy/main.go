@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"gateway/globals"
+	"gateway/metrics"
 	"gateway/mq"
 	"gateway/pkg/database/redis"
 	"gateway/pkg/log"
@@ -25,6 +26,8 @@ func main() {
 	defer Init.Cleanup()
 	pkg.Init()
 	globals.Init()
+
+	metrics.RecordSystemMetrics()
 
 	// Load data from the database
 	if err := pkg.Cache.LoadService(); err != nil {
@@ -50,6 +53,7 @@ func main() {
 		case "app":
 			appID := dataChangeMsg.Payload
 			operation := dataChangeMsg.Operation
+			log.Info("update app cache", zap.String("appID", appID), zap.String("operation", operation))
 			//  update app cache
 			if err := pkg.Cache.UpdateAppCache(appID, operation); err != nil {
 				log.Error("failed to update app cache", zap.Error(err))
@@ -60,6 +64,7 @@ func main() {
 			serviceType := dataChangeMsg.ServiceType
 			operation := dataChangeMsg.Operation
 			// update service cache
+			log.Info("update service cache", zap.String("serviceName", serviceName), zap.Int("serviceType", serviceType), zap.String("operation", operation))
 			if err := pkg.Cache.UpdateServiceCache(serviceName, serviceType, operation); err != nil {
 				log.Error("failed to update service cache", zap.Error(err))
 				return
@@ -67,7 +72,7 @@ func main() {
 		default:
 			log.Warn("unknown message type", zap.String("type", dataChangeMsg.Type))
 		}
-		log.Info("subscribed to data change messages", zap.String("channel", channel), zap.String("message", string(message)))
+		log.Info("subscribed to data change messages", zap.Any("message", dataChangeMsg))
 	})
 	if err != nil {
 		log.Fatal("failed to subscribe to data change messages", zap.Error(err))

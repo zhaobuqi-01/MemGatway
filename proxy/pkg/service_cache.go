@@ -25,6 +25,7 @@ type ServiceCache interface {
 }
 
 type serviceCache struct {
+	mu           sync.RWMutex
 	HTTPServices *sync.Map
 	TCPServices  *sync.Map
 	GRPCServices *sync.Map
@@ -34,6 +35,7 @@ type serviceCache struct {
 // NewServiceCache 返回一个新的 serviceCache 实例。
 func NewServiceCache() *serviceCache {
 	return &serviceCache{
+		mu:           sync.RWMutex{},
 		HTTPServices: &sync.Map{},
 		TCPServices:  &sync.Map{},
 		GRPCServices: &sync.Map{},
@@ -81,11 +83,14 @@ func (s *serviceCache) LoadService() error {
 
 // UpdateServiceCache 通过 serviceName ,serviceType,operation 更新 service 缓存。
 func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, operation string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	// 使用singleflight.Group确保同时只有一个goroutine在执行更新操作
 	_, err, _ := s.sf.Do(serviceName, func() (interface{}, error) {
 		tx := mysql.GetDB()
 
-		// 查询数据库获取服务详情
+		log.Debug("debug 更新cache", zap.String("servicename", serviceName), zap.Int("serviceType", serviceType), zap.Strings("operation", strings.Split(operation, " ")))
+		// 获取对应的map
 		var serviceMap *sync.Map
 		switch serviceType {
 		case globals.LoadTypeHTTP:
@@ -98,18 +103,22 @@ func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, o
 			return nil, fmt.Errorf("invalid service type")
 		}
 
-		serviceDetail, err := s.findServiceDetailByName(serviceName, serviceMap)
+		// 向数据库查询info
+		serviceInfo, err := get(tx, &enity.ServiceInfo{ServiceName: serviceName})
 		if err != nil {
+			log.Debug("查询数据库失败", zap.Error(err))
 			return nil, err
 		}
+		log.Debug("查询数据库成功", zap.Any("serviceInfo", serviceInfo))
 
-		// 提取ServiceInfo
-		serviceInfo := serviceDetail.Info
-
+		// 组装新的服务详情
 		updatedServiceDetail, err := getServiceDetail(tx, serviceInfo)
 		if err != nil {
 			return nil, err
 		}
+
+		// 移除负载均衡和传输层的缓存
+		LoadBalanceTransport.Remove(serviceName)
 
 		// 将新的服务详情设置到缓存
 		switch operation {
@@ -137,7 +146,9 @@ func (s *serviceCache) HTTPAccessMode(c *gin.Context) (*enity.ServiceDetail, err
 	log.Debug("serviceName", zap.String("serviceName", serviceName))
 
 	log.Debug("http host", zap.String("host", serviceName))
+	s.mu.RLock()
 	serviceDetail, ok := s.HTTPServices.Load(serviceName)
+	s.mu.RUnlock()
 	log.Debug("http serviceDetail", zap.Any("detail", serviceDetail))
 	if !ok {
 		return nil, fmt.Errorf("not matched service")
@@ -178,6 +189,9 @@ func (s *serviceCache) GetTcpServiceList() []*enity.ServiceDetail {
 
 // getServiceListFromMap 工具函数，工具传入的map进行遍历，返回[]*enity.ServiceDetail。
 func (s *serviceCache) getServiceListFromMap(serviceMap *sync.Map) []*enity.ServiceDetail {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	list := []*enity.ServiceDetail{}
 	serviceMap.Range(func(key, value interface{}) bool {
 		serviceDetail := value.(*enity.ServiceDetail)
@@ -186,13 +200,4 @@ func (s *serviceCache) getServiceListFromMap(serviceMap *sync.Map) []*enity.Serv
 	})
 	return list
 
-}
-
-// findServiceDetailByName 通过 serviceName 从缓存中获取服务详情。
-func (s *serviceCache) findServiceDetailByName(serviceName string, serviceMap *sync.Map) (*enity.ServiceDetail, error) {
-	value, ok := serviceMap.Load(serviceName)
-	if !ok {
-		return nil, fmt.Errorf("service not found")
-	}
-	return value.(*enity.ServiceDetail), nil
 }

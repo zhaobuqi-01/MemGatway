@@ -40,7 +40,6 @@ func InitRouter() *gin.Engine {
 		middleware.RecoveryMiddleware(),       // 恢复中间件
 		middleware.RequestLog(),               // 请求日志中间件
 		middleware.TranslationMiddleware(),    // 国际化中间件
-		middleware.TrafficStats(),
 	)
 
 	// 注册prometheus监控路由

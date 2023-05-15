@@ -102,9 +102,11 @@ func (r *RealServer) TimeoutHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func (r *RealServer) HelloHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("hello")
+
 	// 设置服务器 IP 地址
 	serverIP := r.Addr
+
+	fmt.Printf("hello %s\n", r.Addr)
 
 	// 获取请求的URL路径、X-Forwarded-For头部信息、X-Real-Ip头部信息，以及所有的HTTP请求头部信息
 	upath := fmt.Sprintf("http://%s%s", r.Addr, req.URL.Path)

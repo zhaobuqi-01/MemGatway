@@ -11,7 +11,7 @@ gateway:
 # Log configuration
 log:
   format: "text" # json or text
-  level: "info"
+  level: "debug"
   filename: "logs/gateway.log"
   error_filename: "logs/gateway_error.log"
   max_size: 50

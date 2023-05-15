@@ -44,6 +44,7 @@ func InitRouter() *gin.Engine {
 	router.Use(
 		middleware.HTTPAccessModeMiddleware(),
 		middleware.HTTPTrafficStats(),
+		middleware.TrafficStats(),
 		middleware.HTTPFlowLimitMiddleware(),
 		middleware.HTTPJwtAuthTokenMiddleware(),
 		middleware.HTTPJwtFlowCountMiddleware(),

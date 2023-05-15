@@ -24,6 +24,7 @@ type AppCache interface {
 
 // appCache 结构体实现了 AppCache 接口。
 type appCache struct {
+	mu           sync.RWMutex
 	AppCache     *sync.Map
 	singleFlight singleflight.Group
 }
@@ -31,6 +32,7 @@ type appCache struct {
 // NewAppCache 返回一个新的 appCache 实例。
 func NewAppCache() *appCache {
 	return &appCache{
+		mu:           sync.RWMutex{},
 		AppCache:     &sync.Map{},
 		singleFlight: singleflight.Group{},
 	}
@@ -38,6 +40,9 @@ func NewAppCache() *appCache {
 
 // GetApp 通过 appID 返回 app。
 func (s *appCache) GetApp(appID string) (*enity.App, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	any, ok := s.AppCache.Load(appID)
 	if !ok {
 		return nil, fmt.Errorf("app not found")
@@ -73,17 +78,14 @@ func (a *appCache) LoadAppCache() error {
 
 // UpdateAppCache 通过 appID 和 operation 更新 app 缓存。
 func (s *appCache) UpdateAppCache(appID string, operation string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	_, err, _ := s.singleFlight.Do(appID, func() (interface{}, error) {
 		tx := mysql.GetDB()
 
-		// 查询数据库获取应用程序详情
-		appInfo, err := s.findAppInfoByID(appID)
-		if err != nil {
-			return nil, err
-		}
-
 		// 查询数据库获得app
-		appInfo, err = get(tx, appInfo)
+		appInfo, err := get(tx, &enity.App{AppID: appID})
 		if err != nil {
 			return nil, err
 		}
@@ -105,6 +107,9 @@ func (s *appCache) UpdateAppCache(appID string, operation string) error {
 
 // findAppInfoByID 通过 appID 查找 app 信息。
 func (s *appCache) findAppInfoByID(appID string) (*enity.App, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	appInfo, found := s.AppCache.Load(appID)
 	if !found {
 		return nil, fmt.Errorf("app not found")

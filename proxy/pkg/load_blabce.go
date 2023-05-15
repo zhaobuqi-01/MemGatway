@@ -16,6 +16,7 @@ import (
 type LoadBalanceAndTransport interface {
 	GetLoadBalancer(service *enity.ServiceDetail) (load_balance.LoadBalance, error)
 	GetTransportor(service *enity.ServiceDetail) (*http.Transport, error)
+	Remove(serviceName string)
 }
 
 const (
@@ -37,6 +38,11 @@ func NewLoadBalancerAndTransport() *loadBalanceAndTransport {
 		loadBalanceMap: sync.Map{},
 		transportMap:   sync.Map{},
 	}
+}
+
+func (lbr *loadBalanceAndTransport) Remove(serviceName string) {
+	lbr.loadBalanceMap.Delete(serviceName)
+	lbr.transportMap.Delete(serviceName)
 }
 
 // GetLoadBalancer 获取LoadBalancer实例，如果不存在则创建一个新的实例并添加到映射中

@@ -35,23 +35,15 @@ func RecordSystemMetrics() {
 	}()
 }
 
-// RecordRequestTotalMetrics records the total number of requests.
-func RecordRequestTotalMetrics(serverName string) {
-	log.Info("Recording request total metrics", zap.String("server_name", serverName))
-	requestsTotal.WithLabelValues(serverName).Inc()
+// 更新相应的函数以接受节点名称参数
+func RecordRequestTotalMetrics(serverName, nodeName string) {
+	requestsTotal.WithLabelValues(serverName, nodeName).Inc()
 }
 
-// RecordResponseTimeMetrics records the response time of requests.
-func RecordResponseTimeMetrics(name string, responseTime float64) {
-	responseTimeHistogram.WithLabelValues(name).Observe(responseTime)
+func RecordResponseTimeMetrics(serverName, nodeName string, responseTime float64) {
+	responseTimeHistogram.WithLabelValues(serverName, nodeName).Observe(responseTime)
 }
 
-// RecordErrorRateMetrics records the error rate of requests.
-func RecordErrorRateMetrics(name string) {
-	errorRate.WithLabelValues(name).Inc()
-}
-
-// RecordCircuitBreakerMetrics records the circuit breaker metrics.
-func RecordLimiterMetrics(name string) {
-	limiterCount.WithLabelValues(name).Inc()
+func RecordLimiterMetrics(serverName, nodeName string) {
+	limiterCount.WithLabelValues(serverName, nodeName).Inc()
 }
