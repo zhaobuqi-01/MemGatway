@@ -27,3 +27,16 @@ docker run -d --name grafana --network prometheus-net -p 3000:3000   -v /home/zh
 5. `cpuUsage`（CPU使用率）：与内存使用情况类似，**折线图**或**面积图**是展示CPU使用率随时间变化的理想选择。
 6. `limiterCount`（限制器事件计数）：您可以使用**折线图**或**柱状图**来显示限制器事件计数随时间的变化。这将帮助您了解限制器事件发生的频率和趋势。
 7. `circuitBreakerCount`（熔断器事件计数）：**折线图**或**柱状图**是展示熔断器事件计数随时间变化的理想选择。您还可以为不同的熔断器状态（如 open、closed 或 half_open）使用不同的线条或柱子颜色。
+
+```shell
+docker run -d --name=loki --network=prometheus-net -p 3100:3100 -v  /home/zhaobuqi/docker_files/loki:/mnt/loki grafana/loki:latest
+
+docker run -d --name=promtail --network=prometheus-net -v /home/zhaobuqi/docker_files/promtail/config.yml:/etc/promtail/config.yml -v /mnt/e/project/gateway/logs:/var/logs grafana/promtail:latest
+
+
+```
+
+
+
+
+
