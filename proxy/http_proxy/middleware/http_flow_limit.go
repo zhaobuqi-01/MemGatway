@@ -22,7 +22,6 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 		}
 		serviceDetail := serverInterface.(*enity.ServiceDetail)
 		if serviceDetail.AccessControl.ServiceFlowLimit != 0 {
-			log.Info("get serviceLimiter", zap.Any("serviceNnme", serviceDetail.Info.ServiceName))
 			serviceLimiter, err := pkg.FlowLimiter.GetLimiter(
 				serviceDetail.Info.ServiceName,
 				float64(serviceDetail.AccessControl.ServiceFlowLimit))
@@ -31,6 +30,9 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 				c.Abort()
 				return
 			}
+			log.Info("get serviceLimiter", zap.String("serviceNnme", serviceDetail.Info.ServiceName),
+				zap.Any("mysql serviceFlowLimit", serviceDetail.AccessControl.ServiceFlowLimit),
+				zap.Any("serviceLimiter", serviceLimiter))
 			if !serviceLimiter.Allow() {
 				response.ResponseError(c, response.ServerLimiterAllowErrCode, fmt.Errorf(fmt.Sprintf("service flow limit %v", serviceDetail.AccessControl.ServiceFlowLimit)))
 				log.Warn("start server flow limit", zap.Any("service flow limit", serviceDetail.AccessControl.ServiceFlowLimit))

@@ -119,7 +119,7 @@ func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, o
 
 		// 移除负载均衡和传输层的缓存
 		LoadBalanceTransport.Remove(serviceName)
-
+		FlowLimiter.Remove(serviceName)
 		// 将新的服务详情设置到缓存
 		switch operation {
 		case globals.DataInsert, globals.DataUpdate:

@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"gateway/pkg/log"
 	"sync"
 
 	"golang.org/x/time/rate"
@@ -10,6 +11,7 @@ import (
 type Limiter interface {
 	// GetLimiter 根据服务名和每秒请求数(QPS)获取对应的限流器
 	GetLimiter(serviceName string, qps float64) (*rate.Limiter, error)
+	Remove(serviceName string)
 }
 
 // flowLimiter 结构体实现了Limiter接口，并包含了一个sync.Map存储各服务的限流器
@@ -27,11 +29,18 @@ func NewFlowLimiter() *flowLimiter {
 func (fl *flowLimiter) GetLimiter(serviceName string, qps float64) (*rate.Limiter, error) {
 	value, ok := fl.flowLimiterMap.Load(serviceName)
 	if ok {
+		log.Debug("从map获取limiter")
 		return value.(*rate.Limiter), nil
 	}
 
 	newLimiter := rate.NewLimiter(rate.Limit(qps), int(qps*3))
 
 	fl.flowLimiterMap.Store(serviceName, newLimiter)
+	log.Debug("新建获取limiter")
 	return newLimiter, nil
+}
+
+func (fl *flowLimiter) Remove(serviceName string) {
+	log.Debug("删除limiter")
+	fl.flowLimiterMap.Delete(serviceName)
 }
