@@ -80,29 +80,25 @@ func (a *appCache) LoadAppCache() error {
 func (s *appCache) UpdateAppCache(appID string, operation string) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	tx := mysql.GetDB()
 
-	_, err, _ := s.singleFlight.Do(appID, func() (interface{}, error) {
-		tx := mysql.GetDB()
+	// 查询数据库获得app
+	appInfo, err := get(tx, &enity.App{AppID: appID})
+	if err != nil {
+		return err
+	}
 
-		// 查询数据库获得app
-		appInfo, err := get(tx, &enity.App{AppID: appID})
-		if err != nil {
-			return nil, err
-		}
-
-		// 根据操作类型更新缓存
-		switch operation {
-		case globals.DataInsert, globals.DataUpdate:
-			s.AppCache.Store(appID, appInfo)
-			return nil, nil
-		case globals.DataDelete:
-			s.AppCache.Delete(appID)
-			return nil, nil
-		default:
-			return nil, fmt.Errorf("invalid operation")
-		}
-	})
-	return err
+	// 根据操作类型更新缓存
+	switch operation {
+	case globals.DataInsert, globals.DataUpdate:
+		s.AppCache.Store(appID, appInfo)
+		return nil
+	case globals.DataDelete:
+		s.AppCache.Delete(appID)
+		return nil
+	default:
+		return fmt.Errorf("invalid operation")
+	}
 }
 
 // findAppInfoByID 通过 appID 查找 app 信息。

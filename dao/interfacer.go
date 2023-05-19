@@ -135,7 +135,8 @@ func (dao *gormDao[T]) Get(c *gin.Context, db *gorm.DB, search *T) (*T, error) {
 	log.Info("start getting", zap.Any("search", search), zap.String("trace_id", c.GetString("TraceID")))
 
 	var out T
-	result := db.Where(search).First(&out)
+
+	result := db.Set("gorm:query_option", "FOR UPDATE").Where(search).First(&out)
 
 	if result.Error != nil {
 		if result.Error == gorm.ErrRecordNotFound {

@@ -104,7 +104,7 @@ func get[T Model](db *gorm.DB, search *T) (*T, error) {
 	log.Info("start getting", zap.Any("search", search))
 
 	var out T
-	result := db.Where(search).First(&out)
+	result := db.Set("gorm:query_option", "FOR UPDATE").Where(search).First(&out)
 
 	if result.Error != nil {
 		if result.Error == gorm.ErrRecordNotFound {
@@ -112,7 +112,7 @@ func get[T Model](db *gorm.DB, search *T) (*T, error) {
 			return nil, result.Error
 		}
 
-		log.Error(fmt.Sprintf("error retrieving :%v ", search), zap.Error(result.Error))
+		log.Error(fmt.Sprintf("error retrieving: %v", search), zap.Error(result.Error))
 		return nil, result.Error
 	}
 

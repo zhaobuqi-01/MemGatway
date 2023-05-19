@@ -86,52 +86,52 @@ func (s *serviceCache) UpdateServiceCache(serviceName string, serviceType int, o
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	// 使用singleflight.Group确保同时只有一个goroutine在执行更新操作
-	_, err, _ := s.sf.Do(serviceName, func() (interface{}, error) {
-		tx := mysql.GetDB()
+	tx := mysql.GetDB()
 
-		log.Debug("debug 更新cache", zap.String("servicename", serviceName), zap.Int("serviceType", serviceType), zap.Strings("operation", strings.Split(operation, " ")))
-		// 获取对应的map
-		var serviceMap *sync.Map
-		switch serviceType {
-		case globals.LoadTypeHTTP:
-			serviceMap = s.HTTPServices
-		case globals.LoadTypeTCP:
-			serviceMap = s.TCPServices
-		case globals.LoadTypeGRPC:
-			serviceMap = s.GRPCServices
-		default:
-			return nil, fmt.Errorf("invalid service type")
-		}
+	log.Debug("debug 更新cache", zap.String("servicename", serviceName), zap.Int("serviceType", serviceType), zap.Strings("operation", strings.Split(operation, " ")))
+	// 获取对应的map
+	var serviceMap *sync.Map
+	switch serviceType {
+	case globals.LoadTypeHTTP:
+		serviceMap = s.HTTPServices
+	case globals.LoadTypeTCP:
+		serviceMap = s.TCPServices
+	case globals.LoadTypeGRPC:
+		serviceMap = s.GRPCServices
+	default:
+		return fmt.Errorf("invalid service type")
+	}
 
-		// 向数据库查询info
-		serviceInfo, err := get(tx, &enity.ServiceInfo{ServiceName: serviceName})
-		if err != nil {
-			log.Debug("查询数据库失败", zap.Error(err))
-			return nil, err
-		}
-		log.Debug("查询数据库成功", zap.Any("serviceInfo", serviceInfo))
+	// 向数据库查询info
+	serviceInfo, err := get(tx, &enity.ServiceInfo{ServiceName: serviceName})
+	if err != nil {
+		log.Debug("查询数据库失败", zap.Error(err))
+		return err
+	}
+	log.Debug("查询数据库成功", zap.Any("serviceInfo", serviceInfo))
 
-		// 组装新的服务详情
-		updatedServiceDetail, err := getServiceDetail(tx, serviceInfo)
-		if err != nil {
-			return nil, err
-		}
+	// 组装新的服务详情
+	updatedServiceDetail, err := getServiceDetail(tx, serviceInfo)
+	if err != nil {
+		return err
+	}
 
-		// 移除负载均衡和传输层的缓存
-		LoadBalanceTransport.Remove(serviceName)
-		FlowLimiter.Remove(serviceName)
-		// 将新的服务详情设置到缓存
-		switch operation {
-		case globals.DataInsert, globals.DataUpdate:
-			serviceMap.Store(serviceName, updatedServiceDetail)
-			return nil, nil
-		case globals.DataDelete:
-			serviceMap.Delete(serviceName)
-			return nil, nil
-		default:
-			return nil, fmt.Errorf("invalid operation")
-		}
-	})
+	// 移除负载均衡和传输层的缓存
+	LoadBalanceTransport.Remove(serviceName)
+	FlowLimiter.Remove(serviceName)
+
+	// 将新的服务详情设置到缓存
+	switch operation {
+	case globals.DataInsert, globals.DataUpdate:
+		serviceMap.Store(serviceName, updatedServiceDetail)
+		return nil
+	case globals.DataDelete:
+		serviceMap.Delete(serviceName)
+		return nil
+	default:
+		return fmt.Errorf("invalid operation")
+	}
+
 	return err
 }
 

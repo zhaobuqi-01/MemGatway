@@ -40,7 +40,7 @@ func main() {
 	// Create a message queue instance
 	messageQueue := mq.Default(redis.GetRedisConnection())
 	// Subscribe to data change channel and reload data
-	err := messageQueue.Subscribe(globals.DataChange, true, func(channel string, message []byte) {
+	err := messageQueue.Subscribe(globals.DataChange, false, func(channel string, message []byte) {
 		// parse the message
 		var dataChangeMsg globals.DataChangeMessage
 		err := json.Unmarshal(message, &dataChangeMsg)

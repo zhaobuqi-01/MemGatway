@@ -24,9 +24,20 @@ func HTTPBlackListMiddleware() gin.HandlerFunc {
 		}
 		serviceDetail := serverInterface.(*enity.ServiceDetail)
 
-		whiteIpList := strings.Split(serviceDetail.AccessControl.WhiteList, ",")
-		blackIpList := strings.Split(serviceDetail.AccessControl.BlackList, ",")
-		if serviceDetail.AccessControl.OpenAuth == 1 && len(whiteIpList) == 0 && len(blackIpList) > 0 {
+		whileIpList := []string{}
+		if serviceDetail.AccessControl.WhiteList != "" {
+			whileIpList = strings.Split(serviceDetail.AccessControl.WhiteList, ",")
+			log.Debug("get whileIpList", zap.Any("whileIpList", whileIpList))
+		}
+
+		blackIpList := []string{}
+		if serviceDetail.AccessControl.BlackList != "" {
+			blackIpList = strings.Split(serviceDetail.AccessControl.BlackList, ",")
+			log.Debug("get blackIpList", zap.Any("blackIpList", blackIpList))
+		}
+
+		log.Debug("OPEN_AUTH", zap.Any("OPEN_AUTH", serviceDetail.AccessControl.OpenAuth))
+		if serviceDetail.AccessControl.OpenAuth == 1 && len(whileIpList) == 0 && len(blackIpList) > 0 {
 			if utils.InStringSlice(blackIpList, c.ClientIP()) {
 				response.ResponseError(c, response.ClientIPInBlackListErrCode, fmt.Errorf(fmt.Sprintf("%s in black ip list", c.ClientIP())))
 				log.Info("client ip in black list", zap.String("clientIP", c.ClientIP()))
@@ -34,13 +45,6 @@ func HTTPBlackListMiddleware() gin.HandlerFunc {
 				return
 			}
 		}
-
-		// if _, found := pkg.BlackIpCache.Get(c.ClientIP()); found {
-		// 	response.ResponseError(c, response.ClientIPInBlackListErrCode, fmt.Errorf(fmt.Sprintf("%s in black ip list", c.ClientIP())))
-		// 	c.Abort()
-		// 	return
-		// }
-
 		c.Next()
 	}
 }
